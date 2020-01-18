@@ -47,12 +47,15 @@ public class Gravity_Source : MonoBehaviour
 		
 		if (exitingObject != null)
 		{
-			//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
-			//exitingObject.blendToNewSource = 0.0f;
-			//exitingObject.gravitySource = defaultGravitySource.GetComponent<Gravity_Source>();
+			if (defaultGravitySource != null)
+			{	
+				//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
+				//exitingObject.blendToNewSource = 0.0f;
+				//exitingObject.gravitySource = defaultGravitySource.GetComponent<Gravity_Source>();
 			
-			exitingObject.SetGravitySource(defaultGravitySource.GetComponent<Gravity_Source>());
-			triggeredObject.transform.SetParent(defaultGravitySource);
+				exitingObject.SetGravitySource(defaultGravitySource.GetComponent<Gravity_Source>());
+				triggeredObject.transform.SetParent(defaultGravitySource);
+			}
 		}
 		
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();

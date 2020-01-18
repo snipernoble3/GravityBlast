@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrownDebris : MonoBehaviour {
-
-    private void OnCollisionEnter (Collision collision) {
-        if (collision.gameObject.GetComponent<Health>().GetTag() == Health.AlignmentTag.Player) {
-            collision.gameObject.GetComponent<Health>().TakeDamage(1);
-            gameObject.SetActive(false);
-        } else {
-            StartCoroutine(turnOff());
-        }
-        
+public class ThrownDebris : MonoBehaviour
+{
+    private void OnCollisionEnter (Collision collision)
+	{
+        Health health = collision.gameObject.GetComponent<Health>();
+		
+		if (health != null)
+		{			
+			if (health.GetTag() == Health.AlignmentTag.Player)
+			{
+				health.TakeDamage(1);
+				gameObject.SetActive(false);
+			}
+			else StartCoroutine(TurnOff());
+		}
     }
 
-    IEnumerator turnOff () {
-        yield return new WaitForSeconds(4f);
+    private IEnumerator TurnOff()
+	{
+        yield return new WaitForSeconds(4.0f);
         gameObject.SetActive(false);
     }
-
 }

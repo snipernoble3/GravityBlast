@@ -187,7 +187,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     public void UpdateModifications () {
 
         mAmmo = (int)(maxAmmo * (mAmmoLevel * mAmmoPerLevel));
-        Debug.Log("" + mAmmo);
+        //Debug.Log("" + mAmmo);
         mReload = mReloadLevel * mReloadPerLevel;
         mFireRate = mFireRateLevel * mFireRatePerLevel;
         mProjectileDuration = mProjectileDurationLevel * mProjectileDurationPerLevel;
