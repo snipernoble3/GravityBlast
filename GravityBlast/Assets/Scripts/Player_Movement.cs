@@ -83,8 +83,8 @@ public class Player_Movement : MonoBehaviour
 	
 	// Object References
 	public Gravity_Source gravitySource;
-	private GameObject mainCam;
-	private GameObject firstPersonVisuals;
+	private Transform firstPersonCamera;
+	private Transform firstPersonObjects;
 	private Rigidbody playerRB;
 	public Animator firstPersonArms_Animator;
 	
@@ -127,9 +127,8 @@ public class Player_Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 		
 		// Set up references
-		mainCam = transform.Find("Camera Position Offset/Main Camera").gameObject;
-		//firstPersonVisuals = transform.Find("Camera Position Offset/First Person Visuals").gameObject;
-		firstPersonVisuals = mainCam.transform.Find("First Person Camera/First Person Visuals").gameObject;
+		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
+		firstPersonObjects = firstPersonCamera.Find("First Person Objects");
 		
 		playerRB = GetComponent<Rigidbody>();
 		playerRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -143,7 +142,7 @@ public class Player_Movement : MonoBehaviour
 		if (hud != null)
 		{
 			hud.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
-			hud.GetComponent<Canvas>().worldCamera = mainCam.transform.Find("First Person Camera").GetComponent<Camera>();
+			hud.GetComponent<Canvas>().worldCamera = firstPersonCamera.GetComponent<Camera>();
 			
 			hud.transform.GetComponentsInChildren<VectorVisualizer>(false, radarLines);	
 			hud_LateralVelocity = hud.transform.Find("Current Lateral Velocity").gameObject.GetComponent<TextMeshProUGUI>();
@@ -164,17 +163,17 @@ public class Player_Movement : MonoBehaviour
 		if (jumpQueue_timeSinceGrounded < jumpQueue_bHopGracePeriod) jumpQueue_timeSinceGrounded = Mathf.Clamp(jumpQueue_timeSinceGrounded += 1.0f * Time.deltaTime, 0.0f, jumpQueue_bHopGracePeriod);
 
 		// Rotate arms to follow screen.
-		//firstPersonVisuals.transform.rotation = Quaternion.RotateTowards(firstPersonVisuals.rotation, Quaternion.Euler(mainCam.transform.forward), 50.0f);
+		//firstPersonObjects.rotation = Quaternion.RotateTowards(firstPersonObjects.rotation, Quaternion.Euler(firstPersonCamera.forward), 50.0f);
 		
-		//firstPersonVisuals.transform.rotation = Quaternion.RotateTowards(firstPersonVisuals.rotation, Quaternion.Euler(mainCam.transform.TransformDirection(Vector3.forward)), 50.0f);
+		//firstPersonObjects.rotation = Quaternion.RotateTowards(firstPersonObjects.rotation, Quaternion.Euler(firstPersonCamera.TransformDirection(Vector3.forward)), 50.0f);
 		
-		//firstPersonVisuals.transform.rotation = Quaternion.Euler(mainCam.transform.forward);
+		//firstPersonObjects.rotation = Quaternion.Euler(firstPersonCamera.forward);
 		
-		//firstPersonVisuals.transform.rotation = Quaternion.Euler(mainCam.transform.TransformDirection(Vector3.forward));
+		//firstPersonObjects.rotation = Quaternion.Euler(firstPersonCamera.TransformDirection(Vector3.forward));
 		
-		//firstPersonVisuals.transform.rotation = mainCam.transform.rotation;
+		//firstPersonObjects.rotation = firstPersonCamera.rotation;
 		
-		firstPersonVisuals.transform.rotation = Quaternion.RotateTowards(firstPersonVisuals.transform.rotation, mainCam.transform.rotation, 1.0f);
+		firstPersonObjects.rotation = Quaternion.RotateTowards(firstPersonObjects.rotation, firstPersonCamera.rotation, 1.0f);
 		
 		
 		
@@ -337,7 +336,7 @@ public class Player_Movement : MonoBehaviour
 		// Up Down
 		verticalAngle += rotation_vertical * Time.deltaTime * deltaTimeCompensation;
 		verticalAngle = Mathf.Clamp(verticalAngle, verticalAngle_Min, verticalAngle_Max);
-		mainCam.transform.localRotation = Quaternion.Euler(Vector3.left * verticalAngle);
+		firstPersonCamera.localRotation = Quaternion.Euler(Vector3.left * verticalAngle);
 		
 		// Left Right
 		horizontalAngle = rotation_horizontal * Time.deltaTime * deltaTimeCompensation;

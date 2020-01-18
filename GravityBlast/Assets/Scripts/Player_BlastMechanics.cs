@@ -16,7 +16,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	private Player_Movement playerMovement;
 	public GameObject groundPoundParticles; // gets reference to the particles to spawn
 	private GameObject gpParticles_GameObject; // stores the instance of the particles
-	private GameObject firstPersonCam;
+	private Transform firstPersonCamera;
 	private GameObject camOffset;
 	
 	public LayerMask raycastMask;
@@ -46,7 +46,7 @@ public class Player_BlastMechanics : MonoBehaviour
     {		
 		// Set up references
 		playerMovement = GetComponent<Player_Movement>();
-		firstPersonCam = transform.Find("Camera Position Offset/Main Camera").gameObject;
+		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
 		camOffset = transform.Find("Camera Position Offset").gameObject;
         playerRB = GetComponent<Rigidbody>();
 		rjBlast_TimeSinceLastJump = rjBlast_CoolDownTime;
@@ -74,7 +74,7 @@ public class Player_BlastMechanics : MonoBehaviour
 		RaycastHit rjBlast_Hit;
 			
 		//Determine if the the rocket jump blast hit an object or if it was a mid-air rocket jump, and therefore determine where its center point should be.
-		if (Physics.Raycast(firstPersonCam.transform.position, firstPersonCam.transform.forward, out rjBlast_Hit, rjBlast_Range, raycastMask, QueryTriggerInteraction.Ignore))
+		if (Physics.Raycast(firstPersonCamera.position, firstPersonCamera.forward, out rjBlast_Hit, rjBlast_Range, raycastMask, QueryTriggerInteraction.Ignore))
 		{
 			//if (rjBlast_Hit.collider != null)		
 			rjBlast_DidHitSurface = true;
@@ -83,7 +83,7 @@ public class Player_BlastMechanics : MonoBehaviour
 		else
 		{
 			rjBlast_DidHitSurface = false;
-			rjBlast_Epicenter = firstPersonCam.transform.position + (firstPersonCam.transform.forward * rjBlast_Range);
+			rjBlast_Epicenter = firstPersonCamera.position + (firstPersonCamera.forward * rjBlast_Range);
 		}
 		
 		firstPersonArms_Animator.Play("Blast", 1, 0.25f); // Play the blast animation.

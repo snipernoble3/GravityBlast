@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     passTag: FirstPersonObjectsOpaque
-    Event: 250
+    Event: 50
     filterSettings:
       RenderQueueType: 0
       LayerMask:
