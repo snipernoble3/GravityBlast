@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Resource B
+  - Planet
   layers:
   - Default
   - TransparentFX
@@ -13,13 +16,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Player
+  - FirstPersonObjects
+  - ThirdPersonObjects
+  - Pickups
+  - Projectiles
+  - GravityTrigger
   - 
   - 
   - 
