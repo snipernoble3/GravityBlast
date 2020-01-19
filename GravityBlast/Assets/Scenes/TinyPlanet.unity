@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -217,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &135884399
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &161110616
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &161549781
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &166046668 stripped
@@ -1149,9 +1149,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
+--- !u!1 &183672599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4986345400288586578, guid: 57449e01d1648d14a8de92a4eb49bdd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 337929146736834779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185712009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1230,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -1434,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &294213204 stripped
@@ -1566,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &302078269
@@ -1776,7 +1782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &317732964
@@ -2055,6 +2061,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1500647391608011799, guid: 9891e785d80ecd24f8e0399493d714bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1096893669998204395, guid: 9891e785d80ecd24f8e0399493d714bb,
         type: 3}
@@ -2348,6 +2359,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9891e785d80ecd24f8e0399493d714bb, type: 3}
+--- !u!4 &317732965 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2550867749161518329, guid: 9891e785d80ecd24f8e0399493d714bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 317732964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &317732966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6484824474921035890, guid: 9891e785d80ecd24f8e0399493d714bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 317732964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &322861869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,7 +2494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &324910183
@@ -2597,7 +2620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &327674339
@@ -2723,7 +2746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &347252366
@@ -2849,7 +2872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &361505000
@@ -2862,7 +2885,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -2935,7 +2958,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -3133,9 +3156,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
+--- !u!95 &395392669 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 7511718eb33f5de428736b2e6387dac6,
+    type: 3}
+  m_PrefabInstance: {fileID: 857412393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &397551843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3146,7 +3175,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -3332,7 +3361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &418709183 stripped
@@ -3464,7 +3493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &425556094
@@ -3590,7 +3619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &465761261
@@ -3603,7 +3632,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -3682,7 +3711,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -3868,7 +3897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &498798848
@@ -3994,7 +4023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &531370948 stripped
@@ -4205,7 +4234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &572298022
@@ -4329,7 +4358,7 @@ Transform:
   - {fileID: 418709183}
   - {fileID: 1987638199}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575244185
 GameObject:
@@ -4454,7 +4483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &594538378
@@ -4580,7 +4609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &608223762 stripped
@@ -4712,7 +4741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &636073045 stripped
@@ -4945,7 +4974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &677118480 stripped
@@ -5077,7 +5106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &705507993
@@ -5295,7 +5324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &745576867
@@ -5505,7 +5534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &797150290
@@ -5631,9 +5660,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
+--- !u!4 &812407387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8508956792583395384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &827659012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,7 +5792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &829738287
@@ -5770,7 +5805,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -5956,9 +5991,183 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
+--- !u!1001 &857412393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 317732965}
+    m_Modifications:
+    - target: {fileID: -8881692483644180309, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8161852838460371404, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -7504848204960649495, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e1a9201d7d05e6141ad8794b4fc20742, type: 2}
+    - target: {fileID: -6026876904267042764, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4150858055109447225, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3444615742572805283, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -2283332242880472768, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Name
+      value: Gabriel_Jetpack
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -811602825279011822, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -187086347053449922, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887863185991595683, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097441902175015308, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744638809663070235, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931308330545771972, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986429102704587185, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559879501380828713, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560192382373235374, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8943910087660894534, guid: 7511718eb33f5de428736b2e6387dac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7511718eb33f5de428736b2e6387dac6, type: 3}
 --- !u!1 &883462904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6132,7 +6341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &927840783 stripped
@@ -6266,7 +6475,7 @@ MonoBehaviour:
   m_CameraType: 0
   m_CameraOutput: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -6402,7 +6611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1007797089 stripped
@@ -6534,7 +6743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1026145887 stripped
@@ -6687,7 +6896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1067036172 stripped
@@ -6819,7 +7028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1077836510
@@ -6945,7 +7154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1121866739
@@ -7201,7 +7410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1154393249 stripped
@@ -7220,7 +7429,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -7412,7 +7621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1162705065
@@ -7538,7 +7747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1176738044 stripped
@@ -7676,7 +7885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1220210365
@@ -7802,7 +8011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1255548947
@@ -7928,7 +8137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1260936269
@@ -8054,7 +8263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1281275654
@@ -8180,7 +8389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1309383249
@@ -8193,7 +8402,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -8379,7 +8588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1325780832
@@ -8505,7 +8714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1336772783
@@ -8631,7 +8840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1338442101
@@ -8644,7 +8853,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -8830,7 +9039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1359329633 stripped
@@ -8849,7 +9058,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -8928,7 +9137,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -9013,7 +9222,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -9199,7 +9408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1484771745
@@ -9325,7 +9534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1488611068
@@ -9451,7 +9660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1489500038
@@ -9577,7 +9786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1496762927
@@ -9703,7 +9912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1505006130
@@ -9829,7 +10038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1521344545 stripped
@@ -9837,6 +10046,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
     type: 3}
   m_PrefabInstance: {fileID: 366712775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1535912482 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7308633463188416211, guid: 978ccc9568ae967499c26e069b6eff52,
+    type: 3}
+  m_PrefabInstance: {fileID: 135884399}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1544100703 stripped
 Transform:
@@ -9854,7 +10069,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -10040,7 +10255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1572760821
@@ -10166,7 +10381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1574692927
@@ -10292,7 +10507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1575757834
@@ -10418,7 +10633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1591515699
@@ -10639,7 +10854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1607110798
@@ -10765,7 +10980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1610239804
@@ -10891,7 +11106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!114 &1640593867 stripped
@@ -11029,7 +11244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1642450181 stripped
@@ -11161,7 +11376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1685412811
@@ -11287,7 +11502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!4 &1691308680 stripped
@@ -11327,6 +11542,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 927840783}
+  - {fileID: 812407387}
   m_Father: {fileID: 185712010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11513,7 +11729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1744145446
@@ -11639,7 +11855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1769778520
@@ -11860,7 +12076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1801953848
@@ -11986,7 +12202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1807202774
@@ -12112,7 +12328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1828535549
@@ -12142,8 +12358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828535549}
-  m_LocalRotation: {x: -0.17364825, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -0.1, y: -0.49, z: -2.99}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.87, y: 0.95, z: -2.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5736374879128713760}
@@ -12192,12 +12408,12 @@ LookAtConstraint:
   m_RotationAtRest: {x: -20, y: 0, z: 0}
   m_RotationOffset: {x: -20, y: 0, z: 0}
   m_Roll: 0
-  m_WorldUpObject: {fileID: 0}
+  m_WorldUpObject: {fileID: 317732966}
   m_UseUpObject: 1
   m_IsContraintActive: 1
   m_IsLocked: 0
   m_Sources:
-  - sourceTransform: {fileID: 0}
+  - sourceTransform: {fileID: 5736374879128713760}
     weight: 1
 --- !u!81 &1828535553
 AudioListener:
@@ -12373,7 +12589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1843183618
@@ -12386,7 +12602,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -12578,7 +12794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &1897211093
@@ -12704,7 +12920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &1901733406
@@ -12717,7 +12933,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -12802,7 +13018,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -13100,7 +13316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &2010145345
@@ -13113,7 +13329,7 @@ PrefabInstance:
     - target: {fileID: 11570113, guid: b62571889945ad14cab5ae61f7791961, type: 3}
       propertyPath: gravitySource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572298024}
     - target: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
         type: 3}
       propertyPath: m_Name
@@ -13299,7 +13515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2033185998
@@ -13425,7 +13641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2096309685
@@ -13551,7 +13767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2100992291
@@ -13677,7 +13893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2125476575
@@ -13803,7 +14019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2134941885
@@ -13929,7 +14145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1 &2137979553
@@ -14055,7 +14271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySource: {fileID: 572298024}
   rotateToGravitySource: 1
   isChangingSource: 0
 --- !u!1001 &337929146736834779
@@ -15159,17 +15375,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717782293023185387}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19466ace5ea87ec4aae3eed569d75607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jetpack_Animator: {fileID: 0}
-  hud: {fileID: 0}
-  youWin: {fileID: 0}
+  Jetpack_Animator: {fileID: 395392669}
+  hud: {fileID: 1535912482}
+  youWin: {fileID: 183672599}
   playerCameras: []
-  playerListner: {fileID: 0}
-  thirdPersonPlayer: {fileID: 0}
+  playerListner: {fileID: 7651839392887894284}
+  thirdPersonPlayer: {fileID: 1828535549}
   player: {fileID: 717782293023185387}
 --- !u!114 &8488391558936628454
 MonoBehaviour:
@@ -15210,7 +15426,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1702641561}
     m_Modifications:
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
@@ -15220,7 +15436,7 @@ PrefabInstance:
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 112.44
+      value: 51.76001
       objectReference: {fileID: 0}
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
@@ -15230,17 +15446,17 @@ PrefabInstance:
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
@@ -15250,7 +15466,7 @@ PrefabInstance:
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
@@ -15266,6 +15482,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663508881664589803, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9013572857573813590, guid: 85f7a0e3ce2b6f54391d3688c2ad137b,
         type: 3}
