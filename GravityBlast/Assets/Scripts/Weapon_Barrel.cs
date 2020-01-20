@@ -88,21 +88,3 @@ public class Weapon_Barrel : MonoBehaviour
 		targetRotation = Quaternion.Euler(spinAxis * spinAngle); // Build the target rotation.
 	}
 }
-	
-/*
-	private void resetToNearestBarrel()
-	{
-		if (!stoppingPointCalculated)
-		{
-			//angleOfNearestBarrel = ((int)spinAngle / (360 / numOfBarrels)) * (360 / numOfBarrels);
-			angleOfNearestBarrel = (Mathf.Floor(spinAngle) / (360 / numOfBarrels)) * (360 / numOfBarrels);
-			stoppingPointCalculated = true;
-		}	
-
-		//spinAngle = Mathf.Lerp(spinAngle, angleOfNearestBarrel, 1.0f - WindUpDownMultiplier);
-		spinAngle = Mathf.Lerp(spinAngle, angleOfNearestBarrel, barrelResetSpeed * Time.deltaTime);
-		targetRotation = Quaternion.Euler(spinAxis * spinAngle);
-		
-		//targetRotation = Quaternion.Slerp(targetRotation, Quaternion.Euler(spinAxis * angleOfNearestBarrel), barrelResetSpeed * Time.deltaTime);
-	}
-*/
