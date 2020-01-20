@@ -319,12 +319,8 @@ public class Player_Movement : MonoBehaviour
 	{
 		if (matchXYSensitivity) mouseSensitivity_Y = mouseSensitivity_X;
 		
-		if (useRawMouseInput) rotation_horizontal = Input.GetAxisRaw("Mouse X") * mouseSensitivity_X;
-		else rotation_horizontal = Input.GetAxis("Mouse X") * mouseSensitivity_X;
-		
-		if (useRawMouseInput) rotation_vertical = Input.GetAxisRaw("Mouse Y") * mouseSensitivity_Y;
-		else rotation_vertical = Input.GetAxis("Mouse Y") * mouseSensitivity_Y;
-		if (invertVerticalInput) rotation_vertical *= -1;
+		rotation_horizontal = (useRawMouseInput ? Input.GetAxisRaw("Mouse X") : Input.GetAxis("Mouse X")) * mouseSensitivity_X;
+		rotation_vertical = (useRawMouseInput ? Input.GetAxisRaw("Mouse Y") : Input.GetAxis("Mouse Y")) * mouseSensitivity_Y * (invertVerticalInput ? -1.0f : 1.0f);
 	}
 	
 	private void MouseLook()

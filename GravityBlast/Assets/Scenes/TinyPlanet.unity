@@ -421,6 +421,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2121270180110314058, guid: 978ccc9568ae967499c26e069b6eff52,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -230
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877534170353704048, guid: 978ccc9568ae967499c26e069b6eff52,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 89.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7308633463188416208, guid: 978ccc9568ae967499c26e069b6eff52,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15256,8 +15266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a5b8df202bdcf47aad6a83a4df3a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinAxis: {x: 0, y: 0, z: 1}
-  spinClockwise: 1
+  spinAxis: {x: -0, y: -0, z: -1}
+  numOfBarrels: 3
   rotationAmount: 1000
   windUpRate: 3
   windDownRate: -1
