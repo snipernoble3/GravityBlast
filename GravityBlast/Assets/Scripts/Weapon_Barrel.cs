@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Weapon_Barrel : MonoBehaviour
 {
-    private Quaternion originalRotation;
+    [SerializeField] private Vector3 spinAxis = Vector3.forward;
+	[SerializeField] private bool spinClockwise = true;
+	
+	private Quaternion originalRotation;
 	private Quaternion targetRotation;
-	private float targetY;
+	private float spinTarget;
+	
 	
 	public float rotationAmount = 1000.0f;
 	
@@ -21,7 +25,7 @@ public class Weapon_Barrel : MonoBehaviour
     void Start()
     {
         originalRotation = transform.rotation;
-		targetY = originalRotation.y;
+		spinTarget = originalRotation.y;
     }
 
     void Update()
@@ -50,10 +54,11 @@ public class Weapon_Barrel : MonoBehaviour
 	
 	private void SetTargetRotation()
 	{	
-		targetY += rotationAmount * fireRateMultiplier * WindUpDownMultiplier * Time.deltaTime;
-		if (targetY < 0.0f) targetY += 360.0f;
-		if (targetY >= 360.0f) targetY -= 360.0f;
+		spinTarget += rotationAmount * fireRateMultiplier * WindUpDownMultiplier * Time.deltaTime * (spinClockwise ? -1.0f : 1.0f);
+		if (spinTarget < 0.0f) spinTarget += 360.0f;
+		if (spinTarget >= 360.0f) spinTarget -= 360.0f;
 		
-		targetRotation = Quaternion.Euler(0.0f, targetY, 0.0f);
+		targetRotation = Quaternion.Euler(spinAxis * spinTarget);
+		//targetRotation = Quaternion.Euler(0.0f, spinTarget, 0.0f);
 	}
 }
