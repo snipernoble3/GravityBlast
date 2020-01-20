@@ -17,6 +17,8 @@ public class Gravity_AttractedObject : MonoBehaviour
 	
     void Awake()
     {
+		if (gravitySource == null && Gravity_Source.DefaultGravitySource != null) gravitySource = Gravity_Source.DefaultGravitySource;
+		
 		// If we are sourcing gravity from a plant object, then don't apply Unity's default gravity.
 		if (gravitySource != null) GetComponent<Rigidbody>().useGravity = false;
 		else GetComponent<Rigidbody>().useGravity = true;
