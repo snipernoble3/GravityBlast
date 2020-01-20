@@ -46,5 +46,8 @@ public class Gravity_AttractedObject : MonoBehaviour
 		GetComponent<Rigidbody>().useGravity = false;
 	}
 
-    public Gravity_Source GetGravitySource () { return gravitySource; }
+    public Gravity_Source GetGravitySource()
+	{
+		return gravitySource;
+	}
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Gravity_Source : MonoBehaviour
 {
+	public static Gravity_Source DefaultGravitySource {get; private set;}
+	[SerializeField] private bool isDefaultGravitySource = false;
+	
 	[SerializeField] private float gravityStrength = -9.81f;
 	[SerializeField] private bool isRadial = true;
 	private Vector3 nonRadialDirection;
 	
-	private Transform defaultGravitySource;
+	//private Transform defaultGravitySource;
 	
 	// Test stuff
 	[SerializeField] private bool useTestSpheres = false;
@@ -17,11 +20,8 @@ public class Gravity_Source : MonoBehaviour
 	// Start is called before the first frame update
     void Awake()
     {
-        nonRadialDirection = transform.up;
-		
-		defaultGravitySource = transform.parent; // The parent of the AOE is the source, get the parent of THAT object.
-		
-		if (defaultGravitySource != null) if (defaultGravitySource.GetComponent<Gravity_Source>() == null) defaultGravitySource = transform.root;
+        nonRadialDirection = transform.up;	
+		if (isDefaultGravitySource) DefaultGravitySource = this;
     }
 	
 	private void OnTriggerEnter(Collider triggeredObject)
@@ -47,20 +47,20 @@ public class Gravity_Source : MonoBehaviour
 		
 		if (exitingObject != null)
 		{
-			if (defaultGravitySource != null)
+			if (DefaultGravitySource != null)
 			{	
 				//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
 				//exitingObject.blendToNewSource = 0.0f;
-				//exitingObject.gravitySource = defaultGravitySource.GetComponent<Gravity_Source>();
+				//exitingObject.gravitySource = DefaultGravitySource;
 			
-				exitingObject.SetGravitySource(defaultGravitySource.GetComponent<Gravity_Source>());
-				triggeredObject.transform.SetParent(defaultGravitySource);
+				exitingObject.SetGravitySource(DefaultGravitySource);
+				triggeredObject.transform.SetParent(DefaultGravitySource.transform);
 			}
 		}
 		
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
 		
-		if (player != null) player.gravitySource = defaultGravitySource.GetComponent<Gravity_Source>();
+		if (player != null) player.gravitySource = DefaultGravitySource;
     }
 	
 	public Vector3 GetGravityVector(Transform attractedObject)
