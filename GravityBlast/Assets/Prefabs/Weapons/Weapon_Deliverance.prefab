@@ -57,9 +57,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2662852903334449558}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.046571}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.00000044703472, y: 0.00000037643986, z: -0.0000011629894,
+    w: 1}
+  m_LocalPosition: {x: 0.38548562, y: 60.08813, z: -42.537277}
+  m_LocalScale: {x: 1.4285707, y: 1.4285715, z: 1.4285724}
   m_Children:
   - {fileID: 1793102503952043948}
   - {fileID: 7019997950213299823}
@@ -226,9 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a5b8df202bdcf47aad6a83a4df3a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinAxis: {x: 0, y: 0, z: 1}
-  spinClockwise: 1
+  spinAxis: {x: -0, y: -0, z: -1}
+  numOfBarrels: 3
   rotationAmount: 1000
   windUpRate: 3
-  windDownRate: -1
+  windDownRate: -0.75
   fireRateMultiplier: 1
