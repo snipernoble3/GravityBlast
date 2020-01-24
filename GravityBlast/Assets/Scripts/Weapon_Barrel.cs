@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class Weapon_Barrel : MonoBehaviour
 {
-    [SerializeField] private Vector3 spinAxis = -Vector3.forward;
-	[SerializeField] private int numOfBarrels = 3;
-	
-	private Quaternion targetRotation;
-	private float spinAngle = 0.0f;
-	private float angleOfNearestBarrel = 0.0f;
-	private bool stoppingPointCalculated = false;
-	
-	public float rotationAmount = 1000.0f;
-	private float remainingAngle = 0.0f;
-	private float barrelResetSpeed = 1.0f;
-	
-	public float windUpRate = 3.0f;
-	public float windDownRate = -1.0f;
-	private float WindUpDownMultiplier = 0.0f;
-	
-	private float MinWindDownSpeed = 0.2f;
-	
+    [SerializeField] private Vector3 spinAxis = -Vector3.forward; // Use negative or positive to spin clockwise / counter clockwise respectively.
+	[SerializeField] private int numOfBarrels = 3; // The number of barrels on the gun, used for figuring out the stopping position.
+	public float rotationAmount = 1000.0f; // The base speed multiplier for the barrel spin.
 	public float fireRateMultiplier = 1.0f;
 	
-	private bool isWindingDown = true;
+	private Quaternion targetRotation; // The quaternion rotation that will be built each frame.
+	private float spinAngle = 0.0f; // The angle that the barrel will be set to each frame.
+	private float angleOfNearestBarrel = 0.0f; // This will be calculated depending on the number of barrels (default 3 = 120 degrees)
 	
+	
+	private float MinWindDownSpeed = 0.2f;
+	private bool stoppingPointCalculated = false; // set to false when we have yet to determine which barrel the spinning will stop on.
+	private float remainingAngle = 0.0f; // How many degrees are left before the barrel has rotated to a valid stopping point.
+	
+	private bool isWindingDown = true;
+	public float windUpRate = 3.0f;
+	public float windDownRate = -1.0f;
+	private float WindUpDownMultiplier = 0.0f;	
 
     void Update()
     {
@@ -42,7 +38,7 @@ public class Weapon_Barrel : MonoBehaviour
 		if (transform.rotation != targetRotation) transform.localRotation = targetRotation;
     }
 	
-	public void Spin()
+	public void Spin() // Called from the shooting script.
 	{
 		stoppingPointCalculated = false;
 		isWindingDown = false;
