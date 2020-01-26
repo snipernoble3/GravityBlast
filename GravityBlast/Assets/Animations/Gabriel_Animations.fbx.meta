@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 27192ed56da1fa34e89a8cc57b5ab679
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -5005185186640719726
@@ -44,7 +44,7 @@ ModelImporter:
     second: Gabriel_Armature|Gabriel_Rifle_Reload
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -212,7 +212,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.80021316
-        functionName: AnimReload
+        functionName: ReloadEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -260,7 +260,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -279,8 +278,10 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 9891e785d80ecd24f8e0399493d714bb,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 
