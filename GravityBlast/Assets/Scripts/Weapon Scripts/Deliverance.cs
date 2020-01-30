@@ -219,9 +219,9 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         godMode = !godMode;
     }
 
-    void ModifyAll (bool b) {
+    public void ModifyAll (bool b) {
 
-        Debug.Log("ModifyAll: " + b);
+        //Debug.Log("ModifyAll: " + b);
 
         int x = b ? 1 : -1;
 
