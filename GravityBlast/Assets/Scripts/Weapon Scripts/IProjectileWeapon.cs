@@ -16,5 +16,5 @@ interface IProjectileWeapon {
 
     void UpdateUI ();
 
-    void UpdateModifications ();
+    //void UpdateModifications ();
 }

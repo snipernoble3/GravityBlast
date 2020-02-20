@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4928623566911818459}
   - component: {fileID: 4029472052808244694}
   m_Layer: 0
-  m_Name: Modification (2)
+  m_Name: Fire Rate Modification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8679245, g: 0.32987377, b: 0.020469915, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -140,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3152a6d043c3c0e43886b6eb5aeda58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chest: {fileID: 2219434186985198708}
+  modName: mFireRate
+  levels: 1
 --- !u!65 &4928623566911818459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ GameObject:
   - component: {fileID: 5481935754882891760}
   - component: {fileID: 6392808546767271044}
   m_Layer: 0
-  m_Name: Modification
+  m_Name: Reload Modification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.003070495, g: 0.62834316, b: 0.6509434, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -567,7 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3152a6d043c3c0e43886b6eb5aeda58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chest: {fileID: 2219434186985198708}
+  modName: mReload
+  levels: 1
 --- !u!65 &5481935754882891760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -612,7 +614,7 @@ GameObject:
   - component: {fileID: 4756680172308506006}
   - component: {fileID: 2760750078811864844}
   m_Layer: 0
-  m_Name: Modification (1)
+  m_Name: Ammo Modification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.42122152, g: 0.6226415, b: 0.31425774, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -682,7 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3152a6d043c3c0e43886b6eb5aeda58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chest: {fileID: 2219434186985198708}
+  modName: mAmmo
+  levels: 1
 --- !u!65 &4756680172308506006
 BoxCollider:
   m_ObjectHideFlags: 0

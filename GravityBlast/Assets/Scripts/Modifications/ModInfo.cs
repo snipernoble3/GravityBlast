@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ModInfo : MonoBehaviour {
 
-    [SerializeField] ModificationChest chest;
-    [SerializeField] string modName { get; }
-    //mod affected
-    
+    //[SerializeField] ModificationChest chest;
+    public string modName;// { get; }
+    public int levels = 1;// { get; }
 
 }

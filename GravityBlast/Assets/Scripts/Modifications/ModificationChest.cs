@@ -50,9 +50,11 @@ public class ModificationChest : MonoBehaviour {
     public void SelectModification (GameObject g) {
 
         //compare g to mod list
+        string n = g.GetComponent<ModInfo>().modName;
+        int i = g.GetComponent<ModInfo>().levels;
         //pass the mod info to the player stats script
-
-        player.GetComponent<WeaponManager>().UpgradeWeapon();
+        player.GetComponent<Player_Stats>().UpdateModification(n, i);
+        //player.GetComponent<WeaponManager>().UpgradeWeapon();
         opened = true;
         unopenedChest.SetActive(false);
         openedChest.SetActive(true);

@@ -70,7 +70,7 @@ public class WeaponManager : MonoBehaviour {
 	}
 
     public void UpgradeWeapon () {
-        weapons[currentWeapon].GetComponent<Deliverance>().ModifyAll(true);
+        //weapons[currentWeapon].GetComponent<Deliverance>().ModifyAll(true);
     }
 
 }

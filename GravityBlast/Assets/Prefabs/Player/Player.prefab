@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 2088661095}
   - component: {fileID: 5737549682908922007}
   - component: {fileID: 5527955086115415956}
+  - component: {fileID: 8585929578479001980}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -463,6 +464,7 @@ MonoBehaviour:
   critDeath: {fileID: 0}
   xpDrop: 0
   XP: {fileID: 0}
+  godIcon: {fileID: 0}
 --- !u!114 &2088661095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +520,27 @@ MonoBehaviour:
   - {fileID: 6863140426926179965}
   animator: {fileID: 1658836483472899388}
   ammoUI: {fileID: 0}
+--- !u!114 &8585929578479001980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820172613042789075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0541d2ebc0ea49aaabc0f1d76bf6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHP: 3
+  healthText: {fileID: 0}
+  mHealth: 0
+  mAmmo: 0
+  mReload: 0
+  mFireRate: 0
+  mProjectileDuration: 0
+  mProjectileScale: 0
+  mProjectileForce: 0
 --- !u!114 &937727975936832507
 MonoBehaviour:
   m_ObjectHideFlags: 0
