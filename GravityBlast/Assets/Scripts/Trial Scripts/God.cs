@@ -24,6 +24,7 @@ public class God : MonoBehaviour {
     int completedPlanets = 0;
     int planetInSolarSystem = 0;
     //player
+    [SerializeField] GameObject player;
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
@@ -67,6 +68,7 @@ public class God : MonoBehaviour {
         currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         currPlanet.GetComponent<PlanetManager>().LoadPlanet();
+        player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
     }
 
     private string SizeClassOf (float size) {
