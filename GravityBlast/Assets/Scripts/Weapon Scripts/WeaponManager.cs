@@ -68,4 +68,9 @@ public class WeaponManager : MonoBehaviour {
 			weapons[weaponOfChoice].SetActive(true);
 		}
 	}
+
+    public void UpgradeWeapon () {
+        //weapons[currentWeapon].GetComponent<Deliverance>().ModifyAll(true);
+    }
+
 }

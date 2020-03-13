@@ -35,6 +35,8 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     private bool godMode;
 
 
+    Player_Stats ps;
+    /*
     // Modifications //
     //extended clip - 5 levels, +40% each (+200% cap)
     int mAmmo;
@@ -66,7 +68,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     int mProjectileForceLevel = 0;
     int mProjectileForceCap = 5;
     float mProjectileForcePerLevel = 0.1f;
-
+    */
 
     // Start is called before the first frame update
     void Start () {
@@ -75,13 +77,18 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
 
         UpdateUI();
 
-        UpdateModifications();
+        ps = player.GetComponent<Player_Stats>();
 
-        
     }
 
     // Update is called once per frame
     void Update () {
+        ps = player.GetComponent<Player_Stats>();
+
+        barrel.fireRateMultiplier = 1.0f + ps.mFireRate;
+        arms.SetFloat("fireSpeed", 1.0f + ps.mFireRate);
+        arms.SetFloat("reloadSpeed", 1.0f + ps.mReload);
+
         if (timeToFire > 0) {
             timeToFire -= Time.deltaTime;
         }
@@ -89,7 +96,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         if (Input.GetButton("Fire1") && timeToFire <= 0) {
             if (currAmmo != 0 && !reloading) {
                 Fire();
-                timeToFire = fireRate * (1 - (mFireRate));
+                timeToFire = fireRate * (1 - (ps.mFireRate));
             }
         }
 
@@ -100,14 +107,14 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
             arms.SetBool("fire", false);
         }
 
-        if (Input.GetButton("Reload") && !reloading && currAmmo != (int)(maxAmmo * (1 + (mAmmo)))) {
+        if (Input.GetButton("Reload") && !reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
             arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
             reloading = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt)) { MaxUpgrades(); } //god mode (max upgrades / min upgrades toggle)
-        if (Input.GetKeyDown(KeyCode.Equals)) { ModifyAll(true); } //increase all mod levels by 1
-        if (Input.GetKeyDown(KeyCode.Minus)) { ModifyAll(false); } //decrease all mod levels by 1
+        //if (Input.GetKeyDown(KeyCode.LeftAlt)) { MaxUpgrades(); } //god mode (max upgrades / min upgrades toggle)
+        //if (Input.GetKeyDown(KeyCode.Equals)) { ModifyAll(true); } //increase all mod levels by 1
+        //if (Input.GetKeyDown(KeyCode.Minus)) { ModifyAll(false); } //decrease all mod levels by 1
 
     }
 
@@ -134,9 +141,9 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         GameObject b = Instantiate(bullet, firingPosition.transform.position, firingPosition.transform.rotation);
         b.GetComponent<Gravity_AttractedObject>().SetGravitySource(player.GetComponent<Player_Movement>().gravitySource);
         b.transform.rotation = Quaternion.FromToRotation(firingPosition.transform.rotation.eulerAngles, forwardVector);
-        b.transform.localScale = new Vector3(b.transform.localScale.x * (1f + mProjectileScale), b.transform.localScale.x * (1f + mProjectileScale), b.transform.localScale.x * (1f + mProjectileScale));
-        b.GetComponent<Rigidbody>().AddForce(forwardVector * (60 * (1 + mProjectileForce)), ForceMode.VelocityChange);
-        Destroy(b, 5f * (1f + mProjectileDuration));
+        b.transform.localScale = new Vector3(b.transform.localScale.x * (1f + ps.mProjectileScale), b.transform.localScale.x * (1f + ps.mProjectileScale), b.transform.localScale.x * (1f + ps.mProjectileScale));
+        b.GetComponent<Rigidbody>().AddForce(forwardVector * (60 * (1 + ps.mProjectileForce)), ForceMode.VelocityChange);
+        Destroy(b, 5f * (1f + ps.mProjectileDuration));
         
         shotCount++;
         if (shotCount > 18) shotCount = 18;
@@ -173,20 +180,22 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     }
 
     public void Reload () {
-        currAmmo = maxAmmo + mAmmo;
+        currAmmo = (int)(maxAmmo * (1 + (ps.mAmmo)));
         UpdateUI();
         reloading = false;
         return;
     }
 
     public void UpdateUI () {
+        //ps.UpdateHealthUI();
         if (ammoUI != null) ammoUI.text = "<font=\"GravityBlast_Dingbats SDF\" material=\"GravityBlast_Dingbats SDF_Holographic\">2</font> " + currAmmo;
         return;
     }
 
+    /*
     public void UpdateModifications () {
 
-        mAmmo = (int)(maxAmmo * (mAmmoLevel * mAmmoPerLevel));
+        ps.mAmmo = (int)(maxAmmo * (ps.mAmmoLevel * ps.mAmmoPerLevel));
         //Debug.Log("" + mAmmo);
         mReload = mReloadLevel * mReloadPerLevel;
         mFireRate = mFireRateLevel * mFireRatePerLevel;
@@ -200,7 +209,9 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
 
         return;
     }
+    */
 
+    /*
     void MaxUpgrades () {
 
         Debug.Log("Max Upgrades");
@@ -219,9 +230,9 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         godMode = !godMode;
     }
 
-    void ModifyAll (bool b) {
+    public void ModifyAll (bool b) {
 
-        Debug.Log("ModifyAll: " + b);
+        //Debug.Log("ModifyAll: " + b);
 
         int x = b ? 1 : -1;
 
@@ -234,5 +245,6 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
 
         UpdateModifications();
     }
+    */
 
 }

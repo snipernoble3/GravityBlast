@@ -23,9 +23,15 @@ public class Health : MonoBehaviour {
     public GameObject XP;
 
     private bool alive = true;
-    
+    private bool god;
+    [SerializeField] private GameObject godIcon;
+
     void Awake() {
         FullHeal();
+
+        if (godIcon != null) {
+            godIcon.SetActive(god);
+        }
 
         try {
             baseText = healthText.text;
@@ -34,6 +40,14 @@ public class Health : MonoBehaviour {
         }
         
         UpdateUI();
+    }
+
+    private void Update () {
+        if (Input.GetKeyDown(KeyCode.G) && this.gameObject.tag == "Player") {
+            god = !god;
+            Debug.Log("God Mode: " + god.ToString());
+            godIcon.SetActive(god);
+        }
     }
 
     private void OnCollisionEnter (Collision collision) {
@@ -51,19 +65,21 @@ public class Health : MonoBehaviour {
     }
 
     public void TakeDamage (int damage) {
-        currHealth -= damage;
-        UpdateUI();
-        if (currHealth <= 0) {
-            alive = false;
-            if (death != null) {
-                Instantiate(death, transform.position, transform.rotation);
-            }
-            if (XP != null) {
-                for (int i = 0; i < xpDrop; i++) {
-                    Instantiate(XP, transform.position + UnityEngine.Random.insideUnitSphere, transform.rotation);
+        if (!god) {
+            currHealth -= damage;
+            UpdateUI();
+            if (currHealth <= 0) {
+                alive = false;
+                if (death != null) {
+                    Instantiate(death, transform.position, transform.rotation);
                 }
+                if (XP != null) {
+                    for (int i = 0; i < xpDrop; i++) {
+                        Instantiate(XP, transform.position + UnityEngine.Random.insideUnitSphere, transform.rotation);
+                    }
+                }
+                OnDeath();
             }
-            OnDeath();
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndLevelTransition : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class EndLevelTransition : MonoBehaviour
 		Jetpack_Animator.Play("Open", 0, 0.0f);
 		
 		StartCoroutine(BlastOff());
+        StartCoroutine(LoadNextLevel());
 	}
 	
 	IEnumerator BlastOff()
@@ -69,4 +71,10 @@ public class EndLevelTransition : MonoBehaviour
 		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
 		youWin.SetActive(true);
 	}
+
+    IEnumerator LoadNextLevel () {
+        yield return new WaitForSeconds(6.75f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
