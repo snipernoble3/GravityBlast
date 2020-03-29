@@ -14,6 +14,7 @@ public class God : MonoBehaviour {
         //size category
         public float size;
         public string sizeCategory;
+        public GameObject[] plantPrefabs;
         public GameObject[] enemyPrefabs;
         //moon
         public bool hasMoon;
@@ -39,6 +40,8 @@ public class God : MonoBehaviour {
     GameObject currPlanet;
     //planet prefabs
     [SerializeField] private GameObject[] planetPrefabs;
+    //plant prefabs
+    [SerializeField] private GameObject[] plantPrefabs;
     //enemy info
     [SerializeField] private GameObject[] enemyPrefabs;
     //[SerializeField] private int[] enemyMaxQuantities;
@@ -51,6 +54,8 @@ public class God : MonoBehaviour {
         //GenerateEnemyInfo();
 
         GenerateSolarSystem();
+
+        //FirstPlanet();
 
     }
 
@@ -92,6 +97,7 @@ public class God : MonoBehaviour {
         planet.stageNumber = planetNumber;
         planet.size = Random.Range(minPlanetScale, maxPlanetScale);
         planet.sizeCategory = SizeClassOf(planet.size);
+        planet.plantPrefabs = plantPrefabs;
         planet.enemyPrefabs = enemyPrefabs;
         planet.hasMoon = false;
         planet.hasBoss = false;
@@ -107,7 +113,6 @@ public class God : MonoBehaviour {
     }
 
     public void NextPlanet () {
-
         //step forward in planet progression
         completedPlanets++;
         planetInSolarSystem++;
@@ -122,14 +127,13 @@ public class God : MonoBehaviour {
         if (currPlanet != null) {
             currPlanet.GetComponent<PlanetManager>().DestroyPlanet();
         }
-
+        
         //create new planet
         PlanetInfo planetToCreate = currSolarSystem[planetInSolarSystem];
         currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
-        currPlanet.GetComponent<PlanetManager>().LoadPlanet();
+        StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
-        
         //place player on planet
 
 

@@ -10,11 +10,16 @@ public class PlanetManager : MonoBehaviour {
     God.PlanetInfo planet;
     [SerializeField] GameObject killBounds;
 
+    // PLANTS //
+    //plant pool
+    GameObject[,] plantPool;
+
     // ENEMIES //
     //enemy pool
     GameObject[,] enemyPool;
 
     public IEnumerator LoadPlanet () { //called by game manager
+        
         //set name
         name = "Planet " + planet.stageNumber;
         //set size
@@ -25,7 +30,7 @@ public class PlanetManager : MonoBehaviour {
         k.transform.localScale = 70f * Vector3.one;
         //spawn environment
         yield return new WaitForSeconds(0.1f);
-        PopulateEnvironment();
+        StartCoroutine(PopulateEnvironment());
         //spawn enemies
         yield return new WaitForSeconds(0.1f);
         PopulateEnemies();
@@ -34,7 +39,7 @@ public class PlanetManager : MonoBehaviour {
         if (planet.hasMoon) GenerateMoon();
         //add boss if required
 
-
+        
     }
 
     public void DestroyPlanet () {
@@ -44,6 +49,20 @@ public class PlanetManager : MonoBehaviour {
     }
 
     private IEnumerator PopulateEnvironment () {
+
+        plantPool = new GameObject[planet.plantPrefabs.Length, 75];
+        //for each enemy
+        for (int i = 0; i < planet.plantPrefabs.Length; i++) {
+            for (int j = 0; j < 75; j++) { //spawn (<) x plants
+                Vector3 point = RandomSpawnPoint(0f);
+                Vector3 dir = (point - transform.position).normalized * 9.8f;
+                plantPool[i, j] = Instantiate(planet.plantPrefabs[i], point, Quaternion.LookRotation(dir));
+                plantPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                plantPool[i, j].transform.parent = transform;
+                j++;
+            }
+        }
+
         //spawn ground textures
 
         //spawn large constructs
@@ -65,7 +84,9 @@ public class PlanetManager : MonoBehaviour {
         //for each enemy
         for (int i = 0; i < planet.enemyPrefabs.Length; i++) {
             for (int j = 0; j < 50; j++) { //spawn (<) x enemies
-                enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(), Quaternion.identity);
+                //Vector3 point = RandomSpawnPoint();
+                enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
+                //edit rotation?
                 enemyPool[i, j].transform.parent = transform;
                 j++;
             }
@@ -73,7 +94,7 @@ public class PlanetManager : MonoBehaviour {
 
     }
 
-    Vector3 RandomSpawnPoint () {
+    Vector3 RandomSpawnPoint (float distanceBuffer) {
         Vector3 spawnPoint;
         //get random point on sphere larger than the surface
         Vector3 outer = Random.onUnitSphere * (planet.size * 80f);
@@ -88,7 +109,7 @@ public class PlanetManager : MonoBehaviour {
         hits = Physics.RaycastAll(outer, dir, Vector3.Distance(outer, transform.position));
         for (int i = 0; i < hits.Length; i++) {
             if (hits[i].transform == transform) {
-                spawnPoint = hits[i].point - (dir.normalized * 0.5f);
+                spawnPoint = hits[i].point - (dir.normalized * distanceBuffer);
                 //Debug.DrawLine(outer, hits[i].point, Color.green, 2f);
             }
         }

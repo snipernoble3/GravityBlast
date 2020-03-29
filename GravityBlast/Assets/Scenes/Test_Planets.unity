@@ -20834,6 +20834,12 @@ MonoBehaviour:
   - {fileID: 4279392758521526053, guid: dc0babe62f1b6dd4193a715acde70865, type: 3}
   - {fileID: 4946660170845755746, guid: 8f83a4beb4fdfd4459a658b9eeab51d5, type: 3}
   - {fileID: 3631674830725108808, guid: 540e952a915c1e34c9fea43115f9946a, type: 3}
+  plantPrefabs:
+  - {fileID: -927199367670048503, guid: ffbf7efc049d90743b6c43c2463f2650, type: 3}
+  - {fileID: -927199367670048503, guid: 76983b8d921a9f84e8141986d56e18ea, type: 3}
+  - {fileID: -927199367670048503, guid: cf9365e473dbf3d4689b6e1cd99ca2ae, type: 3}
+  - {fileID: -927199367670048503, guid: 3260fbc26ed54764789a6a17f446eaf5, type: 3}
+  - {fileID: -927199367670048503, guid: 97638b97501d5154e9457f09b365f05b, type: 3}
   enemyPrefabs:
   - {fileID: 5987044430576371578, guid: e5250acdbddc6624fbeef4956ba7de57, type: 3}
   - {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961, type: 3}
