@@ -52,8 +52,6 @@ public class EndLevelTransition : MonoBehaviour
 		
 		hud.enabled = false;
 		
-		
-		
 		thirdPersonPlayer.SetActive(true);
 		thirdPersonPlayer.transform.SetParent(player.transform.parent);
 		

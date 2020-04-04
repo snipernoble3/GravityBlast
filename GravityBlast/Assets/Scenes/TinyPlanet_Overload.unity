@@ -1346,6 +1346,16 @@ PrefabInstance:
       propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8562887681318107545, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 32567
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562887681318107547, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: m_WorldUpObject
+      value: 
+      objectReference: {fileID: 846147779}
     - target: {fileID: 8585929578479001980, guid: f1f02688bb546cc46bc69d7d28d1c555,
         type: 3}
       propertyPath: healthText
@@ -17177,6 +17187,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b62571889945ad14cab5ae61f7791961, type: 3}
+--- !u!4 &846147779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8514392820826355280, guid: f1f02688bb546cc46bc69d7d28d1c555,
+    type: 3}
+  m_PrefabInstance: {fileID: 81244791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &846645123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
