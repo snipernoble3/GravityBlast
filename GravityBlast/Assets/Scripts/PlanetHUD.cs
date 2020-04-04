@@ -16,18 +16,29 @@ public class PlanetHUD : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
-        planetWireframe = Instantiate(planetHUDPrefab, Gravity_Source.DefaultGravitySource.transform.position, Quaternion.identity) as GameObject;
+        if (Gravity_Source.DefaultGravitySource != null)
+		{
+			SetupPlanetHUD();
+		}
+    }
+	
+	private void SetupPlanetHUD()
+	{
+		planetWireframe = Instantiate(planetHUDPrefab, Gravity_Source.DefaultGravitySource.transform.position, Quaternion.identity) as GameObject;
 		cameraPivot = planetWireframe.transform.Find("HUDPlanet_CameraPivot");
 		camera = cameraPivot.transform.Find("HUDPlanet_Camera");
 		
 		cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
 		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
-    }
+	}
 
     // Update is called once per frame
     void Update()
     {
-        cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
-		camera.LookAt(cameraPivot, transform.forward); // Aim the pivot at the player.
+        if (planetWireframe != null)
+		{
+			cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
+			camera.LookAt(cameraPivot, transform.forward); // Aim the pivot at the player.
+		}
     }
 }
