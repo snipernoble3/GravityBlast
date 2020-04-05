@@ -10,11 +10,11 @@ public class MenuControl : MonoBehaviour {
     // MAIN MENU //
 
     public void Play () {
-        SceneManager.LoadScene("Test_Planets");
+        SceneManager.LoadScene("TinyPlanet_Overload");
     }
 
     public void Collection () {
-
+        SceneManager.LoadScene("Test_Planets");
     }
 
     public void Settings () {
