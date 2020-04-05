@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlanetHUD : MonoBehaviour
 {
-    [SerializeField] private GameObject planetHUDPrefab;
+    [SerializeField] private bool usePlanetTopography = true;
+	[SerializeField] private GameObject planetHUDPrefab;
 	private GameObject planetWireframe;
 	private Player_Movement playerMovement;
+	
+	private GameObject planetTopography;
 	
 	private Transform cameraPivot;
 	private Transform camera;
@@ -30,6 +33,24 @@ public class PlanetHUD : MonoBehaviour
 		
 		cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
 		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
+		
+		if (usePlanetTopography)
+		{
+			planetTopography = new GameObject("planetTopography");
+			planetTopography.transform.position = Gravity_Source.DefaultGravitySource.transform.position;
+			planetTopography.transform.rotation = Gravity_Source.DefaultGravitySource.transform.rotation;
+			planetTopography.transform.localScale = Gravity_Source.DefaultGravitySource.transform.localScale;
+			planetTopography.transform.SetParent(planetWireframe.transform);
+			
+			planetTopography.layer = planetWireframe.layer;
+			
+			planetTopography.AddComponent<MeshFilter>();
+			planetTopography.GetComponent<MeshFilter>().mesh = Gravity_Source.DefaultGravitySource.transform.GetComponent<MeshFilter>().mesh;
+			
+			planetTopography.AddComponent<MeshRenderer>();
+			planetTopography.GetComponent<Renderer>().material = planetWireframe.transform.GetComponent<Renderer>().material;
+			planetTopography.GetComponent<Renderer>().material.SetTexture("_WireframeMask", null);
+		}
 	}
 
     // Update is called once per frame
