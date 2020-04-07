@@ -13,6 +13,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     //player stats/modifications
     public Animator arms;
     public Weapon_Barrel barrel;
+	public GameObject magazine;
     public TextMeshProUGUI ammoUI;
 
 

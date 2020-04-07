@@ -6,8 +6,12 @@ public class AnimationEventHelper : MonoBehaviour
 {
 	[SerializeField] private WeaponManager weaponManager;
 	
-    // Update is called once per frame
-    void ReloadEvent()
+    void RemoveMagazine()
+    {
+		weaponManager.RemoveMagazine();
+    }
+    
+	void ReplaceMagazine()
     {
         weaponManager.Reload();
     }

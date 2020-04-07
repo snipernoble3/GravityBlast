@@ -13,6 +13,9 @@ public class WeaponManager : MonoBehaviour {
     
     //[SerializeField] private int startingGun;
     private int currentWeapon = 0;
+	
+	GameObject realMag; // A reference to the magazine that stays loaded into the gun.
+	GameObject fakeMag; // A reference to the fake instance magazine that moves with the reloading hand.
 
     private void Awake()
 	{
@@ -24,8 +27,8 @@ public class WeaponManager : MonoBehaviour {
 			weapons[i] = Instantiate(weaponPrefabs[i]); // Instantiate the weapon.
 			weapons[i].transform.parent = weaponBones[1]; // Make the weapon a child of the right hand weapon bone.
 			weapons[i].transform.localPosition = Vector3.zero; // Clear out the transform so it aligns with the weapon bone.
-			//weapons[i].transform.localRotation = Quaternion.identity;
-			weapons[i].transform.localRotation = Quaternion.Euler(Vector3.right * 90.0f);
+			weapons[i].transform.localRotation = Quaternion.identity;
+			//weapons[i].transform.localRotation = Quaternion.Euler(Vector3.right * 90.0f);
 			weapons[i].transform.localScale = Vector3.one;
 			
 			// Set up references.
@@ -45,6 +48,18 @@ public class WeaponManager : MonoBehaviour {
     public void Reload()
 	{
         weapons[currentWeapon].GetComponent<IProjectileWeapon>().Reload();
+		
+		realMag.SetActive(true);
+		Destroy(fakeMag);
+    }
+	
+	public void RemoveMagazine()
+	{
+        realMag = weapons[currentWeapon].GetComponent<Deliverance>().magazine;
+		fakeMag = Instantiate(realMag, realMag.transform.position, realMag.transform.rotation);
+		fakeMag.transform.SetParent(weaponBones[0]);
+		
+		realMag.SetActive(false);
     }
 	
 	//test multiple weapons
