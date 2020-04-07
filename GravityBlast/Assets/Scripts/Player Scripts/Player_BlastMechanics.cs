@@ -24,6 +24,8 @@ public class Player_BlastMechanics : MonoBehaviour
 	public LayerMask raycastMask;
 	private Rigidbody playerRB;
 	public Animator firstPersonArms_Animator;
+	public GameObject armTube;
+	private Material armTube_Material;
 	
 	// Rocket Jumping Variables
 	private int rjBlast_NumSinceGrounded = 0;
@@ -47,6 +49,7 @@ public class Player_BlastMechanics : MonoBehaviour
     void Awake()
     {		
 		// Set up references
+		armTube_Material = armTube.GetComponent<Renderer>().material;
 		playerMovement = GetComponent<Player_Movement>();
 		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
 		camOffset = transform.Find("Camera Position Offset").gameObject;
@@ -97,6 +100,8 @@ public class Player_BlastMechanics : MonoBehaviour
 		}
 		
 		firstPersonArms_Animator.Play("Blast", 1, 0.25f); // Play the blast animation.
+		StartCoroutine(ArmTubePulsate()); // make the tube pulsate.
+		
 		BlastForce(rjBlast_Power, rjBlast_Epicenter, rjBlast_Radius, rjBlast_UpwardForce); // Add the blast force to affect other objects.
 			
 		if (playerMovement.GetIsGrounded())
@@ -285,6 +290,25 @@ public class Player_BlastMechanics : MonoBehaviour
 				camOffset.transform.localRotation = Quaternion.identity;
 			}
 			else Debug.Log("Fade duration ("+ (fade_Duration_In + fade_Duration_Out) +" seconds) can not be longer than the shake duration (" + shake_Duration + " seconds). The camera shake was not performed.");
+		}
+	}
+	
+	public IEnumerator ArmTubePulsate()
+	{
+		//float phaseStart = 0.15f; // Beginning of the shoulder
+		float phaseStart = 0.5f; // Beginning of the elbow tube pivot point.
+		float phaseEnd = 0.85f;
+		float phaseStep = 0.015f;
+		
+		float phase = phaseStart;
+		
+		while (phase <= phaseEnd)
+		{
+			//phase = Mathf.Clamp(phase + phaseStep * Time.deltaTime, phaseStart, phaseEnd);
+			phase += phaseStep;
+			armTube_Material.SetFloat("_PulsePhase", phase);
+			
+			yield return null;
 		}
 	}
 }
