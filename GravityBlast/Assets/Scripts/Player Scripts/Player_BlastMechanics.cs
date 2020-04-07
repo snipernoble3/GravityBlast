@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Player_Movement))]
 public class Player_BlastMechanics : MonoBehaviour
 {
+	private bool blastEnabled = true;
+	
 	// User Preferences
 	public bool enableCameraShake_gpLanding = true;
 	public bool autoJumpBeforeGroundedRocketJump = true;
@@ -57,9 +59,17 @@ public class Player_BlastMechanics : MonoBehaviour
 		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime) rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
 		
 		// Inputs
-		if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime) RocketJumpCheck();
+		if (blastEnabled)
+		{
+			if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime) RocketJumpCheck();
+		}		
 		if (Input.GetButton("Crouch") && !playerMovement.GetIsGrounded()) AccelerateDown();
     }
+	
+	public void EnableBlast(bool blastState)
+	{
+		blastEnabled = blastState;
+	}
 	
 	void FixedUpdate()
 	{	

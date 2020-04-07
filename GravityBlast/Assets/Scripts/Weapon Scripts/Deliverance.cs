@@ -111,6 +111,8 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         if (Input.GetButton("Reload") && !reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
             arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
             reloading = true;
+			
+			player.GetComponent<Player_BlastMechanics>().EnableBlast(false); // Move this functionality into the weapon manager later!!!
         }
 
         //if (Input.GetKeyDown(KeyCode.LeftAlt)) { MaxUpgrades(); } //god mode (max upgrades / min upgrades toggle)

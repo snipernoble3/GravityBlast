@@ -51,11 +51,13 @@ public class WeaponManager : MonoBehaviour {
 		
 		realMag.SetActive(true);
 		Destroy(fakeMag);
+		
+		GetComponent<Player_BlastMechanics>().EnableBlast(true);
     }
 	
 	public void RemoveMagazine()
 	{
-        realMag = weapons[currentWeapon].GetComponent<Deliverance>().magazine;
+		realMag = weapons[currentWeapon].GetComponent<Deliverance>().magazine;
 		fakeMag = Instantiate(realMag, realMag.transform.position, realMag.transform.rotation);
 		fakeMag.transform.SetParent(weaponBones[0]);
 		
