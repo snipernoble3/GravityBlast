@@ -33,6 +33,7 @@ public class PlanetHUD : MonoBehaviour
 		
 		cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
 		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
+		camera.LookAt(cameraPivot, transform.forward); // Aim the camera at the planet.
 		
 		if (usePlanetTopography)
 		{
@@ -59,7 +60,7 @@ public class PlanetHUD : MonoBehaviour
         if (planetWireframe != null)
 		{
 			cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
-			camera.LookAt(cameraPivot, transform.forward); // Aim the pivot at the player.
+			//camera.LookAt(cameraPivot, transform.forward); // Aim the camera at the planet.
 		}
     }
 }

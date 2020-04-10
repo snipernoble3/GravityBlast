@@ -13,6 +13,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     //player stats/modifications
     public Animator arms;
     public Weapon_Barrel barrel;
+	public GameObject magazine;
     public TextMeshProUGUI ammoUI;
 
 
@@ -100,6 +101,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         if (timeToFire <= 0 && currAmmo != 0 && !reloading) {
             Fire();
             timeToFire = fireRate * (1 - (ps.mFireRate));
+            player.GetComponent<Player_BlastMechanics>().EnableBlast(false); // Move this functionality into the weapon manager later!!!
         }
 
         if (currAmmo != 0 && !reloading) {
@@ -185,6 +187,5 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         return;
     }
 
-    
 
 }

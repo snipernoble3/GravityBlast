@@ -95,6 +95,6 @@ Material:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.6211448, g: 1.5750457, b: 4.2370954, a: 1}
-    - _SecondaryColor: {r: 0.05404289, g: 0.55731755, b: 0.78699994, a: 0}
+    - _MainColor: {r: 0.02927162, g: 0.6732473, b: 1.405038, a: 1}
+    - _SecondaryColor: {r: 0.101399936, g: 0.5668858, b: 0.78, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
