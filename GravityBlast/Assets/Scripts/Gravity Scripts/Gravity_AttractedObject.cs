@@ -13,8 +13,9 @@ public class Gravity_AttractedObject : MonoBehaviour
 	public bool isChangingSource = false;
 	private const float sourceChangeDuration = 5.0f;
 	private float timeSinceSourceChange;
-	
-	
+
+    [HideInInspector] public bool paused;
+
     void Awake()
     {
 		if (gravitySource == null && Gravity_Source.DefaultGravitySource != null) gravitySource = Gravity_Source.DefaultGravitySource;
@@ -36,7 +37,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Convert the timer to a 0-1 value.
 		float timeBasedBlend = Mathf.InverseLerp(0.0f, sourceChangeDuration, timeSinceSourceChange);
 		
-		if (gravitySource != null) gravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
+		if (gravitySource != null && !paused) gravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
     }
 	
 	public void SetGravitySource(Gravity_Source gravitySource)

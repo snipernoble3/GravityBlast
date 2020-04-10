@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3648307686984621647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7664593309598415450}
+  - component: {fileID: 2868248068613544763}
+  m_Layer: 0
+  m_Name: God
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7664593309598415450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648307686984621647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2868248068613544763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648307686984621647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e8e20b0c76408449b27ac9da852cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 3820172613042789075, guid: f1f02688bb546cc46bc69d7d28d1c555,
+    type: 3}
+  planetPrefabs:
+  - {fileID: 5851015058096350123, guid: 589f902b8c4211f4381475d2061f9b4b, type: 3}
+  - {fileID: 8732942866951997444, guid: e4268a4c97999db4bbfb67c315586812, type: 3}
+  - {fileID: 1030140369679296586, guid: 331c34105bb717d48983f4901b101c86, type: 3}
+  - {fileID: 351188872911605970, guid: 5ef56d86add18894d9e5337f51accac7, type: 3}
+  - {fileID: 4279392758521526053, guid: dc0babe62f1b6dd4193a715acde70865, type: 3}
+  - {fileID: 4946660170845755746, guid: 8f83a4beb4fdfd4459a658b9eeab51d5, type: 3}
+  - {fileID: 3631674830725108808, guid: 540e952a915c1e34c9fea43115f9946a, type: 3}
+  plantPrefabs:
+  - {fileID: -927199367670048503, guid: 9190919059af85145a14004cde4abbb9, type: 3}
+  - {fileID: -927199367670048503, guid: 0f2fffe204c09bf44ad0d3cbdc8f4ea1, type: 3}
+  - {fileID: -927199367670048503, guid: 97638b97501d5154e9457f09b365f05b, type: 3}
+  - {fileID: -927199367670048503, guid: 38237934b71252a46b44278433d39091, type: 3}
+  - {fileID: -927199367670048503, guid: 9e4c6cd8d5da9314493f3387e953e51d, type: 3}
+  - {fileID: -927199367670048503, guid: 76983b8d921a9f84e8141986d56e18ea, type: 3}
+  - {fileID: -927199367670048503, guid: 9aa36ee119799cc4e88f83437d47ca9a, type: 3}
+  - {fileID: -927199367670048503, guid: 3260fbc26ed54764789a6a17f446eaf5, type: 3}
+  - {fileID: -927199367670048503, guid: ffbf7efc049d90743b6c43c2463f2650, type: 3}
+  - {fileID: -927199367670048503, guid: cf9365e473dbf3d4689b6e1cd99ca2ae, type: 3}
+  - {fileID: -927199367670048503, guid: 0a8a97bda26140a498af1a3d8254ae84, type: 3}
+  - {fileID: -927199367670048503, guid: cb345f043fa07324eab0e01e3d00770c, type: 3}
+  enemyPrefabs:
+  - {fileID: 5987044430576371578, guid: e5250acdbddc6624fbeef4956ba7de57, type: 3}
+  - {fileID: 2331697997774483252, guid: d416ce69e9583ea4db2b794e683b2e22, type: 3}
+  - {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961, type: 3}

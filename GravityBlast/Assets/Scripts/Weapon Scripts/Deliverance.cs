@@ -36,39 +36,6 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
 
 
     Player_Stats ps;
-    /*
-    // Modifications //
-    //extended clip - 5 levels, +40% each (+200% cap)
-    int mAmmo;
-    int mAmmoLevel = 0;
-    int mAmmoCap = 5;
-    float mAmmoPerLevel = 0.4f;
-    //faster reload - 3 levels, +25% each (+75% cap)
-    float mReload;
-    int mReloadLevel = 0;
-    int mReloadCap = 3;
-    float mReloadPerLevel = 0.25f;
-    //increased fire rate - 5 levels, +20% each (+100% cap)
-    float mFireRate;
-    int mFireRateLevel = 0;
-    int mFireRateCap = 5;
-    float mFireRatePerLevel = 0.2f;
-    //increased range (time to bullet expiration) - 5 levels, +10% each (+50% cap)
-    float mProjectileDuration;
-    int mProjectileDurationLevel = 0;
-    int mProjectileDurationCap = 5;
-    float mProjectileDurationPerLevel = 0.1f;
-    //increased bullet size - 5 levels, +20% each (+50% cap)
-    float mProjectileScale;
-    int mProjectileScaleLevel = 0;
-    int mProjectileScaleCap = 5;
-    float mProjectileScalePerLevel = 0.1f;
-    //increased bullet force - 5 levels, +10% each (+50% cap)
-    float mProjectileForce;
-    int mProjectileForceLevel = 0;
-    int mProjectileForceCap = 5;
-    float mProjectileForcePerLevel = 0.1f;
-    */
 
     // Start is called before the first frame update
     void Start () {
@@ -93,24 +60,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
             timeToFire -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && timeToFire <= 0) {
-            if (currAmmo != 0 && !reloading) {
-                Fire();
-                timeToFire = fireRate * (1 - (ps.mFireRate));
-            }
-        }
-
-        if (Input.GetButton("Fire1") && currAmmo != 0) {
-            arms.SetBool("fire", true);
-            if (barrel != null && !reloading) barrel.Spin();
-        } else {
-            arms.SetBool("fire", false);
-        }
-
-        if (Input.GetButton("Reload") && !reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
-            arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
-            reloading = true;
-        }
+        
 
         //if (Input.GetKeyDown(KeyCode.LeftAlt)) { MaxUpgrades(); } //god mode (max upgrades / min upgrades toggle)
         //if (Input.GetKeyDown(KeyCode.Equals)) { ModifyAll(true); } //increase all mod levels by 1
@@ -129,6 +79,50 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
             spreadReductionTimer = (0.01f * shotCount / 2) - r;
             UpdateSpread();
         }
+    }
+
+    public void FireInput () {
+
+        /*if (Input.GetButton("Fire1") && timeToFire <= 0) {
+            if (currAmmo != 0 && !reloading) {
+                Fire();
+                timeToFire = fireRate * (1 - (ps.mFireRate));
+            }
+        }
+
+        if (Input.GetButton("Fire1") && currAmmo != 0) {
+            arms.SetBool("fire", true);
+            if (barrel != null && !reloading) barrel.Spin();
+        } else {
+            arms.SetBool("fire", false);
+        }*/
+
+        if (timeToFire <= 0 && currAmmo != 0 && !reloading) {
+            Fire();
+            timeToFire = fireRate * (1 - (ps.mFireRate));
+        }
+
+        if (currAmmo != 0 && !reloading) {
+            arms.SetBool("fire", true);
+            if (barrel != null) barrel.Spin();
+        } else {
+            arms.SetBool("fire", false);
+        }
+
+    }
+
+    public void ReloadInput () {
+
+        /*if (Input.GetButton("Reload") && !reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
+            arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
+            reloading = true;
+        }*/
+
+        if (!reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
+            arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
+            reloading = true;
+        }
+
     }
 
     public void Fire () {
@@ -187,64 +181,10 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     }
 
     public void UpdateUI () {
-        //ps.UpdateHealthUI();
         if (ammoUI != null) ammoUI.text = "<font=\"GravityBlast_Dingbats SDF\" material=\"GravityBlast_Dingbats SDF_Holographic\">2</font> " + currAmmo;
         return;
     }
 
-    /*
-    public void UpdateModifications () {
-
-        ps.mAmmo = (int)(maxAmmo * (ps.mAmmoLevel * ps.mAmmoPerLevel));
-        //Debug.Log("" + mAmmo);
-        mReload = mReloadLevel * mReloadPerLevel;
-        mFireRate = mFireRateLevel * mFireRatePerLevel;
-        mProjectileDuration = mProjectileDurationLevel * mProjectileDurationPerLevel;
-        mProjectileScale = mProjectileScaleLevel * mProjectileScalePerLevel;
-        mProjectileForce = mProjectileForceLevel * mProjectileForcePerLevel;
-
-        barrel.fireRateMultiplier = 1.0f + mFireRate;
-        arms.SetFloat("fireSpeed", 1.0f + mFireRate);
-        arms.SetFloat("reloadSpeed", 1.0f + mReload);
-
-        return;
-    }
-    */
-
-    /*
-    void MaxUpgrades () {
-
-        Debug.Log("Max Upgrades");
-
-        int x = godMode ? -1 : 10;
-
-        mAmmoLevel = Mathf.Clamp(x, 0, mAmmoCap);
-        mFireRateLevel = Mathf.Clamp(x, 0, mFireRateCap);
-        mReloadLevel = Mathf.Clamp(x, 0, mReloadCap);
-        mProjectileScaleLevel = Mathf.Clamp(x, 0, mProjectileScaleCap);
-        mProjectileForceLevel = Mathf.Clamp(x, 0, mProjectileForceCap);
-        mProjectileDurationLevel = Mathf.Clamp(x, 0, mProjectileDurationCap);
-
-        UpdateModifications();
-
-        godMode = !godMode;
-    }
-
-    public void ModifyAll (bool b) {
-
-        //Debug.Log("ModifyAll: " + b);
-
-        int x = b ? 1 : -1;
-
-        mAmmoLevel = Mathf.Clamp(mAmmoLevel + x, 0, mAmmoCap);
-        mFireRateLevel = Mathf.Clamp(mFireRateLevel + x, 0, mFireRateCap);
-        mReloadLevel = Mathf.Clamp(mReloadLevel + x, 0, mReloadCap);
-        mProjectileScaleLevel = Mathf.Clamp(mProjectileScaleLevel + x, 0, mProjectileScaleCap);
-        mProjectileForceLevel = Mathf.Clamp(mProjectileForceLevel + x, 0, mProjectileForceCap);
-        mProjectileDurationLevel = Mathf.Clamp(mProjectileDurationLevel + x, 0, mProjectileDurationCap);
-
-        UpdateModifications();
-    }
-    */
+    
 
 }

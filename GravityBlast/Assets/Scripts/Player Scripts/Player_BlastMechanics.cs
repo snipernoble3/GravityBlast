@@ -41,7 +41,9 @@ public class Player_BlastMechanics : MonoBehaviour
 	private float impactVelocity = 0.0f;
 	public float minGroundPoundVelocity = 8.0f;
 	public float groundPound_Multiplier = 25.0f;
-    
+
+    [HideInInspector] public bool paused;
+
     void Awake()
     {		
 		// Set up references
@@ -57,8 +59,8 @@ public class Player_BlastMechanics : MonoBehaviour
 		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime) rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
 		
 		// Inputs
-		if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime) RocketJumpCheck();
-		if (Input.GetButton("Crouch") && !playerMovement.GetIsGrounded()) AccelerateDown();
+		if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime && !paused) RocketJumpCheck();
+		if (Input.GetButton("Crouch") && !playerMovement.GetIsGrounded() && !paused) AccelerateDown();
     }
 	
 	void FixedUpdate()

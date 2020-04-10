@@ -33,6 +33,8 @@ public class Beetle2 : MonoBehaviour {
     public float chargeTime = 1f;
     public float cooldownTime = 0.5f;
 
+    [HideInInspector] public bool paused;
+
     private void Awake () {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currState = State.Idle;
@@ -41,52 +43,56 @@ public class Beetle2 : MonoBehaviour {
     }
 
     private void Update () {
-        //raycast to gravity source
-        RaycastHit hitGravitySource;
-        Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().GetGravitySource()) ? GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position : Vector3.zero;
-        if (Physics.Raycast(transform.position, transform.position - gravitySource, out hitGravitySource)) {
-            gravitySource = hitGravitySource.point;
-        }
 
-            
+        if (!paused) {
+            //raycast to gravity source
+            RaycastHit hitGravitySource;
+            Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().GetGravitySource()) ? GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position : Vector3.zero;
+            if (Physics.Raycast(transform.position, transform.position - gravitySource, out hitGravitySource)) {
+                gravitySource = hitGravitySource.point;
+            }
 
-        if (Vector3.Magnitude(gravitySource - transform.position) > 3f) {
-            rb.constraints = RigidbodyConstraints.None;
-        } else {
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        }
 
-        distanceToTarget = Mathf.Abs(Vector3.Magnitude(target.position - transform.position));
 
-        if (distanceToTarget < visionRange && currState != State.Attacking) {
-            UpdateState(State.Moving);
-        } else if (currState != State.Attacking) {
-            UpdateState(State.Idle);
-        }
+            if (Vector3.Magnitude(gravitySource - transform.position) > 3f) {
+                rb.constraints = RigidbodyConstraints.None;
+            } else {
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            }
 
-        switch (currState) {
-            case State.Attacking:
-                if (!charging && !cooldown) {
-                    targetLookDirection = Quaternion.LookRotation(hitLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * Time.deltaTime);
-                }
-                
-                break;
-            case State.Moving:
-                targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * randomSpeedChange * Time.deltaTime);
-                
-                RaycastHit hitForward;
-                if (Physics.Raycast(transform.position, transform.forward, out hitForward, attackRange)) {
-                    if (hitForward.transform.tag == "Player") {
-                        hitLocation = hitForward.transform.position;
-                        UpdateState(State.Attacking);
+            distanceToTarget = Mathf.Abs(Vector3.Magnitude(target.position - transform.position));
+
+            if (distanceToTarget < visionRange && currState != State.Attacking) {
+                UpdateState(State.Moving);
+            } else if (currState != State.Attacking) {
+                UpdateState(State.Idle);
+            }
+
+            switch (currState) {
+                case State.Attacking:
+                    if (!charging && !cooldown) {
+                        targetLookDirection = Quaternion.LookRotation(hitLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * Time.deltaTime);
                     }
-                }
-                break;
-            case State.Idle:
-                break;
+
+                    break;
+                case State.Moving:
+                    targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * randomSpeedChange * Time.deltaTime);
+
+                    RaycastHit hitForward;
+                    if (Physics.Raycast(transform.position, transform.forward, out hitForward, attackRange)) {
+                        if (hitForward.transform.tag == "Player") {
+                            hitLocation = hitForward.transform.position;
+                            UpdateState(State.Attacking);
+                        }
+                    }
+                    break;
+                case State.Idle:
+                    break;
+            }
         }
+        
     }
 
     void UpdateState (State s) {

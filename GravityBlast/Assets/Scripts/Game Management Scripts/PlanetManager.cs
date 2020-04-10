@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour {
 
-
+    public God god;
 
     // PLANET INFO //
     God.PlanetInfo planet;
@@ -25,9 +25,9 @@ public class PlanetManager : MonoBehaviour {
         //set size
         transform.localScale = planet.size * Vector3.one;
         //create kill boundaries
-        GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
+        //GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
         //scale kill boundaries - 70 scale
-        k.transform.localScale = 70f * Vector3.one;
+        //k.transform.localScale = 70f * Vector3.one;
         //spawn environment
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(PopulateEnvironment());
@@ -39,7 +39,15 @@ public class PlanetManager : MonoBehaviour {
         if (planet.hasMoon) GenerateMoon();
         //add boss if required
 
+        yield return new WaitUntil(() => PlanetLoaded());
+
+        god.NextPlanetReady();
+
+    }
+
+    private bool PlanetLoaded () {
         
+        return true;
     }
 
     public void DestroyPlanet () {
@@ -123,6 +131,10 @@ public class PlanetManager : MonoBehaviour {
     
     public void SetInfo (God.PlanetInfo p) {
         planet = p;
+    }
+
+    public void PauseEnemies (bool pause) {
+        
     }
 
 }

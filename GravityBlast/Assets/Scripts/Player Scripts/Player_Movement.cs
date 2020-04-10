@@ -119,12 +119,14 @@ public class Player_Movement : MonoBehaviour
 	private float rotation_horizontal = 0.0f;
 	private float verticalAngle = 0.0f;
 	private float horizontalAngle = 0.0f;
-    
+
+    [HideInInspector] public bool paused;
+
     void Awake()
     {
 		// Hide the mouse cursor
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 		
 		// Set up references
 		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
@@ -178,13 +180,13 @@ public class Player_Movement : MonoBehaviour
 		
 		
 		// Inputs
-		if (lookEnabled)
+		if (lookEnabled && !paused)
 		{
 			GetInput_Mouse();
 			MouseLook();
 		}
 		
-		if (moveEnabled)
+		if (moveEnabled && !paused)
 		{
 			GetInput_LateralMovement();
 			

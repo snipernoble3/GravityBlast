@@ -10,14 +10,19 @@ public class WeaponManager : MonoBehaviour {
 	[SerializeField] private Transform[] weaponBones; // The weapon "bone" positions in the armature to attach the weapons to.
 	[SerializeField] private Animator animator; // A reference to Gabriel's animation system.
 	[SerializeField] private TextMeshProUGUI ammoUI;
-    
+
+    Player_Stats ps;
+
     //[SerializeField] private int startingGun;
     private int currentWeapon = 0;
 
-    private void Awake()
-	{
-		
-		weapons = new GameObject[weaponPrefabs.Length];
+    [HideInInspector] public bool paused;
+
+    private void Awake() {
+
+        ps = gameObject.GetComponent<Player_Stats>();
+
+        weapons = new GameObject[weaponPrefabs.Length];
 		
 		for (int i = 0; i < weapons.Length; i++)
 		{
@@ -28,7 +33,7 @@ public class WeaponManager : MonoBehaviour {
 			weapons[i].transform.localRotation = Quaternion.Euler(Vector3.right * 90.0f);
 			weapons[i].transform.localScale = Vector3.one;
 			
-			// Set up references.
+			// Set up references. - eventually change to send message to weapon object
 			weapons[i].GetComponent<Deliverance>().player = gameObject;
 			weapons[i].GetComponent<Deliverance>().arms = animator;
 			weapons[i].GetComponent<Deliverance>().ammoUI = ammoUI;
@@ -48,12 +53,24 @@ public class WeaponManager : MonoBehaviour {
     }
 	
 	//test multiple weapons
-    void Update()
-	{
-        if (Input.GetKeyDown(KeyCode.Alpha0)) SwitchWeapon(0);
-		if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchWeapon(0);
-		if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchWeapon(1);
-		if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchWeapon(2);
+    void Update() {
+        
+        animator.SetFloat("fireSpeed", 1.0f + ps.mFireRate);
+        animator.SetFloat("reloadSpeed", 1.0f + ps.mReload);
+
+        if (Input.GetKeyDown(KeyCode.Alpha0) && !paused) SwitchWeapon(0);
+		if (Input.GetKeyDown(KeyCode.Alpha1) && !paused) SwitchWeapon(0);
+		if (Input.GetKeyDown(KeyCode.Alpha2) && !paused) SwitchWeapon(1);
+		if (Input.GetKeyDown(KeyCode.Alpha3) && !paused) SwitchWeapon(2);
+
+        if (Input.GetButton("Fire1") && !paused) {
+            weapons[currentWeapon].GetComponent<IProjectileWeapon>().FireInput();
+            //animator.SetBool("fire", true);
+        } else {
+            animator.SetBool("fire", false);
+        }
+        if (Input.GetButton("Reload") && !paused) { weapons[currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput(); }
+
     }
 
     //switch weapon

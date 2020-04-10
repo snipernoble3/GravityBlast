@@ -4,6 +4,8 @@ using UnityEngine;
 
 interface IProjectileWeapon {
 
+    void FireInput ();
+
     void Fire ();
 
     void Recoil ();
@@ -11,6 +13,8 @@ interface IProjectileWeapon {
     void UpdateSpread ();
 
     void UseAmmo (int amount);
+
+    void ReloadInput ();
 
     void Reload ();
 

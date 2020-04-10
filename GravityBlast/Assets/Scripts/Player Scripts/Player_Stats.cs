@@ -31,11 +31,11 @@ public class Player_Stats : MonoBehaviour {
     int mReloadLevel = 0;
     int mReloadCap = 3;
     float mReloadPerLevel = 0.25f;
-    //increased fire rate - 5 levels, +20% each (+100% cap)
+    //increased fire rate - 5 levels, +10% each (+50% cap) -- this translates to firing twice as fast
     [HideInInspector] public float mFireRate;
     int mFireRateLevel = 0;
     int mFireRateCap = 5;
-    float mFireRatePerLevel = 0.2f;
+    float mFireRatePerLevel = 0.1f;
     //increased range (time to bullet expiration) - 5 levels, +10% each (+50% cap)
     [HideInInspector] public float mProjectileDuration;
     int mProjectileDurationLevel = 0;
@@ -99,7 +99,7 @@ public class Player_Stats : MonoBehaviour {
     }
 
     public void UpdateModification (string mName, int i = 0) {
-        Debug.Log("Upgrading " + mName + " by " + i);
+        //Debug.Log("Upgrading " + mName + " by " + i);
         switch (mName) {
             case "all":
                 if (i == 0) {
