@@ -172,6 +172,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1568278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -304,6 +305,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &12798229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -503,6 +505,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &15439695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -629,6 +632,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &24023822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -755,6 +759,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &26501898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -954,6 +959,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &64600896
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1080,6 +1086,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &73762610
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1297,6 +1304,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &99980799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1429,6 +1437,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &101562620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1717,6 +1726,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &123161441
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1849,6 +1859,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &128088197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2051,6 +2062,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &135884399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2242,6 +2254,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &142127627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2368,6 +2381,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &145299813
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2603,6 +2617,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &148480263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2729,6 +2744,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &149188557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2931,6 +2947,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &160985319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,6 +2998,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &160985322
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3183,6 +3201,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &161549781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3328,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &170644145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3379,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &170644148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3561,6 +3582,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &183423788
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,6 +3633,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &183423791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3806,6 +3829,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &186024846
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4097,6 +4121,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &214616215
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4223,6 +4248,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &218561648
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4355,6 +4381,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &227213299
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4481,6 +4508,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &238356125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4613,6 +4641,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &241225850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4739,6 +4768,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &247354155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4947,6 +4977,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &272070502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5028,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &272070505
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5334,6 +5366,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &281529460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5466,6 +5499,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &294735201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5668,6 +5702,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &302078269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5896,6 +5931,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &310739326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6182,6 +6218,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &322861869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,6 +6345,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &322940301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -6364,6 +6402,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &323318456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6566,6 +6605,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &327674339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,6 +6732,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &332709224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 0a8a97bda26140a498af1a3d8254ae84,
@@ -6748,6 +6789,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &338942352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6874,6 +6916,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &341634214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7000,6 +7043,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &345739359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7202,6 +7246,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &353288109
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,6 +7297,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &353288112
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7384,6 +7430,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &355952437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7656,6 +7703,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &361847227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8100,6 +8148,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &380951158
 GameObject:
   m_ObjectHideFlags: 0
@@ -8150,6 +8199,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &380951161
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8276,6 +8326,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &382115739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8408,6 +8459,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &384364049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8534,6 +8586,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &393458305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8733,6 +8786,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &398863380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8859,6 +8913,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &401591534
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9061,6 +9116,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &407449392
 GameObject:
   m_ObjectHideFlags: 0
@@ -9111,6 +9167,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &407449395
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9243,6 +9300,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &418849206
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9445,6 +9503,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &423831495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2331697997774483210, guid: d416ce69e9583ea4db2b794e683b2e22,
@@ -9501,6 +9560,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &424162670
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9703,6 +9763,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &426799891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: cb345f043fa07324eab0e01e3d00770c,
@@ -9765,6 +9826,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &438034575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9970,6 +10032,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &456956496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10275,6 +10338,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &477111975
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10495,6 +10559,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &481081503
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10854,6 +10919,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &498798848
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,6 +11046,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &506085292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11103,6 +11170,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &527878292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11229,6 +11297,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &530355712
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11361,6 +11430,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &534675214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11487,6 +11557,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &540234389
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11783,6 +11854,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &545479083
 GameObject:
   m_ObjectHideFlags: 0
@@ -11833,6 +11905,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &545479086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11959,6 +12032,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &549334692
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12085,6 +12159,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &559697346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12428,6 +12503,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &576536674
 GameObject:
   m_ObjectHideFlags: 0
@@ -12478,6 +12554,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &576536677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12688,6 +12765,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &594226545
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12890,6 +12968,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &598349828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6991284580381125765, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
@@ -12946,6 +13025,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &607410017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13078,6 +13158,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &621927872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13204,6 +13285,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &624294056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13330,6 +13412,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &629093113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13532,6 +13615,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &636510740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13683,6 +13767,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &642866349
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13809,6 +13894,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &649342351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14095,6 +14181,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &675098984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 9aa36ee119799cc4e88f83437d47ca9a,
@@ -14438,6 +14525,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &699790029
 GameObject:
   m_ObjectHideFlags: 0
@@ -14488,6 +14576,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &699790032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14614,6 +14703,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &701544618
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14782,7 +14872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 33.2, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15060,6 +15150,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &724311702
 GameObject:
   m_ObjectHideFlags: 0
@@ -15110,6 +15201,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &724311705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15409,6 +15501,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &746121583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15695,6 +15788,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &763127274
 GameObject:
   m_ObjectHideFlags: 0
@@ -15745,6 +15839,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &763127277
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15871,6 +15966,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &784794436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15997,6 +16093,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &788186478
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16123,6 +16220,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &795411037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16325,6 +16423,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &805314491
 GameObject:
   m_ObjectHideFlags: 0
@@ -16375,6 +16474,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &805314494
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16501,6 +16601,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &809053842
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16793,6 +16894,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &829738287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16916,6 +17018,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &831657710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17197,6 +17300,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &881483676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3119691386892550029, guid: 3a5ecb54934ab1a47ba01212623a8dbc,
@@ -17253,54 +17357,6 @@ Transform:
   m_Father: {fileID: 572298027}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.396002}
---- !u!1 &885384298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 885384300}
-  - component: {fileID: 885384299}
-  m_Layer: 0
-  m_Name: Post Processing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &885384299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885384298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: d2976e3c4ba23a742933dd778ac1cc00, type: 2}
---- !u!4 &885384300
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885384298}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &888537947
 GameObject:
   m_ObjectHideFlags: 0
@@ -17351,6 +17407,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &888537950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17483,6 +17540,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &901363248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17609,6 +17667,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &908365166
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17735,6 +17794,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &908479290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17937,6 +17997,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &917831419
 GameObject:
   m_ObjectHideFlags: 0
@@ -17987,6 +18048,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &917831422
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18226,6 +18288,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &936358420
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18352,6 +18415,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &939163461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18478,6 +18542,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &941841745
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18604,6 +18669,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &943223625
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18890,6 +18956,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &968576188
 GameObject:
   m_ObjectHideFlags: 0
@@ -18940,6 +19007,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &968576191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19072,6 +19140,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &990731905
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19350,6 +19419,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1018789304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 9aa36ee119799cc4e88f83437d47ca9a,
@@ -19418,6 +19488,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1030101145
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19633,6 +19704,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1042130951
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19759,6 +19831,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1043145135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19961,6 +20034,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1061341665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20166,6 +20240,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1077836510
 GameObject:
   m_ObjectHideFlags: 0
@@ -20292,6 +20367,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1097591816
 GameObject:
   m_ObjectHideFlags: 0
@@ -20342,6 +20418,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1097591819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20468,6 +20545,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1105925903
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20749,6 +20827,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1130934992
 GameObject:
   m_ObjectHideFlags: 0
@@ -20799,6 +20878,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1130934995
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20925,6 +21005,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1143476751
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21051,6 +21132,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1147920919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21395,6 +21477,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1162705065
 GameObject:
   m_ObjectHideFlags: 0
@@ -21521,6 +21604,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1176738044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -21583,6 +21667,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1192349973
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21833,6 +21918,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1220210365
 GameObject:
   m_ObjectHideFlags: 0
@@ -21959,6 +22045,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1227097281
 GameObject:
   m_ObjectHideFlags: 0
@@ -22009,6 +22096,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1227097284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22379,6 +22467,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1260936269
 GameObject:
   m_ObjectHideFlags: 0
@@ -22505,6 +22594,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1281275654
 GameObject:
   m_ObjectHideFlags: 0
@@ -22631,6 +22721,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1300462640
 GameObject:
   m_ObjectHideFlags: 0
@@ -22681,6 +22772,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1300462643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23048,6 +23140,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1325780832
 GameObject:
   m_ObjectHideFlags: 0
@@ -23174,6 +23267,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1336772783
 GameObject:
   m_ObjectHideFlags: 0
@@ -23300,6 +23394,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1338442101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23507,6 +23602,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1346321227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23639,6 +23735,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1352173591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23765,6 +23862,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1354317315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23967,6 +24065,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1363089028
 GameObject:
   m_ObjectHideFlags: 0
@@ -24017,6 +24116,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1363089031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24143,6 +24243,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1383400043
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24534,6 +24635,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1450642074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24815,6 +24917,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1478399287
 GameObject:
   m_ObjectHideFlags: 0
@@ -24865,6 +24968,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1478399290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25067,6 +25171,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1485630997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25266,6 +25371,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1489500038
 GameObject:
   m_ObjectHideFlags: 0
@@ -25392,6 +25498,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1492272573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25591,6 +25698,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1498588154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -25647,6 +25755,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1499084546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25849,6 +25958,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1506071233
 GameObject:
   m_ObjectHideFlags: 0
@@ -25899,6 +26009,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1506071236
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26125,6 +26236,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1522550801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26336,6 +26448,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1556885872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26462,6 +26575,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1561730635
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26664,6 +26778,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1572139417
 GameObject:
   m_ObjectHideFlags: 0
@@ -26714,6 +26829,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1572139420
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26916,6 +27032,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1574692927
 GameObject:
   m_ObjectHideFlags: 0
@@ -27042,6 +27159,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1575566415
 GameObject:
   m_ObjectHideFlags: 0
@@ -27092,6 +27210,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1575566418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27294,6 +27413,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1576117561
 GameObject:
   m_ObjectHideFlags: 0
@@ -27344,6 +27464,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1576117564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27470,6 +27591,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1578673023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27936,6 +28058,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1598496222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28059,6 +28182,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1599164447
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28185,6 +28309,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1604645532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28387,6 +28512,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1607269309
 GameObject:
   m_ObjectHideFlags: 0
@@ -28437,6 +28563,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1607269312
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28639,6 +28766,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1619053755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -28701,6 +28829,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1631003713
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28827,6 +28956,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1638922523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28959,6 +29089,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1641376233
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29161,6 +29292,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1642450181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -29217,6 +29349,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1644316990
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29343,6 +29476,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1647130510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29475,6 +29609,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1659002332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29689,6 +29824,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1677745488
 GameObject:
   m_ObjectHideFlags: 0
@@ -29739,6 +29875,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1677745491
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29865,6 +30002,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1684996822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30067,6 +30205,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1691308680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2598347306723740762, guid: b62571889945ad14cab5ae61f7791961,
@@ -30196,6 +30335,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1697111830
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30668,6 +30808,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1725484932
 GameObject:
   m_ObjectHideFlags: 0
@@ -30718,6 +30859,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1725484935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30920,6 +31062,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1759637512
 GameObject:
   m_ObjectHideFlags: 0
@@ -30970,6 +31113,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1759637515
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31191,6 +31335,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1770782372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31317,6 +31462,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1771711265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31443,6 +31589,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1778508716
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31645,6 +31792,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1796333525
 GameObject:
   m_ObjectHideFlags: 0
@@ -31695,6 +31843,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1796333528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31897,6 +32046,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!4 &1807047844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 97638b97501d5154e9457f09b365f05b,
@@ -32029,6 +32179,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1823090544
 GameObject:
   m_ObjectHideFlags: 0
@@ -32079,6 +32230,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1823090547
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32314,6 +32466,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1826905549
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32440,6 +32593,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1827047383
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32642,6 +32796,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1843183618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32847,6 +33002,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &1876268643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32981,6 +33137,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1876766757
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33191,6 +33348,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1882811757
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33396,6 +33554,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1892452675
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33598,6 +33757,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &1901046761
 GameObject:
   m_ObjectHideFlags: 0
@@ -33648,6 +33808,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1901046764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33847,6 +34008,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1904163462
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33979,6 +34141,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1908451250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34201,6 +34364,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1925647681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34496,6 +34660,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1956486667
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34622,6 +34787,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1959842898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34748,6 +34914,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1966497008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34874,6 +35041,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1966685496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35094,6 +35262,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &1983075823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35302,6 +35471,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2008682990
 GameObject:
   m_ObjectHideFlags: 0
@@ -35352,6 +35522,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2008682993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35478,6 +35649,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2009821777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35753,6 +35925,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2026126914
 GameObject:
   m_ObjectHideFlags: 0
@@ -35803,6 +35976,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2026126917
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36011,6 +36185,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2034951620
 GameObject:
   m_ObjectHideFlags: 0
@@ -36061,6 +36236,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2034951623
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36187,6 +36363,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2051125854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36313,6 +36490,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2062983284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36596,6 +36774,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2088456743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36722,6 +36901,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2094734587
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36924,6 +37104,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1001 &2096482463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37123,6 +37304,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2110367773
 GameObject:
   m_ObjectHideFlags: 0
@@ -37173,6 +37355,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2110367776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37383,6 +37566,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2117537517
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37585,6 +37769,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2125685243
 GameObject:
   m_ObjectHideFlags: 0
@@ -37635,6 +37820,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2125685246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37761,6 +37947,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!54 &2128440056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37963,6 +38150,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2137979553
 GameObject:
   m_ObjectHideFlags: 0
@@ -38089,6 +38277,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!1 &2146209474
 GameObject:
   m_ObjectHideFlags: 0
@@ -38608,6 +38797,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a5ecb54934ab1a47ba01212623a8dbc, type: 3}
+--- !u!1001 &3283460420152035151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696355, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696357, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_Name
+      value: Post Processing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696357, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9285bbbc28d03384db3cc0410d7e6675, type: 3}
 --- !u!1 &3820172612986792100 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3820172613042789075, guid: f1f02688bb546cc46bc69d7d28d1c555,
