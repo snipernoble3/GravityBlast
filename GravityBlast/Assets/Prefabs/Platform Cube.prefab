@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0
@@ -270,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0
@@ -282,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3119691386892550029}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Platform Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0
@@ -427,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0
@@ -487,6 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc68abea24ab6429ca780a98489e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefaultGravitySource: 0
   gravityStrength: -9.81
   isRadial: 0
   useTestSpheres: 0

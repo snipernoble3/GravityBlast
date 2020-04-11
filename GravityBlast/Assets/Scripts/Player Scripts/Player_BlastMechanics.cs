@@ -15,6 +15,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	public bool rj_trainingHitMarker = false;
 	
 	// Object References
+	
 	private Player_Movement playerMovement;
 	public GameObject groundPoundParticles; // gets reference to the particles to spawn
 	private GameObject gpParticles_GameObject; // stores the instance of the particles
@@ -26,6 +27,8 @@ public class Player_BlastMechanics : MonoBehaviour
 	public Animator firstPersonArms_Animator;
 	public GameObject armTube;
 	private Material armTube_Material;
+	public GameObject blastWarp;
+	private Material blastWarp_Material;	
 	
 	// Rocket Jumping Variables
 	private int rjBlast_NumSinceGrounded = 0;
@@ -52,6 +55,7 @@ public class Player_BlastMechanics : MonoBehaviour
     {		
 		// Set up references
 		armTube_Material = armTube.GetComponent<Renderer>().material;
+		blastWarp_Material = blastWarp.GetComponent<Renderer>().material;
 		playerMovement = GetComponent<Player_Movement>();
 		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
 		camOffset = transform.Find("Camera Position Offset").gameObject;
@@ -60,7 +64,7 @@ public class Player_BlastMechanics : MonoBehaviour
     }
 
     void Update()
-    {		
+    {
 		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime) rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
 		
 		// Inputs
@@ -103,6 +107,8 @@ public class Player_BlastMechanics : MonoBehaviour
 		
 		firstPersonArms_Animator.Play("Blast", 1, 0.25f); // Play the blast animation.
 		StartCoroutine(ArmTubePulsate()); // make the tube pulsate.
+		StartCoroutine(BlastWarpEffect());
+		
 		
 		BlastForce(rjBlast_Power, rjBlast_Epicenter, rjBlast_Radius, rjBlast_UpwardForce); // Add the blast force to affect other objects.
 			
@@ -116,6 +122,8 @@ public class Player_BlastMechanics : MonoBehaviour
 			}
 		}
 		else RocketJump();
+		
+		
 	}
 
 	// Called via the Rocket Jump Check method, this actually performs the rocket jump.
@@ -312,5 +320,29 @@ public class Player_BlastMechanics : MonoBehaviour
 			
 			yield return null;
 		}
+	}
+	
+	public IEnumerator BlastWarpEffect()
+	{
+		blastWarp.SetActive(true);
+		
+		float intensityMin = 0.0f;
+		float intensityMax = 0.85f;
+		
+		float intensitySpeed = 6.0f;
+		
+		float intensity = 0.5f;
+		
+		while (intensity <= Mathf.PI)
+		{
+			intensity += Time.deltaTime * intensitySpeed;
+			float warpIntensity = Mathf.Lerp(intensityMin, intensityMax, ((Mathf.Sin(intensity) + 1.0f) / 2.0f));
+			
+			blastWarp_Material.SetFloat("_WarpIntensity", warpIntensity);
+			
+			yield return null;
+		}
+		
+		blastWarp.SetActive(false);
 	}
 }
