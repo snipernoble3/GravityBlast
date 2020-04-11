@@ -9,12 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 3c03e777b4737854395dd0267d8ba816
   - enabled: 1
-    path: Assets/Scenes/Test_Planets.unity
-    guid: a693c2e896d004c46b748ae6a26541a2
-  - enabled: 1
     path: Assets/Scenes/TinyPlanet_Overload.unity
     guid: f1992232a163c2443a2d624004a3d96a
   - enabled: 1
-    path: Assets/Scenes/Test_Loop.unity
-    guid: 86dc99cfeb2c14744a1dc64203a6d50c
+    path: Assets/Scenes/PlanetGeneration.unity
+    guid: 018d7416c320ded439326f93044b53b7
   m_configObjects: {}

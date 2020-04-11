@@ -20,7 +20,7 @@ public class MenuControl : MonoBehaviour {
     // MAIN MENU //
 
     public void Play () {
-        SceneManager.LoadScene("Test_Loop");
+        SceneManager.LoadScene("PlanetGeneration");
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
     }
 
