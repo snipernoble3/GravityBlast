@@ -50,7 +50,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _InvertSmoothness: 0
-    - _PulseAmplitude: 0.025
+    - _PulseAmplitude: 0.04
+    - _PulseEmit: 1
     - _PulseFrequency: 1
     - _PulsePhase: 0
     - _SmoothnessMultiplier: 0.8
