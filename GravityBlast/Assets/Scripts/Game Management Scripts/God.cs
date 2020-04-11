@@ -73,13 +73,11 @@ public class God : MonoBehaviour {
     }
 
     private void Update () {
-        if (Input.GetKeyDown(KeyCode.L)) {
-            StartCoroutine(NextPlanet());
-        }
 
-        if (statScreen.activeInHierarchy && Input.GetKeyDown(KeyCode.N)) {
-            PlayerReady();
-        }
+        //Test Inputs
+        //if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(NextPlanet()); }
+        //if (statScreen.activeInHierarchy && Input.GetKeyDown(KeyCode.N)) { PlayerReady(); }
+
     }
 
     /*
@@ -134,6 +132,7 @@ public class God : MonoBehaviour {
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
+        player.GetComponent<Player_Stats>().SetXP(XPtoProceed(planetToCreate.difficultySetting, planetToCreate.stageNumber));
     }
 
     public void NextPlanetReady () {
@@ -173,13 +172,13 @@ public class God : MonoBehaviour {
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
-        //place player on planet
+        player.GetComponent<Player_Stats>().SetXP(XPtoProceed(planetToCreate.difficultySetting, planetToCreate.stageNumber));
 
         //overlay on
         statScreen.gameObject.SetActive(true);
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.None, true);
         UpdateStatScreen();
-        player.transform.position = player.transform.position + (player.transform.up * 20);
+        player.transform.position = player.transform.position + (player.transform.up * 50);
 
         yield return new WaitUntil( () => nextPlanetReady && playerReady);
         //yield return new WaitForSeconds(5f);
@@ -203,6 +202,12 @@ public class God : MonoBehaviour {
         } else {
             return "large";
         }
+    }
+
+    private int XPtoProceed (int difficulty, int planetNumber) {
+        int xp = 20;
+        xp = (xp + (5 * planetNumber)) * difficulty;
+        return xp;
     }
 
     private void UpdateStatScreen () {

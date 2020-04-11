@@ -395,8 +395,6 @@ GameObject:
   - component: {fileID: 746588269}
   - component: {fileID: 3820172613042789074}
   - component: {fileID: 6531711672340719521}
-  - component: {fileID: 5276313134950682590}
-  - component: {fileID: 2088661095}
   - component: {fileID: 5737549682908922007}
   - component: {fileID: 5527955086115415956}
   - component: {fileID: 8585929578479001980}
@@ -484,6 +482,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
+  paused: 0
 --- !u!114 &3820172613042789074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +513,7 @@ MonoBehaviour:
   matchXYSensitivity: 1
   useRawMouseInput: 1
   invertVerticalInput: 0
+  paused: 0
 --- !u!114 &6531711672340719521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,43 +541,7 @@ MonoBehaviour:
   rjBlast_MidAirLimit: 1
   minGroundPoundVelocity: 8
   groundPound_Multiplier: 25
---- !u!114 &5276313134950682590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820172613042789075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d969877ee2e18664788ecb97eef7130e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alignment: 0
-  maxHealth: 3
-  healthText: {fileID: 0}
-  death: {fileID: 0}
-  critDeath: {fileID: 0}
-  xpDrop: 0
-  XP: {fileID: 0}
-  godIcon: {fileID: 0}
---- !u!114 &2088661095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820172613042789075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b78cb6abd983d4f8ebedf6b5407e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depositLight: {fileID: 0}
-  xpCap: 20
-  jumpReady: 0
-  jumpReadyText: {fileID: 0}
-  xpBar: {fileID: 0}
+  paused: 0
 --- !u!114 &5737549682908922007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,6 +580,7 @@ MonoBehaviour:
   - {fileID: 1521742579181382291}
   animator: {fileID: 6711995073076367826}
   ammoUI: {fileID: 0}
+  paused: 0
 --- !u!114 &8585929578479001980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +595,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHP: 3
   healthText: {fileID: 0}
+  xpBar: {fileID: 0}
+  xpText: {fileID: 0}
   mHealth: 0
   mAmmo: 0
   mReload: 0
@@ -1755,12 +1722,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8562887680762746802}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1834602548132276529 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8043619932184641155, guid: 0ed5bb94b26662c4887043a7cc923e22,
-    type: 3}
-  m_PrefabInstance: {fileID: 8562887680762746802}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1521742579181382291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2032482247644283615, guid: 0ed5bb94b26662c4887043a7cc923e22,
@@ -1788,6 +1749,12 @@ Transform:
 --- !u!95 &6711995073076367826 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 0ed5bb94b26662c4887043a7cc923e22,
+    type: 3}
+  m_PrefabInstance: {fileID: 8562887680762746802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1834602548132276529 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8043619932184641155, guid: 0ed5bb94b26662c4887043a7cc923e22,
     type: 3}
   m_PrefabInstance: {fileID: 8562887680762746802}
   m_PrefabAsset: {fileID: 0}

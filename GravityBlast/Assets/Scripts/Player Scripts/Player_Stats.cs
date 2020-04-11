@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class Player_Stats : MonoBehaviour {
 
-    //health
+    // Health //
     [SerializeField] int baseHP = 3;
     private int maxHP;
     private int currHP;
@@ -14,6 +15,15 @@ public class Player_Stats : MonoBehaviour {
     public TextMeshProUGUI healthText;
     private string baseText;
     private int maxPips = 10;
+
+    // XP //
+    private int xpToAdvance;
+    private int currXP;
+    //private int overflowXP;
+    [HideInInspector] public bool xpFull;
+    [SerializeField] private Slider xpBar;
+    [SerializeField] private TextMeshProUGUI xpText;
+    private string jumpReady = "Jump Ready - Press B to Jump to Next Planet";
 
     // Modifications //
     //increased health
@@ -57,22 +67,25 @@ public class Player_Stats : MonoBehaviour {
         maxHP = baseHP;
         currHP = maxHP;
 
-        UpdateModification("all");
+        UpdateModification("all"); //just base set up all modifications
     }
 
 
     private void Update () {
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt)) { UpdateModification("all", 100); }
-        if (Input.GetKeyDown(KeyCode.Equals)) { UpdateModification("all", 1); }
-        if (Input.GetKeyDown(KeyCode.Minus)) { UpdateModification("all", -1); }
+        //Test Inputs
+        //if (Input.GetKeyDown(KeyCode.LeftAlt)) { UpdateModification("all", 100); }
+        //if (Input.GetKeyDown(KeyCode.Equals)) { UpdateModification("all", 1); }
+        //if (Input.GetKeyDown(KeyCode.Minus)) { UpdateModification("all", -1); }
+
+
 
     }
 
-    void UpdateHealth (int i = 0) {
+    public void UpdateHealth (int i = 0) {
 
-        if (i != 0)
-            i = (i > 0) ? 1 : -1;
+        if (i != 0) { i = (i > 0) ? 1 : -1; }
+            
 
         switch (i) {
             case 1:
@@ -83,7 +96,6 @@ public class Player_Stats : MonoBehaviour {
                 //decrease health
                 currHP--;
                 if (currHP != 0) {
-                    //temporary invincible
                     UpdateHealthUI();
                 } else {
                     //player death
@@ -93,7 +105,7 @@ public class Player_Stats : MonoBehaviour {
                 //update max health
                 int dif = (baseHP + mHealth) - maxHP;
                 maxHP = baseHP + mHealth;
-                if (dif != 0) UpdateHealth(dif);
+                if (dif != 0) UpdateHealth(dif); //gain or lose hp to match the adjustment in max health
                 break;
         }
     }
@@ -171,8 +183,39 @@ public class Player_Stats : MonoBehaviour {
                 if (i == maxPips) healthText.text += "+"; // Indicate that there is more health than is currently displayed in the number of pips.
             }
         } catch (NullReferenceException e) {
-
+            Debug.Log("Player_Stats.UpdateHealthUI(): " + e);
         }
+    }
+
+    public void CollectXP (int x) {
+        if (!xpFull) {
+            currXP += x;
+            if (currXP >= xpToAdvance) {
+                xpFull = true;
+                //overflow += currXP
+            }
+            UpdateXPUI();
+        } else {
+            //overflow += x;
+        }
+    }
+
+    public void UpdateXPUI () {
+        xpBar.value = currXP;
+        if (xpFull) {
+            xpText.text = jumpReady;
+        } else {
+            xpText.text = currXP + "/" + xpToAdvance;
+        }
+    }
+
+    public void SetXP (int newTargetXP) {
+        xpFull = false;
+        currXP = 0;
+        xpToAdvance = newTargetXP;
+        xpBar.minValue = 0;
+        xpBar.maxValue = xpToAdvance;
+        UpdateXPUI();
     }
 
 }

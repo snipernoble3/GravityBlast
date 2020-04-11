@@ -126,7 +126,7 @@ public class Beetle2 : MonoBehaviour {
         if (charging && !dealtDamage) {
 
             if (collision.gameObject == target.gameObject) {
-                collision.gameObject.GetComponent<Health>().TakeDamage(damageOnHit);
+                collision.gameObject.GetComponent<Player_Stats>().UpdateHealth(damageOnHit);
                 dealtDamage = true;
 
             }

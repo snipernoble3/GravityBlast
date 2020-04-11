@@ -15,23 +15,25 @@ public class EndLevelTransition : MonoBehaviour
 	
 	[SerializeField] private GameObject thirdPersonPlayer;
 	[SerializeField] private GameObject player;
-	
-	private PlayerResources resources;
+
+    [SerializeField] private God god;
+
+    private Player_Stats playerStats;
 	private bool jumpInitiated = false;
 	
 	void Start()
 	{
-		resources = player.GetComponent<PlayerResources>();
+		playerStats = player.GetComponent<Player_Stats>();
 	}
 	
 	// Update is called once per frame
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.B))
-		if (Input.GetKeyDown(KeyCode.B) && resources.jumpReady)
+		if (Input.GetKeyDown(KeyCode.B) && playerStats.xpFull)
 		{
-			if (!jumpInitiated) JumpToNextPlanet();
-		}
+			if (!jumpInitiated) god.StartCoroutine(god.NextPlanet());//JumpToNextPlanet();
+        }
     }
 	
 	private void JumpToNextPlanet()
@@ -71,8 +73,9 @@ public class EndLevelTransition : MonoBehaviour
 	}
 
     IEnumerator LoadNextLevel () {
-        yield return new WaitForSeconds(6.75f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(6f);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        god.StartCoroutine(god.NextPlanet());
     }
 
 }
