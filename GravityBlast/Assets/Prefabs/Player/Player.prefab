@@ -392,9 +392,10 @@ GameObject:
   - component: {fileID: 6565884064336772407}
   - component: {fileID: 622611080853443474}
   - component: {fileID: 7472760309642854078}
-  - component: {fileID: 746588269}
+  - component: {fileID: 6016244144719884005}
   - component: {fileID: 3820172613042789074}
   - component: {fileID: 6531711672340719521}
+  - component: {fileID: 746588269}
   - component: {fileID: 5737549682908922007}
   - component: {fileID: 5527955086115415956}
   - component: {fileID: 8585929578479001980}
@@ -468,7 +469,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &746588269
+--- !u!114 &6016244144719884005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -477,13 +478,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3820172613042789075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
+  m_Script: {fileID: 11500000, guid: b1db356d0b948ee498f2db173e9752fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
-  rotateToGravitySource: 1
-  isChangingSource: 0
-  paused: 0
+  movement: {fileID: 3820172613042789074}
+  blastMechanics: {fileID: 6531711672340719521}
+  holdJumpToKeepJumping: 0
 --- !u!114 &3820172613042789074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +543,22 @@ MonoBehaviour:
   minGroundPoundVelocity: 8
   groundPound_Multiplier: 25
   paused: 0
+--- !u!114 &746588269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820172613042789075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravitySource: {fileID: 0}
+  rotateToGravitySource: 1
+  isChangingSource: 0
+  paused: 0
 --- !u!114 &5737549682908922007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +578,7 @@ MonoBehaviour:
   playerListner: {fileID: 2082272270337308055}
   thirdPersonPlayer: {fileID: 8562887681318107238}
   player: {fileID: 3820172613042789075}
+  god: {fileID: 0}
 --- !u!114 &5527955086115415956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHP: 3
   healthText: {fileID: 0}
+  xpFull: 0
   xpBar: {fileID: 0}
   xpText: {fileID: 0}
   mHealth: 0
