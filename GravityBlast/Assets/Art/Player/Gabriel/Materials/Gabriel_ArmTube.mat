@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: ed85b17ad876e4643af3c71c2ab4ca04, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PulseMask:
+        m_Texture: {fileID: 2800000, guid: 357e49329cd3fdb48907bac9a1d13b6a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _PulsePattern:
         m_Texture: {fileID: 2800000, guid: f1f9eaee58a4edf4a9df860a0efa217f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -50,7 +54,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _InvertSmoothness: 0
-    - _PulseAmplitude: 0.025
+    - _PulseAmplitude: 0.04
+    - _PulseEmit: 1
     - _PulseFrequency: 1
     - _PulsePhase: 0
     - _SmoothnessMultiplier: 0.8
