@@ -101,7 +101,6 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         if (timeToFire <= 0 && currAmmo != 0 && !reloading) {
             Fire();
             timeToFire = fireRate * (1 - (ps.mFireRate));
-            player.GetComponent<Player_BlastMechanics>().EnableBlast(false); // Move this functionality into the weapon manager later!!!
         }
 
         if (currAmmo != 0 && !reloading) {
@@ -121,7 +120,8 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         }*/
 
         if (!reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
-            arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
+            player.GetComponent<Player_BlastMechanics>().EnableBlast(false); // Move this functionality into the weapon manager later!!!
+			arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
             reloading = true;
         }
 
