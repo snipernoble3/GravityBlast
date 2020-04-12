@@ -3727,7 +3727,7 @@ GameObject:
   - component: {fileID: 185712010}
   - component: {fileID: 185712012}
   - component: {fileID: 185712011}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21226,7 +21226,7 @@ GameObject:
   - component: {fileID: 1155885749}
   - component: {fileID: 1155885751}
   - component: {fileID: 1155885750}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Moon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
