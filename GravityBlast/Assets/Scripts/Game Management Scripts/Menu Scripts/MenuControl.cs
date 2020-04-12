@@ -60,9 +60,8 @@ public class MenuControl : MonoBehaviour {
     //Restart? idk if we want/need this
 
     public void ReturnToMenu () {
-        //load menu
+        SceneManager.LoadScene("PlanetGeneration");
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
-        //
     }
 
     //Quit

@@ -8,7 +8,7 @@ public class XP_Info : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.GetComponent<Player_Stats>()) {
-            other.gameObject.GetComponent<Player_Stats>().CollectXP(xpToGive + (int)Random.value);
+            other.gameObject.GetComponent<Player_Stats>().CollectXP(xpToGive);
             gameObject.SetActive(false);
         }
     }

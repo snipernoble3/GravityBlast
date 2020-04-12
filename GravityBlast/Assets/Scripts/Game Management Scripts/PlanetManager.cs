@@ -9,14 +9,24 @@ public class PlanetManager : MonoBehaviour {
     // PLANET INFO //
     God.PlanetInfo planet;
     [SerializeField] GameObject killBounds;
+    //ready checks
+    bool environmentReady;
+    bool enemiesReady;
+    bool moonReady;
+    bool bossReady;
+    bool lootReady;
 
     // PLANTS //
+    GameObject plantContainer;
     //plant pool
     GameObject[,] plantPool;
+    int plantCap = 50;
 
     // ENEMIES //
+    GameObject enemyContainer;
     //enemy pool
     GameObject[,] enemyPool;
+    int enemyCap;
 
     public IEnumerator LoadPlanet () { //called by game manager
         
@@ -25,19 +35,25 @@ public class PlanetManager : MonoBehaviour {
         //set size
         transform.localScale = planet.size * Vector3.one;
         //create kill boundaries
-        //GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
+        GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
         //scale kill boundaries - 70 scale
-        //k.transform.localScale = 70f * Vector3.one;
+        k.transform.localScale = 70f * Vector3.one;
+        yield return null;
         //spawn environment
-        yield return new WaitForSeconds(0.1f);
         StartCoroutine(PopulateEnvironment());
+        yield return new WaitUntil(() => environmentReady);
         //spawn enemies
-        yield return new WaitForSeconds(0.1f);
-        PopulateEnemies();
+        StartCoroutine(PopulateEnemies());
+        yield return new WaitUntil(() => enemiesReady);
         //spawn moon if required
-        yield return new WaitForSeconds(0.1f);
-        if (planet.hasMoon) GenerateMoon();
+        if (planet.hasMoon) GenerateMoon(); else moonReady = true;
+        yield return new WaitUntil(() => moonReady);
         //add boss if required
+        bossReady = true;
+        yield return new WaitUntil(() => bossReady);
+        //add loot
+        lootReady = true;
+        yield return new WaitUntil(() => lootReady);
 
         yield return new WaitUntil(() => PlanetLoaded());
 
@@ -58,17 +74,22 @@ public class PlanetManager : MonoBehaviour {
 
     private IEnumerator PopulateEnvironment () {
 
-        plantPool = new GameObject[planet.plantPrefabs.Length, 75];
-        //for each enemy
+        plantContainer = new GameObject();
+        plantContainer.name = "Plant Container";
+        plantContainer.transform.parent = this.gameObject.transform;
+
+        plantPool = new GameObject[planet.plantPrefabs.Length, plantCap];
+        //for each plant
         for (int i = 0; i < planet.plantPrefabs.Length; i++) {
-            for (int j = 0; j < 75; j++) { //spawn (<) x plants
+            int num = Random.Range(0, plantCap);
+            for (int j = 0; j < num; j++) { //spawn (<) x plants
                 Vector3 point = RandomSpawnPoint(0f);
                 Vector3 dir = (point - transform.position).normalized * 9.8f;
                 plantPool[i, j] = Instantiate(planet.plantPrefabs[i], point, Quaternion.LookRotation(dir));
                 plantPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
-                plantPool[i, j].transform.parent = transform;
-                j++;
+                plantPool[i, j].transform.parent = plantContainer.transform;
             }
+            yield return null;
         }
 
         //spawn ground textures
@@ -85,21 +106,57 @@ public class PlanetManager : MonoBehaviour {
         //spawn loose environment pieces
         //yield return new WaitForSeconds(0.01f);
 
+        environmentReady = true;
     }
 
-    private void PopulateEnemies () {
-        enemyPool = new GameObject[planet.enemyPrefabs.Length, 50];
+    private IEnumerator PopulateEnemies () {
+
+        CalculateEnemyCap();
+
+        enemyContainer = new GameObject();
+        enemyContainer.name = "Enemy Container";
+        enemyContainer.transform.parent = this.gameObject.transform;
+
+        enemyPool = new GameObject[planet.enemyPrefabs.Length, enemyCap];
         //for each enemy
         for (int i = 0; i < planet.enemyPrefabs.Length; i++) {
-            for (int j = 0; j < 50; j++) { //spawn (<) x enemies
+            int rNum = Random.Range(planet.xpToAdvance/planet.enemyPrefabs.Length + 2, enemyCap);
+            for (int j = 0; j < rNum; j++) { //spawn (<) x enemies
                 //Vector3 point = RandomSpawnPoint();
                 enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
                 //edit rotation?
-                enemyPool[i, j].transform.parent = transform;
-                j++;
+                enemyPool[i, j].transform.parent = enemyContainer.transform;
             }
+            yield return null;
         }
 
+        enemiesReady = true;
+
+        
+    }
+
+    private void CalculateEnemyCap () {
+        int categoryMod = 1;
+        
+        switch (planet.sizeCategory) {
+            case ("small"):
+                categoryMod = 1;
+                break;
+            case ("medium"):
+                categoryMod = 2;
+                break;
+            case ("large"):
+                categoryMod = 3;
+                break;
+        }
+        categoryMod *= 2;
+
+        int difficultyMod = planet.difficultySetting * 15;
+
+        int xpReq = planet.xpToAdvance / planet.enemyPrefabs.Length;
+
+        enemyCap = xpReq + planet.stageNumber*categoryMod + difficultyMod;
+        //stage 1 difficulty 1 cap = (xp/numEnemies) + 17
     }
 
     Vector3 RandomSpawnPoint (float distanceBuffer) {

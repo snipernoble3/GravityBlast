@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class Player_Stats : MonoBehaviour {
 
+    God _god;
+
     // Health //
     [SerializeField] int baseHP = 3;
     private int maxHP;
     private int currHP;
+    private bool noHealth;
 
     public TextMeshProUGUI healthText;
     private string baseText;
@@ -83,7 +86,7 @@ public class Player_Stats : MonoBehaviour {
     }
 
     public void UpdateHealth (int i = 0) {
-
+        
         if (i != 0) { i = (i > 0) ? 1 : -1; }
             
 
@@ -95,10 +98,10 @@ public class Player_Stats : MonoBehaviour {
             case -1:
                 //decrease health
                 currHP--;
-                if (currHP != 0) {
-                    UpdateHealthUI();
-                } else {
+                if (currHP <= 0 && !noHealth) {
                     //player death
+                    StartCoroutine(NoHealth());
+                    currHP = 0;
                 }
                 break;
             case 0:
@@ -108,6 +111,19 @@ public class Player_Stats : MonoBehaviour {
                 if (dif != 0) UpdateHealth(dif); //gain or lose hp to match the adjustment in max health
                 break;
         }
+
+        UpdateHealthUI();
+    }
+
+    private IEnumerator NoHealth () {
+        noHealth = true;
+        yield return new WaitForSeconds(1f);
+        if (currHP <= 0) {
+            _god.PlayerDeath();
+        } else {
+            noHealth = false;
+        }
+        
     }
 
     public void UpdateModification (string mName, int i = 0) {
@@ -216,6 +232,10 @@ public class Player_Stats : MonoBehaviour {
         xpBar.minValue = 0;
         xpBar.maxValue = xpToAdvance;
         UpdateXPUI();
+    }
+
+    public void SetGod (God g) {
+        _god = g;
     }
 
 }

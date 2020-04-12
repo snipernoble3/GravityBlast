@@ -13,6 +13,7 @@ public class God : MonoBehaviour {
         //difficulty/number of stage
         public int difficultySetting;
         public int stageNumber;
+        public int xpToAdvance;
         //size category
         public float size;
         public string sizeCategory;
@@ -40,7 +41,7 @@ public class God : MonoBehaviour {
     [SerializeField] GameObject playerPrefab;
     [SerializeField] private GameObject player;
     //
-    int difficulty = 1; //1, 2, 3
+    [SerializeField] int difficulty = 1; //1, 2, 3
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
@@ -64,7 +65,7 @@ public class God : MonoBehaviour {
 
     private void Awake () {
         
-        //player.GetComponent<PlayerStats>().SetGod(this);
+        player.GetComponent<Player_Stats>().SetGod(this);
 
         GenerateSolarSystem();
 
@@ -110,6 +111,7 @@ public class God : MonoBehaviour {
         planet.prefab = planetPrefabs[Random.Range(0, planetPrefabs.Length)];
         planet.difficultySetting = difficulty;
         planet.stageNumber = planetNumber;
+        planet.xpToAdvance = XPtoProceed(planet.difficultySetting, planet.stageNumber);
         planet.size = Random.Range(minPlanetScale, maxPlanetScale);
         planet.sizeCategory = SizeClassOf(planet.size);
         planet.plantPrefabs = plantPrefabs;
@@ -120,19 +122,16 @@ public class God : MonoBehaviour {
     }
 
     void FirstPlanet () {
-        //create player
-        if (player == null) {
-            player = Instantiate(playerPrefab);
-        }
+        
         //create planet
         PlanetInfo planetToCreate = currSolarSystem[planetInSolarSystem];
-        player.transform.position = player.transform.position + (player.transform.up * 100);
+        //player.transform.position = player.transform.position + (player.transform.up * 100);
         currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
-        player.GetComponent<Player_Stats>().SetXP(XPtoProceed(planetToCreate.difficultySetting, planetToCreate.stageNumber));
+        player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
     }
 
     public void NextPlanetReady () {
@@ -172,13 +171,13 @@ public class God : MonoBehaviour {
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
-        player.GetComponent<Player_Stats>().SetXP(XPtoProceed(planetToCreate.difficultySetting, planetToCreate.stageNumber));
+        player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
 
         //overlay on
         statScreen.gameObject.SetActive(true);
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.None, true);
         UpdateStatScreen();
-        player.transform.position = player.transform.position + (player.transform.up * 50);
+        //player.transform.position = player.transform.position + (player.transform.up * 50);
 
         yield return new WaitUntil( () => nextPlanetReady && playerReady);
         //yield return new WaitForSeconds(5f);
@@ -195,9 +194,9 @@ public class God : MonoBehaviour {
     private string SizeClassOf (float size) {
 
         //determine the class by how it compares to the size cutoffs for small med large
-        if (size < 0.6) {
+        if (size < 0.5) {
             return "small";
-        } else if (size < 0.8) {
+        } else if (size < 0.65) {
             return "medium";
         } else {
             return "large";
@@ -214,15 +213,21 @@ public class God : MonoBehaviour {
         completedStages.text = "" + completedPlanets;
     }
 
-    public void PauseGameElements (bool pause) {
+    public void PauseGameElements (bool isActive) {
         //send pause/unpause to all enemies
-        currPlanet.GetComponent<PlanetManager>().PauseEnemies(pause);
+        currPlanet.GetComponent<PlanetManager>().PauseEnemies(isActive);
         //turn inputs off/on
-        player.GetComponent<WeaponManager>().paused = pause;
-        player.GetComponent<Player_BlastMechanics>().paused = pause;
-        player.GetComponent<Player_Movement>().paused = pause;
-        player.GetComponent<Gravity_AttractedObject>().paused = pause;
+        player.GetComponent<WeaponManager>().paused = isActive;
+        player.GetComponent<Player_BlastMechanics>().paused = isActive;
+        player.GetComponent<Player_Movement>().paused = isActive;
+        player.GetComponent<Gravity_AttractedObject>().paused = isActive;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    public void PlayerDeath () {
+        PauseGameElements(false);
+        //EndScreen.SetActive(true);
+        SceneManager.LoadScene("Menu");
     }
 
 }

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Total Kills
+  m_text: Total kills
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fec6db55a536cad4d847c071f41d9a50, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: db02670901c7a6a49b43055daeb14235, type: 2}
@@ -2774,6 +2774,11 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 1462802345}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: difficulty
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name
@@ -2891,7 +2896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage Kills
+  m_text: Stage kills
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fec6db55a536cad4d847c071f41d9a50, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: db02670901c7a6a49b43055daeb14235, type: 2}
@@ -3153,10 +3158,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3128035153089347644, guid: 57449e01d1648d14a8de92a4eb49bdd1,
+        type: 3}
+      propertyPath: m_Name
+      value: StageCompleted
+      objectReference: {fileID: 0}
     - target: {fileID: 4986345400288586578, guid: 57449e01d1648d14a8de92a4eb49bdd1,
         type: 3}
       propertyPath: m_Name
-      value: Canvas_YouWin
+      value: Canvas_StageCompleted
       objectReference: {fileID: 0}
     - target: {fileID: 4986345400288586590, guid: 57449e01d1648d14a8de92a4eb49bdd1,
         type: 3}
@@ -3272,6 +3282,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3199913974320617412, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 96055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199913974320617412, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3820172613042789075, guid: f1f02688bb546cc46bc69d7d28d1c555,
         type: 3}
       propertyPath: m_Name
@@ -3289,7 +3309,7 @@ PrefabInstance:
       objectReference: {fileID: 1535912482}
     - target: {fileID: 5737549682908922007, guid: f1f02688bb546cc46bc69d7d28d1c555,
         type: 3}
-      propertyPath: youWin
+      propertyPath: stageCompletedMessage
       value: 
       objectReference: {fileID: 183672599}
     - target: {fileID: 5737549682908922007, guid: f1f02688bb546cc46bc69d7d28d1c555,
@@ -3351,6 +3371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562887680700098075, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8585929578479001980, guid: f1f02688bb546cc46bc69d7d28d1c555,
         type: 3}

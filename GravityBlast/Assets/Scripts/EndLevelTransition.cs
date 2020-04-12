@@ -8,7 +8,7 @@ public class EndLevelTransition : MonoBehaviour
 	public Animator Jetpack_Animator;
 	
 	[SerializeField] private Canvas hud;
-	[SerializeField] private GameObject youWin;
+	[SerializeField] private GameObject stageCompletedMessage;
 	
 	[SerializeField] private Camera[] playerCameras;
 	[SerializeField] private AudioListener playerListner;
@@ -32,7 +32,7 @@ public class EndLevelTransition : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.B))
 		if (Input.GetKeyDown(KeyCode.B) && playerStats.xpFull)
 		{
-			if (!jumpInitiated) god.StartCoroutine(god.NextPlanet());//JumpToNextPlanet();
+			if (!jumpInitiated) JumpToNextPlanet();
         }
     }
 	
@@ -65,15 +65,30 @@ public class EndLevelTransition : MonoBehaviour
         StartCoroutine(LoadNextLevel());
 	}
 	
-	IEnumerator BlastOff()
-	{
+	IEnumerator BlastOff() {
 		yield return new WaitForSeconds(1.75f);
 		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
-		youWin.SetActive(true);
+		stageCompletedMessage.SetActive(true);
 	}
 
     IEnumerator LoadNextLevel () {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4.5f);
+
+        // Allow the method to be called again
+        jumpInitiated = false;
+
+        // Enable Player controls.
+        player.GetComponent<Player_Movement>().EnableLook(true);
+        player.GetComponent<Player_Movement>().EnableMove(true);
+
+        hud.enabled = true;
+        stageCompletedMessage.SetActive(false);
+        thirdPersonPlayer.SetActive(false);
+
+        playerListner.enabled = true;
+
+        Jetpack_Animator.StopPlayback();
+
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         god.StartCoroutine(god.NextPlanet());
     }

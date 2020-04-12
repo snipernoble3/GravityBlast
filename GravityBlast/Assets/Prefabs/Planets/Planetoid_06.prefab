@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 1
-  gravityStrength: -9.81
+  gravityStrength: -12
   isRadial: 1
   useTestSpheres: 0

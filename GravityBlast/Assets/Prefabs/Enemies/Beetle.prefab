@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4384747206622748805}
   - component: {fileID: 1936157841093618515}
   - component: {fileID: 1998298998576950706}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Belly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5987044430576371571}
   - component: {fileID: 5163484575360484320}
   - component: {fileID: 2538436502651618067}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Beetle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniMap_EnemyDot
+      objectReference: {fileID: 0}
+    - target: {fileID: 105783150494617054, guid: adf803499d4d7d446bca191e41d85a65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5490269445690315837, guid: adf803499d4d7d446bca191e41d85a65,
         type: 3}
@@ -367,10 +372,40 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.0121
       objectReference: {fileID: 0}
+    - target: {fileID: -2922178952554808326, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: -1434002970300387773, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7754fbabd911b7d4fa23652e54294868,
         type: 3}
       propertyPath: m_Name
       value: Enemy_Beetle
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012658719306803632, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661397521511034029, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810136158050003263, guid: 7754fbabd911b7d4fa23652e54294868,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7754fbabd911b7d4fa23652e54294868, type: 3}
