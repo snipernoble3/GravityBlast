@@ -15,6 +15,7 @@ public class AnimationEventHelper : MonoBehaviour
 	void ReplaceMagazine()
     {
         weaponManager.Reload();
+		blastMechanics.EnableBlast(true);
     }
 	
 	void DisableAttacks()

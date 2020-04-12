@@ -28,7 +28,10 @@ public class Player_BlastMechanics : MonoBehaviour
 	public GameObject armTube;
 	private Material armTube_Material;
 	public GameObject blastWarp;
-	private Material blastWarp_Material;	
+	private Material blastWarp_Material;
+	private Coroutine blastWarpCo;
+	private Coroutine armTubeCo;
+	
 	
 	// Rocket Jumping Variables
 	private int rjBlast_NumSinceGrounded = 0;
@@ -106,8 +109,11 @@ public class Player_BlastMechanics : MonoBehaviour
 		}
 		
 		firstPersonArms_Animator.Play("Blast", 1, 0.25f); // Play the blast animation.
-		StartCoroutine(ArmTubePulsate()); // make the tube pulsate.
-		StartCoroutine(BlastWarpEffect());
+		
+		if (armTubeCo != null) StopCoroutine(armTubeCo); // Stop the coroutine so that it isn't overlapping the previous coroutine.
+		if (blastWarpCo != null) StopCoroutine(blastWarpCo); // Stop the coroutine so that it isn't overlapping the previous coroutine.
+		armTubeCo = StartCoroutine(ArmTubePulsate()); // make the tube pulsate.
+		blastWarpCo = StartCoroutine(BlastWarpEffect()); // create visual warping effect.
 		
 		
 		BlastForce(rjBlast_Power, rjBlast_Epicenter, rjBlast_Radius, rjBlast_UpwardForce); // Add the blast force to affect other objects.

@@ -56,8 +56,6 @@ public class WeaponManager : MonoBehaviour {
 		
 		realMag.SetActive(true);
 		Destroy(fakeMag);
-		
-		GetComponent<Player_BlastMechanics>().EnableBlast(true);
     }
 	
 	public void RemoveMagazine()
