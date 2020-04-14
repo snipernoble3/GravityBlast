@@ -27,7 +27,7 @@ Material:
     - Vector1_7454B0CD: 108.39
     - Vector1_A51794EE: 0.95
     - Vector1_B9335046: 0.9
-    - _ClampMax: 0.1
+    - _ClampMax: 0.19
     - _ClampMin: 0
     - _DistanceBlend: 150
     - _DistanceClipFar: 0.85

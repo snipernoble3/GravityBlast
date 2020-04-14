@@ -21,11 +21,20 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _ClampMax: 1
-    - _ClampMin: 0.59
+    - _ClampMax: 0.35
+    - _ClampMin: -0.15
     - _DistanceBlend: 80
     - _DistanceClipFar: 0.56
     - _DistanceClipNear: -0.88
+    - _DistanceRamp_Far: 1
+    - _DistanceRamp_Inner: 0.6
+    - _DistanceRamp_Near: 0.6
+    - _DistanceRamp_Outer: 1
+    - _FresnelPower: 2.45
+    - _GradientRamp_Inner: 0
+    - _GradientRamp_Outer: 0.6
+    - _GradientRamp_PushToRim: 0
+    - _MaxAlpha: 0.7
     - _WarpIntensity: 12
     m_Colors:
     - _Color: {r: 0.45047, g: 2.450557, b: 4.468662, a: 1}
