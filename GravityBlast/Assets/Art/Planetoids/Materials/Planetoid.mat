@@ -65,6 +65,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_14484604: 1.25
+    - Vector1_1621814A: -0.4
+    - Vector1_20C6E29E: 0.075
     - Vector1_29A8FC8E: 0.84
     - Vector1_C60B1AAB: 1
     - Vector1_E793EE66: 1
@@ -83,6 +86,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hue: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
@@ -92,6 +96,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _SurfaceInner: 45
+    - _SurfaceOuter: 55
     - _Tiling: 5
     - _WorkflowMode: 1
     - _ZWrite: 1
