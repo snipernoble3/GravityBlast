@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7533304249742489906}
   - component: {fileID: 2517576312445630887}
   - component: {fileID: -3953664874078401566}
+  - component: {fileID: 7213960312395549682}
   m_Layer: 0
   m_Name: Planetoid_04
   m_TagString: Untagged
@@ -128,6 +129,18 @@ MonoBehaviour:
   gravityStrength: -12
   isRadial: 1
   useTestSpheres: 0
+--- !u!114 &7213960312395549682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279392758521526053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba30f855be0280418da95a54ed1b357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4722481065339969580
 PrefabInstance:
   m_ObjectHideFlags: 0
