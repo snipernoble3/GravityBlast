@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Planetoid_01
+  m_Name: Planetoid
   m_Shader: {fileID: -6465566751694194690, guid: 02446289c90307441948a071ae670e96,
     type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4B66FA70:
-        m_Texture: {fileID: 2800000, guid: 4010a82bde83fc6468513e52fc85c69e, type: 3}
+        m_Texture: {fileID: 2800000, guid: c6fe908861756b840ac73befd613bcbe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 35b181b84a6b55d498e07de98494ac19, type: 3}
+        m_Texture: {fileID: 2800000, guid: ab32d5057e931e74bbc0d350d6f7d24d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 934b5c6cfcea4bb48a5dfa9becfdfb1f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9163c249c4efd0643a9e153f9516e5f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Smoothness:
-        m_Texture: {fileID: 2800000, guid: 3b44482497990564db7ab602576e1720, type: 3}
+        m_Texture: {fileID: 2800000, guid: 54935358599cb93419bb154a661949cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -65,11 +65,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_29A8FC8E: 0.84
+    - Vector1_C60B1AAB: 1
+    - Vector1_E793EE66: 1
+    - Vector1_EC4BD9A0: 0.48
+    - Vector1_F8B40C2C: 0.25
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DistanceBlend: 150
+    - _DistanceClipFar: 0.85
+    - _DistanceClipNear: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -84,7 +92,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Tiling: 1
+    - _Tiling: 5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
