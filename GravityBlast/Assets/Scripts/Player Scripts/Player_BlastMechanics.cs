@@ -38,8 +38,8 @@ public class Player_BlastMechanics : MonoBehaviour
 	[SerializeField] private int rjBlast_MidAirLimit = 1;
 	private bool rjBlast_DidHitSurface = false;
 	
-	private float rjBlast_CoolDownTime = 0.25f; // seconds between rocket jumps
-	private float rjBlast_TimeSinceLastJump;
+	public float rjBlast_CoolDownTime = 0.25f; // seconds between rocket jumps
+	public float rjBlast_TimeSinceLastJump;
 	
 	private const float rjBlast_Range = 4.0f;
 	private const float rjBlast_Power = 850.0f;
@@ -70,18 +70,21 @@ public class Player_BlastMechanics : MonoBehaviour
     {
 		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime) rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
 		
+		/*
 		// Inputs
 		if (blastEnabled)
 		{
 			if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime && !paused) RocketJumpCheck();
 		}		
 		if (Input.GetButton("Crouch") && !playerMovement.GetIsGrounded() && !paused) AccelerateDown();
+		*/
     }
-	
+	/*
 	public void EnableBlast(bool blastState)
 	{
 		blastEnabled = blastState;
 	}
+	*/
 	
 	void FixedUpdate()
 	{	
@@ -91,7 +94,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	
 	// Called via player input, Checks if the conditions to be able to rocket jump are met,
 	// if so, calls the rocket jump method that performs the rocket jump.
-	private void RocketJumpCheck()
+	public void RocketJumpCheck()
 	{
 		RaycastHit rjBlast_Hit;
 			
@@ -165,7 +168,7 @@ public class Player_BlastMechanics : MonoBehaviour
 		}
 	}
 	
-	private void AccelerateDown()
+	public void AccelerateDown()
 	{
 		// If the player is currently accelerating upward, instantly canncel upward velocity, then apply downward force.
 		//if (playerRB.velocity.y > 0.0) playerRB.velocity = new Vector3 (playerRB.velocity.x, 0.0f, playerRB.velocity.z);

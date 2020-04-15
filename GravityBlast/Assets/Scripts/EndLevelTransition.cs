@@ -42,8 +42,10 @@ public class EndLevelTransition : MonoBehaviour
 		jumpInitiated = true;
 		
 		// Disable Player controls.
-		player.GetComponent<Player_Movement>().EnableLook(false);
-		player.GetComponent<Player_Movement>().EnableMove(false);
+		Player_Input.SetLookState(false);
+		Player_Input.SetMoveState(false);
+		Player_Input.SetBlastState(false);
+		Player_Input.SetShootState(false);
 		
 		// Toggle Cameras
 		for (int i = 0; i < playerCameras.Length; i++)
@@ -68,6 +70,7 @@ public class EndLevelTransition : MonoBehaviour
 	IEnumerator BlastOff() {
 		yield return new WaitForSeconds(1.75f);
 		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
+		player.GetComponent<Gravity_AttractedObject>().paused = true;
 		stageCompletedMessage.SetActive(true);
 	}
 
@@ -78,8 +81,10 @@ public class EndLevelTransition : MonoBehaviour
         jumpInitiated = false;
 
         // Enable Player controls.
-        player.GetComponent<Player_Movement>().EnableLook(true);
-        player.GetComponent<Player_Movement>().EnableMove(true);
+		Player_Input.SetLookState(true);
+		Player_Input.SetMoveState(true);
+		Player_Input.SetBlastState(true);
+		Player_Input.SetShootState(true);
 
         hud.enabled = true;
         stageCompletedMessage.SetActive(false);

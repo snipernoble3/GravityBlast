@@ -217,9 +217,11 @@ public class God : MonoBehaviour {
         //send pause/unpause to all enemies
         currPlanet.GetComponent<PlanetManager>().PauseEnemies(isActive);
         //turn inputs off/on
-        player.GetComponent<WeaponManager>().paused = isActive;
-        player.GetComponent<Player_BlastMechanics>().paused = isActive;
-        player.GetComponent<Player_Movement>().paused = isActive;
+        Player_Input.SetPauseState(isActive);
+		//player.GetComponent<WeaponManager>().paused = isActive;
+        //player.GetComponent<Player_BlastMechanics>().paused = isActive;
+        //player.GetComponent<Player_Movement>().paused = isActive;
+		
         player.GetComponent<Gravity_AttractedObject>().paused = isActive;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
