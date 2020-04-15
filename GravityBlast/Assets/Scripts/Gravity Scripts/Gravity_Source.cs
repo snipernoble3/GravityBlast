@@ -20,7 +20,7 @@ public class Gravity_Source : MonoBehaviour
 	// Start is called before the first frame update
     void Awake()
     {
-        nonRadialDirection = transform.up;	
+        //nonRadialDirection = transform.up;	
 		if (isDefaultGravitySource) DefaultGravitySource = this;
     }
 	
@@ -66,7 +66,8 @@ public class Gravity_Source : MonoBehaviour
 	public Vector3 GetGravityVector(Transform attractedObject)
 	{
 		if (isRadial) return (attractedObject.position - transform.position).normalized * gravityStrength;
-		else return nonRadialDirection * gravityStrength;
+		//else return nonRadialDirection * gravityStrength;
+		else return transform.up * gravityStrength;
 	}
 	
 	public void AttractObject(Transform attractedObject, float timeBasedBlend, bool rotateToGravitySource, bool isChangingSource)
