@@ -99,7 +99,7 @@ public class Player_Movement : MonoBehaviour
 	private bool isGrounded = false; // Initialize as false, since player may spawn in mid-air
 	
 	// Jump
-	public bool holdJumpToKeepJumping = false;
+	//public bool holdJumpToKeepJumping = false;
 	[SerializeField] private float jumpForceMultiplier =  3.0f;
 	private const float jumpCoolDownTime = 0.2f;
 	private float timeSinceLastJump;
@@ -178,7 +178,7 @@ public class Player_Movement : MonoBehaviour
 		firstPersonObjects.rotation = Quaternion.RotateTowards(firstPersonObjects.rotation, firstPersonCamera.rotation, 1.0f);
 		
 		
-		
+		/*
 		// Inputs
 		if (lookEnabled && !paused)
 		{
@@ -206,8 +206,9 @@ public class Player_Movement : MonoBehaviour
 				}
 			}
 		}
+		*/
     }
-	
+	/*
 	public void EnableLook(bool lookState)
 	{
 		lookEnabled = lookState;
@@ -217,6 +218,7 @@ public class Player_Movement : MonoBehaviour
 	{
 		moveEnabled = moveState;
 	}
+	*/
 	
 	void FixedUpdate()
 	{		
@@ -246,7 +248,7 @@ public class Player_Movement : MonoBehaviour
 		radarLines[1].SetVector(new Vector3(movement.vector.localVelocity_Lateral.x, movement.vector.localVelocity_Lateral.z, -1.0f));
 	}
 	
-	private void GetInput_LateralMovement()
+	public void GetInput_LateralMovement()
 	{
 		// Get input for Movement from input manager and build a Vector3 to store the two inputs
 		movement.vector.input = new Vector3 (Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
@@ -317,7 +319,7 @@ public class Player_Movement : MonoBehaviour
 		playerRB.AddRelativeForce(frictionForceToAdd, ForceMode.VelocityChange); // Apply the friction to the player in local space.
 	}
 		
-	private void GetInput_Mouse()
+	public void GetInput_Mouse()
 	{
 		if (matchXYSensitivity) mouseSensitivity_Y = mouseSensitivity_X;
 		
@@ -325,7 +327,7 @@ public class Player_Movement : MonoBehaviour
 		rotation_vertical = (useRawMouseInput ? Input.GetAxisRaw("Mouse Y") : Input.GetAxis("Mouse Y")) * mouseSensitivity_Y * (invertVerticalInput ? -1.0f : 1.0f);
 	}
 	
-	private void MouseLook()
+	public void MouseLook()
 	{
 		float deltaTimeCompensation = 100.0f;
 		float verticalAngle_Min = -90.0f;
@@ -339,6 +341,12 @@ public class Player_Movement : MonoBehaviour
 		// Left Right
 		horizontalAngle = rotation_horizontal * Time.deltaTime * deltaTimeCompensation;
 		transform.rotation *= Quaternion.Euler(new Vector3(0.0f, horizontalAngle, 0.0f));
+	}
+	
+	public void QueueJump()
+	{
+		jumpQueue_isQueued = true;
+		jumpQueue_TimeSinceQueued = 0.0f;
 	}
 	
 	public void Jump()

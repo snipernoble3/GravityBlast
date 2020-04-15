@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Haze
+  m_Shader: {fileID: -6465566751694194690, guid: bd66dfb5489b5dd4599eab2a86a47baa,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _ClampMax: 0.35
+    - _ClampMin: -0.15
+    - _DistanceBlend: 80
+    - _DistanceClipFar: 0.56
+    - _DistanceClipNear: -0.88
+    - _DistanceRamp_Far: 1
+    - _DistanceRamp_Inner: 0.6
+    - _DistanceRamp_Near: 0.6
+    - _DistanceRamp_Outer: 1
+    - _FresnelPower: 2.45
+    - _GradientRamp_Inner: 0
+    - _GradientRamp_Outer: 0.6
+    - _GradientRamp_PushToRim: 0
+    - _MaxAlpha: 0.7
+    - _WarpIntensity: 12
+    m_Colors:
+    - _Color: {r: 0.45047, g: 2.450557, b: 4.468662, a: 1}

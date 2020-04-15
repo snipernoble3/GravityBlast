@@ -483,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 3820172613042789074}
   blastMechanics: {fileID: 6531711672340719521}
+  weaponManager: {fileID: 5527955086115415956}
   holdJumpToKeepJumping: 0
 --- !u!114 &3820172613042789074
 MonoBehaviour:
@@ -507,7 +508,6 @@ MonoBehaviour:
       crouch: 0.5
       air: 0.5
       water: 0.75
-  holdJumpToKeepJumping: 1
   jumpForceMultiplier: 6
   mouseSensitivity_X: 3
   mouseSensitivity_Y: 1
@@ -540,6 +540,8 @@ MonoBehaviour:
   armTube: {fileID: 3173736832384975400}
   blastWarp: {fileID: 748119730}
   rjBlast_MidAirLimit: 1
+  rjBlast_CoolDownTime: 0.25
+  rjBlast_TimeSinceLastJump: 0
   minGroundPoundVelocity: 8
   groundPound_Multiplier: 25
   paused: 0
@@ -593,11 +595,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefabs:
   - {fileID: 2662852903334449558, guid: 053377c228905cb45843136153315e32, type: 3}
+  weapons: []
   weaponBones:
   - {fileID: 1834602548132276529}
   - {fileID: 1521742579181382291}
   animator: {fileID: 6711995073076367826}
   ammoUI: {fileID: 0}
+  currentWeapon: 0
   paused: 0
 --- !u!114 &8585929578479001980
 MonoBehaviour:

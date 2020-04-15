@@ -7,6 +7,9 @@ public class Player_Input : MonoBehaviour
     [HideInInspector] public static Player_Input playerInput;
 	[SerializeField] private Player_Movement movement;
 	[SerializeField] private Player_BlastMechanics blastMechanics;
+	[SerializeField] private WeaponManager weaponManager;
+	
+	private bool gameIsPaused = false;
 	
 	private bool lookEnabled = true;
 	private bool moveEnabled = true;
@@ -28,7 +31,8 @@ public class Player_Input : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	/*
+		if (gameIsPaused) return;
+		
 		// Inputs
 		if (lookEnabled)
 		{
@@ -61,26 +65,47 @@ public class Player_Input : MonoBehaviour
 		{
 			if (Input.GetButtonDown("Fire2") && blastMechanics.rjBlast_TimeSinceLastJump == blastMechanics.rjBlast_CoolDownTime) blastMechanics.RocketJumpCheck();
 		}
-	*/
+		
+		if (shootEnabled)
+		{
+			if (Input.GetKeyDown(KeyCode.Alpha0)) weaponManager.SwitchWeapon(0);
+			if (Input.GetKeyDown(KeyCode.Alpha1)) weaponManager.SwitchWeapon(0);
+			if (Input.GetKeyDown(KeyCode.Alpha2)) weaponManager.SwitchWeapon(1);
+			if (Input.GetKeyDown(KeyCode.Alpha3)) weaponManager.SwitchWeapon(2);
+
+			if (Input.GetButton("Fire1"))
+			{
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().FireInput();
+			}
+			else
+			{
+				weaponManager.animator.SetBool("fire", false);
+			}
+			
+			if (Input.GetButton("Reload"))
+			{
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput();
+			}
+		}
     }
 	
-	public static void SetLookState(bool newState)
-	{
+	public static void SetPauseState(bool newState) {
+		playerInput.gameIsPaused = newState;
+	}
+	
+	public static void SetLookState(bool newState) {
 		playerInput.lookEnabled = newState;
 	}
 	
-	public static void SetMoveState(bool newState)
-	{
+	public static void SetMoveState(bool newState) {
 		playerInput.moveEnabled = newState;
 	}
 	
-	public static void SetBlastState(bool newState)
-	{
+	public static void SetBlastState(bool newState)	{
 		playerInput.blastEnabled = newState;
 	}
 	
-	public static void SetShootState(bool newState)
-	{
+	public static void SetShootState(bool newState)	{
 		playerInput.shootEnabled = newState;
 	}
 }

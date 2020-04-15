@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Planetoid_02
+  m_Name: Planetoid
   m_Shader: {fileID: -6465566751694194690, guid: 02446289c90307441948a071ae670e96,
     type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
@@ -65,16 +65,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_14484604: 1.25
+    - Vector1_1621814A: -0.4
+    - Vector1_20C6E29E: 0.075
+    - Vector1_29A8FC8E: 0.84
+    - Vector1_C60B1AAB: 1
+    - Vector1_E793EE66: 1
+    - Vector1_EC4BD9A0: 0.48
+    - Vector1_F8B40C2C: 0.25
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DistanceBlend: 150
+    - _DistanceClipFar: 0.85
+    - _DistanceClipNear: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hue: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
@@ -84,6 +96,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _SurfaceInner: 45
+    - _SurfaceOuter: 55
     - _Tiling: 5
     - _WorkflowMode: 1
     - _ZWrite: 1

@@ -6,15 +6,15 @@ using TMPro;
 public class WeaponManager : MonoBehaviour {
 
 	[SerializeField] private GameObject[] weaponPrefabs; // An array of all weapon prefabs the player can have.
-	private GameObject[] weapons; // An array of the instantiated weapons the player has.
+	[HideInInspector] public GameObject[] weapons; // An array of the instantiated weapons the player has.
 	[SerializeField] private Transform[] weaponBones; // The weapon "bone" positions in the armature to attach the weapons to.
-	[SerializeField] private Animator animator; // A reference to Gabriel's animation system.
+	[SerializeField] public Animator animator; // A reference to Gabriel's animation system.
 	[SerializeField] private TextMeshProUGUI ammoUI;
 
     Player_Stats ps;
 
     //[SerializeField] private int startingGun;
-    private int currentWeapon = 0;
+    public int currentWeapon = 0;
 	
 	GameObject realMag; // A reference to the magazine that stays loaded into the gun.
 	GameObject fakeMag; // A reference to the fake instance magazine that moves with the reloading hand.
@@ -53,7 +53,6 @@ public class WeaponManager : MonoBehaviour {
     public void Reload()
 	{
         weapons[currentWeapon].GetComponent<IProjectileWeapon>().Reload();
-		
 		realMag.SetActive(true);
 		Destroy(fakeMag);
     }
@@ -73,6 +72,7 @@ public class WeaponManager : MonoBehaviour {
         animator.SetFloat("fireSpeed", 1.0f + ps.mFireRate);
         animator.SetFloat("reloadSpeed", 1.0f + ps.mReload);
 
+		/*
         if (Input.GetKeyDown(KeyCode.Alpha0) && !paused) SwitchWeapon(0);
 		if (Input.GetKeyDown(KeyCode.Alpha1) && !paused) SwitchWeapon(0);
 		if (Input.GetKeyDown(KeyCode.Alpha2) && !paused) SwitchWeapon(1);
@@ -85,11 +85,11 @@ public class WeaponManager : MonoBehaviour {
             animator.SetBool("fire", false);
         }
         if (Input.GetButton("Reload") && !paused) { weapons[currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput(); }
-
+		*/
     }
 
     //switch weapon
-	void SwitchWeapon(int weaponOfChoice)
+	public void SwitchWeapon(int weaponOfChoice)
 	{
 		if (weaponOfChoice >= 0 && weaponOfChoice < weapons.Length)
 		{		

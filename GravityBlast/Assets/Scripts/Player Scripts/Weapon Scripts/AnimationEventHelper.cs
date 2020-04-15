@@ -15,16 +15,18 @@ public class AnimationEventHelper : MonoBehaviour
 	void ReplaceMagazine()
     {
         weaponManager.Reload();
-		blastMechanics.EnableBlast(true);
+		Player_Input.SetBlastState(true);
     }
 	
 	void DisableAttacks()
     {
-        blastMechanics.EnableBlast(false);
+        Player_Input.SetBlastState(false);
+		Player_Input.SetShootState(false);
     }
 	
 	void EnableAttacks()
     {
-		blastMechanics.EnableBlast(true);
+		Player_Input.SetBlastState(true);
+		Player_Input.SetShootState(true);
     }
 }

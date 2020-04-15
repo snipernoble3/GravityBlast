@@ -120,7 +120,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         }*/
 
         if (!reloading && currAmmo != (int)(maxAmmo * (1 + (ps.mAmmo)))) {
-            player.GetComponent<Player_BlastMechanics>().EnableBlast(false); // Move this functionality into the weapon manager later!!!
+            Player_Input.SetBlastState(false); // Move this functionality into the weapon manager later!!!
 			arms.Play("Rifle_Reload", 0, 0.0f); // Play the reload animation.
             reloading = true;
         }
