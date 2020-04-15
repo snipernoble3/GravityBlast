@@ -84,6 +84,7 @@ public class EndLevelTransition : MonoBehaviour
         hud.enabled = true;
         stageCompletedMessage.SetActive(false);
         thirdPersonPlayer.SetActive(false);
+        thirdPersonPlayer.transform.SetParent(player.transform);
 
         playerListner.enabled = true;
 

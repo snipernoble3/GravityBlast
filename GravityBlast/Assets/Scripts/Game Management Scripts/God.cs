@@ -17,10 +17,14 @@ public class God : MonoBehaviour {
         //size category
         public float size;
         public string sizeCategory;
+        public GameObject[] staticEnvPrefabs;
+        public GameObject[] clusterPrefabs;
         public GameObject[] plantPrefabs;
+        public GameObject[] looseEnvPrefabs;
         public GameObject[] enemyPrefabs;
         //moon
         public bool hasMoon;
+        public GameObject moonPrefab;
         //boss
         public bool hasBoss;
     }
@@ -39,7 +43,7 @@ public class God : MonoBehaviour {
     int planetInSolarSystem = 0;
     //player
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     //
     [SerializeField] int difficulty = 1; //1, 2, 3
     //current solar system
@@ -48,7 +52,12 @@ public class God : MonoBehaviour {
     GameObject currPlanet;
     //planet prefabs
     [SerializeField] private GameObject[] planetPrefabs;
+    [SerializeField] private GameObject moonPrefab;
+    //environment prefabs
+    [SerializeField] private GameObject[] staticEnvPrefabs;
+    [SerializeField] private GameObject[] looseEnvPrefabs;
     //plant prefabs
+    [SerializeField] private GameObject[] clusterPrefabs;
     [SerializeField] private GameObject[] plantPrefabs;
     //enemy info
     [SerializeField] private GameObject[] enemyPrefabs;
@@ -114,9 +123,13 @@ public class God : MonoBehaviour {
         planet.xpToAdvance = XPtoProceed(planet.difficultySetting, planet.stageNumber);
         planet.size = Random.Range(minPlanetScale, maxPlanetScale);
         planet.sizeCategory = SizeClassOf(planet.size);
+        planet.staticEnvPrefabs = staticEnvPrefabs;
+        planet.looseEnvPrefabs = looseEnvPrefabs;
+        planet.clusterPrefabs = clusterPrefabs;
         planet.plantPrefabs = plantPrefabs;
         planet.enemyPrefabs = enemyPrefabs;
-        planet.hasMoon = false;
+        planet.hasMoon = true;
+        planet.moonPrefab = moonPrefab;
         planet.hasBoss = false;
         return planet;
     }

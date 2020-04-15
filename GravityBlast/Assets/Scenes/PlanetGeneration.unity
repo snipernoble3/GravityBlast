@@ -2750,6 +2750,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
+      propertyPath: staticEnvPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: looseEnvPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 293651773}
@@ -2779,6 +2789,24 @@ PrefabInstance:
       propertyPath: difficulty
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: staticEnvPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3119691386892550017, guid: 3a5ecb54934ab1a47ba01212623a8dbc,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: moonPrefab
+      value: 
+      objectReference: {fileID: 3926176213792226439, guid: 2d9c43a82b3c21d4db69fc496c54d647,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: looseEnvPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6960946187041956469, guid: cbdb90477a235804baa6e1dae43822f0,
+        type: 3}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name
