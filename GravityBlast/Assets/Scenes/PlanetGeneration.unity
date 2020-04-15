@@ -2807,6 +2807,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6960946187041956469, guid: cbdb90477a235804baa6e1dae43822f0,
         type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 9171230973597937468, guid: e4268a4c97999db4bbfb67c315586812,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5843824510247680826, guid: 331c34105bb717d48983f4901b101c86,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6056521834535224552, guid: 5ef56d86add18894d9e5337f51accac7,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 327385494369629079, guid: dc0babe62f1b6dd4193a715acde70865,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 7431735998723156040, guid: 8f83a4beb4fdfd4459a658b9eeab51d5,
+        type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: planetPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 5485802170023309326, guid: 540e952a915c1e34c9fea43115f9946a,
+        type: 3}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name

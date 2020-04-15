@@ -17,6 +17,9 @@ public class God : MonoBehaviour {
         //size category
         public float size;
         public string sizeCategory;
+		public float lowestSurfacePoint;
+		public float highestSurfacePoint;
+		
         public GameObject[] staticEnvPrefabs;
         public GameObject[] clusterPrefabs;
         public GameObject[] plantPrefabs;
@@ -123,7 +126,8 @@ public class God : MonoBehaviour {
         planet.xpToAdvance = XPtoProceed(planet.difficultySetting, planet.stageNumber);
         planet.size = Random.Range(minPlanetScale, maxPlanetScale);
         planet.sizeCategory = SizeClassOf(planet.size);
-        planet.staticEnvPrefabs = staticEnvPrefabs;
+        CalculateSurfaceDistances(planet.prefab, out planet.lowestSurfacePoint, out planet.highestSurfacePoint);
+		planet.staticEnvPrefabs = staticEnvPrefabs;
         planet.looseEnvPrefabs = looseEnvPrefabs;
         planet.clusterPrefabs = clusterPrefabs;
         planet.plantPrefabs = plantPrefabs;
@@ -133,6 +137,24 @@ public class God : MonoBehaviour {
         planet.hasBoss = false;
         return planet;
     }
+	
+	private void CalculateSurfaceDistances(GameObject planet, out float lowest, out float highest)
+	{
+		Vector3[] positions = planet.GetComponent<MeshFilter>().sharedMesh.vertices;
+		
+		float[] distances = new float[positions.Length];
+		
+		for (int i = 0; i < positions.Length; i++)
+		{
+			distances[i] = (positions[i] - Vector3.zero).sqrMagnitude;
+		}              
+		
+		System.Array.Sort(distances, positions);
+		
+		float sizeCompensation = 50.0f; // The result is 100 times too big, and we need radius instead of diameter so we use 50.
+		lowest = distances[0] / sizeCompensation;
+		highest = distances[distances.Length - 1] / sizeCompensation;
+	}
 
     void FirstPlanet () {
         

@@ -42,6 +42,12 @@ public class PlanetManager : MonoBehaviour {
         name = "Planet " + planet.stageNumber;
         //set size
         transform.localScale = planet.size * Vector3.one;
+		
+		//Set planet colors.
+		Material planetSurface = GetComponent<Renderer>().material;
+		planetSurface.SetFloat("_Hue", Random.Range(0.0f, 1.0f));
+		planetSurface.SetFloat("_SurfaceInner", planet.lowestSurfacePoint);
+		planetSurface.SetFloat("_SurfaceOuter", planet.highestSurfacePoint);
 
         CreateComponents();
         yield return null;
