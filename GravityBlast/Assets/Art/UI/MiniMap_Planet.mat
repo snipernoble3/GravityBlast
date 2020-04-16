@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlanetWireframe
-  m_Shader: {fileID: -6465566751694194690, guid: 8d2a7b71d07aa5b40bd1dbb716bd02f1,
+  m_Name: MiniMap_Planet
+  m_Shader: {fileID: -6465566751694194690, guid: 57b5c9c9e3598b54fab3fb0e6414f29a,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -66,13 +66,25 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WireframeMask:
-        m_Texture: {fileID: 2800000, guid: 569639b634df35746be4c2db7f944c7e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_255C5E6F: 1
+    - Vector1_38C90EBC: 20
+    - Vector1_40246C1A: 1.1
+    - Vector1_69AFF285: 47.25
+    - Vector1_6EC8D952: 0.6
+    - Vector1_B8D5709F: 36.5
+    - _Alpha: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _ContourInner: 0.25
+    - _ContourMultiplier: 0.05
+    - _ContourOuter: 0.6
+    - _ContourSmooth: 0.5
+    - _ContourThickness: 0.17
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
@@ -84,11 +96,16 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RimHighlight: 0.2
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _SurfaceInner: 45
+    - _SurfaceOuter: 55
+    - _WireSmoothness: 0.25
+    - _WireThickness: 0.004
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

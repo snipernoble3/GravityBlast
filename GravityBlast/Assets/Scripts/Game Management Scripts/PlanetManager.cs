@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour {
 
-    public God god; 
+    public God god;
 
     // PLANET INFO //
     God.PlanetInfo planet;
@@ -68,34 +68,32 @@ public class PlanetManager : MonoBehaviour {
         lootReady = true;
         yield return new WaitUntil(() => lootReady);
 
-        //Setup MiniMap Planet Wireframe
-		Transform wireframe = transform.Find("MiniMap_Wireframe");
-		Transform cameraPivot = wireframe.transform.Find("MiniMap_CameraPivot");
+        //Setup MiniMap Planet
+		Transform miniMap = transform.Find("MiniMap_Planet");
+		
+		//float cameraOffsetSize = planet.lowestSurfacePoint + planet.highestSurfacePoint;
+		//float cameraDistance = 1.2f; // Pick a distance that MiniMap camera will be away from the planet.
+		//cameraDistance += (planet.highestSurfacePoint - cameraOffsetSize) / miniMap.localScale.x;
+		
+		//miniMap.localScale = transform.localScale;
+		miniMap.localScale = Vector3.one;
+		miniMap.GetComponent<MeshFilter>().mesh = transform.GetComponent<MeshFilter>().mesh;
+		
+		Material topographyMat = miniMap.GetComponent<Renderer>().material;
+		topographyMat.SetFloat("_SurfaceInner", planet.lowestSurfacePoint);
+		topographyMat.SetFloat("_SurfaceOuter", planet.highestSurfacePoint);
+		
+		//Setup MiniMap Camera and Pivot
+		Transform cameraPivot = miniMap.transform.Find("MiniMap_CameraPivot");
 		Transform camera = cameraPivot.transform.Find("MiniMap_Camera");
+		float cameraDistance = 120.0f;
 		
-		float middleSurfacePoint = (planet.lowestSurfacePoint + planet.highestSurfacePoint);
-		wireframe.localScale = Vector3.one * middleSurfacePoint;
-		float cameraDistance = 1.2f;
-		
-		cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
-		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
+		Transform player = GameObject.FindWithTag("Player").transform;
+		cameraPivot.LookAt(player, player.forward); // Aim the pivot at the player.
+		//camera.localPosition = new Vector3(0.0f, 0.0f, (planet.highestSurfacePoint * 2.0f) + (cameraDistance * miniMap.localScale.x)); // Offset the camera to the appropriate distance to render the planet.
+		//camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
+		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance * (camera.lossyScale.z / miniMap.lossyScale.z)); // Offset the camera to the appropriate distance to render the planet.
 		camera.LookAt(cameraPivot, transform.forward); // Aim the camera at the planet.
-		
-		//Setup MiniMap Planet Topography
-		GameObject topography = new GameObject("MiniMap_Topography");
-		topography.transform.position = transform.position;
-		topography.transform.rotation = transform.rotation;
-		topography.transform.localScale = transform.localScale;
-			
-		topography.transform.SetParent(wireframe);
-		topography.layer = wireframe.gameObject.layer;
-			
-		topography.AddComponent<MeshFilter>();
-		topography.GetComponent<MeshFilter>().mesh = Gravity_Source.DefaultGravitySource.transform.GetComponent<MeshFilter>().mesh;
-			
-		topography.AddComponent<MeshRenderer>();
-		topography.GetComponent<Renderer>().material = wireframe.GetComponent<Renderer>().material;
-		topography.GetComponent<Renderer>().material.SetTexture("_WireframeMask", null);
 
         yield return null;
 

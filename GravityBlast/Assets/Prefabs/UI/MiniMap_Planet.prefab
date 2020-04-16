@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 3178261354097903399}
   - component: {fileID: 9162567633119247326}
   m_Layer: 15
-  m_Name: MiniMap_Wireframe
+  m_Name: MiniMap_Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8ac91d71c31f054b9ca4cb099343a64, type: 2}
+  - {fileID: 2100000, guid: 72bbade8473f37f459e8653851de7b61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

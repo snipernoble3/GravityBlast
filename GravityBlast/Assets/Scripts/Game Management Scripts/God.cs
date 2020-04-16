@@ -88,7 +88,7 @@ public class God : MonoBehaviour {
     private void Update () {
 
         //Test Inputs
-        //if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(NextPlanet()); }
+        if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(NextPlanet()); }
         //if (statScreen.activeInHierarchy && Input.GetKeyDown(KeyCode.N)) { PlayerReady(); }
 
     }
