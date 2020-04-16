@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour {
 
-    public God god;
+    public God god; 
 
     // PLANET INFO //
     God.PlanetInfo planet;
@@ -68,12 +68,38 @@ public class PlanetManager : MonoBehaviour {
         lootReady = true;
         yield return new WaitUntil(() => lootReady);
 
-        //update minimap
+        //Setup MiniMap Planet Wireframe
+		Transform wireframe = transform.Find("MiniMap_Wireframe");
+		Transform cameraPivot = wireframe.transform.Find("MiniMap_CameraPivot");
+		Transform camera = cameraPivot.transform.Find("MiniMap_Camera");
+		
+		float middleSurfacePoint = (planet.lowestSurfacePoint + planet.highestSurfacePoint);
+		wireframe.localScale = Vector3.one * middleSurfacePoint;
+		float cameraDistance = 1.2f;
+		
+		cameraPivot.LookAt(transform, transform.forward); // Aim the pivot at the player.
+		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
+		camera.LookAt(cameraPivot, transform.forward); // Aim the camera at the planet.
+		
+		//Setup MiniMap Planet Topography
+		GameObject topography = new GameObject("MiniMap_Topography");
+		topography.transform.position = transform.position;
+		topography.transform.rotation = transform.rotation;
+		topography.transform.localScale = transform.localScale;
+			
+		topography.transform.SetParent(wireframe);
+		topography.layer = wireframe.gameObject.layer;
+			
+		topography.AddComponent<MeshFilter>();
+		topography.GetComponent<MeshFilter>().mesh = Gravity_Source.DefaultGravitySource.transform.GetComponent<MeshFilter>().mesh;
+			
+		topography.AddComponent<MeshRenderer>();
+		topography.GetComponent<Renderer>().material = wireframe.GetComponent<Renderer>().material;
+		topography.GetComponent<Renderer>().material.SetTexture("_WireframeMask", null);
 
         yield return null;
 
         god.NextPlanetReady();
-
     }
 
     public void DestroyPlanet () {

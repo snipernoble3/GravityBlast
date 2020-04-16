@@ -399,7 +399,6 @@ GameObject:
   - component: {fileID: 5737549682908922007}
   - component: {fileID: 5527955086115415956}
   - component: {fileID: 8585929578479001980}
-  - component: {fileID: 820938068654025371}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -627,21 +626,6 @@ MonoBehaviour:
   mProjectileDuration: 0
   mProjectileScale: 0
   mProjectileForce: 0
---- !u!114 &820938068654025371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820172613042789075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ad1f7d524221c419a5c2bbe51d1b7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usePlanetTopography: 1
-  planetHUDPrefab: {fileID: 7429581193005387522, guid: 257b9b154d9d60946a7674de00e76f01,
-    type: 3}
 --- !u!1 &7562328296603744726
 GameObject:
   m_ObjectHideFlags: 0

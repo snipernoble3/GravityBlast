@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7597590225954957285}
   - component: {fileID: -8174284956868182782}
   m_Layer: 0
-  m_Name: Planetoid
+  m_Name: Planetoid_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 86450273432806652}
+  - {fileID: 6233626821332609}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   god: {fileID: 0}
+  planetHUDPrefab: {fileID: 7429581193005387522, guid: 257b9b154d9d60946a7674de00e76f01,
+    type: 3}
   killBounds: {fileID: 7028545644193191851, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
     type: 3}
 --- !u!114 &-8174284956868182782
@@ -128,6 +131,81 @@ MonoBehaviour:
   gravityStrength: -12
   isRadial: 1
   useTestSpheres: 0
+--- !u!1001 &5860959997014160272
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7451666188374741432}
+    m_Modifications:
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429581193005387522, guid: 257b9b154d9d60946a7674de00e76f01,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniMap_Wireframe
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 257b9b154d9d60946a7674de00e76f01, type: 3}
+--- !u!4 &6233626821332609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5854808587143265553, guid: 257b9b154d9d60946a7674de00e76f01,
+    type: 3}
+  m_PrefabInstance: {fileID: 5860959997014160272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6680568223847952755
 PrefabInstance:
   m_ObjectHideFlags: 0
