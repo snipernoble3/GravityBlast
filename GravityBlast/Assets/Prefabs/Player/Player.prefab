@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 5737549682908922007}
   - component: {fileID: 5527955086115415956}
   - component: {fileID: 8585929578479001980}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -483,6 +483,7 @@ MonoBehaviour:
   movement: {fileID: 3820172613042789074}
   blastMechanics: {fileID: 6531711672340719521}
   weaponManager: {fileID: 5527955086115415956}
+  firstPersonArms_Animator: {fileID: 6711995073076367826}
   holdJumpToKeepJumping: 0
 --- !u!114 &3820172613042789074
 MonoBehaviour:
@@ -534,7 +535,11 @@ MonoBehaviour:
     type: 3}
   raycastMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 311
+  vacuumMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  vacuumFunnel: {fileID: 1834602548132276529}
   firstPersonArms_Animator: {fileID: 6711995073076367826}
   armTube: {fileID: 3173736832384975400}
   blastWarp: {fileID: 748119730}

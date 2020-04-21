@@ -8,6 +8,7 @@ public class Player_Input : MonoBehaviour
 	[SerializeField] private Player_Movement movement;
 	[SerializeField] private Player_BlastMechanics blastMechanics;
 	[SerializeField] private WeaponManager weaponManager;
+	[SerializeField] private Animator firstPersonArms_Animator;
 	
 	private bool gameIsPaused = false;
 	
@@ -65,6 +66,15 @@ public class Player_Input : MonoBehaviour
 		if (blastEnabled)
 		{
 			if (Input.GetButtonDown("Fire2") && blastMechanics.rjBlast_TimeSinceLastJump == blastMechanics.rjBlast_CoolDownTime) blastMechanics.RocketJumpCheck();
+			
+			if (Input.GetButton("Use"))
+			{
+				blastMechanics.Vacuum();
+			}
+			else if (Input.GetButtonUp("Use"))
+			{
+				blastMechanics.VacuumEnd();
+			}				
 		}
 		
 		if (shootEnabled)
