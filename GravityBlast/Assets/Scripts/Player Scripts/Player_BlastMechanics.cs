@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// This script handles Rocket Jumping, Ground Pounding, and Object Blasting.
+// This script handles Rocket Jumping, Ground Pounding, Object Blasting, and Pickup Vacuuming.
 [RequireComponent(typeof(Player_Movement))]
 public class Player_BlastMechanics : MonoBehaviour
 {
@@ -23,6 +23,8 @@ public class Player_BlastMechanics : MonoBehaviour
 	private GameObject camOffset;
 	
 	public LayerMask raycastMask;
+	public LayerMask vacuumMask;
+	public Transform vacuumFunnel;
 	private Rigidbody playerRB;
 	public Animator firstPersonArms_Animator;
 	public GameObject armTube;
@@ -30,8 +32,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	public GameObject blastWarp;
 	private Material blastWarp_Material;
 	private Coroutine blastWarpCo;
-	private Coroutine armTubeCo;
-	
+	private Coroutine armTubeCo;	
 	
 	// Rocket Jumping Variables
 	private int rjBlast_NumSinceGrounded = 0;
@@ -53,6 +54,21 @@ public class Player_BlastMechanics : MonoBehaviour
 	public float groundPound_Multiplier = 25.0f;
 
     [HideInInspector] public bool paused;
+	
+	// Vacuum Variables
+	List<CollectablePickup> vacuumableObjects = new List<CollectablePickup>();	
+	private const float vacuum_Range = 15.0f;
+	//private const float vacuum_Radius = 15.0f;
+	private const float vacuum_Force = 10.0f;
+	private float vacuumPhase;
+	private bool isVacuuming;
+	private float vacuumPhaseStart = 0.85f; // Point at which the tube attaches to hand.
+	private	float vacuumPhaseEnd = 0.15f; // Beginning of the shoulder part of the tube.
+	private	float vacuumPhaseStep = 3.0f;
+	//private	float vacuumLerpIncrement = 0.2f;
+	private	float vacuumSpeed = 1.5f;
+	
+	private float warpIntensity;
 
     void Awake()
     {		
@@ -68,29 +84,101 @@ public class Player_BlastMechanics : MonoBehaviour
 
     void Update()
     {
-		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime) rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
-		
-		/*
-		// Inputs
-		if (blastEnabled)
+		if (rjBlast_TimeSinceLastJump < rjBlast_CoolDownTime)
 		{
-			if (Input.GetButtonDown("Fire2") && rjBlast_TimeSinceLastJump == rjBlast_CoolDownTime && !paused) RocketJumpCheck();
-		}		
-		if (Input.GetButton("Crouch") && !playerMovement.GetIsGrounded() && !paused) AccelerateDown();
-		*/
+			rjBlast_TimeSinceLastJump = Mathf.Clamp(rjBlast_TimeSinceLastJump += 1.0f * Time.deltaTime, 0.0f, rjBlast_CoolDownTime);
+		}			
     }
-	/*
-	public void EnableBlast(bool blastState)
-	{
-		blastEnabled = blastState;
-	}
-	*/
 	
 	void FixedUpdate()
 	{	
 		GroundPoundCheck();
 		if (playerMovement.GetIsGrounded()) rjBlast_NumSinceGrounded = 0;
 	}
+	
+	public void Vacuum()
+	{
+		if (!isVacuuming) VacuumStart();
+		else
+		{
+			Vector3 vacuum_Epicenter = firstPersonCamera.position + (firstPersonCamera.forward * vacuum_Range);
+			
+			// Check all objects within the vacuum radius.
+			Collider[] colliders = Physics.OverlapSphere(vacuum_Epicenter, vacuum_Range, vacuumMask);
+			foreach (Collider objectToVacuum in colliders)
+			{
+				CollectablePickup pickup = objectToVacuum.GetComponent<CollectablePickup>();
+				if (pickup != null && !vacuumableObjects.Contains(pickup))
+				{
+					pickup.lerpValue = 0.0f; // Reset the lerp value of the pickup.
+					vacuumableObjects.Add(pickup); // Add the collided object to the list.
+				}
+			}
+			
+			foreach (CollectablePickup pickup in vacuumableObjects)
+			{
+				Rigidbody pickupRB = pickup.gameObject.GetComponent<Rigidbody>();
+				
+				Vector3 newPosition = Vector3.Lerp(pickupRB.position, vacuumFunnel.position, pickup.lerpValue);
+				pickupRB.MovePosition(newPosition);
+				
+				
+				float distanceToFunnel = Vector3.Distance(pickupRB.position, vacuumFunnel.position);
+				
+				float newLerpValue = pickup.lerpValue;
+				//newLerpValue +=  Time.deltaTime * vacuumLerpIncrement;
+				newLerpValue +=  Time.deltaTime * vacuumSpeed / distanceToFunnel;
+				newLerpValue = Mathf.Clamp(newLerpValue, 0.0f, 1.0f);
+				pickup.lerpValue = newLerpValue;
+			}
+			
+			armTube_Material.SetFloat("_PulsePhase", Mathf.Lerp(vacuumPhaseStart, vacuumPhaseEnd, vacuumPhase));
+			vacuumPhase = Mathf.Repeat(vacuumPhase + vacuumPhaseStep * Time.deltaTime, 1.0f); // Increment but keep vacuumPhase wrapping around between 0 and 1;
+			
+		///// Clean this up later / make more compatable with shared warp blast effect.
+			float intensityMin = 0.6f;
+			float intensityMax = 0.8f;
+			
+			float intensitySpeed = 3.0f;
+			
+			//float intensity = 0.5f;
+			
+			warpIntensity = Mathf.Repeat(warpIntensity + intensitySpeed * Time.deltaTime, 1.0f); // Increment but keep vacuumPhase wrapping around between 0 and 1;
+			float effectIntensity = Mathf.Lerp(intensityMin, intensityMax, ((Mathf.Sin(warpIntensity * Mathf.PI) + 1.0f) / 2.0f));
+				
+			blastWarp_Material.SetFloat("_WarpIntensity", effectIntensity);
+		/////
+		}
+	}
+	
+	public void VacuumStart()
+	{
+		isVacuuming = true;
+		vacuumPhase = 0.0f;
+		warpIntensity = 0.5f;
+		blastWarp.SetActive(true);
+		firstPersonArms_Animator.SetBool("vacuum", true);
+	}
+	
+	public void VacuumEnd()
+	{
+		firstPersonArms_Animator.SetBool("vacuum", false);
+		blastWarp.SetActive(false);
+		
+		vacuumableObjects.Clear();
+		/*
+		int numOfObjectsInList = vacuumableObjects.Count;
+		for (int i = numOfObjectsInList - 1; i >= 0; i--)
+		{
+			if (vacuumableObjects[i].lerpValue == 1.0f)
+			{
+				vacuumableObjects.RemoveAt(i);
+			}
+		}
+		*/
+		isVacuuming = false;
+	}
+	
 	
 	// Called via player input, Checks if the conditions to be able to rocket jump are met,
 	// if so, calls the rocket jump method that performs the rocket jump.
@@ -317,14 +405,14 @@ public class Player_BlastMechanics : MonoBehaviour
 		//float phaseStart = 0.15f; // Beginning of the shoulder
 		float phaseStart = 0.5f; // Beginning of the elbow tube pivot point.
 		float phaseEnd = 0.85f;
-		float phaseStep = 0.015f;
+		float phaseStep = 3.0f;
 		
 		float phase = phaseStart;
 		
 		while (phase <= phaseEnd)
 		{
 			//phase = Mathf.Clamp(phase + phaseStep * Time.deltaTime, phaseStart, phaseEnd);
-			phase += phaseStep;
+			phase += phaseStep * Time.deltaTime;
 			armTube_Material.SetFloat("_PulsePhase", phase);
 			
 			yield return null;
@@ -345,7 +433,7 @@ public class Player_BlastMechanics : MonoBehaviour
 		while (intensity <= Mathf.PI)
 		{
 			intensity += Time.deltaTime * intensitySpeed;
-			float warpIntensity = Mathf.Lerp(intensityMin, intensityMax, ((Mathf.Sin(intensity) + 1.0f) / 2.0f));
+			warpIntensity = Mathf.Lerp(intensityMin, intensityMax, ((Mathf.Sin(intensity) + 1.0f) / 2.0f));
 			
 			blastWarp_Material.SetFloat("_WarpIntensity", warpIntensity);
 			
