@@ -21,6 +21,8 @@ public class EndLevelTransition : MonoBehaviour
     private Player_Stats playerStats;
 	private bool jumpInitiated = false;
 	
+	public MusicManager musicManger;
+	
 	void Start()
 	{
 		playerStats = player.GetComponent<Player_Stats>();
@@ -32,7 +34,11 @@ public class EndLevelTransition : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.B))
 		if (Input.GetKeyDown(KeyCode.B) && playerStats.xpFull)
 		{
-			if (!jumpInitiated) JumpToNextPlanet();
+			if (!jumpInitiated)
+			{
+				JumpToNextPlanet();
+				StartCoroutine(musicManger.playTransition(musicManger.jetpack, false));
+			}
         }
     }
 	

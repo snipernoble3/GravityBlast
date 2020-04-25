@@ -70,6 +70,8 @@ public class God : MonoBehaviour {
     [SerializeField] private GameObject[] enemyPrefabs;
     //[SerializeField] private int[] enemyMaxQuantities;
     //private EnemyInfo[] enemies;
+	
+	private MusicManager musicManger;
 
     float minPlanetScale = 0.45f;
     float maxPlanetScale = 0.75f;
@@ -84,6 +86,8 @@ public class God : MonoBehaviour {
         
         player.GetComponent<Player_Stats>().SetGod(this);
         timer = this.GetComponent<PlanetTimer>();
+		musicManger = GetComponent<MusicManager>();
+		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
 
         GenerateSolarSystem();
 
@@ -214,6 +218,9 @@ public class God : MonoBehaviour {
 
         yield return new WaitUntil( () => nextPlanetReady && playerReady);
         //yield return new WaitForSeconds(5f);
+		
+		// Start music.
+		musicManger.PlayIntro();
 
         //turn off overlay
         statScreen.gameObject.SetActive(false);
