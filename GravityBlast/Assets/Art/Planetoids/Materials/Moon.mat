@@ -78,7 +78,7 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DistanceBlend: 200
+    - _DistanceBlend: 275
     - _DistanceClipFar: 0.85
     - _DistanceClipNear: 0.5
     - _DstBlend: 0
