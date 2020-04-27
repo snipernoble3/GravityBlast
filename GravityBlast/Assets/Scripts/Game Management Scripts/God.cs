@@ -273,8 +273,22 @@ public class God : MonoBehaviour {
 
     public void PlayerDeath () {
         PauseGameElements(false);
+		
+		// Disable Player controls.
+		Player_Input.SetLookState(false);
+		Player_Input.SetMoveState(false);
+		Player_Input.SetBlastState(false);
+		Player_Input.SetShootState(false);
+		
+		musicManger.StartCoroutine(musicManger.playTransition(musicManger.gameOver, false));
+		StartCoroutine(ReturnToMenu(musicManger.gameOver.length));
         //EndScreen.SetActive(true);
-        SceneManager.LoadScene("Menu");
     }
+	
+	public IEnumerator ReturnToMenu(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		SceneManager.LoadScene("Menu");
+	}
 
 }

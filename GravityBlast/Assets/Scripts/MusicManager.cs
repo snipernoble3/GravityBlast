@@ -41,7 +41,7 @@ public class MusicManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.M)) StartCoroutine(playTransition(outro, false));
 		//if (Input.GetKeyDown(KeyCode.B)) StartCoroutine(playTransition(jetpack, false));
-		if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(playTransition(gameOver, false));
+		//if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(playTransition(gameOver, false));
 	}
 	
 	public void PlayIntro()
