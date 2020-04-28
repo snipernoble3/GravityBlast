@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
     
 	public AudioClip intro;
 	public AudioClip mainAction;
+	public AudioClip mainCalm;
     public AudioClip outro;
 	public AudioClip jetpack;
 	public AudioClip gameOver;
@@ -40,8 +41,45 @@ public class MusicManager : MonoBehaviour
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.M)) StartCoroutine(playTransition(outro, false));
-		//if (Input.GetKeyDown(KeyCode.B)) StartCoroutine(playTransition(jetpack, false));
-		//if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(playTransition(gameOver, false));
+		
+		if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(musicTransition(outro, true));
+		
+		if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(musicTransition(intro, false));
+		//if (Input.GetKeyDown(KeyCode.Z)) SwitchLoop();
+	}
+	
+	private void SwitchToCalm()
+	{
+		float playBackTime = music.time;
+		music.clip = mainCalm;
+		music.time = playBackTime;
+		music.Play();
+	}
+	
+	private void SwitchToAction()
+	{
+		float playBackTime = music.time;
+		music.clip = mainAction;
+		music.time = playBackTime;
+		music.Play();
+	}
+	
+	private void SwitchLoop()
+	{
+		float playBackTime = music.time;
+		
+		if (music.clip == mainAction)
+		{
+			music.clip = mainCalm;
+			music.time = playBackTime;
+			music.Play();
+		}			
+		else if (music.clip == mainCalm)
+		{
+			music.clip = mainAction;
+			music.time = playBackTime;
+			music.Play();
+		}
 	}
 	
 	public void PlayIntro()
@@ -59,5 +97,17 @@ public class MusicManager : MonoBehaviour
 		yield return new WaitForSeconds(clipToPlay.length);
 		
 		if (shouldResumeMusic) music.Play();
+	}
+	
+	public IEnumerator musicTransition(AudioClip clipToPlay, bool switchToCalm)
+	{
+		//music.Pause();
+		if (switchToCalm) SwitchToCalm();
+		else SwitchToAction();
+		
+		transition.clip = clipToPlay;
+		transition.loop = false;
+		transition.Play();
+		yield return new WaitForSeconds(clipToPlay.length);
 	}
 }
