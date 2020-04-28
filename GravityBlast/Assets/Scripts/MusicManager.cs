@@ -42,10 +42,10 @@ public class MusicManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.M)) StartCoroutine(playTransition(outro, false));
 		
-		if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(musicTransition(outro, true));
+		//if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(musicTransition(outro, true));
 		
 		if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(musicTransition(intro, false));
-		//if (Input.GetKeyDown(KeyCode.Z)) SwitchLoop();
+		if (Input.GetKeyDown(KeyCode.Z)) SwitchLoop();
 	}
 	
 	private void SwitchToCalm()
