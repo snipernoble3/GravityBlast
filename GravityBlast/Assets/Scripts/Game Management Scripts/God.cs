@@ -87,7 +87,9 @@ public class God : MonoBehaviour {
     private void Awake () {
         
         player.GetComponent<Player_Stats>().SetGod(this);
-        timer = this.GetComponent<PlanetTimer>();
+		
+		timer = this.GetComponent<PlanetTimer>();
+
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
 
@@ -98,6 +100,7 @@ public class God : MonoBehaviour {
             enemyManagers[i].god = this;
             enemyManagers[i].CreateEnemyPool();
         }
+        
 
         GenerateSolarSystem();
 
