@@ -14,6 +14,7 @@ public class Player_Stats : MonoBehaviour {
     private int maxHP;
     private int currHP;
     private bool noHealth;
+    [SerializeField] private bool godMode;
 
     public TextMeshProUGUI healthText;
     private string baseText;
@@ -87,6 +88,8 @@ public class Player_Stats : MonoBehaviour {
 
     public void UpdateHealth (int i = 0) {
         
+        if (godMode) { return; }
+
         if (i != 0) { i = (i > 0) ? 1 : -1; }
             
 
@@ -236,6 +239,10 @@ public class Player_Stats : MonoBehaviour {
 
     public void SetGod (God g) {
         _god = g;
+    }
+
+    public void toggleGodMode () {
+        godMode = !godMode;
     }
 
 }

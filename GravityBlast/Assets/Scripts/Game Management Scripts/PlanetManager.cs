@@ -59,7 +59,7 @@ public class PlanetManager : MonoBehaviour {
         StartCoroutine(PopulateEnemies());
         yield return new WaitUntil(() => enemiesReady);
         //spawn moon if required
-        if (planet.hasMoon) StartCoroutine(GenerateMoon(2)); else moonReady = true;
+        if (planet.hasMoon) StartCoroutine(GenerateMoon(1)); else moonReady = true;
         yield return new WaitUntil(() => moonReady);
         //add boss if required
         bossReady = true;
