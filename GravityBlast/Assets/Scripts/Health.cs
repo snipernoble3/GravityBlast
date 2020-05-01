@@ -139,8 +139,8 @@ public class Health : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
             default:
-                //this.gameObject.SetActive(false);
-                manager.DespawnEnemy(this.gameObject);
+				if (manager != null) manager.DespawnEnemy(this.gameObject);
+				else this.gameObject.SetActive(false);
                 break;
         }
         
