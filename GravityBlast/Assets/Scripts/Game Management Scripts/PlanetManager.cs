@@ -29,7 +29,7 @@ public class PlanetManager : MonoBehaviour {
     int plantCap = 20; //each
 
     // ENEMIES //
-    GameObject enemyContainer;
+    public GameObject enemyContainer;
     GameObject[,] enemyPool;
     int enemyCap;
 
@@ -115,7 +115,7 @@ public class PlanetManager : MonoBehaviour {
 
         //set up empty containers
         environmentContainer = new GameObject();
-        environmentContainer.name = "Plant Container";
+        environmentContainer.name = "Environment Container";
         environmentContainer.transform.parent = this.gameObject.transform;
 
         plantContainer = new GameObject();
@@ -215,9 +215,10 @@ public class PlanetManager : MonoBehaviour {
             int rNum = Random.Range(planet.xpToAdvance/planet.enemyPrefabs.Length + 2, enemyCap);
             for (int j = 0; j < rNum; j++) { //spawn (<) x enemies
                 //Vector3 point = RandomSpawnPoint();
-                enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
+                //enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
                 //edit rotation?
-                enemyPool[i, j].transform.parent = enemyContainer.transform;
+                //enemyPool[i, j].transform.parent = enemyContainer.transform;
+                god.enemyManagers[i].SpawnEnemy();
             }
             yield return null;
         }
@@ -251,7 +252,7 @@ public class PlanetManager : MonoBehaviour {
         //stage 1 difficulty 1 cap = (xp/numEnemies) + 17
     }
 
-    Vector3 RandomSpawnPoint (float distanceBuffer) {
+    public Vector3 RandomSpawnPoint (float distanceBuffer = 0f) {
         Vector3 spawnPoint;
         //get random point on sphere larger than the surface
         Vector3 outer = Random.onUnitSphere * (planet.size * 80f);

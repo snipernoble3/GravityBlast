@@ -25,6 +25,8 @@ public class Health : MonoBehaviour {
     private bool alive = true;
     private bool god;
     [SerializeField] private GameObject godIcon;
+	
+	public EnemyManager manager; // Let me speak to the manger.
 
     void Awake() {
         FullHeal();
@@ -137,7 +139,8 @@ public class Health : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
             default:
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
+                manager.DespawnEnemy(this.gameObject);
                 break;
         }
         
