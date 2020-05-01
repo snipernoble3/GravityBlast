@@ -7,8 +7,8 @@ public class KillZone : MonoBehaviour {
     public bool destroy;
 
     private void OnTriggerEnter (Collider other) {
-        if (destroy) {
-            Destroy(other.gameObject);
+        if (other.gameObject.GetComponent<Health>()) {
+            other.gameObject.GetComponent<Health>().Kill();
         } else {
             other.gameObject.SetActive(false);
         }

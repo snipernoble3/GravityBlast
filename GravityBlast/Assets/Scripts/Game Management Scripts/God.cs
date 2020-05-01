@@ -52,7 +52,7 @@ public class God : MonoBehaviour {
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
-    GameObject currPlanet;
+    private GameObject currPlanet;
     //planet prefabs
     [SerializeField] private GameObject[] planetPrefabs;
     [SerializeField] private GameObject moonPrefab;
@@ -66,7 +66,9 @@ public class God : MonoBehaviour {
     [SerializeField] private GameObject[] enemyPrefabs;
     //[SerializeField] private int[] enemyMaxQuantities;
     //private EnemyInfo[] enemies;
-	
+
+    public EnemyManager[] enemyManagers;
+
 	private MusicManager musicManger;
 
     float minPlanetScale = 0.45f;
@@ -82,6 +84,14 @@ public class God : MonoBehaviour {
         player.GetComponent<Player_Stats>().SetGod(this);
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
+
+        enemyManagers = new EnemyManager[enemyPrefabs.Length];
+        for (int i = 0; i < enemyPrefabs.Length; i++) {
+            enemyManagers[i] = new EnemyManager();
+            enemyManagers[i].enemyPrefab = enemyPrefabs[i];
+            enemyManagers[i].god = this;
+            enemyManagers[i].CreateEnemyPool();
+        }
 
         GenerateSolarSystem();
 
@@ -172,6 +182,13 @@ public class God : MonoBehaviour {
         player.GetComponent<Gravity_AttractedObject>().SetGravitySource(currPlanet.GetComponent<Gravity_Source>());
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
     }
+	
+	public void CheckRemainingEnemies()	{
+		int enemiesRemaining = 0;
+		int minEnemiesForActionMusic = 0;
+        foreach (EnemyManager manager in enemyManagers) enemiesRemaining += manager.GetNumOfActiveEnemies();
+		if (enemiesRemaining <= minEnemiesForActionMusic) musicManger.StartCoroutine(musicManger.CrossFade(0.75f));
+	}
 
     public void NextPlanetReady () {
         nextPlanetReady = true;
@@ -222,6 +239,7 @@ public class God : MonoBehaviour {
         //yield return new WaitForSeconds(5f);
 		
 		// Start music.
+		musicManger.SwitchToAction();
 		musicManger.PlayIntro();
 
         //turn off overlay
@@ -287,5 +305,9 @@ public class God : MonoBehaviour {
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene("Menu");
 	}
+
+    public PlanetManager GetCurrPlanet () {
+        return currPlanet.GetComponent<PlanetManager>();
+    }
 
 }

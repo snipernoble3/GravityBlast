@@ -7,7 +7,12 @@ public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup musicOutputGroup;
 	
-	private AudioSource music;
+	private AudioSource[] music;
+	private int activeLayer = 0; // The currently activeLayer in the music array.
+	private int inactiveLayer = 1; // The currently activeLayer in the music array.
+	private float defaultFadeDuration = 0.75f; // Duration of the music crossfade in seconds.
+	private bool isCrossFading = false;
+
 	private AudioSource transition;
     
 	public AudioClip intro;
@@ -17,17 +22,25 @@ public class MusicManager : MonoBehaviour
 	public AudioClip jetpack;
 	public AudioClip gameOver;
 	
+
+	
 	// Start is called before the first frame update
     void Start()
     {
         //AudioMixer audioMixer = Resources.Load("AudioMixer") as AudioMixer;
 		//AudioMixerGroup[] musicGroups = audioMixer.FindMatchingGroups("Master/Music");
 		
-		music = gameObject.AddComponent<AudioSource>();
-		//music.outputAudioMixerGroup = musicGroups[0];
-		music.outputAudioMixerGroup = musicOutputGroup;
-		music.clip = mainAction;
-		music.loop = true;
+		music = new AudioSource[2];
+		
+		for (int i = 0; i < music.Length; i++)
+		{
+			music[i] = gameObject.AddComponent<AudioSource>();
+			music[i].outputAudioMixerGroup = musicOutputGroup;
+			music[i].loop = true;
+		}
+		
+		music[0].clip = mainAction;
+		music[1].clip = mainCalm;
 		
 		transition = gameObject.AddComponent<AudioSource>();
 		//transition.outputAudioMixerGroup = musicGroups[0];
@@ -41,45 +54,6 @@ public class MusicManager : MonoBehaviour
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.M)) StartCoroutine(playTransition(outro, false));
-		
-		//if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(musicTransition(outro, true));
-		
-		if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(musicTransition(intro, false));
-		if (Input.GetKeyDown(KeyCode.Z)) SwitchLoop();
-	}
-	
-	private void SwitchToCalm()
-	{
-		float playBackTime = music.time;
-		music.clip = mainCalm;
-		music.time = playBackTime;
-		music.Play();
-	}
-	
-	private void SwitchToAction()
-	{
-		float playBackTime = music.time;
-		music.clip = mainAction;
-		music.time = playBackTime;
-		music.Play();
-	}
-	
-	private void SwitchLoop()
-	{
-		float playBackTime = music.time;
-		
-		if (music.clip == mainAction)
-		{
-			music.clip = mainCalm;
-			music.time = playBackTime;
-			music.Play();
-		}			
-		else if (music.clip == mainCalm)
-		{
-			music.clip = mainAction;
-			music.time = playBackTime;
-			music.Play();
-		}
 	}
 	
 	public void PlayIntro()
@@ -89,15 +63,16 @@ public class MusicManager : MonoBehaviour
 
 	public IEnumerator playTransition(AudioClip clipToPlay, bool shouldResumeMusic)
 	{
-		music.Pause();
+		music[activeLayer].Pause();
 		
 		transition.clip = clipToPlay;
 		transition.loop = false;
 		transition.Play();
 		yield return new WaitForSeconds(clipToPlay.length);
 		
-		if (shouldResumeMusic) music.Play();
+		if (shouldResumeMusic) music[activeLayer].Play();
 	}
+	/*
 	
 	public IEnumerator musicTransition(AudioClip clipToPlay, bool switchToCalm)
 	{
@@ -109,5 +84,47 @@ public class MusicManager : MonoBehaviour
 		transition.loop = false;
 		transition.Play();
 		yield return new WaitForSeconds(clipToPlay.length);
+	}
+	*/
+	
+	public void SwitchToAction()
+	{
+		music[0].time = music[activeLayer].time;
+		activeLayer = 0;
+		inactiveLayer = 1;
+		
+		music[activeLayer].volume = 1.0f;
+		music[activeLayer].Play();
+		
+		music[inactiveLayer].volume = 0.0f;
+		music[inactiveLayer].Pause();
+	}
+
+	public IEnumerator CrossFade(float fadeDuration)
+	{	
+		if (isCrossFading) yield break; // Don't try to cross fade if we are already cross fading.
+		
+		isCrossFading = true;
+		float fadeValue = 0.0f;
+		
+		music[inactiveLayer].volume = 0.0f;
+		music[inactiveLayer].time = music[activeLayer].time;
+		music[inactiveLayer].Play();
+		
+		while (fadeValue < 1.0f)
+		{
+			fadeValue = Mathf.Clamp(fadeValue + Time.deltaTime / fadeDuration, 0.0f, 1.0f);
+			music[activeLayer].volume = 1.0f - fadeValue;
+			music[inactiveLayer].volume = fadeValue;
+			
+			yield return null;
+		}
+		
+		int temp = activeLayer;
+		activeLayer = inactiveLayer;
+		inactiveLayer = temp;
+		
+		music[inactiveLayer].Pause();
+		isCrossFading = false;
 	}
 }
