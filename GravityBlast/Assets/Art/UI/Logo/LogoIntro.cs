@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class LogoIntro : MonoBehaviour
 {
-    public Animator logo_Animator;
+    public Animator logo_CameraAnimator;
+	public Animator logo_Animator;
 	public GameObject logo_Solid;
 	public GameObject logo_Fractured;
 	
 	// Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WaitForMusic());
+        logo_CameraAnimator.Play("LogoCameraIntroAnimation", 0, 0.0f);
+		StartCoroutine(WaitForMusic());
     }
 
     IEnumerator WaitForMusic()
     {
-        yield return new WaitForSeconds(6.8f);
+        yield return new WaitForSeconds(6.7f);
 		FractureLogo();
     }
 	
@@ -24,6 +26,6 @@ public class LogoIntro : MonoBehaviour
 	{
 		logo_Solid.SetActive(false);
 		logo_Fractured.SetActive(true);
-		logo_Animator.SetFloat("playBackSpeed", 1.0f);
+		logo_Animator.SetFloat("playBackSpeed", 0.25f);
 	}
 }
