@@ -14,6 +14,8 @@ public class LogoIntro : MonoBehaviour
 	private Coroutine WaitForMusicCo;
 	private Coroutine MenuFadeInCo;
 	
+	private bool introIsFinished = false;
+	
     void Start()
     {
         music.Play();
@@ -27,7 +29,7 @@ public class LogoIntro : MonoBehaviour
 	
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) && !introIsFinished)
 		{
 			IntroEnd();
 		}
@@ -45,6 +47,8 @@ public class LogoIntro : MonoBehaviour
 		menuOptions.interactable = true; // Make the menu interactable.
 		logo_CameraAnimator.Play("LogoCameraIntroAnimation", 0, 1.0f);  // Skip to the end of the camera animation;
 		logo_Animator.Play("Fracture", 0, 1.0f); // Skip to the end of the fracture animation;
+		
+		introIsFinished = true;
 	}
 
     IEnumerator WaitForMusic()
