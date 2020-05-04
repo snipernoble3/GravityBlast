@@ -5516,7 +5516,6 @@ GameObject:
   - component: {fileID: 7381566633974752779}
   - component: {fileID: 1777882509655721189}
   - component: {fileID: 8975183568300588493}
-  - component: {fileID: 2816657698118224146}
   m_Layer: 0
   m_Name: Gravity
   m_TagString: Untagged
@@ -5524,19 +5523,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2816657698118224146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816657698118224145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0fcef128fba7443a6f3ea625c6cca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logoCamera: {fileID: 3449824191281852524}
 --- !u!20 &3010677314189695695
 Camera:
   m_ObjectHideFlags: 0
@@ -5682,12 +5668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6bfdf367849024fad67dbf0a258b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logo_CameraAnimator: {fileID: 784099090}
-  logo_Animator: {fileID: 893091928}
   logo_Solid: {fileID: 6186251714801222096}
   logo_Fractured: {fileID: 893091927}
   menuOptions: {fileID: 701881712}
-  music: {fileID: 5581852822457457591}
 --- !u!82 &5581852822457457591
 AudioSource:
   m_ObjectHideFlags: 0
