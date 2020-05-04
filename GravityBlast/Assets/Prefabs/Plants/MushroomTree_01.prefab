@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4469476036231897400}
   - component: {fileID: 4745223518553951347}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2344524288732857894}
   m_LocalRotation: {x: -0, y: -0, z: -0.18225789, w: 0.98325074}
-  m_LocalPosition: {x: 0.218, y: 0.856, z: 0.025}
-  m_LocalScale: {x: 0.27174503, y: 1.1771069, z: 0.27174503}
+  m_LocalPosition: {x: 0.326782, y: 1.283144, z: 0.03747501}
+  m_LocalScale: {x: 0.40734577, y: 1.7644832, z: 0.40734577}
   m_Children: []
   m_Father: {fileID: 558067189408419913}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 3282193771769050275}
   - component: {fileID: 5340731149131678738}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,8 +70,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2711084904390392650}
   m_LocalRotation: {x: 0.066379726, y: 0.009254775, z: 0.13777561, w: 0.98819333}
-  m_LocalPosition: {x: 0.322, y: 2.022, z: 0.084}
-  m_LocalScale: {x: 0.26840428, y: 1.32534, z: 0.26840428}
+  m_LocalPosition: {x: 0.48267797, y: 3.030978, z: 0.12591599}
+  m_LocalScale: {x: 0.4023381, y: 1.9866837, z: 0.40233806}
   m_Children: []
   m_Father: {fileID: 558067189408419913}
   m_RootOrder: 1
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2903870876173316974}
   - component: {fileID: 5024102673446692645}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,8 +115,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3271634212566168981}
   m_LocalRotation: {x: 0.08422959, y: 0.021081647, z: 0.17036459, w: 0.98154825}
-  m_LocalPosition: {x: 0.188, y: 2.805, z: 0.129}
-  m_LocalScale: {x: 2.3497486, y: 0.39014834, z: 2.3497486}
+  m_LocalPosition: {x: 0.28181198, y: 4.2046947, z: 0.19337098}
+  m_LocalScale: {x: 3.522273, y: 0.5848321, z: 3.522273}
   m_Children: []
   m_Father: {fileID: 558067189408419913}
   m_RootOrder: 2
@@ -196,7 +196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 631a5751c032ccc428481ee455e0ff10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 620639968485109795}
   - component: {fileID: 9057014787079765868}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,8 +242,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5015907944165951467}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.012, y: -0.028, z: -0.004}
-  m_LocalScale: {x: 0.85764, y: 0.85764, z: 0.85764}
+  m_LocalPosition: {x: -0.01798799, y: -0.041971993, z: -0.00599599}
+  m_LocalScale: {x: 1.2856023, y: 1.2856023, z: 1.2856023}
   m_Children: []
   m_Father: {fileID: 558067189408419913}
   m_RootOrder: 3
