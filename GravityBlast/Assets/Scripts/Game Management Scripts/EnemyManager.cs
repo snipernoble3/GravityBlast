@@ -43,18 +43,31 @@ public class EnemyManager
             spawnedEnemy.transform.position = god.GetCurrPlanet().RandomSpawnPoint(1f);
             spawnedEnemy.GetComponent<Gravity_AttractedObject>().SetGravitySource(god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>());
             spawnedEnemy.transform.parent = god.GetCurrPlanet().enemyContainer.transform;
-		}
+		} else {
+            //generate more enemies
+        }
 	}
 		
-	public void DespawnEnemy(GameObject despawnedEnemy)
+	public void DespawnEnemy(GameObject despawnedEnemy, bool removeFromActive = true)
 	{
-		enemyQueue.Enqueue(despawnedEnemy);
-		if(activeEnemies.Contains(despawnedEnemy)) activeEnemies.RemoveAt(activeEnemies.IndexOf(despawnedEnemy));
+        despawnedEnemy.transform.parent = god.gameObject.transform;
+        enemyQueue.Enqueue(despawnedEnemy);
+		if(removeFromActive && activeEnemies.Contains(despawnedEnemy)) activeEnemies.RemoveAt(activeEnemies.IndexOf(despawnedEnemy));
 		despawnedEnemy.SetActive(false);
 		
 		god.CheckRemainingEnemies();
 	}
 	
+    public void DespawnAllEnemies () {
+
+        foreach (GameObject enemy in activeEnemies) {
+            DespawnEnemy(enemy, false);
+        }
+
+        activeEnemies = new List<GameObject>();
+
+    }
+
 	public int GetNumOfActiveEnemies()
 	{
 		return activeEnemies.Count;

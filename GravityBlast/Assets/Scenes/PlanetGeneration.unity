@@ -2939,6 +2939,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7114387425453970708, guid: 73558568a47437541be157137175588b,
         type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: stageTime
+      value: 
+      objectReference: {fileID: 1234737015}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: survivalTime
+      value: 
+      objectReference: {fileID: 1152176567}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name
@@ -3007,6 +3017,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1764371893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1764371895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764371894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3880ac0ff86ed4c85578b59aaa0640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1764371896
 MonoBehaviour:
   m_ObjectHideFlags: 0

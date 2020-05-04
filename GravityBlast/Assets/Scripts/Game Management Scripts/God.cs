@@ -41,6 +41,10 @@ public class God : MonoBehaviour {
     //stat screen / level transition
     [SerializeField] GameObject statScreen;
     [SerializeField] TextMeshProUGUI completedStages;
+    [SerializeField] TextMeshProUGUI stageTime;
+    [SerializeField] TextMeshProUGUI stageKills;
+    [SerializeField] TextMeshProUGUI survivalTime;
+    [SerializeField] TextMeshProUGUI totalKills;
     //level tracker
     int completedPlanets = 0;
     int planetInSolarSystem = 0;
@@ -78,10 +82,14 @@ public class God : MonoBehaviour {
     private bool playerReady = false;
 
     [SerializeField] MenuControl menu;
+    PlanetTimer timer;
 
     private void Awake () {
         
         player.GetComponent<Player_Stats>().SetGod(this);
+		
+		timer = this.GetComponent<PlanetTimer>();
+
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
 
@@ -92,18 +100,11 @@ public class God : MonoBehaviour {
             enemyManagers[i].god = this;
             enemyManagers[i].CreateEnemyPool();
         }
+        
 
         GenerateSolarSystem();
 
         FirstPlanet();
-
-    }
-
-    private void Update () {
-
-        //Test Inputs
-        if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(NextPlanet()); }
-        //if (statScreen.activeInHierarchy && Input.GetKeyDown(KeyCode.N)) { PlayerReady(); }
 
     }
 
@@ -245,6 +246,7 @@ public class God : MonoBehaviour {
         //turn off overlay
         statScreen.gameObject.SetActive(false);
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
+        timer.resetPlanetTime();
         PauseGameElements(false);
         nextPlanetReady = false;
         playerReady = false;
@@ -271,6 +273,10 @@ public class God : MonoBehaviour {
 
     private void UpdateStatScreen () {
         completedStages.text = "" + completedPlanets;
+        stageTime.text = timer.getPlanetTime();
+        //stage kills
+        survivalTime.text = timer.getTotalTime();
+        //total kills
     }
 
     public void PauseGameElements (bool isActive) {
@@ -281,9 +287,9 @@ public class God : MonoBehaviour {
 		//player.GetComponent<WeaponManager>().paused = isActive;
         //player.GetComponent<Player_BlastMechanics>().paused = isActive;
         //player.GetComponent<Player_Movement>().paused = isActive;
-		
         player.GetComponent<Gravity_AttractedObject>().paused = isActive;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        timer.pauseTimer(isActive);
     }
 
     public void PlayerDeath () {

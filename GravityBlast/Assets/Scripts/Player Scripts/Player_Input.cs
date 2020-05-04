@@ -16,6 +16,7 @@ public class Player_Input : MonoBehaviour
 	private bool moveEnabled = true;
 	private bool blastEnabled = true;
 	private bool shootEnabled = true;
+    private bool devEnabled = true;
 	
 	[Header("Input Preferences")]
 	public bool holdJumpToKeepJumping = false;
@@ -97,6 +98,14 @@ public class Player_Input : MonoBehaviour
 				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput();
 			}
 		}
+
+        if (devEnabled) {
+
+            if (Input.GetKeyDown(KeyCode.G)) movement.gameObject.GetComponent<Player_Stats>().toggleGodMode();
+            //if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(god.NextPlanet()); }
+
+        }
+
     }
 	
 	public static void SetPauseState(bool newState) {

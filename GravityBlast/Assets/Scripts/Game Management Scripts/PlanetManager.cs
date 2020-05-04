@@ -59,7 +59,7 @@ public class PlanetManager : MonoBehaviour {
         StartCoroutine(PopulateEnemies());
         yield return new WaitUntil(() => enemiesReady);
         //spawn moon if required
-        if (planet.hasMoon) StartCoroutine(GenerateMoon(2)); else moonReady = true;
+        if (planet.hasMoon) StartCoroutine(GenerateMoon(1)); else moonReady = true;
         yield return new WaitUntil(() => moonReady);
         //add boss if required
         bossReady = true;
@@ -103,15 +103,19 @@ public class PlanetManager : MonoBehaviour {
     public void DestroyPlanet () {
         //destruction animation?
         god.player.transform.parent = null;
+        foreach (EnemyManager e in god.enemyManagers) {
+            e.DespawnAllEnemies();
+        }
         Destroy(this.gameObject);
     }
 
     void CreateComponents () {
 
         //create kill boundaries
-        //GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
+        GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
         //k.transform.localScale = 70f * Vector3.one;
-        //killBounds = k;
+        k.transform.localScale = (planet.lowestSurfacePoint -2f) * Vector3.one * 2f;
+        killBounds = k;
 
         //set up empty containers
         environmentContainer = new GameObject();
