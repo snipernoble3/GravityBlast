@@ -285,6 +285,8 @@ public class PlanetManager : MonoBehaviour {
             Vector3 dir = (point - transform.position).normalized * 9.8f;
             GameObject moon = Instantiate(planet.moonPrefab, point, Quaternion.LookRotation(dir));
             moon.transform.parent = gameObject.transform;
+            moon.GetComponent<Moon>().god = god;
+            moon.GetComponent<Moon>().GenerateChest();
 
             yield return null;
         }

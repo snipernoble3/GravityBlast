@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 3926176213792226436}
   - component: {fileID: 3926176213792226434}
   - component: {fileID: 3926176213792226437}
+  - component: {fileID: 6406533809013638638}
   m_Layer: 14
   m_Name: Moon
   m_TagString: Untagged
@@ -156,6 +157,37 @@ MonoBehaviour:
   gravityStrength: -9.81
   isRadial: 1
   useTestSpheres: 0
+--- !u!114 &6406533809013638638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3926176213792226439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aaee048da3a60943831880c26edfb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  god: {fileID: 0}
+  surface: {fileID: 3926176212283686550}
+  modificationChestPrefab: {fileID: 1263468155533062619, guid: 79b01e5647ff25e4a8a34bccf102d94c,
+    type: 3}
+--- !u!114 &92442822498956712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338532185633214214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aaee048da3a60943831880c26edfb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  god: {fileID: 0}
+  surface: {fileID: 0}
+  modificationChestPrefab: {fileID: 0}
 --- !u!1001 &3926176213240731821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,17 +253,17 @@ PrefabInstance:
     - target: {fileID: 6991284580381125765, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 18.591
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6991284580381125765, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 18.591
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6991284580381125765, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 18.591
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7028545644193191851, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
         type: 3}
@@ -240,6 +272,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6677d314a5be5864bb8a403c6ac7c4ef, type: 3}
+--- !u!1 &6338532185633214214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7028545644193191851, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 3926176213240731821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6303522418602619944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6991284580381125765, guid: 6677d314a5be5864bb8a403c6ac7c4ef,
