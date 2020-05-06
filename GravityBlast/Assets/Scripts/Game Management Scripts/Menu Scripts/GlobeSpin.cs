@@ -23,8 +23,6 @@ public class GlobeSpin : MonoBehaviour
 	
 	void Update()
     {
-		if (Input.GetKeyDown(KeyCode.U)) UpdateAlignment();
-		
 		angles.x = Mathf.Sin(precessionSpeed * Time.time) * precessionAmount;
 		angles.y = Mathf.Repeat(angles.y + rotationSpeed * Time.deltaTime, 360.0f);
 		angles.z = Mathf.Cos(precessionSpeed * Time.time) * precessionAmount;
