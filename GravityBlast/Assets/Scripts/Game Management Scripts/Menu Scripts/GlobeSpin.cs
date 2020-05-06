@@ -4,60 +4,33 @@ using UnityEngine;
 
 public class GlobeSpin : MonoBehaviour
 {
-    public float rotationSpeed;
-	public float precessionSpeed;
-	public float precessionAmount;
+    public float rotationSpeed = 45.0f;
+	public float precessionSpeed = 2.0f;
+	public float precessionAmount = 4.0f;
 	
-	//private Vector3 originalRotation;
-	//private Quaternion originalRotation;
-	
-	private Vector3 newRotation = Vector3.zero;
-	
-	//private Transform offset;
-	
+	private Quaternion originalRotation;
+	private Vector3 angles;
 	
     void Awake()
 	{
-		//offset = new GameObject().transform;
-		//offset.position = transform.position;
-		//offset.rotation = transform.rotation;
-		//offset.localScale = transform.localScale;
-		//offset.parent = null;
-		
-		//originalRotation = transform.localEulerAngles;
-		//originalRotation = transform.eulerAngles;
-		
-		//originalRotation = transform.localRotation;
+		UpdateAlignment();
+	}
+	
+	public void UpdateAlignment()
+	{
+		originalRotation = transform.rotation;
 	}
 	
 	void Update()
     {
-		newRotation.x = Mathf.Sin(precessionSpeed * Time.time) * precessionAmount;
-		newRotation.y = Mathf.Repeat(newRotation.y + rotationSpeed * Time.deltaTime, 360.0f);
-		newRotation.z = Mathf.Cos(precessionSpeed * Time.time) * precessionAmount;
+		if (Input.GetKeyDown(KeyCode.U)) UpdateAlignment();
 		
-		//transform.localRotation = Quaternion.Euler(new Vector3(originalRotation.x, rotationAngle, originalRotation.y));
-		
-		//transform.localRotation = Quaternion.Euler(originalRotation + new Vector3(0.0f, rotationAngle, 0.0f));
-		
-		//transform.localRotation = Quaternion.Euler(originalRotation + newRotation);
-		
-		//newRotation += transform.TransformDirection(originalRotation);
-		
-		//newRotation = transform.InverseTransformDirection(newRotation);
-		
-		//newRotation += originalRotation;
-		
-		//transform.localRotation = Quaternion.Euler(newRotation);
-		
-		//transform.rotation = Quaternion.Euler(newRotation) * originalRotation;
-		
-		//transform.localRotation = Quaternion.Euler(newRotation) * originalRotation;
-		
-		//newRotation = offset.InverseTransformDirection(newRotation);
-		
-		//newRotation = offset.InverseTransformVector(newRotation);
-		
-		transform.localRotation = Quaternion.Euler(newRotation);
+		angles.x = Mathf.Sin(precessionSpeed * Time.time) * precessionAmount;
+		angles.y = Mathf.Repeat(angles.y + rotationSpeed * Time.deltaTime, 360.0f);
+		angles.z = Mathf.Cos(precessionSpeed * Time.time) * precessionAmount;
+
+		transform.rotation = originalRotation;
+		transform.rotation *= Quaternion.Euler(new Vector3(angles.x, 0.0f, angles.z));
+		transform.Rotate(0.0f, angles.y, 0.0f, Space.Self);
     }
 }
