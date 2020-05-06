@@ -120,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 3966998959843070342, guid: 31856c12359fe014bafc2a4a160eb00b,
         type: 3}
       propertyPath: m_Name
-      value: Range Modification
+      value: Range Modification Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31856c12359fe014bafc2a4a160eb00b, type: 3}

@@ -120,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 7985253204158548064, guid: e6064f005ab196a4faab7a8c369bf418,
         type: 3}
       propertyPath: m_Name
-      value: Projectile Scale Modification
+      value: Projectile Scale Modification Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6064f005ab196a4faab7a8c369bf418, type: 3}
