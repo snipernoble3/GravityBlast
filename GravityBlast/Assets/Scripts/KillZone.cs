@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KillZone : MonoBehaviour {
-
-    public bool destroy;
-
+    
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.GetComponent<Health>()) {
             other.gameObject.GetComponent<Health>().Kill();
