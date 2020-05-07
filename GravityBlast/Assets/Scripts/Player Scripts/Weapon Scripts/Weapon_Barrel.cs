@@ -21,9 +21,19 @@ public class Weapon_Barrel : MonoBehaviour
 	private bool isWindingDown = true;
 	public float windUpRate = 3.0f;
 	public float windDownRate = -1.0f;
-	private float WindUpDownMultiplier = 0.0f;	
+	private float WindUpDownMultiplier = 0.0f;
+	
+	public Material barrelMat;
+	private float overheat = 0.0f;
+	private float overheatRate = 0.2f;
+	private float coolOffRate = 1.2f;
 
-    void Update()
+    void Start()
+	{
+		//barrelMat = GetComponent<Renderer>().material;
+	}
+	
+	void Update()
     {
 		// Wind down the barrel
 		if (isWindingDown && WindUpDownMultiplier > 0.0f)
@@ -36,6 +46,9 @@ public class Weapon_Barrel : MonoBehaviour
 		
 		// Spin the barrel to match the targetRotation if its not already there.
 		if (transform.rotation != targetRotation) transform.localRotation = targetRotation;
+		
+		if (WindUpDownMultiplier == 0.0f) overheat = Mathf.Clamp (overheat - coolOffRate * Time.deltaTime, 0.0f, 1.0f);
+		barrelMat.SetFloat("_OverheatBlend", overheat);
     }
 	
 	public void Spin() // Called from the shooting script.
@@ -44,6 +57,8 @@ public class Weapon_Barrel : MonoBehaviour
 		isWindingDown = false;
 		WindUpDownMultiplier = Mathf.Clamp(WindUpDownMultiplier + windUpRate * Time.deltaTime, 0.0f, 1.0f);
 		SetTargetRotation();
+		
+		overheat = Mathf.Clamp (overheat + overheatRate * Time.deltaTime, 0.0f, 1.0f);
 	}
 	
 	private void SetTargetRotation()
