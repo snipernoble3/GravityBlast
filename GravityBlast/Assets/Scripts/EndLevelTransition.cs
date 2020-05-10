@@ -37,7 +37,8 @@ public class EndLevelTransition : MonoBehaviour
 			if (!jumpInitiated)
 			{
 				JumpToNextPlanet();
-				StartCoroutine(musicManger.playTransition(musicManger.jetpack, false));
+				musicManger.FadeOut(0.5f);
+				StartCoroutine(musicManger.PlayTransition(musicManger.jetpack, false, false));
 			}
         }
     }

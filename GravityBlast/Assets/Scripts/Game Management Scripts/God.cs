@@ -188,7 +188,12 @@ public class God : MonoBehaviour {
 		int enemiesRemaining = 0;
 		int minEnemiesForActionMusic = 0;
         foreach (EnemyManager manager in enemyManagers) enemiesRemaining += manager.GetNumOfActiveEnemies();
-		if (enemiesRemaining <= minEnemiesForActionMusic) musicManger.StartCoroutine(musicManger.CrossFade(0.75f));
+		if (enemiesRemaining <= minEnemiesForActionMusic) //musicManger.CrossFade(0.75f);
+		{
+			musicManger.StartCoroutine(musicManger.PlayTransition(musicManger.outro, false, false));
+			musicManger.CrossFade(0.0f);
+			musicManger.FadeIn(musicManger.outro.length);
+		}
 	}
 
     public void NextPlanetReady () {
@@ -301,7 +306,7 @@ public class God : MonoBehaviour {
 		Player_Input.SetBlastState(false);
 		Player_Input.SetShootState(false);
 		
-		musicManger.StartCoroutine(musicManger.playTransition(musicManger.gameOver, false));
+		musicManger.StartCoroutine(musicManger.PlayTransition(musicManger.gameOver, true, false));
 		StartCoroutine(ReturnToMenu(musicManger.gameOver.length));
         //EndScreen.SetActive(true);
     }
