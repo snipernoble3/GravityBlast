@@ -145,9 +145,16 @@ public class God : MonoBehaviour {
         RenderSettings.skybox.SetColor("_Tint", Color.HSVToRGB(hsv.x, hsv.y, hsv.z));
         */
         Material newSkybox = new Material(RenderSettings.skybox);
-        newSkybox.SetColor("_Tint", Random.ColorHSV());
+        //newSkybox.SetColor("_Tint", Random.ColorHSV());
+		
+		float h, s, v;
+		
+		Color.RGBToHSV(newSkybox.GetColor("_Tint"), out h, out s, out v);
+        //newSkybox.SetColor("_Tint", Color.HSVToRGB(h, s, v));
+		newSkybox.SetColor("_Tint", Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1.0f, v));
+		
         RenderSettings.skybox = newSkybox;
-        DynamicGI.UpdateEnvironment();
+        //DynamicGI.UpdateEnvironment(); // This refreshed the global lighting to match to color of the Skybox... Revisit this later.
     }
 
     private PlanetInfo GeneratePlanetInfo (int planetNumber) {
