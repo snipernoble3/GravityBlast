@@ -137,22 +137,12 @@ public class God : MonoBehaviour {
             currSolarSystem[i] = GeneratePlanetInfo(completedPlanets + i);
         }
 
-        /*
-        Vector3 hsv;
-        Color.RGBToHSV(RenderSettings.skybox.color, out hsv.x, out hsv.y, out hsv.z);
-        hsv.x = Random.value;
-        //RenderSettings.skybox.color = Color.HSVToRGB(hsv.x, hsv.y, hsv.z);
-        RenderSettings.skybox.SetColor("_Tint", Color.HSVToRGB(hsv.x, hsv.y, hsv.z));
-        */
+		// Set Skybox Color
         Material newSkybox = new Material(RenderSettings.skybox);
-        //newSkybox.SetColor("_Tint", Random.ColorHSV());
-		
 		float h, s, v;
-		
 		Color.RGBToHSV(newSkybox.GetColor("_Tint"), out h, out s, out v);
-        //newSkybox.SetColor("_Tint", Color.HSVToRGB(h, s, v));
-		newSkybox.SetColor("_Tint", Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1.0f, v));
-		
+        h = Random.Range(0.0f, 1.0f);
+		newSkybox.SetColor("_Tint", Color.HSVToRGB(h, s, v));
         RenderSettings.skybox = newSkybox;
         //DynamicGI.UpdateEnvironment(); // This refreshed the global lighting to match to color of the Skybox... Revisit this later.
     }
