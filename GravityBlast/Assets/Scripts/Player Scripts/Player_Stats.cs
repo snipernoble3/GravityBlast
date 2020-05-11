@@ -245,4 +245,8 @@ public class Player_Stats : MonoBehaviour {
         godMode = !godMode;
     }
 
+    public void FillXP () {
+        CollectXP(xpToAdvance);
+    }
+
 }

@@ -53,7 +53,8 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(false);
 		Player_Input.SetBlastState(false);
 		Player_Input.SetShootState(false);
-		
+        playerStats.toggleGodMode();
+
 		// Toggle Cameras
 		for (int i = 0; i < playerCameras.Length; i++)
 		{
@@ -92,6 +93,7 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(true);
 		Player_Input.SetBlastState(true);
 		Player_Input.SetShootState(true);
+        playerStats.toggleGodMode();
         player.GetComponent<Gravity_AttractedObject>().blastOff = false;
 
         hud.enabled = true;

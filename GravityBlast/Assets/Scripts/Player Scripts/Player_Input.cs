@@ -10,10 +10,11 @@ public class Player_Input : MonoBehaviour
 	[SerializeField] private Player_BlastMechanics blastMechanics;
 	[SerializeField] private WeaponManager weaponManager;
 	[SerializeField] private Animator firstPersonArms_Animator;
-	
-	//private bool gameIsPaused = false;
-	
-	private bool lookEnabled = true;
+    [SerializeField] private Player_Stats playerStats;
+
+    //private bool gameIsPaused = false;
+
+    private bool lookEnabled = true;
 	private bool moveEnabled = true;
 	private bool blastEnabled = true;
 	private bool shootEnabled = true;
@@ -102,9 +103,9 @@ public class Player_Input : MonoBehaviour
 
         if (devEnabled) {
 
-            if (Input.GetKeyDown(KeyCode.G)) movement.gameObject.GetComponent<Player_Stats>().toggleGodMode();
+            if (Input.GetKeyDown(KeyCode.G)) playerStats.toggleGodMode();
             //if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(god.NextPlanet()); }
-
+            if (Input.GetKeyDown(KeyCode.X)) playerStats.FillXP();
         }
 
     }

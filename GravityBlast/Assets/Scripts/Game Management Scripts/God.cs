@@ -48,6 +48,7 @@ public class God : MonoBehaviour {
     //level tracker
     int completedPlanets = 0;
     int planetInSolarSystem = 0;
+    int completedSolarSystems = 0;
     //player
     [SerializeField] GameObject playerPrefab;
     [SerializeField] public GameObject player;
@@ -129,11 +130,24 @@ public class God : MonoBehaviour {
 
     private void GenerateSolarSystem () {
         //generate x planets (info)
-        int numPlanets = 3;
+        int numPlanets = 3 + Random.Range(0, completedSolarSystems);
         currSolarSystem = new PlanetInfo[numPlanets];
+        Debug.Log("Planets in Solar System: " + currSolarSystem.Length);
         for (int i = 0; i < numPlanets; i++) {
             currSolarSystem[i] = GeneratePlanetInfo(completedPlanets + i);
         }
+
+        /*
+        Vector3 hsv;
+        Color.RGBToHSV(RenderSettings.skybox.color, out hsv.x, out hsv.y, out hsv.z);
+        hsv.x = Random.value;
+        //RenderSettings.skybox.color = Color.HSVToRGB(hsv.x, hsv.y, hsv.z);
+        RenderSettings.skybox.SetColor("_Tint", Color.HSVToRGB(hsv.x, hsv.y, hsv.z));
+        */
+        Material newSkybox = new Material(RenderSettings.skybox);
+        newSkybox.SetColor("_Tint", Random.ColorHSV());
+        RenderSettings.skybox = newSkybox;
+        DynamicGI.UpdateEnvironment();
     }
 
     private PlanetInfo GeneratePlanetInfo (int planetNumber) {
@@ -211,6 +225,7 @@ public class God : MonoBehaviour {
 
         //PauseGameElements(true);
         PauseGame(true);
+        pausedVelocity *= -1.25f;
 
         //step forward in planet progression
         completedPlanets++;
@@ -220,6 +235,7 @@ public class God : MonoBehaviour {
 
         //check to see if that was the end of the solar system
         if (planetInSolarSystem == currSolarSystem.Length) {
+            completedSolarSystems++;
             GenerateSolarSystem();
             planetInSolarSystem = 0;
         }
