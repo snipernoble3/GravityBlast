@@ -28,7 +28,7 @@ public class Moon : MonoBehaviour {
     public Vector3 RandomSpawnPoint (float distanceBuffer = 0f) {
         Vector3 spawnPoint;
         //get random point on sphere larger than the surface
-        Vector3 outer = Random.onUnitSphere * (surface.transform.localScale.x * GetComponent<SphereCollider>().radius);
+        Vector3 outer = surface.transform.position + (Random.onUnitSphere * GetComponent<SphereCollider>().radius);
         spawnPoint = outer;
         //direction to planet
         Vector3 dir = (outer - surface.transform.position).normalized * -9.8f;

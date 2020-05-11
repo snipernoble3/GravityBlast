@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static God; 
 
 [RequireComponent (typeof (Rigidbody))]
 public class Gravity_AttractedObject : MonoBehaviour
@@ -14,7 +15,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 	private const float sourceChangeDuration = 5.0f;
 	private float timeSinceSourceChange;
 
-    [HideInInspector] public bool paused;
+    [HideInInspector] public bool blastOff;
 
     void Awake()
     {
@@ -37,7 +38,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Convert the timer to a 0-1 value.
 		float timeBasedBlend = Mathf.InverseLerp(0.0f, sourceChangeDuration, timeSinceSourceChange);
 		
-		if (gravitySource != null && !paused) gravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
+		if (gravitySource != null && !paused && !blastOff) gravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
     }
 	
 	public void SetGravitySource(Gravity_Source gravitySource)

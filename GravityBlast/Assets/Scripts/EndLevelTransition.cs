@@ -77,7 +77,7 @@ public class EndLevelTransition : MonoBehaviour
 	IEnumerator BlastOff() {
 		yield return new WaitForSeconds(1.75f);
 		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
-		player.GetComponent<Gravity_AttractedObject>().paused = true;
+		player.GetComponent<Gravity_AttractedObject>().blastOff = true;
 		stageCompletedMessage.SetActive(true);
 	}
 
@@ -92,6 +92,7 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(true);
 		Player_Input.SetBlastState(true);
 		Player_Input.SetShootState(true);
+        player.GetComponent<Gravity_AttractedObject>().blastOff = false;
 
         hud.enabled = true;
         stageCompletedMessage.SetActive(false);

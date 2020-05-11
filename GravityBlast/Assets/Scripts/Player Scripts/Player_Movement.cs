@@ -120,8 +120,6 @@ public class Player_Movement : MonoBehaviour
 	private float verticalAngle = 0.0f;
 	private float horizontalAngle = 0.0f;
 
-    [HideInInspector] public bool paused;
-
     void Awake()
     {
 		// Hide the mouse cursor

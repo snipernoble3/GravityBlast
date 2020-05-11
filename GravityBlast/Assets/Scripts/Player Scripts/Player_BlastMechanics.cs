@@ -52,9 +52,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	private float impactVelocity = 0.0f;
 	public float minGroundPoundVelocity = 8.0f;
 	public float groundPound_Multiplier = 25.0f;
-
-    [HideInInspector] public bool paused;
-	
+    
 	// Vacuum Variables
 	List<CollectablePickup> vacuumableObjects = new List<CollectablePickup>();	
 	private const float vacuum_Range = 15.0f;

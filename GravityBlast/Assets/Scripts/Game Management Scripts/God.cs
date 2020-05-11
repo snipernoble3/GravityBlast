@@ -84,6 +84,9 @@ public class God : MonoBehaviour {
     [SerializeField] MenuControl menu;
     PlanetTimer timer;
 
+    public static bool paused = false;
+    private Vector3 pausedVelocity;
+
     private void Awake () {
         
         player.GetComponent<Player_Stats>().SetGod(this);
@@ -206,7 +209,8 @@ public class God : MonoBehaviour {
 
     public IEnumerator NextPlanet () {
 
-        PauseGameElements(true);
+        //PauseGameElements(true);
+        PauseGame(true);
 
         //step forward in planet progression
         completedPlanets++;
@@ -252,7 +256,8 @@ public class God : MonoBehaviour {
         statScreen.gameObject.SetActive(false);
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
         timer.resetPlanetTime();
-        PauseGameElements(false);
+        //PauseGameElements(false);
+        PauseGame(false);
         nextPlanetReady = false;
         playerReady = false;
         
@@ -284,6 +289,7 @@ public class God : MonoBehaviour {
         //total kills
     }
 
+    /*
     public void PauseGameElements (bool isActive) {
         //send pause/unpause to all enemies
         currPlanet.GetComponent<PlanetManager>().PauseEnemies(isActive);
@@ -296,10 +302,22 @@ public class God : MonoBehaviour {
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         timer.pauseTimer(isActive);
     }
-
+    */
+    
+    public void PauseGame (bool pause) {
+        paused = pause;
+        if (paused) {
+            pausedVelocity = player.GetComponent<Rigidbody>().velocity;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        } else {
+            player.GetComponent<Rigidbody>().velocity = pausedVelocity;
+        }
+    }
+    
     public void PlayerDeath () {
-        PauseGameElements(false);
-		
+        //PauseGameElements(false);
+        PauseGame(true);
+
 		// Disable Player controls.
 		Player_Input.SetLookState(false);
 		Player_Input.SetMoveState(false);
@@ -311,8 +329,7 @@ public class God : MonoBehaviour {
         //EndScreen.SetActive(true);
     }
 	
-	public IEnumerator ReturnToMenu(float delay)
-	{
+	public IEnumerator ReturnToMenu(float delay) {
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene("Menu");
 	}

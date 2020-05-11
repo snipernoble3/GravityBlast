@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static God;
 
 public class ModificationChest : MonoBehaviour {
     
@@ -21,7 +22,7 @@ public class ModificationChest : MonoBehaviour {
     }
 
     private void Update () {
-        
+
         //when player is within range, auto open/display modifications
         if (player != null && !opened && Mathf.Abs(Vector3.Magnitude(player.transform.position - transform.position)) <= playerActivationRange) {
             display.SetActive(true);

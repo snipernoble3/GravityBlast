@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static God;
 
 public class Beetle2 : MonoBehaviour {
 
@@ -33,7 +34,7 @@ public class Beetle2 : MonoBehaviour {
     public float chargeTime = 1f;
     public float cooldownTime = 0.5f;
 
-    [HideInInspector] public bool paused;
+    //[HideInInspector] public bool paused;
 
     private void Awake () {
         target = GameObject.FindGameObjectWithTag("Player").transform;

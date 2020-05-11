@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static God;
 
 public class PlanetTimer : MonoBehaviour {
 
@@ -8,17 +9,11 @@ public class PlanetTimer : MonoBehaviour {
     float totalTime = 0f;
     float planetTime = 0f;
 
-    bool paused;
-
     private void Update () {
         if (!paused) {
             planetTime += Time.deltaTime;
             totalTime += Time.deltaTime;
         }
-    }
-
-    public void pauseTimer (bool isPaused) {
-        paused = isPaused;
     }
 
     public void resetPlanetTime () {

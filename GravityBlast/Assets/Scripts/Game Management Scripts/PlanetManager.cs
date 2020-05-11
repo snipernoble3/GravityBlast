@@ -180,11 +180,13 @@ public class PlanetManager : MonoBehaviour {
         //for each plant
         for (int i = 0; i < planet.plantPrefabs.Length; i++) {
             int pRand = Random.Range(0, plantCap);
-            for (int j = 0; j < pRand; j++) { //spawn (<) x plants
-                Vector3 point = RandomSpawnPoint(0f);
+            for (int j = 0; j < pRand; j++) { //spawn pRand plants
+                Vector3 point = RandomSpawnPoint(-0.05f);
                 Vector3 dir = (point - transform.position).normalized * 9.8f;
                 plantPool[i, j] = Instantiate(planet.plantPrefabs[i], point, Quaternion.LookRotation(dir));
                 plantPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                plantPool[i, j].transform.Rotate(new Vector3(0, Random.value * 360f, 0), Space.Self);
+                plantPool[i, j].transform.localScale = Random.Range(1f, 1.5f) * Vector3.one; 
                 plantPool[i, j].transform.parent = plantContainer.transform;
             }
             yield return null;
@@ -297,9 +299,5 @@ public class PlanetManager : MonoBehaviour {
     public void SetInfo (God.PlanetInfo p) {
         planet = p;
     }
-
-    public void PauseEnemies (bool pause) {
-        
-    }
-
+    
 }

@@ -19,8 +19,6 @@ public class WeaponManager : MonoBehaviour {
 	GameObject realMag; // A reference to the magazine that stays loaded into the gun.
 	GameObject fakeMag; // A reference to the fake instance magazine that moves with the reloading hand.
 
-    [HideInInspector] public bool paused;
-
     private void Awake() {
 
         ps = gameObject.GetComponent<Player_Stats>();

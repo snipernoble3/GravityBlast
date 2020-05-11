@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static God;
 
 public class Player_Input : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Player_Input : MonoBehaviour
 	[SerializeField] private WeaponManager weaponManager;
 	[SerializeField] private Animator firstPersonArms_Animator;
 	
-	private bool gameIsPaused = false;
+	//private bool gameIsPaused = false;
 	
 	private bool lookEnabled = true;
 	private bool moveEnabled = true;
@@ -33,7 +34,7 @@ public class Player_Input : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (gameIsPaused) return;
+		if (paused) return;
 		
 		// Inputs
 		if (lookEnabled)
@@ -108,10 +109,12 @@ public class Player_Input : MonoBehaviour
 
     }
 	
+    /*
 	public static void SetPauseState(bool newState) {
 		playerInput.gameIsPaused = newState;
 	}
-	
+	*/
+
 	public static void SetLookState(bool newState) {
 		playerInput.lookEnabled = newState;
 	}

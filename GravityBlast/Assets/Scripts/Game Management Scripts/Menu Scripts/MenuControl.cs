@@ -31,6 +31,9 @@ public class MenuControl : MonoBehaviour {
     public void Settings () {
         
     }
+    public void FeedbackReport () {
+        Application.OpenURL("https://forms.gle/z5MjDE4gTevbRuhi7");
+    }
 
     public void Quit () {
         Debug.Log("Quitting Game");
@@ -45,14 +48,16 @@ public class MenuControl : MonoBehaviour {
         paused = true;
         //open pause menu
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
-        g.PauseGameElements(paused);
+        //g.PauseGameElements(paused);
+        g.PauseGame(paused);
     }
 
     public void Resume () {
         paused = false;
         //close pause menu
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
-        g.PauseGameElements(paused);
+        //g.PauseGameElements(paused);
+        g.PauseGame(paused);
     }
 
     //Settings
