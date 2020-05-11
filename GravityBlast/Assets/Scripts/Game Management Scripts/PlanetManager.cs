@@ -103,8 +103,8 @@ public class PlanetManager : MonoBehaviour {
     public void DestroyPlanet () {
         //destruction animation?
         god.player.transform.parent = null;
-        foreach (EnemyManager e in god.enemyPools) {
-            e.DespawnAllEnemies();
+        foreach (ObjectPool e in god.enemyPools) {
+            e.DespawnAllObjects();
         }
         Destroy(this.gameObject);
     }

@@ -21,7 +21,7 @@ public class ObjectPool
 		for (int i = 0; i < objectPoolSize; i++)
 		{
 			GameObject enemyInstance = GameObject.Instantiate(objectPrefab); // Create an enemy that can be used in the pool.
-			enemyInstance.GetComponent<Health>().manager = this; // Pass in a reference so that the enemy can talk back to this script.
+			enemyInstance.GetComponent<Health>().pool = this; // Pass in a reference so that the enemy can talk back to this script.
 			enemyInstance.SetActive(false); // Deactiveate the enemy after creation so it sits idle in the pool.
             enemyInstance.transform.parent = god.gameObject.transform;
 			objectQueue.Enqueue(enemyInstance); // Add this newly created enemy into the pool for later use.
