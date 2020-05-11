@@ -232,7 +232,7 @@ public class God : MonoBehaviour {
 
         //PauseGameElements(true);
         PauseGame(true);
-        pausedVelocity *= -1.25f;
+        pausedVelocity = Vector3.zero;
 
         //step forward in planet progression
         completedPlanets++;
