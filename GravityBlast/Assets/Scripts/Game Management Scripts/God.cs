@@ -72,7 +72,7 @@ public class God : MonoBehaviour {
     //[SerializeField] private int[] enemyMaxQuantities;
     //private EnemyInfo[] enemies;
 
-    public EnemyManager[] enemyManagers;
+    public ObjectPool[] enemyPools;
 
 	private MusicManager musicManger;
 
@@ -97,12 +97,12 @@ public class God : MonoBehaviour {
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
 
-        enemyManagers = new EnemyManager[enemyPrefabs.Length];
+        enemyPools = new ObjectPool[enemyPrefabs.Length];
         for (int i = 0; i < enemyPrefabs.Length; i++) {
-            enemyManagers[i] = new EnemyManager();
-            enemyManagers[i].enemyPrefab = enemyPrefabs[i];
-            enemyManagers[i].god = this;
-            enemyManagers[i].CreateEnemyPool();
+            enemyPools[i] = new ObjectPool();
+            enemyPools[i].objectPrefab = enemyPrefabs[i];
+            enemyPools[i].god = this;
+            enemyPools[i].CreateObjectPool();
         }
         
 
@@ -211,7 +211,7 @@ public class God : MonoBehaviour {
 	public void CheckRemainingEnemies()	{
 		int enemiesRemaining = 0;
 		int minEnemiesForActionMusic = 0;
-        foreach (EnemyManager manager in enemyManagers) enemiesRemaining += manager.GetNumOfActiveEnemies();
+        foreach (ObjectPool pool in enemyPools) enemiesRemaining += pool.GetNumOfActiveEnemies();
 		if (enemiesRemaining <= minEnemiesForActionMusic) //musicManger.CrossFade(0.75f);
 		{
 			musicManger.StartCoroutine(musicManger.PlayTransition(musicManger.outro, false, false));

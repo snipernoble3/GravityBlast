@@ -103,7 +103,7 @@ public class PlanetManager : MonoBehaviour {
     public void DestroyPlanet () {
         //destruction animation?
         god.player.transform.parent = null;
-        foreach (EnemyManager e in god.enemyManagers) {
+        foreach (EnemyManager e in god.enemyPools) {
             e.DespawnAllEnemies();
         }
         Destroy(this.gameObject);
@@ -224,7 +224,7 @@ public class PlanetManager : MonoBehaviour {
                 //enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
                 //edit rotation?
                 //enemyPool[i, j].transform.parent = enemyContainer.transform;
-                god.enemyManagers[i].SpawnEnemy();
+                god.enemyPools[i].SpawnObject();
             }
             yield return null;
         }
