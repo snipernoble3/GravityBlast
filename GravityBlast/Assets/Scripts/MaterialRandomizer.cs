@@ -9,7 +9,14 @@ public class MaterialRandomizer : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
-		int rand = Random.Range(0, materials.Length);
-		GetComponent<Renderer>().material = materials[rand];
+		int rando = Random.Range(0, materials.Length);
+		Material mat = new Material(materials[rando]);
+		
+		float h, s, v;
+		Color.RGBToHSV(mat.GetColor("_Color"), out h, out s, out v);
+        h = Random.Range(0.0f, 1.0f);
+		mat.SetColor("_Color", Color.HSVToRGB(h, s, v));
+
+		GetComponent<Renderer>().material = mat;
     }
 }
