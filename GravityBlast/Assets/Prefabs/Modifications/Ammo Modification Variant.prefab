@@ -120,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 2858323901012250819, guid: 6eb4a4e6cdae48b49ad092c55946ceed,
         type: 3}
       propertyPath: m_Name
-      value: Ammo Modification
+      value: Ammo Modification Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7639775317382949889, guid: 6eb4a4e6cdae48b49ad092c55946ceed,
         type: 3}
@@ -137,5 +137,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.20784315
       objectReference: {fileID: 0}
+    - target: {fileID: 7639775317382949889, guid: 6eb4a4e6cdae48b49ad092c55946ceed,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: b311baf80c6546e47a0d8cf21d19358b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eb4a4e6cdae48b49ad092c55946ceed, type: 3}

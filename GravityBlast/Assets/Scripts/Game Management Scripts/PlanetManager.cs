@@ -283,13 +283,15 @@ public class PlanetManager : MonoBehaviour {
 
     private IEnumerator GenerateMoon (int num = 1) {
         for (int i = 0; i < num; i++) {
-            Vector3 point = RandomSpawnPoint(50f);
+            float spawnDistance = Random.Range(35f, 50f);
+            Vector3 point = RandomSpawnPoint(spawnDistance);
             Vector3 dir = (point - transform.position).normalized * 9.8f;
             GameObject moon = Instantiate(planet.moonPrefab, point, Quaternion.LookRotation(dir));
             moon.transform.parent = gameObject.transform;
             moon.GetComponent<Moon>().god = god;
+            moon.GetComponent<Moon>().ChangeScale((spawnDistance / 100f) + Random.Range(0.4f, 0.7f));
+            yield return null;
             moon.GetComponent<Moon>().GenerateChest();
-
             yield return null;
         }
 

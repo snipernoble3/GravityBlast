@@ -89,7 +89,9 @@ public class God : MonoBehaviour {
     private Vector3 pausedVelocity;
 
     private void Awake () {
-        
+
+        paused = false;
+
         player.GetComponent<Player_Stats>().SetGod(this);
 		
 		timer = this.GetComponent<PlanetTimer>();
