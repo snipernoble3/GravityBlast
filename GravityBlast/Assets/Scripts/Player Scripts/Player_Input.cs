@@ -11,6 +11,7 @@ public class Player_Input : MonoBehaviour
 	[SerializeField] private WeaponManager weaponManager;
 	[SerializeField] private Animator firstPersonArms_Animator;
     [SerializeField] private Player_Stats playerStats;
+    [SerializeField] private MenuControl menu;
 
     //private bool gameIsPaused = false;
 
@@ -18,7 +19,7 @@ public class Player_Input : MonoBehaviour
 	private bool moveEnabled = true;
 	private bool blastEnabled = true;
 	private bool shootEnabled = true;
-    private bool devEnabled = true;
+    private bool devEnabled = false;
 	
 	[Header("Input Preferences")]
 	public bool holdJumpToKeepJumping = false;
@@ -35,9 +36,20 @@ public class Player_Input : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (paused) return;
-		
-		// Inputs
+
+        if (Input.GetButtonDown("Cancel")) {
+            if (paused) {
+                menu.Resume();
+            } else {
+                menu.Pause();
+            }
+        }
+
+        if (paused) return;
+
+        // Inputs
+        if (Input.GetKeyDown(KeyCode.BackQuote)) ToggleDevMode();
+
 		if (lookEnabled)
 		{
 			movement.GetInput_Mouse();
@@ -131,4 +143,10 @@ public class Player_Input : MonoBehaviour
 	public static void SetShootState(bool newState)	{
 		playerInput.shootEnabled = newState;
 	}
+
+    private void ToggleDevMode () {
+        devEnabled = !devEnabled;
+        //turn on dev mode ui?
+    }
+
 }

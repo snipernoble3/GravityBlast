@@ -73,6 +73,7 @@ public class God : MonoBehaviour {
     //private EnemyInfo[] enemies;
 
     public ObjectPool[] enemyPools;
+    public ObjectPool xpPool;
 
 	private MusicManager musicManger;
 
@@ -106,7 +107,6 @@ public class God : MonoBehaviour {
             enemyPools[i].god = this;
             enemyPools[i].CreateObjectPool();
         }
-        
 
         GenerateSolarSystem();
 
@@ -134,7 +134,7 @@ public class God : MonoBehaviour {
         //generate x planets (info)
         int numPlanets = 3 + Random.Range(0, completedSolarSystems);
         currSolarSystem = new PlanetInfo[numPlanets];
-        Debug.Log("Planets in Solar System: " + currSolarSystem.Length);
+        //Debug.Log("Planets in Solar System: " + currSolarSystem.Length);
         for (int i = 0; i < numPlanets; i++) {
             currSolarSystem[i] = GeneratePlanetInfo(completedPlanets + i);
         }
@@ -324,8 +324,10 @@ public class God : MonoBehaviour {
         if (paused) {
             pausedVelocity = player.GetComponent<Rigidbody>().velocity;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player.GetComponent<Player_Stats>().toggleGodMode();
         } else {
             player.GetComponent<Rigidbody>().velocity = pausedVelocity;
+            player.GetComponent<Player_Stats>().toggleGodMode();
         }
     }
     
@@ -346,6 +348,7 @@ public class God : MonoBehaviour {
 	
 	public IEnumerator ReturnToMenu(float delay) {
 		yield return new WaitForSeconds(delay);
+        PauseGame(false);
 		SceneManager.LoadScene("Menu");
 	}
 

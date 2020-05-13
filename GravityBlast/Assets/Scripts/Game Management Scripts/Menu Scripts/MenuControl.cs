@@ -8,13 +8,14 @@ public class MenuControl : MonoBehaviour {
     //private static bool created = false;
 
     [SerializeField] bool canPause;
+    [SerializeField] GameObject pauseMenu;
 
-    bool paused;
+    bool isPaused;
 
     [SerializeField] God g;
 
     private void Awake () {
-        
+        if (pauseMenu != null) pauseMenu.SetActive(isPaused);
     }
 
     // MAIN MENU //
@@ -31,6 +32,7 @@ public class MenuControl : MonoBehaviour {
     public void Settings () {
         
     }
+
     public void FeedbackReport () {
         Application.OpenURL("https://forms.gle/z5MjDE4gTevbRuhi7");
     }
@@ -45,19 +47,19 @@ public class MenuControl : MonoBehaviour {
 
     public void Pause () {
         if (!canPause) { return; }
-        paused = true;
+        isPaused = true;
         //open pause menu
+        g.PauseGame(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
-        //g.PauseGameElements(paused);
-        g.PauseGame(paused);
+        pauseMenu.SetActive(isPaused);
     }
 
     public void Resume () {
-        paused = false;
-        //close pause menu
+        isPaused = false;
+        //close pause menu, reenable controls and gameplay
+        pauseMenu.SetActive(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
-        //g.PauseGameElements(paused);
-        g.PauseGame(paused);
+        g.PauseGame(isPaused);
     }
 
     //Settings
@@ -65,7 +67,7 @@ public class MenuControl : MonoBehaviour {
     //Restart? idk if we want/need this
 
     public void ReturnToMenu () {
-        SceneManager.LoadScene("PlanetGeneration");
+        SceneManager.LoadScene("Menu");
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
     }
 
