@@ -17,51 +17,55 @@ public class ObjectPool
     {
         objectQueue = new Queue<GameObject>();
 		activeObjects = new List<GameObject>();
-	
-		for (int i = 0; i < objectPoolSize; i++)
-		{
-			GameObject enemyInstance = GameObject.Instantiate(objectPrefab); // Create an enemy that can be used in the pool.
-			enemyInstance.GetComponent<Health>().pool = this; // Pass in a reference so that the enemy can talk back to this script.
-			enemyInstance.SetActive(false); // Deactiveate the enemy after creation so it sits idle in the pool.
-            enemyInstance.transform.parent = god.gameObject.transform;
-			objectQueue.Enqueue(enemyInstance); // Add this newly created enemy into the pool for later use.
-		}
+
+        IncreasePool(objectPoolSize);
     }
-	
-	public void SpawnObject()
+
+    public void IncreasePool (int amount) {
+        for (int i = 0; i < amount; i++) {
+            GameObject objectInstance = GameObject.Instantiate(objectPrefab); // Create an object that can be used in the pool.
+            if (objectInstance.GetComponent<Health>()) objectInstance.GetComponent<Health>().pool = this; // Enemy Hookup - Pass in a reference so that the enemy can talk back to this script.
+            objectInstance.SetActive(false); // Deactiveate the object after creation so it sits idle in the pool.
+            objectInstance.transform.parent = god.gameObject.transform;
+            objectQueue.Enqueue(objectInstance); // Add this newly created object into the pool for later use.
+        }
+    }
+
+    public void SpawnObject(Transform parent = null)
 	{
 		if (objectQueue.Count != 0)
 		{
-			GameObject spawnedEnemy = objectQueue.Dequeue(); // Spawn an enemy by pulling it out of the queue.
+			GameObject spawnedObject = objectQueue.Dequeue(); // Spawn an enemy by pulling it out of the queue.
 			
-			spawnedEnemy.SetActive(true);
+			spawnedObject.SetActive(true);
 			
 			// If the enemy is not already in the list of active enemies, then add it.
-			if(!activeObjects.Contains(spawnedEnemy)) activeObjects.Add(spawnedEnemy);
+			if(!activeObjects.Contains(spawnedObject)) activeObjects.Add(spawnedObject);
 
             // Set Spawn Postion
-            spawnedEnemy.transform.position = god.GetCurrPlanet().RandomSpawnPoint(1f);
-            spawnedEnemy.GetComponent<Gravity_AttractedObject>().SetGravitySource(god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>());
-            spawnedEnemy.transform.parent = god.GetCurrPlanet().enemyContainer.transform;
+            spawnedObject.transform.position = god.GetCurrPlanet().RandomSpawnPoint(1f);
+            if (spawnedObject.GetComponent<Gravity_AttractedObject>()) spawnedObject.GetComponent<Gravity_AttractedObject>().SetGravitySource(god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>());
+            spawnedObject.transform.parent = parent;
 		} else {
-            //generate more enemies
+            IncreasePool(20); //generate more enemies
+            SpawnObject(parent); //attempt to spawn the enemy again
         }
 	}
 		
-	public void DespawnObject(GameObject despawnedEnemy, bool removeFromActive = true)
+	public void DespawnObject(GameObject despawnedObject, bool removeFromActive = true)
 	{
-        despawnedEnemy.transform.parent = god.gameObject.transform;
-        objectQueue.Enqueue(despawnedEnemy);
-		if(removeFromActive && activeObjects.Contains(despawnedEnemy)) activeObjects.RemoveAt(activeObjects.IndexOf(despawnedEnemy));
-		despawnedEnemy.SetActive(false);
+        despawnedObject.transform.parent = god.gameObject.transform;
+        objectQueue.Enqueue(despawnedObject);
+		if(removeFromActive && activeObjects.Contains(despawnedObject)) activeObjects.RemoveAt(activeObjects.IndexOf(despawnedObject));
+		despawnedObject.SetActive(false);
 		
-		god.CheckRemainingEnemies();
+		if (despawnedObject.GetComponent<Health>()) god.CheckRemainingEnemies();
 	}
 	
     public void DespawnAllObjects () {
 
-        foreach (GameObject enemy in activeObjects) {
-            DespawnObject(enemy, false);
+        foreach (GameObject obj in activeObjects) {
+            DespawnObject(obj, false);
         }
 
         activeObjects = new List<GameObject>();

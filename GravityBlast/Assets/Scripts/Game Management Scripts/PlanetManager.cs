@@ -224,7 +224,7 @@ public class PlanetManager : MonoBehaviour {
                 //enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
                 //edit rotation?
                 //enemyPool[i, j].transform.parent = enemyContainer.transform;
-                god.enemyPools[i].SpawnObject();
+                god.enemyPools[i].SpawnObject(enemyContainer.transform);
             }
             yield return null;
         }
