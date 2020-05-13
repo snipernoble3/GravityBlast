@@ -43,7 +43,8 @@ public class ObjectPool
 			if(!activeObjects.Contains(spawnedObject)) activeObjects.Add(spawnedObject);
 
             // Set Spawn Postion
-            spawnedObject.transform.position = god.GetCurrPlanet().RandomSpawnPoint(1f);
+            Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
+			spawnedObject.transform.position = god.GetCurrPlanet().RandomSpawnPoint(out dir, 1.0f);
             if (spawnedObject.GetComponent<Gravity_AttractedObject>()) spawnedObject.GetComponent<Gravity_AttractedObject>().SetGravitySource(god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>());
             spawnedObject.transform.parent = parent;
 		} else {
