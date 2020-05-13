@@ -270,13 +270,15 @@ public class PlanetManager : MonoBehaviour {
         //Physics.Raycast(outer, dir, out hit, 100f);
         //Debug.DrawLine(outer, hit.point, Color.green, 2f);
         //Vector3 spawnPoint = hit.point;
+        
         hits = Physics.RaycastAll(outer, dir, Vector3.Distance(outer, transform.position));
         for (int i = 0; i < hits.Length; i++) {
-            if (hits[i].transform == transform) {
+            if (hits[i].transform.gameObject.tag == "Planet" || hits[i].transform.gameObject.tag == "StaticEnv") {
                 spawnPoint = hits[i].point - (dir.normalized * distanceBuffer);
                 //Debug.DrawLine(outer, hits[i].point, Color.green, 2f);
             }
         }
+
         //return value
         return spawnPoint;
     }

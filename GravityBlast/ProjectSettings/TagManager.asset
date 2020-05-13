@@ -8,6 +8,7 @@ TagManager:
   - Resource B
   - Planet
   - MenuController
+  - StaticEnv
   layers:
   - Default
   - TransparentFX

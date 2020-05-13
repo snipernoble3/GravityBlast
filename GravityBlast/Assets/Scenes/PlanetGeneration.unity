@@ -4193,6 +4193,12 @@ PrefabInstance:
       propertyPath: survivalTime
       value: 
       objectReference: {fileID: 1152176567}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2598347306723740709, guid: b62571889945ad14cab5ae61f7791961,
+        type: 3}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name
