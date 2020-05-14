@@ -48,6 +48,7 @@ public class PlanetManager : MonoBehaviour {
 		planetSurface.SetFloat("_Hue", Random.Range(0.0f, 1.0f));
 		planetSurface.SetFloat("_SurfaceInner", planet.lowestSurfacePoint);
 		planetSurface.SetFloat("_SurfaceOuter", planet.highestSurfacePoint);
+        yield return null;
 
         CreateComponents();
         yield return null;
@@ -115,6 +116,7 @@ public class PlanetManager : MonoBehaviour {
         GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
         //k.transform.localScale = 70f * Vector3.one;
         k.transform.localScale = (planet.lowestSurfacePoint -2f) * Vector3.one * 2f;
+        k.GetComponent<KillZone>().g = god;
         killBounds = k;
 
         //set up empty containers
