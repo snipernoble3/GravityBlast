@@ -5,24 +5,36 @@ using UnityEngine;
 public class Gravity_Source : MonoBehaviour
 {
 	public static Gravity_Source DefaultGravitySource {get; private set;}
-	[SerializeField] private bool isDefaultGravitySource = false;
+	[SerializeField] private bool isDefaultGravitySource = false; // Only one object per scene should have this checked.
 	
-	[SerializeField] private float gravityStrength = -9.81f;
-	[SerializeField] private bool isRadial = true;
-	private Vector3 nonRadialDirection;
-	
-	//private Transform defaultGravitySource;
+	[SerializeField] private float gravityStrength = -9.81f; // This default is equivalent to gravity on Earth.
+	[SerializeField] private bool isRadial = true; // This should be true for planetoids and moons.
+	[SerializeField] private Vector3 nonRadialDirection = Vector3.up; // Set this in the inspector, it will be transformed to the object's local space.
 	
 	// Test stuff
 	[SerializeField] private bool useTestSpheres = false;
 
-	
-	// Start is called before the first frame update
     void Awake()
     {
-        //nonRadialDirection = transform.up;	
+		// If marked as such in the inspector, use this gravity source as the default gravity source so that it can be referenced from anywhere.
 		if (isDefaultGravitySource) DefaultGravitySource = this;
     }
+	
+	void Start()
+    {
+		// If we don't have a default gravity source when the scene starts...
+		//...then create a gameObject that can be used as the default gravity source.
+		if (DefaultGravitySource == null) 
+		{
+			GameObject defaultGravityGameObject = new GameObject("Default Gravity Source");
+			DefaultGravitySource = defaultGravityGameObject.AddComponent<Gravity_Source>();
+			DefaultGravitySource.isDefaultGravitySource = true;
+			
+			DefaultGravitySource.gravityStrength = -Physics.gravity.magnitude;
+			DefaultGravitySource.isRadial = false;
+			DefaultGravitySource.nonRadialDirection = -Physics.gravity.normalized;
+		}
+	}
 	
 	private void OnTriggerEnter(Collider triggeredObject)
     {
@@ -44,30 +56,25 @@ public class Gravity_Source : MonoBehaviour
 	private void OnTriggerExit(Collider triggeredObject)
     {
         Gravity_AttractedObject exitingObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
-		
 		if (exitingObject != null)
 		{
-			if (DefaultGravitySource != null)
-			{	
-				//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
-				//exitingObject.blendToNewSource = 0.0f;
-				//exitingObject.gravitySource = DefaultGravitySource;
-			
-				exitingObject.SetGravitySource(DefaultGravitySource);
-				triggeredObject.transform.SetParent(DefaultGravitySource.transform);
-			}
+			//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
+			//exitingObject.blendToNewSource = 0.0f;
+			//exitingObject.gravitySource = DefaultGravitySource;
+				
+			exitingObject.SetGravitySource(DefaultGravitySource);
+			triggeredObject.transform.SetParent(DefaultGravitySource.transform);
 		}
 		
+		// Delete this later:
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
-		
 		if (player != null) player.gravitySource = DefaultGravitySource;
     }
 	
 	public Vector3 GetGravityVector(Transform attractedObject)
 	{
 		if (isRadial) return (attractedObject.position - transform.position).normalized * gravityStrength;
-		//else return nonRadialDirection * gravityStrength;
-		else return transform.up * gravityStrength;
+		else return transform.TransformDirection(nonRadialDirection * gravityStrength);
 	}
 	
 	public void AttractObject(Transform attractedObject, float timeBasedBlend, bool rotateToGravitySource, bool isChangingSource)
