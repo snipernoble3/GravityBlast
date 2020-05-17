@@ -484,6 +484,8 @@ MonoBehaviour:
   blastMechanics: {fileID: 6531711672340719521}
   weaponManager: {fileID: 5527955086115415956}
   firstPersonArms_Animator: {fileID: 6711995073076367826}
+  playerStats: {fileID: 0}
+  menu: {fileID: 0}
   holdJumpToKeepJumping: 0
 --- !u!114 &3820172613042789074
 MonoBehaviour:
@@ -514,7 +516,6 @@ MonoBehaviour:
   matchXYSensitivity: 1
   useRawMouseInput: 1
   invertVerticalInput: 0
-  paused: 0
 --- !u!114 &6531711672340719521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,10 +528,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba22ae11eb8953448a803586a16b5101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake_gpLanding: 1
   autoJumpBeforeGroundedRocketJump: 1
   blastDealsDamage: 0
   rj_trainingHitMarker: 0
+  camShake: {fileID: 3582369227191579854}
   groundPoundParticles: {fileID: 8743116498911252564, guid: 1f9f7733e39f51b49a74b9172b78ad65,
     type: 3}
   raycastMask:
@@ -548,7 +549,6 @@ MonoBehaviour:
   rjBlast_TimeSinceLastJump: 0
   minGroundPoundVelocity: 8
   groundPound_Multiplier: 25
-  paused: 0
 --- !u!114 &746588269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   gravitySource: {fileID: 0}
   rotateToGravitySource: 1
   isChangingSource: 0
-  paused: 0
+  blastOff: 0
 --- !u!114 &5737549682908922007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +607,6 @@ MonoBehaviour:
   animator: {fileID: 6711995073076367826}
   ammoUI: {fileID: 0}
   currentWeapon: 0
-  paused: 0
 --- !u!114 &8585929578479001980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHP: 3
+  godMode: 0
   healthText: {fileID: 0}
   xpFull: 0
   xpBar: {fileID: 0}
@@ -641,6 +641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5261576995055371843}
+  - component: {fileID: 3582369227191579854}
   m_Layer: 0
   m_Name: Camera Position Offset
   m_TagString: Untagged
@@ -663,6 +664,19 @@ Transform:
   m_Father: {fileID: 8317686159804332312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3582369227191579854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562328296603744726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6ac0daac4e586418f9afc0b7add4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableCameraShake_gpLanding: 1
 --- !u!1 &8562887681015861602
 GameObject:
   m_ObjectHideFlags: 0
