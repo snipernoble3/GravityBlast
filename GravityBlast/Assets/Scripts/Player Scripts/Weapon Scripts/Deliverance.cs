@@ -135,7 +135,7 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         Vector3 forwardVector = Camera.main.transform.rotation * rot * Vector3.forward;
 
         GameObject b = Instantiate(bullet, firingPosition.transform.position, firingPosition.transform.rotation);
-        b.GetComponent<Gravity_AttractedObject>().SetGravitySource(player.GetComponent<Gravity_AttractedObject>().GetGravitySource());
+        b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
         b.transform.rotation = Quaternion.FromToRotation(firingPosition.transform.rotation.eulerAngles, forwardVector);
         b.transform.localScale = new Vector3(b.transform.localScale.x * (1f + ps.mProjectileScale), b.transform.localScale.x * (1f + ps.mProjectileScale), b.transform.localScale.x * (1f + ps.mProjectileScale));
         b.GetComponent<Rigidbody>().AddForce(forwardVector * (60 * (1 + ps.mProjectileForce)), ForceMode.VelocityChange);

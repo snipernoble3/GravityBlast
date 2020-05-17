@@ -112,7 +112,7 @@ public class Health : MonoBehaviour {
         if (XP != null) {
             for (int i = 0; i < xpDrop; i++) {
                 GameObject xp = Instantiate(XP, transform.position + UnityEngine.Random.insideUnitSphere, transform.rotation, transform.parent);
-                xp.GetComponent<Gravity_AttractedObject>().SetGravitySource(gameObject.GetComponent<Gravity_AttractedObject>().GetGravitySource());
+                xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
             }
         }
         OnDeath();

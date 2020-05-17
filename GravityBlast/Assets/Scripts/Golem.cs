@@ -55,7 +55,7 @@ public class Golem : MonoBehaviour {
 
         } else if (aiming) {
 
-            Quaternion targetLookDirection = Quaternion.LookRotation(target.transform.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+            Quaternion targetLookDirection = Quaternion.LookRotation(target.transform.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, 5f * Time.deltaTime);
 
         } else if (!attacking) { //if not attacking
@@ -69,7 +69,7 @@ public class Golem : MonoBehaviour {
                 //pick a new direction to move in
 
                 //move and rotate to the move direction
-                Quaternion targetLookDirection = Quaternion.LookRotation(targetLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);//, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+                Quaternion targetLookDirection = Quaternion.LookRotation(targetLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position);//, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, targetLookDirection, 5f * Time.deltaTime);
 
                 //rb.AddRelativeForce(transform.forward * moveForce, ForceMode.Impulse);
@@ -110,13 +110,13 @@ public class Golem : MonoBehaviour {
         RaycastHit up;
         RaycastHit down;
 
-        if (Physics.Raycast(targetLocation, targetLocation - gameObject.GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position, out down)) {
+        if (Physics.Raycast(targetLocation, targetLocation - gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position, out down)) {
             if (down.collider.gameObject.tag == "Planet") {
                 targetLocation = down.point;
             }
         }
 
-        if (Physics.Raycast(targetLocation, targetLocation + gameObject.GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position, out up)) {
+        if (Physics.Raycast(targetLocation, targetLocation + gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position, out up)) {
             if (up.collider.gameObject.tag == "Planet") {
                 targetLocation = up.point;
             }

@@ -45,7 +45,7 @@ public class Gravity_Source : MonoBehaviour
 			//attractedObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
 			//attractedObject.blendToNewSource = 0.0f;
 			
-			attractedObject.SetGravitySource(this);
+			attractedObject.CurrentGravitySource = this;
 			triggeredObject.transform.SetParent(transform.parent);
 		}
 		
@@ -62,7 +62,7 @@ public class Gravity_Source : MonoBehaviour
 			//exitingObject.blendToNewSource = 0.0f;
 			//exitingObject.gravitySource = DefaultGravitySource;
 				
-			exitingObject.SetGravitySource(DefaultGravitySource);
+			exitingObject.CurrentGravitySource = DefaultGravitySource;
 			triggeredObject.transform.SetParent(DefaultGravitySource.transform);
 		}
 		

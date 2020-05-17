@@ -45,9 +45,15 @@ public class ObjectPool
             // Set Spawn Postion
             Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
 			spawnedObject.transform.position = god.GetCurrPlanet().RandomSpawnPoint(out dir, 1.0f);
-            if (spawnedObject.GetComponent<Gravity_AttractedObject>()) spawnedObject.GetComponent<Gravity_AttractedObject>().SetGravitySource(god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>());
+            
+			
+			Gravity_AttractedObject attractedObject = spawnedObject.GetComponent<Gravity_AttractedObject>();
+			
+			if (attractedObject != null) attractedObject.CurrentGravitySource = god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>();
             spawnedObject.transform.parent = parent;
-		} else {
+		}
+		else
+		{
             IncreasePool(20); //generate more enemies
             SpawnObject(parent); //attempt to spawn the enemy again
         }
