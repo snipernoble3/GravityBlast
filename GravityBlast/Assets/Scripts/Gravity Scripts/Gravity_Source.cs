@@ -13,28 +13,13 @@ public class Gravity_Source : MonoBehaviour
 	[SerializeField] private Vector3 nonRadialDirection = Vector3.up; // Set this in the inspector, it will be transformed to the object's local space.
 	
 	// Test stuff
-	[SerializeField] private bool useTestSpheres = false;
-	private GameObject testSphere;
+	public static bool useTestSpheres = true; // Set this to false when finished testing!!!
+	private static GameObject testSphere;
 
     void Awake()
     {
 		// If marked as such in the inspector, use this gravity source as the default gravity source so that it can be referenced from anywhere.
 		if (isDefaultGravitySource) DefaultGravitySource = this;
-		
-		// Set up a testSphere which can be instantiated as needed.
-		if (useTestSpheres)
-		{
-			testSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-			Destroy(testSphere.GetComponent<SphereCollider>());
-			testSphere.layer = LayerMask.NameToLayer("GravityTrigger");
-		
-			Renderer sphereRend = testSphere.GetComponent<Renderer>();
-			Material newMat = new Material(sphereRend.material);
-			newMat.color = Color.magenta;
-			sphereRend.material = newMat;
-			
-			testSphere.SetActive(false);
-		}
     }
 	
 	void Start()
@@ -54,6 +39,21 @@ public class Gravity_Source : MonoBehaviour
 		
 		// If no surface is specified for this gravity source, use its own transform as the surface.
 		if (surface == null) surface = transform;
+	}
+	
+	private void InitializeTestSphere()
+	{
+		// Set up a testSphere which can be instantiated as needed.
+		testSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		Destroy(testSphere.GetComponent<SphereCollider>());
+		testSphere.layer = LayerMask.NameToLayer("GravityTrigger");
+		
+		Renderer sphereRend = testSphere.GetComponent<Renderer>();
+		Material newMat = new Material(sphereRend.material);
+		newMat.color = Color.magenta;
+		sphereRend.material = newMat;
+			
+		testSphere.SetActive(false);
 	}
 	
 	private void OnTriggerEnter(Collider triggeredObject)
@@ -129,6 +129,7 @@ public class Gravity_Source : MonoBehaviour
 						// Test sphere
 						if (useTestSpheres)
 						{
+							if (testSphere == null) InitializeTestSphere();
 							GameObject newSphere = Instantiate(testSphere, surfaceHits[i].point, Quaternion.identity);
 							newSphere.transform.SetParent(surface, true);
 							newSphere.SetActive(true);

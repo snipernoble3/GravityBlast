@@ -12,14 +12,18 @@ public class Gravity_AttractedObject : MonoBehaviour
 		get	{ return _currentGravitySource; }
 		set
 		{
+			// If we are sourcing gravity from a gravity source, then don't apply Unity's gravity system.
+			if (value != null) rb.useGravity = false;
+			
+			// If we are already sourcing gravity from this gravity source, then don't do anything else.
+			if (_currentGravitySource == value) return;
+			
 			// These are used to make transitions smoother.
 			isChangingSource = true;
 			timeSinceSourceChange = 0.0f;
 			
-			// Assign the gravity source.
+			// Assign the new gravity source.
 			_currentGravitySource = value;
-			// If we are sourcing gravity from a gravity source, then don't apply Unity's gravity system.
-			rb.useGravity = false;
 		}
 	}
 	
