@@ -154,8 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 3926176212283686551}
   gravityStrength: -9.81
   isRadial: 1
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!114 &6406533809013638638
 MonoBehaviour:

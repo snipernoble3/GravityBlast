@@ -6,6 +6,7 @@ public class Gravity_Source : MonoBehaviour
 {
 	public static Gravity_Source DefaultGravitySource {get; private set;}
 	[SerializeField] private bool isDefaultGravitySource = false; // Only one object per scene should have this checked.
+	[SerializeField] private Transform surface; // The surface of the planet or object that.
 	
 	[SerializeField] private float gravityStrength = -9.81f; // This default is equivalent to gravity on Earth.
 	[SerializeField] private bool isRadial = true; // This should be true for planetoids and moons.
@@ -13,11 +14,27 @@ public class Gravity_Source : MonoBehaviour
 	
 	// Test stuff
 	[SerializeField] private bool useTestSpheres = false;
+	private GameObject testSphere;
 
     void Awake()
     {
 		// If marked as such in the inspector, use this gravity source as the default gravity source so that it can be referenced from anywhere.
 		if (isDefaultGravitySource) DefaultGravitySource = this;
+		
+		// Set up a testSphere which can be instantiated as needed.
+		if (useTestSpheres)
+		{
+			testSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			Destroy(testSphere.GetComponent<SphereCollider>());
+			testSphere.layer = LayerMask.NameToLayer("GravityTrigger");
+		
+			Renderer sphereRend = testSphere.GetComponent<Renderer>();
+			Material newMat = new Material(sphereRend.material);
+			newMat.color = Color.magenta;
+			sphereRend.material = newMat;
+			
+			testSphere.SetActive(false);
+		}
     }
 	
 	void Start()
@@ -34,6 +51,9 @@ public class Gravity_Source : MonoBehaviour
 			DefaultGravitySource.isRadial = false;
 			DefaultGravitySource.nonRadialDirection = -Physics.gravity.normalized;
 		}
+		
+		// If no surface is specified for this gravity source, use its own transform as the surface.
+		if (surface == null) surface = transform;
 	}
 	
 	private void OnTriggerEnter(Collider triggeredObject)
@@ -100,8 +120,8 @@ public class Gravity_Source : MonoBehaviour
 				
 				for (int i = 0; i < surfaceHits.Length; i++)
 				{
-					// Check if the object hit was this gravity source.
-					if (surfaceHits[i].transform == transform)
+					// Check if the object hit was this gravity source's surface.
+					if (surfaceHits[i].transform == surface)
 					{
 						// Update the distanceToSurface to be the distance from the attracted object to the hit point of the raycast.
 						distanceToSurface = Vector3.Distance(attractedObject.position, surfaceHits[i].point);
@@ -109,14 +129,10 @@ public class Gravity_Source : MonoBehaviour
 						// Test sphere
 						if (useTestSpheres)
 						{
-							GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-							sphere.transform.position = surfaceHits[i].point;
-							sphere.transform.SetParent(transform);
-							Destroy(sphere.GetComponent<SphereCollider>());
-							Renderer sphereRend = sphere.GetComponent<Renderer>();
-							sphereRend.material = new Material(Shader.Find("Standard"));
-							sphereRend.material.color = Color.magenta;
-							Destroy(sphere, 5.0f);
+							GameObject newSphere = Instantiate(testSphere, surfaceHits[i].point, Quaternion.identity);
+							newSphere.transform.SetParent(surface, true);
+							newSphere.SetActive(true);
+							Destroy(newSphere, 5.0f);
 						}
 						break; // Once we've found the ray that hit the gravity source's collider, stop checking through the loop.
 					} 
