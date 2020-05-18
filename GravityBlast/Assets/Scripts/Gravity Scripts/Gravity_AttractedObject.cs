@@ -31,7 +31,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 	
 	// Smooth Transition between gravity sources.
 	public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
-	private const float transitionDuration = 1.0f; // How long does the transition between gravity sources take in seconds.
+	private const float transitionDuration = 2.50f; // How long does the transition between gravity sources take in seconds.
 	
 	[HideInInspector] public bool isChangingSource = false;
 	[HideInInspector] public float initialDistance = 0.0f; // The initial distance from the gravity source's surface uppon entering its gravity trigger.
@@ -62,7 +62,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		if (timeLerpValue != 1.0f)
 		{
 			// Avoid dividing by 0.
-			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp((timeLerpValue + Time.fixedDeltaTime) / transitionDuration, 0.0f, 1.0f);
+			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp(timeLerpValue + Time.fixedDeltaTime / transitionDuration, 0.0f, 1.0f);
 			else timeLerpValue = 1.0f;
 		}
 		
