@@ -60,13 +60,12 @@ public class Gravity_Source : MonoBehaviour
     {
         Gravity_AttractedObject attractedObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
 		
+		// If the object that entered the trigger has the Gravity_AttractedObject component...
+		//assign this gravity source to it's CurrentGravitySource.
 		if (attractedObject != null)
 		{
-			//attractedObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
-			//attractedObject.blendToNewSource = 0.0f;
-			
 			attractedObject.CurrentGravitySource = this;
-			triggeredObject.transform.SetParent(transform.parent);
+			triggeredObject.transform.SetParent(surface);
 		}
 		
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
@@ -97,26 +96,31 @@ public class Gravity_Source : MonoBehaviour
 		else return transform.TransformDirection(nonRadialDirection * gravityStrength);
 	}
 	
-	public void AttractObject(Transform attractedObject, float timeBasedBlend, bool rotateToGravitySource, bool isChangingSource)
+	public void AttractObject(Gravity_AttractedObject attractedObject)
 	{		
-		// Find the direction of gravity
-		Vector3 gravityVector = GetGravityVector(attractedObject);
+		// Store the transform of the attractedObject so it can be more easily referenced.
+		Transform attractedTransform = attractedObject.transform;
+		
+		// Find the direction of gravity.
+		Vector3 gravityVector = GetGravityVector(attractedTransform);
 		
 		// Add force to the attracted object to simulate gravity toward the gravity source.
-		attractedObject.gameObject.GetComponent<Rigidbody>().AddForce(gravityVector, ForceMode.Acceleration);
+		attractedTransform.GetComponent<Rigidbody>().AddForce(gravityVector, ForceMode.Acceleration);
 		
-		if (rotateToGravitySource) // Rotate the attracted object so that its downward direction faces the gravity source
+		// Rotate the attracted object so that its downward direction faces the gravity source.
+		if (attractedObject.rotateToGravitySource)
 		{			
-			float rotationStep = 0.1f;
+			// Default to an instantaneous rotation, calculate an alternative value if the attractedObject is transitioning between gravity sources.
+			float rotationLerpValue = 1.0f;
 			
-			if (isChangingSource)
+			if (attractedObject.isChangingSource)
 			{
-				// Start by getting the distance from the attracted object to the CENTER of the gravity source (this will be longer than the distnace to the SURFACE, but it gives us a range to check).
-				float distanceToSurface = Vector3.Distance(attractedObject.position, transform.position);
+				// Get the distance from the attracted object to the CENTER of the gravity source...
+				// This value will be longer than the distnace to the SURFACE, but it gives us a ray length that we can use to check for the surface point.
+				float distanceToSurface = Vector3.Distance(attractedTransform.position, surface.position);
 				
-				RaycastHit[] surfaceHits; 
 				// Use a RaycastAll in case somthing is in the way between the attracted object and the gravity source.
-				surfaceHits = Physics.RaycastAll(attractedObject.position, gravityVector, distanceToSurface);
+				RaycastHit[] surfaceHits = Physics.RaycastAll(attractedTransform.position, gravityVector, distanceToSurface);
 				
 				for (int i = 0; i < surfaceHits.Length; i++)
 				{
@@ -124,9 +128,9 @@ public class Gravity_Source : MonoBehaviour
 					if (surfaceHits[i].transform == surface)
 					{
 						// Update the distanceToSurface to be the distance from the attracted object to the hit point of the raycast.
-						distanceToSurface = Vector3.Distance(attractedObject.position, surfaceHits[i].point);
+						distanceToSurface = Vector3.Distance(attractedTransform.position, surfaceHits[i].point);
 						
-						// Test sphere
+						// Create test sphere to visualize the surface point that was hit.
 						if (useTestSpheres)
 						{
 							if (testSphere == null) InitializeTestSphere();
@@ -135,9 +139,11 @@ public class Gravity_Source : MonoBehaviour
 							newSphere.SetActive(true);
 							Destroy(newSphere, 5.0f);
 						}
-						break; // Once we've found the ray that hit the gravity source's collider, stop checking through the loop.
+						break; // Once we've found the ray that hit the gravity source's surface's collider, stop checking through the loop.
 					} 
 				}
+
+				/*				
 				
 				// Convert the distance to a 0-1 mapping for use in the rotation slerp.
 				float distanceBasedBlend = Mathf.InverseLerp(50.0f, 0.0f, distanceToSurface); 
@@ -150,7 +156,7 @@ public class Gravity_Source : MonoBehaviour
 				//  = 0.025f
 				
 				// Calculate how far the object has to rotate.
-				//float rotationDegrees = Vector3.Angle(-attractedObject.up, gravityVector.normalized);
+				//float rotationDegrees = Vector3.Angle(-attractedTransform.up, gravityVector.normalized);
 				
 				//float rotationStep = Mathf.InverseLerp(0.0f, 180.0f, rotationDegrees); // Convert the angles 0-180 to a 0-1 mapping.
 				
@@ -158,36 +164,38 @@ public class Gravity_Source : MonoBehaviour
 				// 0.03f is fast, for things will small angle diferences, 0.0025f is slow for things with large angle differences.
 				distanceBasedBlend = Mathf.Lerp(0.03f, 0.0025f, distanceBasedBlend); // Convert the angles 0-180 to a 0-1 mapping.
 				
+				*/
+					
 				/*
-				rotationStep = Vector3.Distance(attractedObject.position, transform.position);
+				rotationStep = Vector3.Distance(attractedTransform.position, transform.position);
 				rotationStep = Mathf.InverseLerp(0.0f, 50.0f, rotationStep); // Convert the angles 0-180 to a 0-1 mapping.
 				rotationStep = Mathf.Lerp(0.03f, 0.0025f, rotationStep); // Convert the angles 0-180 to a 0-1 mapping.
 				*/
 				
 				// Rotate towards the target.
-				//attractedObject.rotation = Quaternion.Slerp(attractedObject.rotation, targetRotation, );
+				//attractedTransform.rotation = Quaternion.Slerp(attractedTransform.rotation, targetRotation, );
 				
 				//rotationStep = Mathf.Max(timeBasedBlend, distanceBasedBlend);
 				
-				//if (rotationStep == 1.0f) attractedObject.GetComponent<Gravity_AttractedObject>().isChangingSource = false;
+				//if (rotationStep == 1.0f) attractedObject.isChangingSource = false;
+				
+				//else rotationStep = 1.0f;
+					
+				// Make sure the speeds are framerate independant but also clamped to a 0-1 range.
+				//rotationStep = Mathf.Clamp(rotationStep * Time.fixedDeltaTime, 0.0f, 1.0f);
+			
+				
+				
+				float distanceLerp = 0.0f;
+				float timeLerp = attractedObject.timeLerpValue;
+					
+				// Use the greater lerp value: the time it's been since the transition started, or the distance from the planet surface.
+				rotationLerpValue = (distanceLerp >= timeLerp) ? distanceLerp : timeLerp;
 			}
-			//else rotationStep = 1.0f;
-			
-			
-			
-			//rotationStep = 35.0f; // If we aren't transitioning to a new planet keep the rotation step high.
-			
-			// Make sure the speeds are framerate independant but also clamped to a 0-1 range.
-			//rotationStep = Mathf.Clamp(rotationStep * Time.fixedDeltaTime, 0.0f, 1.0f);
-			
-			rotationStep = 2.5f * Time.fixedDeltaTime;
-			
-			//Debug.Log(rotationStep);
-			
+				
 			// Set the target rotation (aim at gravity source)
-			Quaternion targetRotation = Quaternion.FromToRotation(-attractedObject.up, gravityVector.normalized) * attractedObject.rotation;
-			
-			attractedObject.rotation = Quaternion.Slerp(attractedObject.rotation, targetRotation, rotationStep);
+			Quaternion targetRotation = Quaternion.FromToRotation(-attractedTransform.up, gravityVector.normalized) * attractedTransform.rotation;
+			attractedTransform.rotation = Quaternion.Slerp(attractedTransform.rotation, targetRotation, rotationLerpValue);
 		}
 	}
 }

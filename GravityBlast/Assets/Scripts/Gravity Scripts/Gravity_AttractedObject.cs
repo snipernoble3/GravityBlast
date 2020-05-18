@@ -18,18 +18,20 @@ public class Gravity_AttractedObject : MonoBehaviour
 			// If we are already sourcing gravity from this gravity source, then don't do anything else.
 			if (_currentGravitySource == value) return;
 			
-			// These are used to make transitions smoother.
+			// These are used to make transitions from one gravity source to another.
 			isChangingSource = true;
-			timeSinceSourceChange = 0.0f;
+			timeLerpValue = 0.0f; // Reset the timer on the transition.
 			
 			// Assign the new gravity source.
 			_currentGravitySource = value;
 		}
 	}
-	
-	//public float blendToNewSource = 1.0f;
-	//private float blendSpeed = 0.025f;
+
 	public bool rotateToGravitySource = true; // Keep this on for important objects like characters, off for more preformance (for things like bullets).
+	
+	// Smooth Transition between gravity sources.
+	public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
+	private float transitionDuration = 1.5f; // How long does the transition between gravity sources take in seconds.
 	
 	[HideInInspector] public bool isChangingSource = false;
 	private const float sourceChangeDuration = 5.0f;
@@ -58,18 +60,21 @@ public class Gravity_AttractedObject : MonoBehaviour
 		}
 	}
 	
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-		if (timeSinceSourceChange != sourceChangeDuration) timeSinceSourceChange = Mathf.Clamp(timeSinceSourceChange + Time.fixedDeltaTime, 0.0f, sourceChangeDuration);
-		
-		//if (blendToNewSource != 1.0f) blendToNewSource = Mathf.Clamp(blendToNewSource + (blendSpeed * Time.fixedDeltaTime), 0.0f, 1.0f);
-        //if (CurrentGravitySource != null) CurrentGravitySource.AttractObject(transform, blendToNewSource, rotateToGravitySource);
+		// Count how long it has been since the source change.
+		if (timeLerpValue != 1.0f)
+		{
+			// Avoid deviding by 0.
+			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp((timeLerpValue + Time.fixedDeltaTime) / transitionDuration, 0.0f, 1.0f);
+			else timeLerpValue = 1.0f;
+		}
+
+		//if (CurrentGravitySource != null) CurrentGravitySource.AttractObject(transform, transitionLerpValue, rotateToGravitySource);
 		
 		// Convert the timer to a 0-1 value.
 		float timeBasedBlend = Mathf.InverseLerp(0.0f, sourceChangeDuration, timeSinceSourceChange);
 		
-		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
+		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
     }
 }
