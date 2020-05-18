@@ -133,7 +133,7 @@ public class Shooting : MonoBehaviour
 
         } else {
             GameObject b = Instantiate(bullet, endOfGun.transform.position, endOfGun.transform.rotation);
-			b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = player.GetComponent<Player_Movement>().gravitySource;
+			b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
             b.transform.rotation = Quaternion.FromToRotation(endOfGun.transform.rotation.eulerAngles, forwardVector);
             b.GetComponent<Rigidbody>().AddForce(forwardVector * 60, ForceMode.VelocityChange);
 			Destroy(b, 20.0f);

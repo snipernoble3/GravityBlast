@@ -68,9 +68,6 @@ public class Gravity_Source : MonoBehaviour
 			attractedObject.CurrentGravitySource = this;
 			triggeredObject.transform.SetParent(surface, true);
 		}
-		
-		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
-		if (player != null) player.gravitySource = this;
     }
 	
 	private void OnTriggerExit(Collider triggeredObject)
@@ -81,10 +78,6 @@ public class Gravity_Source : MonoBehaviour
 			exitingObject.CurrentGravitySource = DefaultGravitySource;
 			triggeredObject.transform.SetParent(DefaultGravitySource.transform, true);
 		}
-		
-		// DELETE THIS ONCE THE PLAYER MOVEMENT CODE HAS BEEN CLEANED UP:
-		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
-		if (player != null) player.gravitySource = DefaultGravitySource;
     }
 	
 	public Vector3 GetGravityVector(Transform attractedObject)

@@ -82,7 +82,7 @@ public class Player_Movement : MonoBehaviour
 	private bool moveEnabled = true;
 	
 	// Object References
-	public Gravity_Source gravitySource;
+	private Gravity_AttractedObject attractedObject;
 	private Transform firstPersonCamera;
 	private Transform firstPersonObjects;
 	private Rigidbody playerRB;
@@ -130,6 +130,7 @@ public class Player_Movement : MonoBehaviour
 		firstPersonCamera = transform.Find("Camera Position Offset/First Person Camera");
 		firstPersonObjects = firstPersonCamera.Find("First Person Objects");
 		
+		attractedObject = GetComponent<Gravity_AttractedObject>();
 		playerRB = GetComponent<Rigidbody>();
 		playerRB.constraints = RigidbodyConstraints.FreezeRotation;
 		gravity = GetGravity();
@@ -174,49 +175,7 @@ public class Player_Movement : MonoBehaviour
 		//firstPersonObjects.rotation = firstPersonCamera.rotation;
 		
 		firstPersonObjects.rotation = Quaternion.RotateTowards(firstPersonObjects.rotation, firstPersonCamera.rotation, 1.0f);
-		
-		
-		/*
-		// Inputs
-		if (lookEnabled && !paused)
-		{
-			GetInput_Mouse();
-			MouseLook();
-		}
-		
-		if (moveEnabled && !paused)
-		{
-			GetInput_LateralMovement();
-			
-			if (holdJumpToKeepJumping && Input.GetButton("Jump"))
-			{
-				jumpQueue_isQueued = true;
-				jumpQueue_TimeSinceQueued = 0.0f;
-			}
-				
-			if (Input.GetButtonDown("Jump"))
-			{
-				if (isGrounded) Jump();
-				else
-				{
-					jumpQueue_isQueued = true;
-					jumpQueue_TimeSinceQueued = 0.0f;
-				}
-			}
-		}
-		*/
     }
-	/*
-	public void EnableLook(bool lookState)
-	{
-		lookEnabled = lookState;
-	}
-	
-	public void EnableMove(bool moveState)
-	{
-		moveEnabled = moveState;
-	}
-	*/
 	
 	void FixedUpdate()
 	{		
@@ -230,7 +189,11 @@ public class Player_Movement : MonoBehaviour
 		LateralMovement(); // Move the player based on the lateral movement input.
 		
 		// Slow the player down with "friction" if he is grounded and not trying to move.
-		if (isGrounded && jumpQueue_timeSinceGrounded == jumpQueue_bHopGracePeriod) SimulateFriction();
+		if (isGrounded && jumpQueue_timeSinceGrounded == jumpQueue_bHopGracePeriod)
+		{
+			SimulateFriction();
+			StickToSurface();
+		}			
 		
 		TerminalVelocity();
 		
@@ -296,6 +259,13 @@ public class Player_Movement : MonoBehaviour
 		
 		// Apply the calculated force to the player in the requested direction in local space
 		playerRB.AddRelativeForce(movement.vector.input.normalized * velocityToAdd, ForceMode.VelocityChange);	
+	}
+	
+	private void StickToSurface()
+	{
+		// playerRB.AddRelativeForce(Vector3.down * 75.0f, ForceMode.Impulse); // Direction of feet.
+		
+		playerRB.AddForce(gravity.normalized * 75.0f, ForceMode.Impulse); // Direction of gravity.
 	}
 	
 	private void SimulateFriction()
@@ -391,12 +361,15 @@ public class Player_Movement : MonoBehaviour
 	
 	public Vector3 GetGravity()
 	{
-		if (gravitySource == null)
+		if (attractedObject.CurrentGravitySource != null)
+		{
+			return attractedObject.CurrentGravitySource.GetGravityVector(transform);
+		}
+		else
 		{
 			playerRB.useGravity = true;
 			return Physics.gravity;
-		}			
-		else return gravitySource.GetGravityVector(transform);
+		}
 	}
 		
 	public float GetDownwardVelocity()
