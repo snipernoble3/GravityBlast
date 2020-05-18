@@ -6,24 +6,24 @@ using static God;
 [RequireComponent (typeof (Rigidbody))]
 public class Gravity_AttractedObject : MonoBehaviour
 {
-	[SerializeField] private Gravity_Source _currentGravitySource;
+	[SerializeField] private Gravity_Source _CurrentGravitySource;
 	public Gravity_Source CurrentGravitySource
 	{
-		get	{ return _currentGravitySource; }
+		get	{ return _CurrentGravitySource; }
 		set
 		{
 			// If we are sourcing gravity from a gravity source, then don't apply Unity's gravity system.
-			if (value != null) rb.useGravity = false;
+			if (value != null && rb != null) rb.useGravity = false;
 			
 			// If we are already sourcing gravity from this gravity source, then don't do anything else.
-			if (_currentGravitySource == value) return;
+			if (_CurrentGravitySource == value) return;
 			
 			// These are used to make transitions from one gravity source to another.
 			isChangingSource = true;
 			timeLerpValue = 0.0f; // Reset the timer on the transition.
 			
 			// Assign the new gravity source.
-			_currentGravitySource = value;
+			_CurrentGravitySource = value;
 		}
 	}
 

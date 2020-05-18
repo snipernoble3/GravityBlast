@@ -13,7 +13,7 @@ public class Gravity_Source : MonoBehaviour
 	[SerializeField] private Vector3 nonRadialDirection = Vector3.up; // Set this in the inspector, it will be transformed to the object's local space.
 	
 	// Test stuff
-	public static bool useTestSpheres = true; // Set this to false when finished testing!!!
+	public static bool useTestSpheres = false; // Set this to false when finished testing!!!
 	private static GameObject testSphere;
 
     void Awake()
@@ -159,7 +159,6 @@ public class Gravity_Source : MonoBehaviour
 				// If the transition is complete reset the appropriate variables.
 				if (rotationLerpValue == 1.0f)
 				{
-					Debug.Log("Transition Complete!");
 					attractedObject.isChangingSource = false; // We're done transitioning to the new gravity source.
 					attractedObject.initialDistance = 0.0f; // Reset the initial distance value just in case.
 				}
