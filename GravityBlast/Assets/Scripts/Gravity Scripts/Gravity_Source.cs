@@ -58,32 +58,27 @@ public class Gravity_Source : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider triggeredObject)
     {
-        Gravity_AttractedObject attractedObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
-		
-		// If the object that entered the trigger has the Gravity_AttractedObject component...
-		//assign this gravity source to it's CurrentGravitySource.
-		if (attractedObject != null)
-		{
-			attractedObject.InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
-			attractedObject.CurrentGravitySource = this;
-			triggeredObject.transform.SetParent(surface, true);
-		}
+        // If the object that entered the trigger has the Gravity_AttractedObject component add this gravity source to its list of gravitySources.
+		Gravity_AttractedObject attractedObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
+		if (attractedObject != null) attractedObject.AddGravitySource(this);
     }
 	
 	private void OnTriggerExit(Collider triggeredObject)
     {
-        Gravity_AttractedObject exitingObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
-		if (exitingObject != null)
-		{	
-			exitingObject.CurrentGravitySource = DefaultGravitySource;
-			triggeredObject.transform.SetParent(DefaultGravitySource.transform, true);
-		}
+		// If the object that is exiting the trigger has the Gravity_AttractedObject component, remove this gravity source from its list of gravitySources.
+		Gravity_AttractedObject exitingObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
+		if (exitingObject != null) exitingObject.RemoveGravitySource(this);
     }
 	
 	public Vector3 GetGravityVector(Transform attractedObject)
 	{
 		if (isRadial) return (attractedObject.position - transform.position).normalized * gravityStrength;
 		else return transform.TransformDirection(nonRadialDirection * gravityStrength);
+	}
+	
+	public Transform GetSurface()
+	{
+		return surface;
 	}
 	
 	public void AttractObject(Gravity_AttractedObject attractedObject)

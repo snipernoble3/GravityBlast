@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static God; 
 
 [RequireComponent (typeof (Rigidbody))]
 public class Gravity_AttractedObject : MonoBehaviour
 {
+	public List<Gravity_Source> gravitySources = new List<Gravity_Source>();
+	
 	[SerializeField] private Gravity_Source _CurrentGravitySource;
 	public Gravity_Source CurrentGravitySource
 	{
@@ -33,7 +36,6 @@ public class Gravity_AttractedObject : MonoBehaviour
 	
 	// Smooth Transition between gravity sources.
 	[HideInInspector] public bool isChangingSource = false; // True while transitioning, if false the rotation toward the gravity source will always be instantaneous.
-	
 	private bool _InitialInfoAcquired = false; // Used to check if the initial angle and distance have been recorded yet.
 	public bool InitialInfoAcquired
 	{
@@ -86,4 +88,32 @@ public class Gravity_AttractedObject : MonoBehaviour
 		
 		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
     }
+	
+	public void AddGravitySource(Gravity_Source sourceToAdd)
+	{
+		if (!gravitySources.Contains(sourceToAdd)) gravitySources.Add(sourceToAdd);
+		
+		// If this was the first gravity source being added to the list, set the current gravity source to this.
+		if (gravitySources.Count == 1) UpdateCurrentGravitySource(sourceToAdd);
+	}
+	
+	public void RemoveGravitySource(Gravity_Source sourceToRemove)
+	{
+		// Remove the gravity source from the list.
+		if (gravitySources.Contains(sourceToRemove)) gravitySources.RemoveAt(gravitySources.IndexOf(sourceToRemove));
+		// If the list is empty, return to the default gravity source.
+		if (gravitySources.Count == 0) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+		else if (!gravitySources.Contains(CurrentGravitySource))
+		{
+			// If the current gravity source is no longer in the list, switch to the next gravity source in the list.
+			UpdateCurrentGravitySource(gravitySources.Last());
+		}
+	}
+	
+	private void UpdateCurrentGravitySource(Gravity_Source newSource)
+	{
+		CurrentGravitySource = newSource;
+		InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
+		transform.SetParent(CurrentGravitySource.GetSurface(), true);
+	}
 }
