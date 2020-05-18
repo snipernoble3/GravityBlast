@@ -64,8 +64,9 @@ public class Gravity_Source : MonoBehaviour
 		//assign this gravity source to it's CurrentGravitySource.
 		if (attractedObject != null)
 		{
+			attractedObject.initialDistance = 0.0f; // Set the initial distance to 0.0f as a sentinel value in preperation for the transition.
 			attractedObject.CurrentGravitySource = this;
-			triggeredObject.transform.SetParent(surface);
+			triggeredObject.transform.SetParent(surface, true);
 		}
 		
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
@@ -76,16 +77,12 @@ public class Gravity_Source : MonoBehaviour
     {
         Gravity_AttractedObject exitingObject = triggeredObject.transform.GetComponent<Gravity_AttractedObject>();
 		if (exitingObject != null)
-		{
-			//exitingObject.timeSinceSourceChange = 0.0f; // Reset the timer on the attractedObject.
-			//exitingObject.blendToNewSource = 0.0f;
-			//exitingObject.gravitySource = DefaultGravitySource;
-				
+		{	
 			exitingObject.CurrentGravitySource = DefaultGravitySource;
-			triggeredObject.transform.SetParent(DefaultGravitySource.transform);
+			triggeredObject.transform.SetParent(DefaultGravitySource.transform, true);
 		}
 		
-		// Delete this later:
+		// DELETE THIS ONCE THE PLAYER MOVEMENT CODE HAS BEEN CLEANED UP:
 		Player_Movement player = triggeredObject.transform.GetComponent<Player_Movement>();
 		if (player != null) player.gravitySource = DefaultGravitySource;
     }
@@ -142,59 +139,35 @@ public class Gravity_Source : MonoBehaviour
 						break; // Once we've found the ray that hit the gravity source's surface's collider, stop checking through the loop.
 					} 
 				}
-
-				/*				
 				
-				// Convert the distance to a 0-1 mapping for use in the rotation slerp.
-				float distanceBasedBlend = Mathf.InverseLerp(50.0f, 0.0f, distanceToSurface); 
+				// Use the sentinel value of 0.0f to determine if the initial distance has been set yet, if not set it to the current distance.
+				if (attractedObject.initialDistance == 0.0f) attractedObject.initialDistance = distanceToSurface;
 				
-				// What is the slowest the player is allowed to rotate (useful for when the object is SUPER far away from the gravity source).
-				float maxRotationStep = 0.025f;
+				float minDistance = 0.05f; // Add a tiny amount of padding.
+				float distanceLerp = Mathf.InverseLerp(attractedObject.initialDistance, minDistance, distanceToSurface);
+				distanceLerp = Mathf.Clamp(distanceLerp, 0.0f, 1.0f); // Clamp in case the attracted object goes below the surface, or is pulled beyond the initial distance.
 				
-				distanceBasedBlend = Mathf.Clamp(distanceBasedBlend, 0, maxRotationStep);
-				
-				//  = 0.025f
-				
-				// Calculate how far the object has to rotate.
-				//float rotationDegrees = Vector3.Angle(-attractedTransform.up, gravityVector.normalized);
-				
-				//float rotationStep = Mathf.InverseLerp(0.0f, 180.0f, rotationDegrees); // Convert the angles 0-180 to a 0-1 mapping.
-				
-				// 0.0f doesn't rotate at all, 1.0f rotates instantly.
-				// 0.03f is fast, for things will small angle diferences, 0.0025f is slow for things with large angle differences.
-				distanceBasedBlend = Mathf.Lerp(0.03f, 0.0025f, distanceBasedBlend); // Convert the angles 0-180 to a 0-1 mapping.
-				
-				*/
-					
-				/*
-				rotationStep = Vector3.Distance(attractedTransform.position, transform.position);
-				rotationStep = Mathf.InverseLerp(0.0f, 50.0f, rotationStep); // Convert the angles 0-180 to a 0-1 mapping.
-				rotationStep = Mathf.Lerp(0.03f, 0.0025f, rotationStep); // Convert the angles 0-180 to a 0-1 mapping.
-				*/
-				
-				// Rotate towards the target.
-				//attractedTransform.rotation = Quaternion.Slerp(attractedTransform.rotation, targetRotation, );
-				
-				//rotationStep = Mathf.Max(timeBasedBlend, distanceBasedBlend);
-				
-				//if (rotationStep == 1.0f) attractedObject.isChangingSource = false;
-				
-				//else rotationStep = 1.0f;
-					
-				// Make sure the speeds are framerate independant but also clamped to a 0-1 range.
-				//rotationStep = Mathf.Clamp(rotationStep * Time.fixedDeltaTime, 0.0f, 1.0f);
-			
-				
-				
-				float distanceLerp = 0.0f;
 				float timeLerp = attractedObject.timeLerpValue;
+				
+				// Delete these after testing the two lerp values.
+				// distanceLerp = 0.0f;
+				//timeLerp = 0.0f;
 					
 				// Use the greater lerp value: the time it's been since the transition started, or the distance from the planet surface.
 				rotationLerpValue = (distanceLerp >= timeLerp) ? distanceLerp : timeLerp;
+				
+				// If the transition is complete reset the appropriate variables.
+				if (rotationLerpValue == 1.0f)
+				{
+					Debug.Log("Transition Complete!");
+					attractedObject.isChangingSource = false; // We're done transitioning to the new gravity source.
+					attractedObject.initialDistance = 0.0f; // Reset the initial distance value just in case.
+				}
 			}
 				
-			// Set the target rotation (aim at gravity source)
+			// Set the target rotation (aim at gravity source).
 			Quaternion targetRotation = Quaternion.FromToRotation(-attractedTransform.up, gravityVector.normalized) * attractedTransform.rotation;
+			// Rotate the attracted object based on the lerp value.
 			attractedTransform.rotation = Quaternion.Slerp(attractedTransform.rotation, targetRotation, rotationLerpValue);
 		}
 	}

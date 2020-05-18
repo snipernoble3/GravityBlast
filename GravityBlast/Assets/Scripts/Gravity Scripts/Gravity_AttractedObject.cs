@@ -31,11 +31,10 @@ public class Gravity_AttractedObject : MonoBehaviour
 	
 	// Smooth Transition between gravity sources.
 	public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
-	private float transitionDuration = 1.5f; // How long does the transition between gravity sources take in seconds.
+	private const float transitionDuration = 1.0f; // How long does the transition between gravity sources take in seconds.
 	
 	[HideInInspector] public bool isChangingSource = false;
-	private const float sourceChangeDuration = 5.0f;
-	private float timeSinceSourceChange;
+	[HideInInspector] public float initialDistance = 0.0f; // The initial distance from the gravity source's surface uppon entering its gravity trigger.
 	
 	private Rigidbody rb; // A reference to the rigidbody on this game object.
 
@@ -44,11 +43,8 @@ public class Gravity_AttractedObject : MonoBehaviour
     void Awake()
     {
 		rb = GetComponent<Rigidbody>();
-		
 		if (CurrentGravitySource == null && Gravity_Source.DefaultGravitySource != null) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
 		else rb.useGravity = true;
-		
-		timeSinceSourceChange = sourceChangeDuration; // Set the timer to complete.
     }
 	
 	void Start()
@@ -65,15 +61,10 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Count how long it has been since the source change.
 		if (timeLerpValue != 1.0f)
 		{
-			// Avoid deviding by 0.
+			// Avoid dividing by 0.
 			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp((timeLerpValue + Time.fixedDeltaTime) / transitionDuration, 0.0f, 1.0f);
 			else timeLerpValue = 1.0f;
 		}
-
-		//if (CurrentGravitySource != null) CurrentGravitySource.AttractObject(transform, transitionLerpValue, rotateToGravitySource);
-		
-		// Convert the timer to a 0-1 value.
-		float timeBasedBlend = Mathf.InverseLerp(0.0f, sourceChangeDuration, timeSinceSourceChange);
 		
 		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
     }
