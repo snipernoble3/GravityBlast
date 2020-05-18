@@ -98,7 +98,7 @@ Material:
     - _Surface: 0
     - _SurfaceInner: 45
     - _SurfaceOuter: 55
-    - _Tiling: 10
+    - _Tiling: 7.5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
