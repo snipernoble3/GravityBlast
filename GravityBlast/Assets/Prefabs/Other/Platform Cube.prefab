@@ -58,8 +58,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!1 &1778105091683392764
 GameObject:
@@ -119,8 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!1 &2273525671487617085
 GameObject:
@@ -293,8 +297,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!1 &3119691386892550017
 GameObject:
@@ -391,8 +397,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!1 &5034088235337429351
 GameObject:
@@ -452,8 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0
 --- !u!1 &8242559069344198767
 GameObject:
@@ -513,6 +523,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultGravitySource: 0
+  surface: {fileID: 4858371412345146044}
   gravityStrength: -9.81
   isRadial: 0
+  nonRadialDirection: {x: 0, y: 1, z: 0}
   useTestSpheres: 0

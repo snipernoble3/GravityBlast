@@ -37,12 +37,13 @@ public class Player_Input : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Cancel")) {
-            if (paused) {
-                menu.Resume();
-            } else {
-                menu.Pause();
-            }
+        if (Input.GetButtonDown("Cancel"))
+		{
+            if (menu != null)
+			{
+				if (paused) menu.Resume();
+				else menu.Pause();
+			}
         }
 
         if (paused) return;

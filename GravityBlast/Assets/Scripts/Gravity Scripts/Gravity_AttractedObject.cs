@@ -6,52 +6,66 @@ using static God;
 [RequireComponent (typeof (Rigidbody))]
 public class Gravity_AttractedObject : MonoBehaviour
 {
-	[SerializeField] private Gravity_Source gravitySource;
-	//public float blendToNewSource = 1.0f;
-	//private float blendSpeed = 0.025f;
+	[SerializeField] private Gravity_Source _CurrentGravitySource;
+	public Gravity_Source CurrentGravitySource
+	{
+		get	{ return _CurrentGravitySource; }
+		set
+		{
+			// If we are sourcing gravity from a gravity source, then don't apply Unity's gravity system.
+			if (value != null && rb != null) rb.useGravity = false;
+			
+			// If we are already sourcing gravity from this gravity source, then don't do anything else.
+			if (_CurrentGravitySource == value) return;
+			
+			// These are used to make transitions from one gravity source to another.
+			isChangingSource = true;
+			timeLerpValue = 0.0f; // Reset the timer on the transition.
+			
+			// Assign the new gravity source.
+			_CurrentGravitySource = value;
+		}
+	}
+
 	public bool rotateToGravitySource = true; // Keep this on for important objects like characters, off for more preformance (for things like bullets).
 	
-	public bool isChangingSource = false;
-	private const float sourceChangeDuration = 5.0f;
-	private float timeSinceSourceChange;
+	// Smooth Transition between gravity sources.
+	public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
+	private const float transitionDuration = 1.0f; // How long does the transition between gravity sources take in seconds.
+	
+	[HideInInspector] public bool isChangingSource = false;
+	[HideInInspector] public float initialDistance = 0.0f; // The initial distance from the gravity source's surface uppon entering its gravity trigger.
+	
+	private Rigidbody rb; // A reference to the rigidbody on this game object.
 
     [HideInInspector] public bool blastOff;
 
     void Awake()
     {
-		if (gravitySource == null && Gravity_Source.DefaultGravitySource != null) gravitySource = Gravity_Source.DefaultGravitySource;
-		
-		// If we are sourcing gravity from a plant object, then don't apply Unity's default gravity.
-		if (gravitySource != null) GetComponent<Rigidbody>().useGravity = false;
-		else GetComponent<Rigidbody>().useGravity = true;
-		timeSinceSourceChange = sourceChangeDuration; // Set the timer to complete.
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-		if (timeSinceSourceChange != sourceChangeDuration) timeSinceSourceChange = Mathf.Clamp(timeSinceSourceChange + Time.fixedDeltaTime, 0.0f, sourceChangeDuration);
-		
-		//if (blendToNewSource != 1.0f) blendToNewSource = Mathf.Clamp(blendToNewSource + (blendSpeed * Time.fixedDeltaTime), 0.0f, 1.0f);
-        //if (gravitySource != null) gravitySource.AttractObject(transform, blendToNewSource, rotateToGravitySource);
-		
-		// Convert the timer to a 0-1 value.
-		float timeBasedBlend = Mathf.InverseLerp(0.0f, sourceChangeDuration, timeSinceSourceChange);
-		
-		if (gravitySource != null && !paused && !blastOff) gravitySource.AttractObject(transform, timeBasedBlend, rotateToGravitySource, isChangingSource);
+		rb = GetComponent<Rigidbody>();
+		if (CurrentGravitySource == null && Gravity_Source.DefaultGravitySource != null) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+		else rb.useGravity = true;
     }
 	
-	public void SetGravitySource(Gravity_Source gravitySource)
+	void Start()
 	{
-		isChangingSource = true;
-		timeSinceSourceChange = 0.0f;
+		// If the game begins with no gravity sources, then disabled this componenet to avoid null reference exceptions.
+		if (Gravity_Source.DefaultGravitySource == null)
+		{
+			this.enabled = false;
+		}
+	}
+	
+    void FixedUpdate()
+    {
+		// Count how long it has been since the source change.
+		if (timeLerpValue != 1.0f)
+		{
+			// Avoid dividing by 0.
+			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp((timeLerpValue + Time.fixedDeltaTime) / transitionDuration, 0.0f, 1.0f);
+			else timeLerpValue = 1.0f;
+		}
 		
-		this.gravitySource = gravitySource;
-		GetComponent<Rigidbody>().useGravity = false;
-	}
-
-    public Gravity_Source GetGravitySource()
-	{
-		return gravitySource;
-	}
+		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
+    }
 }

@@ -48,7 +48,7 @@ public class Beetle2 : MonoBehaviour {
         if (!paused) {
             //raycast to gravity source
             RaycastHit hitGravitySource;
-            Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().GetGravitySource()) ? GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position : Vector3.zero;
+            Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().CurrentGravitySource) ? GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position : Vector3.zero;
             if (Physics.Raycast(transform.position, transform.position - gravitySource, out hitGravitySource)) {
                 gravitySource = hitGravitySource.point;
             }
@@ -72,13 +72,13 @@ public class Beetle2 : MonoBehaviour {
             switch (currState) {
                 case State.Attacking:
                     if (!charging && !cooldown) {
-                        targetLookDirection = Quaternion.LookRotation(hitLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+                        targetLookDirection = Quaternion.LookRotation(hitLocation - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * Time.deltaTime);
                     }
 
                     break;
                 case State.Moving:
-                    targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().GetGravitySource().transform.position);
+                    targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, lookSpeed * randomSpeedChange * Time.deltaTime);
 
                     RaycastHit hitForward;

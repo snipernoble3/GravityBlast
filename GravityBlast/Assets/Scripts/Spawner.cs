@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour {
         
 		if (transform.parent.gameObject.GetComponent<Gravity_Source>() != null)
 		{
-			b.GetComponent<Gravity_AttractedObject>().SetGravitySource(transform.parent.gameObject.GetComponent<Gravity_Source>());
+			b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = transform.parent.gameObject.GetComponent<Gravity_Source>();
 		}
     }
 }
