@@ -64,7 +64,7 @@ public class Gravity_Source : MonoBehaviour
 		//assign this gravity source to it's CurrentGravitySource.
 		if (attractedObject != null)
 		{
-			attractedObject.initialDistance = 0.0f; // Set the initial distance to 0.0f as a sentinel value in preperation for the transition.
+			attractedObject.InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
 			attractedObject.CurrentGravitySource = this;
 			triggeredObject.transform.SetParent(surface, true);
 		}
@@ -120,6 +120,18 @@ public class Gravity_Source : MonoBehaviour
 						// Update the distanceToSurface to be the distance from the attracted object to the hit point of the raycast.
 						distanceToSurface = Vector3.Distance(attractedTransform.position, surfaceHits[i].point);
 						
+						if (!attractedObject.InitialInfoAcquired)
+						{
+							// Update the angleMultiplier to be a 0-1 representation of the difference from the attracted object to the gravity vector.
+							float angleDifference = Vector3.Angle(-attractedTransform.up, gravityVector.normalized);
+							attractedObject.angleMultiplier = Mathf.InverseLerp(0.0f, 180.0f, angleDifference); // Convert the 0-180 angle to a 0-1 mapping and assign it to the attractedObject's angle multiplier.
+							//if (attractedTransform.gameObject.tag == "Player") Debug.Log("The angle difference was " + angleDifference + " degrees, and the inverse lerp value is " + attractedObject.angleMultiplier);
+							
+							// Lock in the initialDistance so we can compare distance on subsequent calls of this method;
+							attractedObject.initialDistance = distanceToSurface;
+							attractedObject.InitialInfoAcquired = true;
+						}
+						
 						// Create test sphere to visualize the surface point that was hit.
 						if (useTestSpheres)
 						{
@@ -132,9 +144,6 @@ public class Gravity_Source : MonoBehaviour
 						break; // Once we've found the ray that hit the gravity source's surface's collider, stop checking through the loop.
 					} 
 				}
-				
-				// Use the sentinel value of 0.0f to determine if the initial distance has been set yet, if not set it to the current distance.
-				if (attractedObject.initialDistance == 0.0f) attractedObject.initialDistance = distanceToSurface;
 				
 				float minDistance = 0.05f; // Add a tiny amount of padding.
 				float distanceLerp = Mathf.InverseLerp(attractedObject.initialDistance, minDistance, distanceToSurface);
@@ -153,7 +162,7 @@ public class Gravity_Source : MonoBehaviour
 				if (rotationLerpValue == 1.0f)
 				{
 					attractedObject.isChangingSource = false; // We're done transitioning to the new gravity source.
-					attractedObject.initialDistance = 0.0f; // Reset the initial distance value just in case.
+					attractedObject.InitialInfoAcquired = false; // Reset the initial info.
 				}
 			}
 				

@@ -28,17 +28,32 @@ public class Gravity_AttractedObject : MonoBehaviour
 	}
 
 	public bool rotateToGravitySource = true; // Keep this on for important objects like characters, off for more preformance (for things like bullets).
+	[HideInInspector] public bool blastOff;
+	private Rigidbody rb; // A reference to the rigidbody on this game object.
 	
 	// Smooth Transition between gravity sources.
-	public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
-	private const float transitionDuration = 2.50f; // How long does the transition between gravity sources take in seconds.
+	[HideInInspector] public bool isChangingSource = false; // True while transitioning, if false the rotation toward the gravity source will always be instantaneous.
 	
-	[HideInInspector] public bool isChangingSource = false;
+	private bool _InitialInfoAcquired = false; // Used to check if the initial angle and distance have been recorded yet.
+	public bool InitialInfoAcquired
+	{
+		get	{ return _InitialInfoAcquired; }
+		set
+		{
+			// If the bool is being set to false, reset the appropriate variables.
+			if (value == false)
+			{
+				angleMultiplier = 1.0f; // Set the angleMultiplier to 1.0f so that the 100% of the transition time is used by default.
+				initialDistance = 0.0f; // Reset the initial distance.
+			}
+			
+			_InitialInfoAcquired = value;
+		}
+	}
+	
+	[HideInInspector] public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
+	[HideInInspector] public float angleMultiplier = 1.0f; // A value from 0-1 to represent an initial angle difference of 0-180 degrees between this object and the new gravity source uppon entering its gravity trigger.
 	[HideInInspector] public float initialDistance = 0.0f; // The initial distance from the gravity source's surface uppon entering its gravity trigger.
-	
-	private Rigidbody rb; // A reference to the rigidbody on this game object.
-
-    [HideInInspector] public bool blastOff;
 
     void Awake()
     {
@@ -61,7 +76,10 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Count how long it has been since the source change.
 		if (timeLerpValue != 1.0f)
 		{
-			// Avoid dividing by 0.
+			float transitionDuration = 2.50f; // How long does the transition between gravity sources take in seconds.
+			transitionDuration *= angleMultiplier; // Use the full amount of time for an initial angle difference of 180 degrees and less time for smaller angles, down to an instant transition at 0 degrees.
+			// Use the if statement to avoid dividing by 0.
+			// Add an incremental amount to the timeLerpValue based on the number of seconds specified by the transistionDuration.
 			if (transitionDuration > 0.0f) timeLerpValue = Mathf.Clamp(timeLerpValue + Time.fixedDeltaTime / transitionDuration, 0.0f, 1.0f);
 			else timeLerpValue = 1.0f;
 		}
