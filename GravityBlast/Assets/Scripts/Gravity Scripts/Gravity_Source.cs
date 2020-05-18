@@ -149,9 +149,9 @@ public class Gravity_Source : MonoBehaviour
 				
 				float timeLerp = attractedObject.timeLerpValue;
 				
-				// Delete these after testing the two lerp values.
-				// distanceLerp = 0.0f;
-				//timeLerp = 0.0f;
+				// DELETE THESE AFTER IMPLEMENTATION IS FINISHED.
+				distanceLerp = 0.0f; // Override the distance lerp so that it is not being used.
+				// timeLerp = 0.0f; // Override the time lerp so that it is not being used.
 					
 				// Use the greater lerp value: the time it's been since the transition started, or the distance from the planet surface.
 				rotationLerpValue = (distanceLerp >= timeLerp) ? distanceLerp : timeLerp;
