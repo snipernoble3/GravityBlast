@@ -56,6 +56,8 @@ public class Gravity_AttractedObject : MonoBehaviour
 	[HideInInspector] public float timeLerpValue {get; private set;} = 1.0f;  // At 0.0f the transition is begining, at 1.0f the transition is complete.
 	[HideInInspector] public float angleMultiplier = 1.0f; // A value from 0-1 to represent an initial angle difference of 0-180 degrees between this object and the new gravity source uppon entering its gravity trigger.
 	[HideInInspector] public float initialDistance = 0.0f; // The initial distance from the gravity source's surface uppon entering its gravity trigger.
+	
+	private Coroutine returnToDefaultCo;
 
     void Awake()
     {
@@ -95,6 +97,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		
 		// If this was the first gravity source being added to the list, set the current gravity source to this.
 		if (gravitySources.Count == 1) UpdateCurrentGravitySource(sourceToAdd);
+		if (returnToDefaultCo != null) StopCoroutine(returnToDefaultCo);
 	}
 	
 	public void RemoveGravitySource(Gravity_Source sourceToRemove)
@@ -102,7 +105,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Remove the gravity source from the list.
 		if (gravitySources.Contains(sourceToRemove)) gravitySources.RemoveAt(gravitySources.IndexOf(sourceToRemove));
 		// If the list is empty, return to the default gravity source.
-		if (gravitySources.Count == 0) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+		if (gravitySources.Count == 0) returnToDefaultCo = StartCoroutine(DelayedReturnToDefaultGravitySource());
 		else if (!gravitySources.Contains(CurrentGravitySource))
 		{
 			// If the current gravity source is no longer in the list, switch to the next gravity source in the list.
@@ -115,5 +118,14 @@ public class Gravity_AttractedObject : MonoBehaviour
 		CurrentGravitySource = newSource;
 		InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
 		transform.SetParent(CurrentGravitySource.GetSurface(), true);
+	}
+	
+	public IEnumerator DelayedReturnToDefaultGravitySource()
+	{
+		// Wait for the specified number of seconds after leaving gravity sources before transtioning back to the default gravity source.
+		yield return new WaitForSeconds(0.75f);
+		
+		// If the gravitySource list is still empty after the delay, return to the default gravity source.
+		if (gravitySources.Count == 0) UpdateCurrentGravitySource(Gravity_Source.DefaultGravitySource);
 	}
 }
