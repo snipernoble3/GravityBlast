@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7477018840668122102}
   - component: {fileID: 3217575586005760384}
   m_Layer: 12
-  m_Name: XP
+  m_Name: DiviniumCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,10 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f35a851288503946bf1fdd5e929e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitySource: {fileID: 0}
+  gravitySources: []
+  _CurrentGravitySource: {fileID: 0}
   rotateToGravitySource: 0
-  isChangingSource: 0
   blastOff: 0
+  isChangingSource: 0
+  angleMultiplier: 1
+  initialDistance: 0
 --- !u!1 &3923890880387764548
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +205,7 @@ GameObject:
   - component: {fileID: 9052033550878893690}
   - component: {fileID: 1877632113035212879}
   m_Layer: 0
-  m_Name: XP Cube
+  m_Name: Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +297,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7211823385282878343}
-  - component: {fileID: 6479958529988002043}
   - component: {fileID: 4500312185170649383}
   m_Layer: 17
   m_Name: Environment Collider
@@ -317,19 +319,6 @@ Transform:
   m_Father: {fileID: 5637351680575529413}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6479958529988002043
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8701413571861782289}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &4500312185170649383
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -341,7 +330,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2807620553948223347
 PrefabInstance:
@@ -413,17 +402,17 @@ PrefabInstance:
     - target: {fileID: 5490269445690315837, guid: f24b54dbe67326d46ace73c57e3de647,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5490269445690315837, guid: f24b54dbe67326d46ace73c57e3de647,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5490269445690315837, guid: f24b54dbe67326d46ace73c57e3de647,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f24b54dbe67326d46ace73c57e3de647, type: 3}
