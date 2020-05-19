@@ -23,10 +23,14 @@ public class Gravity_AttractedObject : MonoBehaviour
 			
 			// These are used to make transitions from one gravity source to another.
 			isChangingSource = true;
+			InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
 			timeLerpValue = 0.0f; // Reset the timer on the transition.
 			
 			// Assign the new gravity source.
 			_CurrentGravitySource = value;
+			
+			// Set this object to be a child of the new gravity source's surface.
+			transform.SetParent(CurrentGravitySource.GetSurface(), true);
 		}
 	}
 
@@ -88,6 +92,9 @@ public class Gravity_AttractedObject : MonoBehaviour
 			else timeLerpValue = 1.0f;
 		}
 		
+		// If there is more than one gravity source in the list, determine which one is closest and switch to it.
+		if (gravitySources.Count > 1) CheckClosest();
+		
 		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
     }
 	
@@ -96,7 +103,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		if (!gravitySources.Contains(sourceToAdd)) gravitySources.Add(sourceToAdd);
 		
 		// If this was the first gravity source being added to the list, set the current gravity source to this.
-		if (gravitySources.Count == 1) UpdateCurrentGravitySource(sourceToAdd);
+		if (gravitySources.Count == 1) CurrentGravitySource = sourceToAdd;
 		if (returnToDefaultCo != null) StopCoroutine(returnToDefaultCo);
 	}
 	
@@ -105,27 +112,52 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// Remove the gravity source from the list.
 		if (gravitySources.Contains(sourceToRemove)) gravitySources.RemoveAt(gravitySources.IndexOf(sourceToRemove));
 		// If the list is empty, return to the default gravity source.
-		if (gravitySources.Count == 0) returnToDefaultCo = StartCoroutine(DelayedReturnToDefaultGravitySource());
+		if (gravitySources.Count == 0) returnToDefaultCo = StartCoroutine(DelayedSwitchToDefaultGravitySource());
 		else if (!gravitySources.Contains(CurrentGravitySource))
 		{
 			// If the current gravity source is no longer in the list, switch to the next gravity source in the list.
-			UpdateCurrentGravitySource(gravitySources.Last());
+			CurrentGravitySource = gravitySources.Last();
 		}
 	}
 	
-	private void UpdateCurrentGravitySource(Gravity_Source newSource)
+	private void CheckClosest()
 	{
-		CurrentGravitySource = newSource;
-		InitialInfoAcquired = false; // Reset the initial info in preperation for the transition.
-		transform.SetParent(CurrentGravitySource.GetSurface(), true);
+		Gravity_Source closestGravitySource = null;
+		float closestDistance = float.MaxValue; // Start of at the max possible value;
+		
+		foreach (Gravity_Source gravitySource in gravitySources)
+		{
+			float distanceToCenter = Vector3.Distance(transform.position, gravitySource.GetSurface().position);
+			
+			Vector3 rayStartPoint = transform.position + transform.up * 0.25f; // Give a slight relative vertical offset so that the ray doesn't start below the surface while standing on it.
+			RaycastHit[] surfaceHits = Physics.RaycastAll(rayStartPoint, gravitySource.GetGravityVector(transform), distanceToCenter);
+			
+			for (int i = 0; i < surfaceHits.Length; i++)
+			{
+				if (surfaceHits[i].transform == gravitySource.GetSurface())
+				{
+					float distance = (transform.position - surfaceHits[i].point).sqrMagnitude; // Use this to avoid a square root calculation.
+					//float distance = Vector3.Distance(transform.position, surfaceHits[i].point);
+					if (distance < closestDistance)
+					{
+						closestDistance = distance;
+						closestGravitySource = gravitySource;
+					}
+					break; // Once we've found the ray that hit the gravity source's surface's collider, stop checking through the loop.
+				} 
+			}
+		}
+		
+		if (closestGravitySource == null || CurrentGravitySource == closestGravitySource) return;
+		CurrentGravitySource = closestGravitySource;
 	}
 	
-	public IEnumerator DelayedReturnToDefaultGravitySource()
+	public IEnumerator DelayedSwitchToDefaultGravitySource()
 	{
 		// Wait for the specified number of seconds after leaving gravity sources before transtioning back to the default gravity source.
 		yield return new WaitForSeconds(0.75f);
 		
 		// If the gravitySource list is still empty after the delay, return to the default gravity source.
-		if (gravitySources.Count == 0) UpdateCurrentGravitySource(Gravity_Source.DefaultGravitySource);
+		if (gravitySources.Count == 0) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
 	}
 }
