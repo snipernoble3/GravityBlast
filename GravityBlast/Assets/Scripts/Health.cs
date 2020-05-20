@@ -26,7 +26,7 @@ public class Health : MonoBehaviour {
     private bool god;
     [SerializeField] private GameObject godIcon;
 	
-	public ObjectPool pool;
+	public ObjectPool objectPool;
 
     void Awake() {
         FullHeal();
@@ -122,7 +122,8 @@ public class Health : MonoBehaviour {
         //Debug.Log("Crit Death");
         Instantiate(critDeath, transform.position, transform.rotation);
         for (int i = 0; i < xpDrop * 2; i++) {
-            Instantiate(XP, transform.position + UnityEngine.Random.insideUnitSphere, transform.rotation);
+            GameObject xp = Instantiate(XP, transform.position + UnityEngine.Random.insideUnitSphere, transform.rotation, transform.parent);
+            xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
         }
         currHealth = 0;
         alive = false;
@@ -139,7 +140,7 @@ public class Health : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
             default:
-				if (pool != null) pool.DespawnObject(this.gameObject);
+				if (objectPool != null) objectPool.DespawnObject(this.gameObject);
 				else this.gameObject.SetActive(false);
                 break;
         }

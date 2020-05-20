@@ -8,17 +8,18 @@ public class EnemyInfo : MonoBehaviour {
     private State currState;
     private bool stunned;
 
+    [HideInInspector] public God god;
+    [HideInInspector] public ObjectPool objectPool;
     private Rigidbody rb;
     private GameObject player;
-    private God god;
+    
 
     //health
     [SerializeField] int health;
-    private GameObject[] hitBy;
 
     //xp
-    [SerializeField] static GameObject xpPrefab;
-    [SerializeField] int XP;
+    //[SerializeField] static GameObject xpPrefab;
+    [SerializeField] int xpValue;
 
     //movement
     private float moveSpeed;
@@ -29,29 +30,18 @@ public class EnemyInfo : MonoBehaviour {
 
     private void Start () {
         rb = GetComponent<Rigidbody>();
+        player = god.player;
         currState = State.Idle;
-        hitBy = new GameObject[health];
     }
 
-
-    public void TakeDamage (GameObject fromObject, int amount = 1) {
-
-        foreach (GameObject g in hitBy) {
-            if (g == fromObject) {
-                return;
-            }
-        }
-
+    public void TakeDamage (int amount = 1) {
+        
         health -= amount;
+
         if (health <= 0) {
             OnDeath();
         }
-
-        for (int i = 0; i < hitBy.Length; i++) {
-            if (hitBy[i] == null) {
-                hitBy[i] = fromObject;
-            }
-        }
+        
     }
 
     public IEnumerator Stun (float seconds) {
@@ -66,12 +56,15 @@ public class EnemyInfo : MonoBehaviour {
 
     private void OnDeath () {
         //spawn xp
-        for (int i = 0; i < XP; i++) {
-            //instantiate xp
+        for (int i = 0; i < xpValue; i++) {
+            GameObject xp = god.xpPool.SpawnObject();
+            xp.transform.position = transform.position;
+            xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
+            xp.SetActive(true);
         }
 
-        //destroy self
-
+        //despawn self
+        objectPool.DespawnObject(gameObject);
 
     }
 

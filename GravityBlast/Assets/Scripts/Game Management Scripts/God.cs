@@ -71,6 +71,7 @@ public class God : MonoBehaviour {
     [SerializeField] private GameObject[] enemyPrefabs;
     //[SerializeField] private int[] enemyMaxQuantities;
     //private EnemyInfo[] enemies;
+    [SerializeField] private GameObject xpPrefab;
 
     public ObjectPool[] enemyPools;
     public ObjectPool xpPool;
@@ -105,8 +106,13 @@ public class God : MonoBehaviour {
             enemyPools[i] = new ObjectPool();
             enemyPools[i].objectPrefab = enemyPrefabs[i];
             enemyPools[i].god = this;
-            enemyPools[i].CreateObjectPool();
+            enemyPools[i].CreateObjectPool(100);
         }
+
+        xpPool = new ObjectPool();
+        xpPool.objectPrefab = xpPrefab;
+        xpPool.god = this;
+        xpPool.CreateObjectPool(100 * enemyPools.Length);
 
         GenerateSolarSystem();
 

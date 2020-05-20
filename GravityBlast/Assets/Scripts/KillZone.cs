@@ -8,13 +8,11 @@ public class KillZone : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other)
 	{
-		PlanetManager thisPlanetsManager = transform.parent.GetComponent<PlanetManager>();
-		if (thisPlanetsManager != null)
-		{
-			Vector3 garbage = Vector3.zero; // RandomSpawnPoint requires an out Vector3, but we don't need this so it's garbage.
-			other.transform.position = thisPlanetsManager.RandomSpawnPoint(out garbage);
-			//Debug.Log("Teleported! " + other.gameObject.name);
-		}
+		
+        RaycastHit hit = g.GetCurrPlanet().RandomSpawnPoint();
+        
+        other.transform.position = hit.point + (hit.normal * 1f);
+	    //Debug.Log("Teleported! " + other.gameObject.name);
 		//else Debug.Log("Something entered the killzone but nothing happened.");
 		
 		//////////////////////////

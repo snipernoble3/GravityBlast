@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static God;
+//using static God;
 
 public class Beetle2 : MonoBehaviour {
 
@@ -45,7 +45,7 @@ public class Beetle2 : MonoBehaviour {
 
     private void Update () {
 
-        if (!paused) {
+        if (!God.paused) {
             //raycast to gravity source
             RaycastHit hitGravitySource;
             Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().CurrentGravitySource) ? GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position : Vector3.zero;
