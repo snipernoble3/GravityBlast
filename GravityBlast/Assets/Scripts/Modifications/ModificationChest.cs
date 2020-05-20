@@ -14,13 +14,12 @@ public class ModificationChest : MonoBehaviour {
 	
 	[SerializeField] private Animator chest_Animator;
 	[SerializeField] private Material[] crateMats;
-	private Renderer[] crateRends;
+	[SerializeField] private Renderer[] crateRends;
 	
 	private bool playerWithinRange = false;
 
     private void Awake ()
 	{
-		crateRends = GetComponentsInChildren<Renderer>();
 		SetColor(0);
 		
 		closeOpenChest(false);
