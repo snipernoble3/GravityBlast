@@ -6,8 +6,19 @@ public class KillZone : MonoBehaviour {
 
     [HideInInspector] public God g;
 
-    private void OnTriggerEnter (Collider other) {
-        if (other.gameObject.GetComponent<Health>()) {
+    private void OnTriggerEnter (Collider other)
+	{
+		PlanetManager thisPlanetsManager = transform.parent.GetComponent<PlanetManager>();
+		if (thisPlanetsManager != null)
+		{
+			Vector3 garbage = Vector3.zero; // RandomSpawnPoint requires an out Vector3, but we don't need this so it's garbage.
+			other.transform.position = thisPlanetsManager.RandomSpawnPoint(out garbage);
+			//Debug.Log("Teleported! " + other.gameObject.name);
+		}
+		//else Debug.Log("Something entered the killzone but nothing happened.");
+		
+		//////////////////////////
+		/*if (other.gameObject.GetComponent<Health>()) {
             other.gameObject.GetComponent<Health>().Kill();
             for (int i = 0; i < g.enemyPools.Length; i++) {
                 if (other.gameObject == g.enemyPools[i].objectPrefab) {
@@ -16,6 +27,6 @@ public class KillZone : MonoBehaviour {
             }
         } else {
             other.gameObject.SetActive(false);
-        }
+        }*/
     }
 }
