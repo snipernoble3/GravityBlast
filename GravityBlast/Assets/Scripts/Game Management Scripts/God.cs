@@ -196,8 +196,7 @@ public class God : MonoBehaviour {
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
-        //player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponent<Gravity_Source>();
-		player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+        player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponent<Gravity_Source>();
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
     }
 	
@@ -252,8 +251,7 @@ public class God : MonoBehaviour {
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         currPlanet.GetComponent<PlanetManager>().god = this;
-        //player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponent<Gravity_Source>();
-		player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+        player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponent<Gravity_Source>();
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
 
         //overlay on
