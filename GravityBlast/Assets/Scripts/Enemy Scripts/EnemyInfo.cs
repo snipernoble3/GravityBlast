@@ -10,7 +10,6 @@ public class EnemyInfo : MonoBehaviour {
 
     private Rigidbody rb;
     private GameObject player;
-    private God god;
 
     //health
     [SerializeField] int health;
@@ -43,6 +42,7 @@ public class EnemyInfo : MonoBehaviour {
         }
 
         health -= amount;
+
         if (health <= 0) {
             OnDeath();
         }
@@ -67,10 +67,10 @@ public class EnemyInfo : MonoBehaviour {
     private void OnDeath () {
         //spawn xp
         for (int i = 0; i < XP; i++) {
-            //instantiate xp
+            
         }
 
-        //destroy self
+        //despawn self
 
 
     }
