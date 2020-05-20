@@ -48,7 +48,7 @@ public class Player_BlastMechanics : MonoBehaviour
 	private const float minRocketJumpCameraAngle = 45.0f;
 	
 	private float impactVelocity = 0.0f;
-	public float minGroundPoundVelocity = 8.0f;
+	public float minGroundPoundVelocity = 5.0f;
 	public float groundPound_Multiplier = 25.0f;
     
 	// Vacuum Variables

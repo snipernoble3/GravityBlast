@@ -90,11 +90,11 @@ public class PlanetManager : MonoBehaviour {
 		float cameraDistance = 120.0f;
 		
 		Transform player = GameObject.FindWithTag("Player").transform;
-		cameraPivot.LookAt(player, player.forward); // Aim the pivot at the player.
 		//camera.localPosition = new Vector3(0.0f, 0.0f, (planet.highestSurfacePoint * 2.0f) + (cameraDistance * miniMap.localScale.x)); // Offset the camera to the appropriate distance to render the planet.
 		//camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance); // Offset the camera to the appropriate distance to render the planet.
 		camera.localPosition = new Vector3(0.0f, 0.0f, cameraDistance * (camera.lossyScale.z / miniMap.lossyScale.z)); // Offset the camera to the appropriate distance to render the planet.
-		camera.LookAt(cameraPivot, transform.forward); // Aim the camera at the planet.
+		cameraPivot.LookAt(player, player.forward); // Aim the pivot at the player.
+		camera.LookAt(cameraPivot, player.forward); // Aim the camera at the planet.
 
         yield return null;
 
