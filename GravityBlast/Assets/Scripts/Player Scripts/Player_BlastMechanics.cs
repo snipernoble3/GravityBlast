@@ -290,16 +290,8 @@ public class Player_BlastMechanics : MonoBehaviour
 			
 			// Particle System
 			if (gpParticles_GameObject != null) Destroy(gpParticles_GameObject); // to prevent multiple particle systems from spawning when clipping the corner of rounded objects.
-	
 			float gpParticle_Duration = camShake_Duration * 3.0f;			
-			
-			gpParticles_GameObject = Instantiate(groundPoundParticles, playerRB.position, Quaternion.Euler(transform.up)) as GameObject;
-			
-			//gpParticles_GameObject = Instantiate(groundPoundParticles, playerRB.position, Quaternion.Euler(playerMovement.gravitySource.GetGravityVector(transform).normalized)) as GameObject;
-			//gpParticles_GameObject = Instantiate(groundPoundParticles, playerRB.position, Quaternion.LookRotation(playerRB.transform.forward, (transform.position - playerMovement.gravitySource.transform.position).normalized)) as GameObject;
-			//gpParticles_GameObject = Instantiate(groundPoundParticles, playerRB.position, Quaternion.Euler((transform.position - playerMovement.gravitySource.transform.position).normalized)) as GameObject;
-			
-			
+			gpParticles_GameObject = Instantiate(groundPoundParticles, playerRB.position, transform.rotation) as GameObject;			
 			
 			ParticleSystem.MainModule gpParticles_MainModule = gpParticles_GameObject.GetComponent<ParticleSystem>().main;
 			
