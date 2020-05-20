@@ -9,24 +9,33 @@ public class ModificationChest : MonoBehaviour {
 
     [HideInInspector] public GameObject player;
     [SerializeField] float playerActivationRange = 15f;
-    bool opened;
+    private bool expended = false;
     [SerializeField] GameObject display;
-    [SerializeField] GameObject unopenedChest;
-    [SerializeField] GameObject openedChest;
+	
+	[SerializeField] private Animator chest_Animator;
+	[SerializeField] private Material[] crateMats;
+	private Renderer[] crateRends;
+	
+	private bool playerWithinRange = false;
 
-    private void Awake () {
-        unopenedChest.SetActive(true);
-        openedChest.SetActive(false);
-        //select mods
+    private void Awake ()
+	{
+		crateRends = GetComponentsInChildren<Renderer>();
+		SetColor(0);
+		
+		closeOpenChest(false);
+	   
+	    //select mods
         GenerateMods();
     }
 
-    private void Update () {
-
-        //when player is within range, auto open/display modifications
-        if (player != null && !opened && Mathf.Abs(Vector3.Magnitude(player.transform.position - transform.position)) <= playerActivationRange) {
-            display.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E)) {
+    private void Update ()
+	{
+		//when player is within range, auto open/display modifications
+		if (!expended && playerWithinRange)
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit)) {
                     if (hit.transform.gameObject.GetComponent<ModInfo>()) {
@@ -34,10 +43,7 @@ public class ModificationChest : MonoBehaviour {
                     }
                 }
             }
-        } else {
-            display.SetActive(false);
-        }
-        
+		}
     }
 
     void GenerateMods () {
@@ -67,9 +73,39 @@ public class ModificationChest : MonoBehaviour {
         //pass the mod info to the player stats script
         player.GetComponent<Player_Stats>().UpdateModification(n, i);
         //player.GetComponent<WeaponManager>().UpgradeWeapon();
-        opened = true;
-        unopenedChest.SetActive(false);
-        openedChest.SetActive(true);
+        expended = true;
+        SetColor(1);
+		closeOpenChest(false);
     }
-
+	
+	private void SetColor(int i)
+	{
+		foreach (Renderer rend in crateRends)
+		{
+			rend.material = crateMats[i];
+		}
+	}
+	
+	private void OnTriggerEnter(Collider triggeredObject)
+    {
+		if (!expended && triggeredObject.gameObject.tag == "Player")
+		{
+			closeOpenChest(true);
+		}
+    }
+	
+	private void OnTriggerExit(Collider triggeredObject)
+    {
+		if (!expended && triggeredObject.gameObject.tag == "Player")
+		{
+			closeOpenChest(false);
+		}
+    }
+	
+	private void closeOpenChest(bool closeOpenState)
+	{
+		playerWithinRange = closeOpenState;
+		chest_Animator.SetBool("isOpen", closeOpenState);
+        display.SetActive(closeOpenState);
+	}
 }
