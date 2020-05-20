@@ -53,8 +53,6 @@ public class Beetle2 : MonoBehaviour {
                 gravitySource = hitGravitySource.point;
             }
 
-
-
             if (Vector3.Magnitude(gravitySource - transform.position) > 3f) {
                 rb.constraints = RigidbodyConstraints.None;
             } else {

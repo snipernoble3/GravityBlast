@@ -63,13 +63,14 @@ public class Gravity_AttractedObject : MonoBehaviour
 	
 	private Coroutine returnToDefaultCo;
 
-    void Awake()
+    void Start()
     {
 		rb = GetComponent<Rigidbody>();
 		if (CurrentGravitySource == null && Gravity_Source.DefaultGravitySource != null) CurrentGravitySource = Gravity_Source.DefaultGravitySource;
 		else rb.useGravity = true;
     }
 	
+	/*
 	void Start()
 	{
 		// If the game begins with no gravity sources, then disabled this componenet to avoid null reference exceptions.
@@ -78,6 +79,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 			this.enabled = false;
 		}
 	}
+	*/
 	
     void FixedUpdate()
     {
