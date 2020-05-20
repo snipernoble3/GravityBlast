@@ -13,18 +13,25 @@ public class ObjectPool
 	private List<GameObject> activeObjects;
 	public GameObject objectPrefab;
 	
-    public void CreateObjectPool()
+    public void CreateObjectPool(int startingSize = 0)
     {
         objectQueue = new Queue<GameObject>();
 		activeObjects = new List<GameObject>();
 
-        IncreasePool(objectPoolSize);
+        if (startingSize == 0) {
+            IncreasePool(objectPoolSize);
+        } else {
+            IncreasePool(startingSize);
+        }
+        
     }
 
     public void IncreasePool (int amount) {
         for (int i = 0; i < amount; i++) {
             GameObject objectInstance = GameObject.Instantiate(objectPrefab); // Create an object that can be used in the pool.
-            if (objectInstance.GetComponent<Health>()) objectInstance.GetComponent<Health>().pool = this; // Enemy Hookup - Pass in a reference so that the enemy can talk back to this script.
+            if (objectInstance.GetComponent<Health>()) objectInstance.GetComponent<Health>().objectPool = this; // Enemy Hookup - Pass in a reference so that the enemy can talk back to this script.
+            if (objectInstance.GetComponent<EnemyInfo>()) objectInstance.GetComponent<EnemyInfo>().objectPool = this;
+            if (objectInstance.GetComponent<CollectablePickup>()) objectInstance.GetComponent<CollectablePickup>().objectPool = this;
             objectInstance.SetActive(false); // Deactiveate the object after creation so it sits idle in the pool.
             objectInstance.transform.parent = god.gameObject.transform;
             objectQueue.Enqueue(objectInstance); // Add this newly created object into the pool for later use.
