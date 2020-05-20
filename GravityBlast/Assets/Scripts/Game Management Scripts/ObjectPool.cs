@@ -31,31 +31,36 @@ public class ObjectPool
         }
     }
 
-    public void SpawnObject(Transform parent = null)
+    public GameObject SpawnObject()
 	{
 		if (objectQueue.Count != 0)
 		{
 			GameObject spawnedObject = objectQueue.Dequeue(); // Spawn an enemy by pulling it out of the queue.
 			
-			spawnedObject.SetActive(true);
+			//spawnedObject.SetActive(true);
 			
 			// If the enemy is not already in the list of active enemies, then add it.
 			if(!activeObjects.Contains(spawnedObject)) activeObjects.Add(spawnedObject);
 
+            return spawnedObject;
+            /*
             // Set Spawn Postion
-            Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
-			spawnedObject.transform.position = god.GetCurrPlanet().RandomSpawnPoint(out dir, 1.0f);
+            //Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
+            RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
+
+            spawnedObject.transform.position = hit.point + (hit.normal * 1f);
             
 			
 			Gravity_AttractedObject attractedObject = spawnedObject.GetComponent<Gravity_AttractedObject>();
 			
 			if (attractedObject != null) attractedObject.CurrentGravitySource = god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>();
             spawnedObject.transform.parent = parent;
+            */
 		}
 		else
 		{
             IncreasePool(20); //generate more enemies
-            SpawnObject(parent); //attempt to spawn the enemy again
+            return SpawnObject(); //attempt to spawn the enemy again
         }
 	}
 		
