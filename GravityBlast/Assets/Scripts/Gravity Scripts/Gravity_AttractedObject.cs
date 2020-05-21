@@ -122,6 +122,12 @@ public class Gravity_AttractedObject : MonoBehaviour
 		}
 	}
 	
+	public void ResetGravitySources()
+	{
+		gravitySources.Clear();
+		CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+	}
+	
 	private void CheckClosest()
 	{
 		Gravity_Source closestGravitySource = null;
