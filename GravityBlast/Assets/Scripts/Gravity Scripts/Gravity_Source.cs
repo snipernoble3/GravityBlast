@@ -19,7 +19,7 @@ public class Gravity_Source : MonoBehaviour
     void Awake()
     {
 		// If marked as such in the inspector, use this gravity source as the default gravity source so that it can be referenced from anywhere.
-		if (isDefaultGravitySource) DefaultGravitySource = this;
+		if (isDefaultGravitySource || DefaultGravitySource == null) DefaultGravitySource = this;
     }
 	
 	void Start()

@@ -107,6 +107,7 @@ public class PlanetManager : MonoBehaviour {
         foreach (ObjectPool e in god.enemyPools) {
             e.DespawnAllObjects();
         }
+        god.xpPool.DespawnAllObjects();
         Destroy(this.gameObject);
     }
 
@@ -236,7 +237,7 @@ public class PlanetManager : MonoBehaviour {
                 RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
                 enemy.transform.position = hit.point + (hit.normal * 1f);
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
-                if (attractedObject != null) attractedObject.CurrentGravitySource = god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>();
+                if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource; //god.GetCurrPlanet().gameObject.GetComponentInChildren<Gravity_Source>();
                 //enemy.transform.parent = enemyContainer.transform;
                 enemy.SetActive(true);
             }
