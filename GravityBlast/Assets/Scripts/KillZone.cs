@@ -8,11 +8,23 @@ public class KillZone : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other)
 	{
-		
         RaycastHit hit = g.GetCurrPlanet().RandomSpawnPoint();
-        
         other.transform.position = hit.point + (hit.normal * 1f);
-	    //Debug.Log("Teleported! " + other.gameObject.name);
+		
+		Rigidbody otherRB = other.GetComponent<Rigidbody>();
+		if (otherRB != null)
+		{
+			otherRB.velocity = Vector3.zero;
+			otherRB.angularVelocity = Vector3.zero;
+		}
+		
+		Gravity_AttractedObject attractedObject = other.GetComponent<Gravity_AttractedObject>();
+		if (attractedObject != null)
+		{
+			attractedObject.ResetGravitySources();
+		}
+	    
+		//Debug.Log("Teleported! " + other.gameObject.name);
 		//else Debug.Log("Something entered the killzone but nothing happened.");
 		
 		//////////////////////////
