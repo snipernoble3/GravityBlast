@@ -49,6 +49,11 @@ public class ObjectPool
 			// If the enemy is not already in the list of active enemies, then add it.
 			if(!activeObjects.Contains(spawnedObject)) activeObjects.Add(spawnedObject);
 
+            Gravity_AttractedObject attractedObject = spawnedObject.GetComponent<Gravity_AttractedObject>();
+            if (attractedObject != null) {
+                attractedObject.ResetGravitySources();
+            }
+
             return spawnedObject;
             /*
             // Set Spawn Postion
