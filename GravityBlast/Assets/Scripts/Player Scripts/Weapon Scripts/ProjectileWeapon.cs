@@ -20,14 +20,17 @@ public abstract class ProjectileWeapon : MonoBehaviour {
     public GameObject magazine;
     public TextMeshProUGUI ammoUI;
 
-    public abstract void FireInput ();
 
-    public abstract void ReloadInput ();
+    // Abstract methods should only be the things ALL weapons will need to be hooked up properly
 
-    public abstract void EndReload ();
+    public abstract void FireInput (); //When the input manager recieves a fire input, this is called to check if the weapon can be fired
 
-    public abstract void UpdateUI ();
+    public abstract void ReloadInput (); //When the input manager recieves a fire input, this is called to check if the weapon can be fired
 
-    public abstract void UpdateAnimations ();
+    public abstract void EndReload (); //This is called during the reload animation to signal when to add bullets back into the gun
+
+    public abstract void UpdateUI (); //This updates the ammo counter
+
+    public abstract void UpdateAnimations (); //This can be broken into more specific methods if needed, but for now all the animation settings are set here
 
 }

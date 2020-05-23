@@ -16,7 +16,7 @@ public class Deliverance2 : ProjectileWeapon {
 
     // Counters //
     float timeToFire = 0f;
-    float shotCount = 0;
+    float shotCount = 0; //how many bullets are being counted as part of the current spray / affecting bullet spread
     float spreadReductionTimer = 0f;
     bool reloading;
 
@@ -35,7 +35,7 @@ public class Deliverance2 : ProjectileWeapon {
             timeToFire -= Time.deltaTime;
         }
 
-        UpdateAnimations();
+        UpdateAnimations(); // Will move this to be called only when Player_Stats has a change that warrants this being updated
 
     }
 
@@ -45,10 +45,10 @@ public class Deliverance2 : ProjectileWeapon {
             spreadReductionTimer -= Time.deltaTime;
         }
 
-        if (reloading || ((currAmmo == 0 || !Input.GetMouseButton(0)) && spreadReductionTimer <= 0)) {
+        if (reloading || ((currAmmo == 0 || !Input.GetMouseButton(0)) && spreadReductionTimer <= 0)) { // Check to reduce the spread if reloading or not firing
             shotCount = Mathf.Clamp(shotCount - 0.75f, 0, maxAmmo);
-            int r = reloading ? 1 : 0;
-            spreadReductionTimer = (0.01f * shotCount / 2) - r;
+            int r = reloading ? 1 : 0; 
+            spreadReductionTimer = (0.01f * shotCount / 2) - r; // This will speed up the spread reset if reloading or out of ammo
             UpdateSpread();
         }
 
@@ -71,20 +71,22 @@ public class Deliverance2 : ProjectileWeapon {
 
     public void Fire () {
 
+        // These lines calculate the random shot direction as affected by the spread
         Vector3 deviation3D = Random.insideUnitCircle * maxDeviation;
         Quaternion rot = Quaternion.LookRotation(Vector3.forward * deviationDistance + deviation3D);
         Vector3 forwardVector = Camera.main.transform.rotation * rot * Vector3.forward;
 
+        // Create and fire the bullet - Will eventually switch to object pooling
         GameObject b = Instantiate(bullet, firingPosition.transform.position, firingPosition.transform.rotation);
         b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
         b.transform.rotation = Quaternion.FromToRotation(firingPosition.transform.rotation.eulerAngles, forwardVector);
-        b.transform.Rotate(new Vector3(0, 5, 0), Space.Self); //add +5 degrees vertical here?
+        b.transform.Rotate(new Vector3(0, 5, 0), Space.Self); // Add +5 degrees vertical here - This helps offset the feel of immediate drop off from projectile vs raycast
         b.transform.localScale = new Vector3(b.transform.localScale.x * (1f + playerStats.mProjectileScale), b.transform.localScale.x * (1f + playerStats.mProjectileScale), b.transform.localScale.x * (1f + playerStats.mProjectileScale));
         b.GetComponent<Rigidbody>().AddForce(forwardVector * (60 * (1 + playerStats.mProjectileForce)), ForceMode.VelocityChange);
         Destroy(b, 5f * (1f + playerStats.mProjectileDuration));
 
         shotCount++;
-        if (shotCount > 18) shotCount = 18;
+        if (shotCount > 18) shotCount = 18; //stops shotCount from continually stacking beyond the maximum to affect the spread (17)
 
         UpdateSpread();
         UseAmmo(1);
@@ -109,14 +111,15 @@ public class Deliverance2 : ProjectileWeapon {
 
     public void UpdateSpread () {
 
+        //The first 3 shots will be very precise, while the 4th to 10th shot will be increasingly inaccurate. Shots beyond the 10th will slowly extend to the spray cap (hit at 17 shots)
         if (shotCount == 0) {
             maxDeviation = 0.001f;
-        } else if (shotCount < 3) {
+        } else if (shotCount <= 3) {
             maxDeviation = (-.00738f * shotCount * shotCount * shotCount) + (.0999f * shotCount * shotCount) - (.1799f * shotCount) + .0873f;
-        } else if (shotCount < 10) {
+        } else if (shotCount <= 10) {
             maxDeviation = (.0016f * shotCount * shotCount * shotCount) - (.0299f * shotCount * shotCount) + (.2467f * shotCount) - .3092f;
         } else {
-            maxDeviation = Mathf.Clamp(1f + (.15f * (shotCount - 10)), 1f, 2f);
+            maxDeviation = Mathf.Clamp(1f + (.15f * (shotCount - 10)), 1f, 2f); //changing the last number will change how large the spread can end
         }
 
         return;
