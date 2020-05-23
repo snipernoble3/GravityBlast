@@ -11,7 +11,7 @@ public class WeaponManager : MonoBehaviour {
 	[SerializeField] public Animator animator; // A reference to Gabriel's animation system.
 	[SerializeField] private TextMeshProUGUI ammoUI;
 
-    Player_Stats ps;
+    Player_Stats playerStats;
 
     //[SerializeField] private int startingGun;
     public int currentWeapon = 0;
@@ -21,7 +21,7 @@ public class WeaponManager : MonoBehaviour {
 
     private void Awake() {
 
-        ps = gameObject.GetComponent<Player_Stats>();
+        playerStats = gameObject.GetComponent<Player_Stats>();
 
         weapons = new GameObject[weaponPrefabs.Length];
 		
@@ -35,9 +35,9 @@ public class WeaponManager : MonoBehaviour {
 			weapons[i].transform.localScale = Vector3.one;
 			
 			// Set up references. - eventually change to send message to weapon object
-			weapons[i].GetComponent<Deliverance>().player = gameObject;
-			weapons[i].GetComponent<Deliverance>().arms = animator;
-			weapons[i].GetComponent<Deliverance>().ammoUI = ammoUI;
+			weapons[i].GetComponent<ProjectileWeapon>().player = gameObject;
+			weapons[i].GetComponent<ProjectileWeapon>().arms = animator;
+			weapons[i].GetComponent<ProjectileWeapon>().ammoUI = ammoUI;
 			
 			weapons[i].SetActive(false); // Hide the weapon.
         }
@@ -50,14 +50,14 @@ public class WeaponManager : MonoBehaviour {
     //reload passthrough
     public void Reload()
 	{
-        weapons[currentWeapon].GetComponent<IProjectileWeapon>().Reload();
+        weapons[currentWeapon].GetComponent<ProjectileWeapon>().EndReload();
 		realMag.SetActive(true);
 		Destroy(fakeMag);
     }
 	
 	public void RemoveMagazine()
 	{
-		realMag = weapons[currentWeapon].GetComponent<Deliverance>().magazine;
+		realMag = weapons[currentWeapon].GetComponent<ProjectileWeapon>().magazine;
 		fakeMag = Instantiate(realMag, realMag.transform.position, realMag.transform.rotation);
 		fakeMag.transform.SetParent(weaponBones[0]);
 		
@@ -67,8 +67,8 @@ public class WeaponManager : MonoBehaviour {
 	//test multiple weapons
     void Update() {
         
-        animator.SetFloat("fireSpeed", 1.0f + ps.mFireRate);
-        animator.SetFloat("reloadSpeed", 1.0f + ps.mReload);
+        //animator.SetFloat("fireSpeed", 1.0f + playerStats.mFireRate);
+        //animator.SetFloat("reloadSpeed", 1.0f + playerStats.mReload);
 
 		/*
         if (Input.GetKeyDown(KeyCode.Alpha0) && !paused) SwitchWeapon(0);

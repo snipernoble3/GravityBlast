@@ -101,7 +101,7 @@ public class Player_Input : MonoBehaviour
 
 			if (Input.GetButton("Fire1"))
 			{
-				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().FireInput();
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<ProjectileWeapon>().FireInput();
 			}
 			else
 			{
@@ -110,7 +110,7 @@ public class Player_Input : MonoBehaviour
 			
 			if (Input.GetButton("Reload"))
 			{
-				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput();
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<ProjectileWeapon>().ReloadInput();
 			}
 		}
 

@@ -22,10 +22,13 @@ public class EndLevelTransition : MonoBehaviour
 	private bool jumpInitiated = false;
 	
 	public MusicManager musicManger;
+
+    private Vector3 offset;
 	
 	void Start()
 	{
 		playerStats = player.GetComponent<Player_Stats>();
+        offset = player.transform.position - transform.position;
 	}
 	
 	// Update is called once per frame
@@ -99,7 +102,9 @@ public class EndLevelTransition : MonoBehaviour
         hud.enabled = true;
         stageCompletedMessage.SetActive(false);
         thirdPersonPlayer.SetActive(false);
+        thirdPersonPlayer.transform.position = player.transform.position - offset;
         thirdPersonPlayer.transform.SetParent(player.transform);
+
 
         playerListner.enabled = true;
 
