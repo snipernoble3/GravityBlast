@@ -56,7 +56,7 @@ public class EnemyInfo : MonoBehaviour {
     private void OnDeath () {
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
-            GameObject xp = GameManager.gm.xpPool.SpawnObject();
+            GameObject xp = PrefabManager.xpPool.SpawnObject();
             xp.transform.position = transform.position;
             xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
             xp.SetActive(true);

@@ -5,33 +5,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour {
-
-    public struct PlanetInfo {
-        //planet model
-        public GameObject prefab;
-        //type?
-        //difficulty/number of stage
-        public int stageNumber;
-        public int xpToAdvance;
-        //size category
-        public float size;
-        public string sizeCategory;
-        public float lowestSurfacePoint;
-        public float highestSurfacePoint;
-
-        public GameObject[] staticEnvPrefabs;
-        public GameObject[] clusterPrefabs;
-        public GameObject[] plantPrefabs;
-        public GameObject[] looseEnvPrefabs;
-        public GameObject[] enemyPrefabs;
-        //moon
-        public bool hasMoon;
-        public GameObject moonPrefab;
-        //boss
-        public bool hasBoss;
-    }
-
-    public static GameManager gm;
+    
+    public static GameManager gm { get; private set; }
+    public static GameObject gmObj { get; private set; }
 
     //stat screen / level transition
     [SerializeField] GameObject statScreen;
@@ -52,24 +28,7 @@ public class GameManager : MonoBehaviour {
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
-    private GameObject currPlanet;
-    //planet prefabs
-    [SerializeField] private GameObject[] planetPrefabs;
-    [SerializeField] private GameObject moonPrefab;
-    //environment prefabs
-    [SerializeField] private GameObject[] staticEnvPrefabs;
-    [SerializeField] private GameObject[] looseEnvPrefabs;
-    //plant prefabs
-    [SerializeField] private GameObject[] clusterPrefabs;
-    [SerializeField] private GameObject[] plantPrefabs;
-    //enemy info
-    [SerializeField] private GameObject[] enemyPrefabs;
-    //[SerializeField] private int[] enemyMaxQuantities;
-    //private EnemyInfo[] enemies;
-    [SerializeField] private GameObject xpPrefab;
-
-    public ObjectPool[] enemyPools;
-    public ObjectPool xpPool;
+    private PlanetManager currPlanet;
 
 	private MusicManager musicManger;
 
@@ -87,7 +46,7 @@ public class GameManager : MonoBehaviour {
 
     private void Awake () {
 
-        if (gm = null) gm = this;
+        if (gm == null) gm = this;
         else Destroy(this);
 
         paused = false;
@@ -97,34 +56,28 @@ public class GameManager : MonoBehaviour {
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
 
-        enemyPools = new ObjectPool[enemyPrefabs.Length];
-        for (int i = 0; i < enemyPrefabs.Length; i++) {
-            enemyPools[i] = new ObjectPool(enemyPrefabs[i], 100);
-        }
-
-        xpPool = new ObjectPool(xpPrefab, 100 * enemyPools.Length);
-
-        GenerateSolarSystem();
-
-        FirstPlanet();
+        StartCoroutine(StartGeneration());
 
     }
 
-    /*
-    void GenerateEnemyInfo () {
-        enemies = new EnemyInfo[enemyPrefabs.Length];
-        for (int i = 0; i < enemyPrefabs.Length; i++) {
-            enemies[i] = new EnemyInfo();
-            enemies[i].prefab = enemyPrefabs[i];
-            if (i < enemyMaxQuantities.Length) {
-                enemies[i].maxQuantity = enemyMaxQuantities[i];
-            } else {
-                enemies[i].maxQuantity = 50;
-            }
-        }
+    private IEnumerator StartGeneration () {
 
+        yield return new WaitUntil(() => PrefabManager.manager != null);
 
-    }*/
+        PrefabManager.manager.StartCoroutine(PrefabManager.manager.GenerateObjectPools());
+
+        yield return new WaitUntil(() => PrefabManager.poolsLoaded); // && difficulty selected
+
+        GenerateSolarSystem();
+
+        yield return null;
+
+        FirstPlanet();
+
+        //yield return new WaitUntil(() => planetReady);
+        //remove loading screen
+
+    }
 
     private void GenerateSolarSystem () {
         //generate x planets (info)
@@ -143,24 +96,25 @@ public class GameManager : MonoBehaviour {
 		newSkybox.SetColor("_Tint", Color.HSVToRGB(h, s, v));
         RenderSettings.skybox = newSkybox;
         //DynamicGI.UpdateEnvironment(); // This refreshed the global lighting to match to color of the Skybox... Revisit this later.
+        
     }
 
     private PlanetInfo GeneratePlanetInfo (int planetNumber) {
-        PlanetInfo planet = new PlanetInfo();
-        planet.prefab = planetPrefabs[Random.Range(0, planetPrefabs.Length)];
-        planet.stageNumber = planetNumber;
-        planet.xpToAdvance = XPtoProceed(planet.stageNumber);
-        planet.size = Random.Range(minPlanetScale, maxPlanetScale);
-        planet.sizeCategory = SizeClassOf(planet.size);
-        CalculateSurfaceDistances(planet.prefab, out planet.lowestSurfacePoint, out planet.highestSurfacePoint);
-		planet.staticEnvPrefabs = staticEnvPrefabs;
-        planet.looseEnvPrefabs = looseEnvPrefabs;
-        planet.clusterPrefabs = clusterPrefabs;
-        planet.plantPrefabs = plantPrefabs;
-        planet.enemyPrefabs = enemyPrefabs;
-        planet.hasMoon = true;
-        planet.moonPrefab = moonPrefab;
-        planet.hasBoss = false;
+
+        int planetPrefab = Random.Range(0, PrefabManager.manager.planetPrefabs.Length);
+        int stageNumber = planetNumber;
+        int xpToAdvance = XPtoProceed(stageNumber);
+        float size = Random.Range(minPlanetScale, maxPlanetScale);
+        string sizeCategory = SizeClassOf(size);
+        float lowestSurfacePoint;
+        float highestSurfacePoint;
+        CalculateSurfaceDistances(PrefabManager.manager.planetPrefabs[planetPrefab], out lowestSurfacePoint, out highestSurfacePoint);
+        int moonMax = (int)(size + 0.5f) + (stageNumber / 5) + (difficulty - 1);
+        int moons = (moonMax > 0) ? Random.Range(0, moonMax) : 0;
+        PlanetInfo planet = new PlanetInfo(planetPrefab, stageNumber, xpToAdvance, size, sizeCategory, lowestSurfacePoint, highestSurfacePoint, moons);
+
+        //Debug.Log("Planet " + planetNumber + " Info Generated");
+
         return planet;
     }
 	
@@ -187,9 +141,10 @@ public class GameManager : MonoBehaviour {
         //create planet
         PlanetInfo planetToCreate = currSolarSystem[planetInSolarSystem];
         //player.transform.position = player.transform.position + (player.transform.up * 100);
-        currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
-        currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
-        StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
+        GameObject newPlanet = Instantiate(PrefabManager.manager.planetPrefabs[planetToCreate.planetPrefab], Vector3.zero, Quaternion.identity);
+        currPlanet = newPlanet.GetComponent<PlanetManager>();
+        currPlanet.SetInfo(planetToCreate);
+        StartCoroutine(currPlanet.LoadPlanet());
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
     }
@@ -197,7 +152,7 @@ public class GameManager : MonoBehaviour {
 	public void CheckRemainingEnemies()	{
 		int enemiesRemaining = 0;
 		int minEnemiesForActionMusic = 0;
-        foreach (ObjectPool pool in enemyPools) enemiesRemaining += pool.GetNumOfActiveEnemies();
+        foreach (ObjectPool pool in PrefabManager.enemyPools) enemiesRemaining += pool.GetNumOfActiveEnemies();
 		if (enemiesRemaining <= minEnemiesForActionMusic) //musicManger.CrossFade(0.75f);
 		{
 			musicManger.StartCoroutine(musicManger.PlayTransition(musicManger.outro, false, false));
@@ -207,7 +162,15 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void NextPlanetReady () {
+
+        RaycastHit hit = currPlanet.RandomSpawnPoint();
+        player.transform.position = hit.point + (hit.normal * 75f);
+        player.transform.rotation = Quaternion.LookRotation(hit.normal);
+        player.transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
         nextPlanetReady = true;
+        
     }
 
     public void PlayerReady () {
@@ -241,7 +204,8 @@ public class GameManager : MonoBehaviour {
         //create new planet
         PlanetInfo planetToCreate = currSolarSystem[planetInSolarSystem];
         
-        currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
+        GameObject newPlanet = Instantiate(PrefabManager.manager.planetPrefabs[planetToCreate.planetPrefab], Vector3.zero, Quaternion.identity);
+        currPlanet = newPlanet.GetComponent<PlanetManager>();
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
@@ -328,7 +292,7 @@ public class GameManager : MonoBehaviour {
     
     public void PlayerDeath () {
         //PauseGameElements(false);
-        PauseGame(true);
+        //PauseGame(true);
 
 		// Disable Player controls.
 		Player_Input.SetLookState(false);
@@ -343,8 +307,9 @@ public class GameManager : MonoBehaviour {
 	
 	public IEnumerator ReturnToMenu(float delay) {
 		yield return new WaitForSeconds(delay);
-        PauseGame(false);
-		SceneManager.LoadScene("Menu");
+        //PauseGame(false);
+        menu.ReturnToMenu();
+		//SceneManager.LoadScene("Menu");
 	}
 
     public PlanetManager GetCurrPlanet () {

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartLevel : MonoBehaviour
-{
+public class RestartLevel {
     Scene scene;
 	int numOfScenes;
 	int levelToLoad;

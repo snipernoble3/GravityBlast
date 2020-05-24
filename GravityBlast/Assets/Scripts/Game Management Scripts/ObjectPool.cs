@@ -58,19 +58,6 @@ public class ObjectPool {
             }
 
             return spawnedObject;
-            /*
-            // Set Spawn Postion
-            //Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
-            RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
-
-            spawnedObject.transform.position = hit.point + (hit.normal * 1f);
-            
-			
-			Gravity_AttractedObject attractedObject = spawnedObject.GetComponent<Gravity_AttractedObject>();
-			
-			if (attractedObject != null) attractedObject.CurrentGravitySource = god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>();
-            spawnedObject.transform.parent = parent;
-            */
 		}
 		else
 		{
