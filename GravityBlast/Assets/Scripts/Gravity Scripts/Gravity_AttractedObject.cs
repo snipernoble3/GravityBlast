@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static God; 
 
 [RequireComponent (typeof (Rigidbody))]
 public class Gravity_AttractedObject : MonoBehaviour
@@ -97,7 +96,7 @@ public class Gravity_AttractedObject : MonoBehaviour
 		// If there is more than one gravity source in the list, determine which one is closest and switch to it.
 		if (gravitySources.Count > 1) CheckClosest();
 		
-		if (CurrentGravitySource != null && !paused && !blastOff) CurrentGravitySource.AttractObject(this);
+		if (CurrentGravitySource != null && !GameManager.paused && !blastOff) CurrentGravitySource.AttractObject(this);
     }
 	
 	public void AddGravitySource(Gravity_Source sourceToAdd)

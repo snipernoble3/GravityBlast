@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour {
 
-    [HideInInspector] public God g;
-
     private void OnTriggerEnter (Collider other)
 	{
-        RaycastHit hit = g.GetCurrPlanet().RandomSpawnPoint();
+        RaycastHit hit = GameManager.gm.GetCurrPlanet().RandomSpawnPoint();
         other.transform.position = hit.point + (hit.normal * 1f);
 		
 		Rigidbody otherRB = other.GetComponent<Rigidbody>();

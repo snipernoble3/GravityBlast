@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour {
 
-    public God god;
-
     // PLANET INFO //
-    God.PlanetInfo planet;
-    [SerializeField] GameObject killBounds;
+    GameManager.PlanetInfo planet;
     //ready checks
     bool environmentReady;
     bool enemiesReady;
@@ -30,7 +27,6 @@ public class PlanetManager : MonoBehaviour {
 
     // ENEMIES //
     public GameObject enemyContainer;
-    GameObject[,] enemyPool;
     int enemyCap;
 
     // MOON //
@@ -98,39 +94,29 @@ public class PlanetManager : MonoBehaviour {
 
         yield return null;
 
-        god.NextPlanetReady();
+        GameManager.gm.NextPlanetReady();
     }
 
     public void DestroyPlanet () {
         //destruction animation?
-        god.player.transform.parent = null;
-        foreach (ObjectPool e in god.enemyPools) {
+        GameManager.gm.player.transform.parent = null;
+        foreach (ObjectPool e in GameManager.gm.enemyPools) {
             e.DespawnAllObjects();
         }
-        god.xpPool.DespawnAllObjects();
+        GameManager.gm.xpPool.DespawnAllObjects();
         Destroy(this.gameObject);
     }
 
     void CreateComponents () {
 
-        //create kill boundaries
-        GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
-        //k.transform.localScale = 70f * Vector3.one;
-        k.transform.localScale = (planet.lowestSurfacePoint -2f) * Vector3.one * 2f;
-        k.GetComponent<KillZone>().g = god;
-        killBounds = k;
-
         //set up empty containers
-        environmentContainer = new GameObject();
-        environmentContainer.name = "Environment Container";
+        environmentContainer = new GameObject("Environment Container");
         environmentContainer.transform.parent = this.gameObject.transform;
 
-        plantContainer = new GameObject();
-        plantContainer.name = "Plant Container";
+        plantContainer = new GameObject("Plant Container");
         plantContainer.transform.parent = this.gameObject.transform;
 
-        enemyContainer = new GameObject();
-        enemyContainer.name = "Enemy Container";
+        enemyContainer = new GameObject("Enemy Container");
         enemyContainer.transform.parent = this.gameObject.transform;
 
     }
@@ -224,7 +210,6 @@ public class PlanetManager : MonoBehaviour {
 
         CalculateEnemyCap();
 
-        enemyPool = new GameObject[planet.enemyPrefabs.Length, enemyCap];
         //for each enemy
         for (int i = 0; i < planet.enemyPrefabs.Length; i++) {
             int rNum = Random.Range(planet.xpToAdvance/planet.enemyPrefabs.Length + 2, enemyCap);
@@ -233,8 +218,8 @@ public class PlanetManager : MonoBehaviour {
                 //enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
                 //edit rotation?
                 //enemyPool[i, j].transform.parent = enemyContainer.transform;
-                GameObject enemy = god.enemyPools[i].SpawnObject();
-                RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
+                GameObject enemy = GameManager.gm.enemyPools[i].SpawnObject();
+                RaycastHit hit = GameManager.gm.GetCurrPlanet().RandomSpawnPoint();
                 enemy.transform.position = hit.point + (hit.normal * 1f);
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
                 if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource; //god.GetCurrPlanet().gameObject.GetComponentInChildren<Gravity_Source>();
@@ -265,7 +250,7 @@ public class PlanetManager : MonoBehaviour {
         }
         categoryMod *= 2;
 
-        int difficultyMod = planet.difficultySetting * 15;
+        int difficultyMod = GameManager.difficulty * 15;
 
         int xpReq = planet.xpToAdvance / planet.enemyPrefabs.Length;
 
@@ -310,7 +295,6 @@ public class PlanetManager : MonoBehaviour {
             RaycastHit hit = RandomSpawnPoint();
             GameObject moon = Instantiate(planet.moonPrefab, hit.point + (hit.normal * spawnDistance), Quaternion.LookRotation(hit.normal));
             moon.transform.parent = gameObject.transform;
-            moon.GetComponent<Moon>().god = god;
             moon.GetComponent<Moon>().ChangeScale((spawnDistance / 100f) + Random.Range(0.4f, 0.7f));
             yield return null;
             moon.GetComponent<Moon>().GenerateChest();
@@ -320,7 +304,7 @@ public class PlanetManager : MonoBehaviour {
         moonReady = true;
     }
     
-    public void SetInfo (God.PlanetInfo p) {
+    public void SetInfo (GameManager.PlanetInfo p) {
         planet = p;
     }
     

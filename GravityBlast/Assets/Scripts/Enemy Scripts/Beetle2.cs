@@ -45,7 +45,7 @@ public class Beetle2 : MonoBehaviour {
 
     private void Update () {
 
-        if (!God.paused) {
+        if (!GameManager.paused) {
             //raycast to gravity source
             RaycastHit hitGravitySource;
             Vector3 gravitySource = (GetComponent<Gravity_AttractedObject>().CurrentGravitySource) ? GetComponent<Gravity_AttractedObject>().CurrentGravitySource.transform.position : Vector3.zero;

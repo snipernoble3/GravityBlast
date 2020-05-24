@@ -12,8 +12,6 @@ public class MenuControl : MonoBehaviour {
 
     bool isPaused;
 
-    [SerializeField] God g;
-
     private void Awake () {
         if (pauseMenu != null) pauseMenu.SetActive(isPaused);
     }
@@ -49,7 +47,7 @@ public class MenuControl : MonoBehaviour {
         if (!canPause) { return; }
         isPaused = true;
         //open pause menu
-        g.PauseGame(isPaused);
+        GameManager.gm.PauseGame(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
         pauseMenu.SetActive(isPaused);
     }
@@ -59,7 +57,7 @@ public class MenuControl : MonoBehaviour {
         //close pause menu, reenable controls and gameplay
         pauseMenu.SetActive(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
-        g.PauseGame(isPaused);
+        GameManager.gm.PauseGame(isPaused);
     }
 
     //Settings

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Player_Stats : MonoBehaviour {
 
-    God _god;
-
     // Health //
     [SerializeField] int baseHP = 3;
     private int maxHP;
@@ -122,7 +120,7 @@ public class Player_Stats : MonoBehaviour {
         noHealth = true;
         yield return new WaitForSeconds(1f);
         if (currHP <= 0) {
-            _god.PlayerDeath();
+            GameManager.gm.PlayerDeath();
         } else {
             noHealth = false;
         }
@@ -236,11 +234,7 @@ public class Player_Stats : MonoBehaviour {
         xpBar.maxValue = xpToAdvance;
         UpdateXPUI();
     }
-
-    public void SetGod (God g) {
-        _god = g;
-    }
-
+    
     public void toggleGodMode () {
         godMode = !godMode;
     }

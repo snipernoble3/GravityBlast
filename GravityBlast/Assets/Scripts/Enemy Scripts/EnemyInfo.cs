@@ -7,8 +7,7 @@ public class EnemyInfo : MonoBehaviour {
     private enum State { Attacking, Moving, Idle };
     private State currState;
     private bool stunned;
-
-    [HideInInspector] public God god;
+    
     [HideInInspector] public ObjectPool objectPool;
     private Rigidbody rb;
     private GameObject player;
@@ -30,7 +29,7 @@ public class EnemyInfo : MonoBehaviour {
 
     private void Start () {
         rb = GetComponent<Rigidbody>();
-        player = god.player;
+        player = GameManager.gm.player;
         currState = State.Idle;
     }
 
@@ -57,7 +56,7 @@ public class EnemyInfo : MonoBehaviour {
     private void OnDeath () {
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
-            GameObject xp = god.xpPool.SpawnObject();
+            GameObject xp = GameManager.gm.xpPool.SpawnObject();
             xp.transform.position = transform.position;
             xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
             xp.SetActive(true);

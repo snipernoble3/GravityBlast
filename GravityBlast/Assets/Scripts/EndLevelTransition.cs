@@ -16,8 +16,6 @@ public class EndLevelTransition : MonoBehaviour
 	[SerializeField] private GameObject thirdPersonPlayer;
 	[SerializeField] private GameObject player;
 
-    [SerializeField] private God god;
-
     private Player_Stats playerStats;
 	private bool jumpInitiated = false;
 	
@@ -111,7 +109,7 @@ public class EndLevelTransition : MonoBehaviour
         Jetpack_Animator.StopPlayback();
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        god.StartCoroutine(god.NextPlanet());
+        GameManager.gm.StartCoroutine(GameManager.gm.NextPlanet());
     }
 
 }

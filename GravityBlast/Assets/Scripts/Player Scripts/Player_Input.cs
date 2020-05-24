@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static God;
 
 public class Player_Input : MonoBehaviour
 {
@@ -44,12 +43,12 @@ public class Player_Input : MonoBehaviour
 		{
             if (menu != null)
 			{
-				if (paused) menu.Resume();
+				if (GameManager.paused) menu.Resume();
 				else menu.Pause();
 			}
         }
 
-        if (paused) return;
+        if (GameManager.paused) return;
 
         // Inputs
         if (Input.GetKeyDown(KeyCode.BackQuote)) ToggleDevMode();

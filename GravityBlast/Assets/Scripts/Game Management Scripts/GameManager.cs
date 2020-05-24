@@ -4,22 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class God : MonoBehaviour {
-    
+public class GameManager : MonoBehaviour {
+
     public struct PlanetInfo {
         //planet model
         public GameObject prefab;
         //type?
         //difficulty/number of stage
-        public int difficultySetting;
         public int stageNumber;
         public int xpToAdvance;
         //size category
         public float size;
         public string sizeCategory;
-		public float lowestSurfacePoint;
-		public float highestSurfacePoint;
-		
+        public float lowestSurfacePoint;
+        public float highestSurfacePoint;
+
         public GameObject[] staticEnvPrefabs;
         public GameObject[] clusterPrefabs;
         public GameObject[] plantPrefabs;
@@ -32,12 +31,8 @@ public class God : MonoBehaviour {
         public bool hasBoss;
     }
 
-    /*
-    public struct EnemyInfo {
-        public GameObject prefab;
-        //float size; - if scale gets changed on different planets
-        public int maxQuantity;
-    }*/
+    public static GameManager gm;
+
     //stat screen / level transition
     [SerializeField] GameObject statScreen;
     [SerializeField] TextMeshProUGUI completedStages;
@@ -53,7 +48,7 @@ public class God : MonoBehaviour {
     [SerializeField] GameObject playerPrefab;
     [SerializeField] public GameObject player;
     //
-    [SerializeField] int difficulty = 1; //1, 2, 3
+    [SerializeField] public static int difficulty { get; private set; } = 1;//1, 2, 3
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
@@ -87,14 +82,15 @@ public class God : MonoBehaviour {
     [SerializeField] MenuControl menu;
     PlanetTimer timer;
 
-    public static bool paused = false;
+    public static bool paused { get; private set; } = false;
     private Vector3 pausedVelocity;
 
     private void Awake () {
 
-        paused = false;
+        if (gm = null) gm = this;
+        else Destroy(this);
 
-        player.GetComponent<Player_Stats>().SetGod(this);
+        paused = false;
 		
 		timer = this.GetComponent<PlanetTimer>();
 
@@ -103,16 +99,10 @@ public class God : MonoBehaviour {
 
         enemyPools = new ObjectPool[enemyPrefabs.Length];
         for (int i = 0; i < enemyPrefabs.Length; i++) {
-            enemyPools[i] = new ObjectPool();
-            enemyPools[i].objectPrefab = enemyPrefabs[i];
-            enemyPools[i].god = this;
-            enemyPools[i].CreateObjectPool(100);
+            enemyPools[i] = new ObjectPool(enemyPrefabs[i], 100);
         }
 
-        xpPool = new ObjectPool();
-        xpPool.objectPrefab = xpPrefab;
-        xpPool.god = this;
-        xpPool.CreateObjectPool(100 * enemyPools.Length);
+        xpPool = new ObjectPool(xpPrefab, 100 * enemyPools.Length);
 
         GenerateSolarSystem();
 
@@ -158,9 +148,8 @@ public class God : MonoBehaviour {
     private PlanetInfo GeneratePlanetInfo (int planetNumber) {
         PlanetInfo planet = new PlanetInfo();
         planet.prefab = planetPrefabs[Random.Range(0, planetPrefabs.Length)];
-        planet.difficultySetting = difficulty;
         planet.stageNumber = planetNumber;
-        planet.xpToAdvance = XPtoProceed(planet.difficultySetting, planet.stageNumber);
+        planet.xpToAdvance = XPtoProceed(planet.stageNumber);
         planet.size = Random.Range(minPlanetScale, maxPlanetScale);
         planet.sizeCategory = SizeClassOf(planet.size);
         CalculateSurfaceDistances(planet.prefab, out planet.lowestSurfacePoint, out planet.highestSurfacePoint);
@@ -201,7 +190,6 @@ public class God : MonoBehaviour {
         currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
-        currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
     }
@@ -256,7 +244,6 @@ public class God : MonoBehaviour {
         currPlanet = Instantiate(planetToCreate.prefab, Vector3.zero, Quaternion.identity);
         currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
         StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
-        currPlanet.GetComponent<PlanetManager>().god = this;
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
         player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
 
@@ -296,7 +283,7 @@ public class God : MonoBehaviour {
         }
     }
 
-    private int XPtoProceed (int difficulty, int planetNumber) {
+    private int XPtoProceed (int planetNumber) {
         int xp = 20;
         xp = (xp + (5 * planetNumber)) * difficulty;
         return xp;
