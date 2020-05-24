@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
     //current solar system
     private PlanetInfo[] currSolarSystem;
     //current planet
-    private PlanetManager currPlanet;
+    public static PlanetManager currPlanet { get; private set; }
 
 	private MusicManager musicManger;
 
