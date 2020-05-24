@@ -7,7 +7,6 @@ using TMPro;
 public class GameManager : MonoBehaviour {
     
     public static GameManager gm { get; private set; }
-    public static GameObject gmObj { get; private set; }
 
     //stat screen / level transition
     [SerializeField] GameObject statScreen;

@@ -21,12 +21,7 @@ public class Deliverance2 : ProjectileWeapon {
     bool reloading;
 
     void Start () {
-
         currAmmo = maxAmmo;
-
-        playerStats = player.GetComponent<Player_Stats>();
-
-        UpdateAnimations();
     }
 
     public void Update () {
@@ -35,7 +30,7 @@ public class Deliverance2 : ProjectileWeapon {
             timeToFire -= Time.deltaTime;
         }
 
-        UpdateAnimations(); // Will move this to be called only when Player_Stats has a change that warrants this being updated
+        //UpdateAnimations(); // Will move this to be called only when Player_Stats has a change that warrants this being updated
 
     }
 

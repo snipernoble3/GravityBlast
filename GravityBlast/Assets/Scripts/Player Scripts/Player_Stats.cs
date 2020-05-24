@@ -64,6 +64,7 @@ public class Player_Stats : MonoBehaviour {
     int mProjectileForceCap = 5;
     float mProjectileForcePerLevel = 0.1f;
 
+    private WeaponManager weaponManager;
 
     private void Start () {
         maxHP = baseHP;
@@ -137,6 +138,7 @@ public class Player_Stats : MonoBehaviour {
                     mAmmo = (mAmmoLevel * mAmmoPerLevel);
                     mReload = mReloadLevel * mReloadPerLevel;
                     mFireRate = mFireRateLevel * mFireRatePerLevel;
+                    UpdateWeaponAnimations();
                     mProjectileDuration = mProjectileDurationLevel * mProjectileDurationPerLevel;
                     mProjectileScale = mProjectileScaleLevel * mProjectileScalePerLevel;
                     mProjectileForce = mProjectileForceLevel * mProjectileForcePerLevel;
@@ -150,6 +152,7 @@ public class Player_Stats : MonoBehaviour {
                     mReload = mReloadLevel * mReloadPerLevel;
                     mFireRateLevel = Mathf.Clamp(mFireRateLevel + i, 0, mFireRateCap);
                     mFireRate = mFireRateLevel * mFireRatePerLevel;
+                    UpdateWeaponAnimations();
                     mProjectileDurationLevel = Mathf.Clamp(mProjectileDurationLevel + i, 0, mProjectileDurationCap);
                     mProjectileDuration = mProjectileDurationLevel * mProjectileDurationPerLevel;
                     mProjectileScaleLevel = Mathf.Clamp(mProjectileScaleLevel + i, 0, mProjectileScaleCap);
@@ -171,10 +174,12 @@ public class Player_Stats : MonoBehaviour {
             case "mReload":
                 mReloadLevel = Mathf.Clamp(mReloadLevel + i, 0, mReloadCap);
                 mReload = mReloadLevel * mReloadPerLevel;
+                UpdateWeaponAnimations();
                 break;
             case "mFireRate":
                 mFireRateLevel = Mathf.Clamp(mFireRateLevel + i, 0, mFireRateCap);
                 mFireRate = mFireRateLevel * mFireRatePerLevel;
+                UpdateWeaponAnimations();
                 break;
             case "mProjectileDuration":
                 mProjectileDurationLevel = Mathf.Clamp(mProjectileDurationLevel + i, 0, mProjectileDurationCap);
@@ -190,6 +195,14 @@ public class Player_Stats : MonoBehaviour {
                 break;
         }
         
+    }
+
+    public void SetWeaponManager (WeaponManager wm) {
+        weaponManager = wm;
+    }
+
+    void UpdateWeaponAnimations () {
+        weaponManager.UpdateAnimations();
     }
 
     public void UpdateHealthUI () {
