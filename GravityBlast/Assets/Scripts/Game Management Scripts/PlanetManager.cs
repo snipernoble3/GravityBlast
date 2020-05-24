@@ -23,7 +23,7 @@ public class PlanetManager : MonoBehaviour {
     int plantCap = 20; //each
 
     // ENEMIES //
-    public GameObject enemyContainer;
+    //GameObject enemyContainer;
     int enemyCap;
 
     // MOON //
@@ -112,8 +112,8 @@ public class PlanetManager : MonoBehaviour {
         plantContainer = new GameObject("Plant Container");
         plantContainer.transform.parent = this.gameObject.transform;
 
-        enemyContainer = new GameObject("Enemy Container");
-        enemyContainer.transform.parent = this.gameObject.transform;
+        //enemyContainer = new GameObject("Enemy Container");
+        //enemyContainer.transform.parent = this.gameObject.transform;
 
     }
 
