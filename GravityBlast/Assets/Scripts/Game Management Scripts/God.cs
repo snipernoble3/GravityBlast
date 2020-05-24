@@ -328,12 +328,14 @@ public class God : MonoBehaviour {
     public void PauseGame (bool pause) {
         paused = pause;
         if (paused) {
-            pausedVelocity = player.GetComponent<Rigidbody>().velocity;
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player.GetComponent<Player_Stats>().toggleGodMode();
+            //pausedVelocity = player.GetComponent<Rigidbody>().velocity;
+            //player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //player.GetComponent<Player_Stats>().toggleGodMode();
+            Time.timeScale = 0;
         } else {
-            player.GetComponent<Rigidbody>().velocity = pausedVelocity;
-            player.GetComponent<Player_Stats>().toggleGodMode();
+            //player.GetComponent<Rigidbody>().velocity = pausedVelocity;
+            //player.GetComponent<Player_Stats>().toggleGodMode();
+            Time.timeScale = 1;
         }
     }
     

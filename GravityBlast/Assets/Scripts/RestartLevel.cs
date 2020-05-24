@@ -9,20 +9,24 @@ public class RestartLevel : MonoBehaviour
 	int numOfScenes;
 	int levelToLoad;
 	
-	void Start()
-	{
+	public RestartLevel () {
 		numOfScenes = SceneManager.sceneCountInBuildSettings - 1; // Offset so that we can ask for the scene by index more easily.
 		scene = SceneManager.GetActiveScene();
 		levelToLoad = scene.buildIndex;
 	}
-	
-	void Update()
-    {
-		if (Input.GetButtonDown("Restart")) SceneManager.LoadScene(scene.buildIndex);        
 
-		if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus)) if (levelToLoad + 1 <= numOfScenes)	levelToLoad++;
-		if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Underscore)) if (levelToLoad - 1 >= 0)	levelToLoad--;
-		
-		if (levelToLoad != scene.buildIndex) SceneManager.LoadScene(levelToLoad);
+    public void Restart () {
+        SceneManager.LoadScene(scene.buildIndex);
     }
+
+    public void NextScene () {
+        if (levelToLoad + 1 <= numOfScenes) levelToLoad++;
+        if (levelToLoad != scene.buildIndex) SceneManager.LoadScene(levelToLoad);
+    }
+
+    public void PreviousScene () {
+        if (levelToLoad - 1 >= 0) levelToLoad--;
+        if (levelToLoad != scene.buildIndex) SceneManager.LoadScene(levelToLoad);
+    }
+
 }
