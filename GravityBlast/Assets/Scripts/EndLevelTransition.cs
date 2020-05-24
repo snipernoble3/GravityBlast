@@ -16,7 +16,7 @@ public class EndLevelTransition : MonoBehaviour
 	[SerializeField] private GameObject thirdPersonPlayer;
 	[SerializeField] private GameObject player;
 
-    private Player_Stats playerStats;
+    //private Player_Stats playerStats;
 	private bool jumpInitiated = false;
 	
 	public MusicManager musicManger;
@@ -25,7 +25,7 @@ public class EndLevelTransition : MonoBehaviour
 	
 	void Start()
 	{
-		playerStats = player.GetComponent<Player_Stats>();
+		//playerStats = player.GetComponent<Player_Stats>();
         offset = player.transform.position - transform.position;
 	}
 	
@@ -33,7 +33,7 @@ public class EndLevelTransition : MonoBehaviour
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.B))
-		if (Input.GetKeyDown(KeyCode.B) && playerStats.xpFull)
+		if (Input.GetKeyDown(KeyCode.B) && GameManager.gm.playerStats.xpFull)
 		{
 			if (!jumpInitiated)
 			{
@@ -54,7 +54,7 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(false);
 		Player_Input.SetBlastState(false);
 		Player_Input.SetShootState(false);
-        playerStats.toggleGodMode();
+        GameManager.gm.playerStats.toggleGodMode();
 
 		// Toggle Cameras
 		for (int i = 0; i < playerCameras.Length; i++)
@@ -77,8 +77,10 @@ public class EndLevelTransition : MonoBehaviour
 	}
 	
 	IEnumerator BlastOff() {
+        Rigidbody playerRB = player.GetComponent<Rigidbody>();
+        playerRB.velocity = Vector3.zero;
 		yield return new WaitForSeconds(1.75f);
-		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
+		playerRB.AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
 		player.GetComponent<Gravity_AttractedObject>().blastOff = true;
 		stageCompletedMessage.SetActive(true);
 	}
@@ -94,7 +96,7 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(true);
 		Player_Input.SetBlastState(true);
 		Player_Input.SetShootState(true);
-        playerStats.toggleGodMode();
+        GameManager.gm.playerStats.toggleGodMode();
         player.GetComponent<Gravity_AttractedObject>().blastOff = false;
 
         hud.enabled = true;

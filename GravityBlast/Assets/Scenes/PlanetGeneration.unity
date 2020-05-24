@@ -4192,6 +4192,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1857474205569613871, guid: d430494ca21bb60498d4136a7bd2f8f9,
         type: 3}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 293651774}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name

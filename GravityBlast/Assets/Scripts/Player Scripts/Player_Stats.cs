@@ -102,7 +102,7 @@ public class Player_Stats : MonoBehaviour {
                 currHP--;
                 if (currHP <= 0 && !noHealth) {
                     //player death
-                    StartCoroutine(NoHealth());
+                    NoHealth();
                     currHP = 0;
                 }
                 break;
@@ -117,9 +117,8 @@ public class Player_Stats : MonoBehaviour {
         UpdateHealthUI();
     }
 
-    private IEnumerator NoHealth () {
+    private void NoHealth () {
         noHealth = true;
-        yield return new WaitForSeconds(1f);
         if (currHP <= 0) {
             GameManager.gm.PlayerDeath();
         } else {

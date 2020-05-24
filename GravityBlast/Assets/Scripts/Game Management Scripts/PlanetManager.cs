@@ -235,6 +235,7 @@ public class PlanetManager : MonoBehaviour {
                 GameObject enemy = PrefabManager.enemyPools[i].SpawnObject();
                 RaycastHit hit = RandomSpawnPoint();
                 enemy.transform.position = hit.point + (hit.normal * 1f);
+                enemy.GetComponent<EnemyInfo>().playerStats = GameManager.gm.playerStats;
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
                 if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
                 

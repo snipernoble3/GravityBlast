@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-//using static God;
 
 public class Beetle2 : MonoBehaviour {
 
@@ -39,7 +37,7 @@ public class Beetle2 : MonoBehaviour {
     private void Awake () {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currState = State.Idle;
-        randomSpeedChange = UnityEngine.Random.Range(0.5f, 1f);
+        randomSpeedChange = Random.Range(0.5f, 1f);
         rb = GetComponent<Rigidbody>();
     }
 

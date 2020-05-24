@@ -28,7 +28,7 @@ TagManager:
   - RenderTextureObjects
   - Enemy
   - EnvironmentCollision
-  - 
+  - EnemyVision
   - 
   - 
   - 

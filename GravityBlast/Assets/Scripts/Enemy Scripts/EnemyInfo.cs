@@ -2,36 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInfo : MonoBehaviour {
+public abstract class EnemyInfo : MonoBehaviour {
 
-    private enum State { Attacking, Moving, Idle };
-    private State currState;
-    private bool stunned;
-    
+    public enum State { Attacking, Chasing, Idle, Running, Stunned };
+
     [HideInInspector] public ObjectPool objectPool;
-    private Rigidbody rb;
-    private GameObject player;
-    
+    [HideInInspector] public Player_Stats playerStats;
+    [HideInInspector] public Gravity_AttractedObject gravityScript;
 
-    //health
     [SerializeField] int health;
-
-    //xp
-    //[SerializeField] static GameObject xpPrefab;
     [SerializeField] int xpValue;
-
-    //movement
-    private float moveSpeed;
-    private float turnSpeed;
-
-    //attack
-
-
-    private void Start () {
-        rb = GetComponent<Rigidbody>();
-        player = GameManager.gm.player;
-        currState = State.Idle;
-    }
+    
+    [SerializeField] GameObject model;
+    [SerializeField] ParticleSystem deathEffect;
 
     public void TakeDamage (int amount = 1) {
         
@@ -43,29 +26,38 @@ public class EnemyInfo : MonoBehaviour {
         
     }
 
-    public IEnumerator Stun (float seconds) {
-
-        stunned = true;
-        //show stun icon/effect?
-        yield return new WaitForSeconds(seconds);
-        //hide stun icon/effect
-        stunned = false;
-
+    private void OnCollisionEnter (Collision collision) {
+        if (collision.gameObject.tag == "Bullet") {
+            TakeDamage(1);
+            Destroy(collision.gameObject);
+        }
     }
 
-    private void OnDeath () {
+    private IEnumerator OnDeath () {
+        deathEffect.gameObject.SetActive(true);
+        model.SetActive(false);
+
+        yield return new WaitForSeconds(deathEffect.main.duration);
+
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
             GameObject xp = PrefabManager.xpPool.SpawnObject();
             xp.transform.position = transform.position;
-            xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gameObject.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
+            xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gravityScript.CurrentGravitySource;
             xp.SetActive(true);
         }
 
         //despawn self
+        deathEffect.gameObject.SetActive(false);
+        model.SetActive(true);
         objectPool.DespawnObject(gameObject);
 
     }
 
+    public abstract void PlayerEnteredRange ();
+
+    public abstract void PlayerExitRange ();
+
+    public abstract void OutOfPlay ();
 
 }

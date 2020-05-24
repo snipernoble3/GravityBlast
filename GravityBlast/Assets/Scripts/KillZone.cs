@@ -6,7 +6,7 @@ public class KillZone : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other)
 	{
-        RaycastHit hit = GameManager.gm.GetCurrPlanet().RandomSpawnPoint();
+        RaycastHit hit = GameManager.currPlanet.RandomSpawnPoint();
         other.transform.position = hit.point + (hit.normal * 1f);
 		
 		Rigidbody otherRB = other.GetComponent<Rigidbody>();

@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour {
     int completedSolarSystems = 0;
     //player
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] public GameObject player;
-    //
+    public GameObject player;
+    public Player_Stats playerStats; 
+
     [SerializeField] public static int difficulty { get; private set; } = 1;//1, 2, 3
     //current solar system
     private PlanetInfo[] currSolarSystem;
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour {
         currPlanet.SetInfo(planetToCreate);
         StartCoroutine(currPlanet.LoadPlanet());
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
-        player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
+        playerStats.SetXP(planetToCreate.xpToAdvance);
     }
 	
 	public void CheckRemainingEnemies()	{
@@ -197,7 +198,7 @@ public class GameManager : MonoBehaviour {
         
         //destroy old planet
         if (currPlanet != null) {
-            currPlanet.GetComponent<PlanetManager>().DestroyPlanet();
+            currPlanet.DestroyPlanet();
         }
         
         //create new planet
@@ -205,10 +206,10 @@ public class GameManager : MonoBehaviour {
         
         GameObject newPlanet = Instantiate(PrefabManager.manager.planetPrefabs[planetToCreate.planetPrefab], Vector3.zero, Quaternion.identity);
         currPlanet = newPlanet.GetComponent<PlanetManager>();
-        currPlanet.GetComponent<PlanetManager>().SetInfo(planetToCreate);
-        StartCoroutine(currPlanet.GetComponent<PlanetManager>().LoadPlanet());
+        currPlanet.SetInfo(planetToCreate);
+        StartCoroutine(currPlanet.LoadPlanet());
         player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = currPlanet.GetComponentInChildren<Gravity_Source>();
-        player.GetComponent<Player_Stats>().SetXP(planetToCreate.xpToAdvance);
+        playerStats.SetXP(planetToCreate.xpToAdvance);
 
         //overlay on
         statScreen.gameObject.SetActive(true);
@@ -290,8 +291,9 @@ public class GameManager : MonoBehaviour {
     }
     
     public void PlayerDeath () {
+        
         //PauseGameElements(false);
-        //PauseGame(true);
+        //PauseGame(true); 
 
 		// Disable Player controls.
 		Player_Input.SetLookState(false);
@@ -305,14 +307,11 @@ public class GameManager : MonoBehaviour {
     }
 	
 	public IEnumerator ReturnToMenu(float delay) {
-		yield return new WaitForSeconds(delay);
+        
+        yield return new WaitForSeconds(delay);
         //PauseGame(false);
         menu.ReturnToMenu();
 		//SceneManager.LoadScene("Menu");
 	}
-
-    public PlanetManager GetCurrPlanet () {
-        return currPlanet.GetComponent<PlanetManager>();
-    }
 
 }
