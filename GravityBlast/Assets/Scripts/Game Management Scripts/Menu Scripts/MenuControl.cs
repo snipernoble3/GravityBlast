@@ -24,7 +24,7 @@ public class MenuControl : MonoBehaviour {
     }
 
     public void Collection () {
-        SceneManager.LoadScene("TinyPlanet_Overload");
+        
     }
 
     public void Settings () {
@@ -33,6 +33,10 @@ public class MenuControl : MonoBehaviour {
 
     public void FeedbackReport () {
         Application.OpenURL("https://forms.gle/z5MjDE4gTevbRuhi7");
+    }
+
+    public void BugReport () {
+        Application.OpenURL("https://forms.gle/au1x5r7nA284mdFA7");
     }
 
     public void Quit () {

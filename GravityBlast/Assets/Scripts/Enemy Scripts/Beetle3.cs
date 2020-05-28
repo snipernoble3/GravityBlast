@@ -16,8 +16,9 @@ public class Beetle3 : EnemyInfo {
     private bool targetInRange;
 
     //movement
-    private float moveSpeed = 8f;
-    private float turnSpeed = 3f;
+    Vector3 newVelocity;
+    private float moveSpeed = 9f;
+    private float turnSpeed = 3.5f;
     private float randomSpeedChange = 1f;
 
     //attack
@@ -54,6 +55,8 @@ public class Beetle3 : EnemyInfo {
 
     private void Update () {
 
+        newVelocity = Vector3.zero;
+
         if (timeSinceTargeting > 0) {
             timeSinceTargeting -= Time.deltaTime;
         }
@@ -61,16 +64,19 @@ public class Beetle3 : EnemyInfo {
             timeSinceHop -= Time.deltaTime;
         }
 
+        // replace this with grounded check
         GameObject gravitySource = gravityScript.CurrentGravitySource.transform.parent.gameObject;
 
         RaycastHit hit;
         Physics.Raycast(transform.position, gravitySource.transform.position, out hit);
+        bool grounded = Vector3.Magnitude(hit.point - transform.position) < 2.5f;
 
-        if (Vector3.Magnitude(hit.point - transform.position) > 2f) {
-            rb.constraints = RigidbodyConstraints.None;
-        } else {
+        if (grounded) {
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        } else {
+            rb.constraints = RigidbodyConstraints.None;
         }
+        //
 
         switch (currState) {
             case State.Attacking:
@@ -108,7 +114,8 @@ public class Beetle3 : EnemyInfo {
                 }
 
                 //transform.position += transform.forward * moveSpeed * randomSpeedChange * Time.deltaTime;
-                rb.velocity = transform.forward * moveSpeed * randomSpeedChange;
+                newVelocity = transform.forward * moveSpeed * randomSpeedChange;
+                //if hopTime <= 0 newVelocity += hop
 
                 break;
             case State.Idle:
@@ -135,11 +142,14 @@ public class Beetle3 : EnemyInfo {
 
                     targetLookDirection = Quaternion.LookRotation(temporaryTarget.point - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * 0.5f * randomSpeedChange * Time.deltaTime);
-                    rb.velocity = transform.forward * moveSpeed * 0.5f * randomSpeedChange;
+                    newVelocity = transform.forward * moveSpeed * 0.5f * randomSpeedChange;
+                    
                 }
 
                 break;
         }
+
+        rb.velocity = newVelocity;
 
     }
 
