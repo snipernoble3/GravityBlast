@@ -69,6 +69,7 @@ public class MenuControl : MonoBehaviour {
     //Restart? idk if we want/need this
 
     public void ReturnToMenu () {
+        Resume();
         SceneManager.LoadScene("Menu");
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
     }

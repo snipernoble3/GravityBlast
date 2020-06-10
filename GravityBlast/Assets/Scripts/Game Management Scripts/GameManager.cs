@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour {
     
     public static GameManager gm { get; private set; }
 
+    [SerializeField] GameObject initialLoadingScreen;
+    [SerializeField] GameObject difficultyButtons;
+    [SerializeField] GameObject loading;
     //stat screen / level transition
     [SerializeField] GameObject statScreen;
     [SerializeField] TextMeshProUGUI completedStages;
@@ -62,7 +65,21 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator StartGeneration () {
 
-        yield return new WaitUntil(() => PrefabManager.manager != null);
+        PauseGame(true);
+        pausedVelocity = Vector3.zero;
+        menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.None, true);
+
+        
+        initialLoadingScreen.SetActive(true); //turn on loading screen
+        difficultyButtons.SetActive(true);
+        
+
+        yield return new WaitUntil(() => playerReady);
+
+        
+        loading.SetActive(true);
+        difficultyButtons.SetActive(false);
+        
 
         PrefabManager.manager.StartCoroutine(PrefabManager.manager.GenerateObjectPools());
 
@@ -74,8 +91,15 @@ public class GameManager : MonoBehaviour {
 
         FirstPlanet();
 
-        //yield return new WaitUntil(() => planetReady);
-        //remove loading screen
+        yield return new WaitUntil(() => nextPlanetReady);
+
+        
+        initialLoadingScreen.SetActive(false); //remove loading screen
+        
+        menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
+        PauseGame(false);
+        nextPlanetReady = false;
+        playerReady = false;
 
     }
 
@@ -313,5 +337,10 @@ public class GameManager : MonoBehaviour {
         menu.ReturnToMenu();
 		//SceneManager.LoadScene("Menu");
 	}
+
+    public void SetDifficulty (int newDifficulty) {
+        difficulty = newDifficulty;
+        PlayerReady();
+    }
 
 }
