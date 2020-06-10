@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour {
 
-    public God god;
-
     // PLANET INFO //
-    God.PlanetInfo planet;
-    [SerializeField] GameObject killBounds;
+    PlanetInfo planet;
+
     //ready checks
     bool environmentReady;
     bool enemiesReady;
@@ -19,18 +17,13 @@ public class PlanetManager : MonoBehaviour {
     // ENVIRONMENT //
     GameObject environmentContainer; //for large env items and loose env items
     GameObject plantContainer; //for clusters and individual plants
-    GameObject[,] staticEnvPool;
     int staticEnvCap = 15; //each
-    GameObject[,] looseEnvPool;
     int looseEnvCap = 30; //each
-    GameObject[,] clusterPool;
-    int clusterCap = 20; //each
-    GameObject[,] plantPool;
+    int clusterCap = 10; //each
     int plantCap = 20; //each
 
     // ENEMIES //
-    public GameObject enemyContainer;
-    GameObject[,] enemyPool;
+    //GameObject enemyContainer;
     int enemyCap;
 
     // MOON //
@@ -60,7 +53,7 @@ public class PlanetManager : MonoBehaviour {
         StartCoroutine(PopulateEnemies());
         yield return new WaitUntil(() => enemiesReady);
         //spawn moon if required
-        if (planet.hasMoon) StartCoroutine(GenerateMoon(1)); else moonReady = true;
+        StartCoroutine(GenerateMoon(planet.moons));
         yield return new WaitUntil(() => moonReady);
         //add boss if required
         bossReady = true;
@@ -98,75 +91,67 @@ public class PlanetManager : MonoBehaviour {
 
         yield return null;
 
-        god.NextPlanetReady();
+        GameManager.gm.NextPlanetReady();
     }
 
     public void DestroyPlanet () {
         //destruction animation?
-        god.player.transform.parent = null;
-        foreach (ObjectPool e in god.enemyPools) {
-            e.DespawnAllObjects();
-        }
-        god.xpPool.DespawnAllObjects();
+        GameManager.gm.player.transform.parent = null;
+
+        PrefabManager.DespawnAllPools();
+
         Destroy(this.gameObject);
     }
 
     void CreateComponents () {
 
-        //create kill boundaries
-        GameObject k = Instantiate(killBounds, Vector3.zero, Quaternion.identity, this.transform);
-        //k.transform.localScale = 70f * Vector3.one;
-        k.transform.localScale = (planet.lowestSurfacePoint -2f) * Vector3.one * 2f;
-        k.GetComponent<KillZone>().g = god;
-        killBounds = k;
-
         //set up empty containers
-        environmentContainer = new GameObject();
-        environmentContainer.name = "Environment Container";
+        environmentContainer = new GameObject("Environment Container");
         environmentContainer.transform.parent = this.gameObject.transform;
 
-        plantContainer = new GameObject();
-        plantContainer.name = "Plant Container";
+        plantContainer = new GameObject("Plant Container");
         plantContainer.transform.parent = this.gameObject.transform;
 
-        enemyContainer = new GameObject();
-        enemyContainer.name = "Enemy Container";
-        enemyContainer.transform.parent = this.gameObject.transform;
+        //enemyContainer = new GameObject("Enemy Container");
+        //enemyContainer.transform.parent = this.gameObject.transform;
 
     }
 
     private IEnumerator PopulateEnvironment () {
-
-        //generate spawn pools
-        staticEnvPool = new GameObject[planet.staticEnvPrefabs.Length, staticEnvCap];
-        looseEnvPool = new GameObject[planet.looseEnvPrefabs.Length, looseEnvCap];
-        clusterPool = new GameObject[planet.clusterPrefabs.Length, clusterCap];
-        plantPool = new GameObject[planet.plantPrefabs.Length, plantCap];
-
+        
         //change ground textures
 
         yield return null;
 
         //spawn large constructs
-        for (int i = 0; i < planet.staticEnvPrefabs.Length; i++) {
+        for (int i = 0; i < PrefabManager.manager.staticEnvPrefabs.Length; i++) {
             int sRand = Random.Range(3, staticEnvCap);
             for (int j = 0; j < sRand; j++) { //spawn (<) x plants
-                int rDist = Random.Range(-5, 10);
-
+                int rDist = Random.Range(-5, 20);
+                float rScale = Random.Range(5f, 15f);
                 //Vector3 point = RandomSpawnPoint(out Vector3 dir, rDist);
                 //dir = (point - transform.position).normalized * 9.8f;  // We might not need this line anymore now that the RandomSpawnPoint gives the surfaceNormal of the raycast hit.
+                //RaycastHit hit = RandomSpawnPoint();
+                //staticEnvPool[i, j] = Instantiate(planet.staticEnvPrefabs[i], hit.point + (hit.normal * rDist), Quaternion.LookRotation(hit.normal));
+                //staticEnvPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+
+                //staticEnvPool[i, j].transform.localScale = Vector3.one * rScale;
+                //staticEnvPool[i, j].transform.parent = environmentContainer.transform;
+                GameObject staticEnv = PrefabManager.staticEnvPools[i].SpawnObject();
+                staticEnv.transform.localScale = rScale * Vector3.one;
                 RaycastHit hit = RandomSpawnPoint();
-                staticEnvPool[i, j] = Instantiate(planet.staticEnvPrefabs[i], hit.point + (hit.normal * rDist), Quaternion.LookRotation(hit.normal));
-                staticEnvPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
-                float rScale = Random.Range(5f, 15f);
-                staticEnvPool[i, j].transform.localScale = Vector3.one * rScale;
-                staticEnvPool[i, j].transform.parent = environmentContainer.transform;
+                staticEnv.transform.position = hit.point + (hit.normal * rDist);
+                staticEnv.transform.rotation = Quaternion.LookRotation(hit.normal);
+                staticEnv.transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                staticEnv.transform.Rotate(new Vector3(0, Random.value * 360f, 0), Space.Self);
+                staticEnv.transform.parent = environmentContainer.transform;
+                staticEnv.SetActive(true);
             }
             yield return null;
         }
         yield return null;
 
-        /*
+        /* 
         //spawn plant clusters
         for (int i = 0; i < planet.clusterPrefabs.Length; i++) {
             int cRand = Random.Range(0, clusterCap);
@@ -183,34 +168,52 @@ public class PlanetManager : MonoBehaviour {
         */
 
         //for each plant
-        for (int i = 0; i < planet.plantPrefabs.Length; i++) {
-            int pRand = Random.Range(0, plantCap);
+        for (int i = 0; i < PrefabManager.manager.plantPrefabs.Length; i++) {
+            int pRand = Random.Range(5, plantCap);
             for (int j = 0; j < pRand; j++) { //spawn pRand plants
                 //Vector3 point = RandomSpawnPoint(out Vector3 dir, -0.11f);
+                //plantPool[i, j] = Instantiate(planet.plantPrefabs[i], hit.point + (hit.normal * -0.11f), Quaternion.LookRotation(hit.normal));
+                //plantPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                //plantPool[i, j].transform.Rotate(new Vector3(0, Random.value * 360f, 0), Space.Self);
+                //plantPool[i, j].transform.localScale = Random.Range(1f, 1.5f) * Vector3.one; 
+                //plantPool[i, j].transform.parent = plantContainer.transform;
+                //Debug.DrawRay(point, dir * 20.0f, Color.white, 5.0f);
+
+                GameObject plant = PrefabManager.plantPools[i].SpawnObject();
+                plant.transform.localScale = Random.Range(1f, 1.5f) * Vector3.one;
                 RaycastHit hit = RandomSpawnPoint();
-                plantPool[i, j] = Instantiate(planet.plantPrefabs[i], hit.point + (hit.normal * -0.11f), Quaternion.LookRotation(hit.normal));
-                plantPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
-                plantPool[i, j].transform.Rotate(new Vector3(0, Random.value * 360f, 0), Space.Self);
-                plantPool[i, j].transform.localScale = Random.Range(1f, 1.5f) * Vector3.one; 
-                plantPool[i, j].transform.parent = plantContainer.transform;
-				
-				//Debug.DrawRay(point, dir * 20.0f, Color.white, 5.0f);
+                plant.transform.position = hit.point + (hit.normal * -0.11f);
+                plant.transform.rotation = Quaternion.LookRotation(hit.normal);
+                plant.transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                plant.transform.Rotate(new Vector3(0, Random.value * 360f, 0), Space.Self);
+                plant.transform.parent = plantContainer.transform;
+                plant.SetActive(true);
+
             }
             yield return null;
         }
         yield return null;
 
         //spawn loose environment pieces
-        for (int i = 0; i < planet.looseEnvPrefabs.Length; i++) {
-            int lRand = Random.Range(5, looseEnvCap);
+        for (int i = 0; i < PrefabManager.manager.looseEnvPrefabs.Length; i++) {
+            int lRand = Random.Range(0, looseEnvCap);
             for (int j = 0; j < lRand; j++) { //spawn (<) x plants
 
                 //Vector3 point = RandomSpawnPoint(out Vector3 dir);
                 //dir = (point - transform.position).normalized * 9.8f;  // We might not need this line anymore now that the RandomSpawnPoint gives the surfaceNormal of the raycast hit.
-                RaycastHit hit = RandomSpawnPoint();
-                looseEnvPool[i, j] = Instantiate(planet.looseEnvPrefabs[i], hit.point, Quaternion.LookRotation(hit.normal));
-                looseEnvPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+
+                //looseEnvPool[i, j] = Instantiate(PrefabManager.looseEnvPrefabs[i], hit.point, Quaternion.LookRotation(hit.normal));
+                //looseEnvPool[i, j].transform.Rotate(new Vector3(90, 0, 0), Space.Self);
                 //looseEnvPool[i, j].transform.parent = environmentContainer.transform;
+                GameObject looseEnv = PrefabManager.looseEnvPools[i].SpawnObject();
+                RaycastHit hit = RandomSpawnPoint();
+                looseEnv.transform.position = hit.point + (hit.normal * 3f);
+                looseEnv.transform.rotation = Quaternion.LookRotation(hit.normal);
+                looseEnv.transform.Rotate(new Vector3(90, 0, 0), Space.Self);
+                looseEnv.transform.localScale = Random.Range(0.5f, 1.5f) * Vector3.one;
+                Gravity_AttractedObject attractedObject = looseEnv.GetComponent<Gravity_AttractedObject>();
+                if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+                looseEnv.SetActive(true);
             }
             yield return null;
         }
@@ -224,21 +227,18 @@ public class PlanetManager : MonoBehaviour {
 
         CalculateEnemyCap();
 
-        enemyPool = new GameObject[planet.enemyPrefabs.Length, enemyCap];
         //for each enemy
-        for (int i = 0; i < planet.enemyPrefabs.Length; i++) {
-            int rNum = Random.Range(planet.xpToAdvance/planet.enemyPrefabs.Length + 2, enemyCap);
+        for (int i = 0; i < PrefabManager.manager.enemyPrefabs.Length; i++) {
+            int rNum = Random.Range(planet.xpToAdvance/PrefabManager.manager.enemyPrefabs.Length + 2, enemyCap);
             for (int j = 0; j < rNum; j++) { //spawn (<) x enemies
-                //Vector3 point = RandomSpawnPoint();
-                //enemyPool[i, j] = Instantiate(planet.enemyPrefabs[i], RandomSpawnPoint(0.5f), Quaternion.identity);
-                //edit rotation?
-                //enemyPool[i, j].transform.parent = enemyContainer.transform;
-                GameObject enemy = god.enemyPools[i].SpawnObject();
-                RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
+                
+                GameObject enemy = PrefabManager.enemyPools[i].SpawnObject();
+                RaycastHit hit = RandomSpawnPoint();
                 enemy.transform.position = hit.point + (hit.normal * 1f);
+                enemy.GetComponent<EnemyInfo>().playerStats = GameManager.gm.playerStats;
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
-                if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource; //god.GetCurrPlanet().gameObject.GetComponentInChildren<Gravity_Source>();
-                //enemy.transform.parent = enemyContainer.transform;
+                if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
+                
                 enemy.SetActive(true);
             }
             yield return null;
@@ -265,9 +265,9 @@ public class PlanetManager : MonoBehaviour {
         }
         categoryMod *= 2;
 
-        int difficultyMod = planet.difficultySetting * 15;
+        int difficultyMod = GameManager.difficulty * 15;
 
-        int xpReq = planet.xpToAdvance / planet.enemyPrefabs.Length;
+        int xpReq = planet.xpToAdvance / PrefabManager.manager.enemyPrefabs.Length;
 
         enemyCap = xpReq + planet.stageNumber*categoryMod + difficultyMod;
         //stage 1 difficulty 1 cap = (xp/numEnemies) + 17
@@ -308,9 +308,8 @@ public class PlanetManager : MonoBehaviour {
             //Vector3 point = RandomSpawnPoint(out Vector3 dir, spawnDistance);
             //dir = (point - transform.position).normalized * 9.8f; // We might not need this line anymore now that the RandomSpawnPoint gives the surfaceNormal of the raycast hit.
             RaycastHit hit = RandomSpawnPoint();
-            GameObject moon = Instantiate(planet.moonPrefab, hit.point + (hit.normal * spawnDistance), Quaternion.LookRotation(hit.normal));
+            GameObject moon = Instantiate(PrefabManager.manager.moonPrefab, hit.point + (hit.normal * spawnDistance), Quaternion.LookRotation(hit.normal));
             moon.transform.parent = gameObject.transform;
-            moon.GetComponent<Moon>().god = god;
             moon.GetComponent<Moon>().ChangeScale((spawnDistance / 100f) + Random.Range(0.4f, 0.7f));
             yield return null;
             moon.GetComponent<Moon>().GenerateChest();
@@ -320,7 +319,7 @@ public class PlanetManager : MonoBehaviour {
         moonReady = true;
     }
     
-    public void SetInfo (God.PlanetInfo p) {
+    public void SetInfo (PlanetInfo p) {
         planet = p;
     }
     

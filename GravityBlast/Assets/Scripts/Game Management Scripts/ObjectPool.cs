@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //public class ObjectPool : MonoBehaviour
-public class ObjectPool
-{
-    public God god;
+public class ObjectPool {
     
     // Enemy Pool
 	private int objectPoolSize = 128;
@@ -13,15 +11,20 @@ public class ObjectPool
 	private List<GameObject> activeObjects;
 	public GameObject objectPrefab;
 	
-    public void CreateObjectPool(int startingSize = 0)
+    public ObjectPool (GameObject prefab, int startingSize = 0) {
+        objectPrefab = prefab;
+        CreateObjectPool(startingSize);
+    }
+
+    public void CreateObjectPool(int size = 0)
     {
         objectQueue = new Queue<GameObject>();
 		activeObjects = new List<GameObject>();
 
-        if (startingSize == 0) {
+        if (size == 0) {
             IncreasePool(objectPoolSize);
         } else {
-            IncreasePool(startingSize);
+            IncreasePool(size);
         }
         
     }
@@ -33,7 +36,7 @@ public class ObjectPool
             if (objectInstance.GetComponent<EnemyInfo>()) objectInstance.GetComponent<EnemyInfo>().objectPool = this;
             if (objectInstance.GetComponent<CollectablePickup>()) objectInstance.GetComponent<CollectablePickup>().objectPool = this;
             objectInstance.SetActive(false); // Deactiveate the object after creation so it sits idle in the pool.
-            objectInstance.transform.parent = god.gameObject.transform;
+            objectInstance.transform.parent = GameManager.gm.gameObject.transform;
             objectQueue.Enqueue(objectInstance); // Add this newly created object into the pool for later use.
         }
     }
@@ -55,19 +58,6 @@ public class ObjectPool
             }
 
             return spawnedObject;
-            /*
-            // Set Spawn Postion
-            //Vector3 dir = Vector3.zero; // This gets thrown away, but the out parameter below will complain without it.
-            RaycastHit hit = god.GetCurrPlanet().RandomSpawnPoint();
-
-            spawnedObject.transform.position = hit.point + (hit.normal * 1f);
-            
-			
-			Gravity_AttractedObject attractedObject = spawnedObject.GetComponent<Gravity_AttractedObject>();
-			
-			if (attractedObject != null) attractedObject.CurrentGravitySource = god.GetCurrPlanet().gameObject.GetComponent<Gravity_Source>();
-            spawnedObject.transform.parent = parent;
-            */
 		}
 		else
 		{
@@ -78,12 +68,12 @@ public class ObjectPool
 		
 	public void DespawnObject(GameObject despawnedObject, bool removeFromActive = true)
 	{
-        despawnedObject.transform.parent = god.gameObject.transform;
+        despawnedObject.transform.parent = GameManager.gm.gameObject.transform;
         objectQueue.Enqueue(despawnedObject);
 		if(removeFromActive && activeObjects.Contains(despawnedObject)) activeObjects.RemoveAt(activeObjects.IndexOf(despawnedObject));
 		despawnedObject.SetActive(false);
 		
-		if (despawnedObject.GetComponent<Health>()) god.CheckRemainingEnemies();
+		if (despawnedObject.GetComponent<Health>()) GameManager.gm.CheckRemainingEnemies();
 	}
 	
     public void DespawnAllObjects () {

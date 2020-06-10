@@ -16,23 +16,24 @@ public class EndLevelTransition : MonoBehaviour
 	[SerializeField] private GameObject thirdPersonPlayer;
 	[SerializeField] private GameObject player;
 
-    [SerializeField] private God god;
-
-    private Player_Stats playerStats;
+    //private Player_Stats playerStats;
 	private bool jumpInitiated = false;
 	
 	public MusicManager musicManger;
+
+    private Vector3 offset;
 	
 	void Start()
 	{
-		playerStats = player.GetComponent<Player_Stats>();
+		//playerStats = player.GetComponent<Player_Stats>();
+        offset = player.transform.position - transform.position;
 	}
 	
 	// Update is called once per frame
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.B))
-		if (Input.GetKeyDown(KeyCode.B) && playerStats.xpFull)
+		if (Input.GetKeyDown(KeyCode.B) && GameManager.gm.playerStats.xpFull)
 		{
 			if (!jumpInitiated)
 			{
@@ -53,7 +54,7 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(false);
 		Player_Input.SetBlastState(false);
 		Player_Input.SetShootState(false);
-        playerStats.toggleGodMode();
+        GameManager.gm.playerStats.toggleGodMode();
 
 		// Toggle Cameras
 		for (int i = 0; i < playerCameras.Length; i++)
@@ -76,8 +77,10 @@ public class EndLevelTransition : MonoBehaviour
 	}
 	
 	IEnumerator BlastOff() {
+        Rigidbody playerRB = player.GetComponent<Rigidbody>();
+        playerRB.velocity = Vector3.zero;
 		yield return new WaitForSeconds(1.75f);
-		player.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
+		playerRB.AddRelativeForce(Vector3.up * 50, ForceMode.VelocityChange);
 		player.GetComponent<Gravity_AttractedObject>().blastOff = true;
 		stageCompletedMessage.SetActive(true);
 	}
@@ -93,20 +96,22 @@ public class EndLevelTransition : MonoBehaviour
 		Player_Input.SetMoveState(true);
 		Player_Input.SetBlastState(true);
 		Player_Input.SetShootState(true);
-        playerStats.toggleGodMode();
+        GameManager.gm.playerStats.toggleGodMode();
         player.GetComponent<Gravity_AttractedObject>().blastOff = false;
 
         hud.enabled = true;
         stageCompletedMessage.SetActive(false);
         thirdPersonPlayer.SetActive(false);
+        thirdPersonPlayer.transform.position = player.transform.position - offset;
         thirdPersonPlayer.transform.SetParent(player.transform);
+
 
         playerListner.enabled = true;
 
         Jetpack_Animator.StopPlayback();
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        god.StartCoroutine(god.NextPlanet());
+        GameManager.gm.StartCoroutine(GameManager.gm.NextPlanet());
     }
 
 }

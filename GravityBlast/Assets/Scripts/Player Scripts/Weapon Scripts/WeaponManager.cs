@@ -6,12 +6,12 @@ using TMPro;
 public class WeaponManager : MonoBehaviour {
 
 	[SerializeField] private GameObject[] weaponPrefabs; // An array of all weapon prefabs the player can have.
-	[HideInInspector] public GameObject[] weapons; // An array of the instantiated weapons the player has.
+	[HideInInspector] public ProjectileWeapon[] weapons; // An array of the instantiated weapons the player has.
 	[SerializeField] private Transform[] weaponBones; // The weapon "bone" positions in the armature to attach the weapons to.
 	[SerializeField] public Animator animator; // A reference to Gabriel's animation system.
 	[SerializeField] private TextMeshProUGUI ammoUI;
 
-    Player_Stats ps;
+    Player_Stats playerStats;
 
     //[SerializeField] private int startingGun;
     public int currentWeapon = 0;
@@ -21,25 +21,28 @@ public class WeaponManager : MonoBehaviour {
 
     private void Awake() {
 
-        ps = gameObject.GetComponent<Player_Stats>();
+        playerStats = gameObject.GetComponent<Player_Stats>();
+        playerStats.SetWeaponManager(this);
 
-        weapons = new GameObject[weaponPrefabs.Length];
+        weapons = new ProjectileWeapon[weaponPrefabs.Length];
 		
 		for (int i = 0; i < weapons.Length; i++)
 		{
-			weapons[i] = Instantiate(weaponPrefabs[i]); // Instantiate the weapon.
-			weapons[i].transform.parent = weaponBones[1]; // Make the weapon a child of the right hand weapon bone.
-			weapons[i].transform.localPosition = Vector3.zero; // Clear out the transform so it aligns with the weapon bone.
-			weapons[i].transform.localRotation = Quaternion.identity;
+            GameObject newWeapon = Instantiate(weaponPrefabs[i]); // Instantiate the weapon.
+            newWeapon.transform.parent = weaponBones[1]; // Make the weapon a child of the right hand weapon bone.
+            newWeapon.transform.localPosition = Vector3.zero; // Clear out the transform so it aligns with the weapon bone.
+			newWeapon.transform.localRotation = Quaternion.identity;
 			//weapons[i].transform.localRotation = Quaternion.Euler(Vector3.right * 90.0f);
-			weapons[i].transform.localScale = Vector3.one;
+			newWeapon.transform.localScale = Vector3.one;
+
+            weapons[i] = newWeapon.GetComponent<ProjectileWeapon>();
+			weapons[i].player = gameObject;
+            weapons[i].playerStats = playerStats;
+			weapons[i].arms = animator;
+			weapons[i].ammoUI = ammoUI;
+            weapons[i].UpdateAnimations();
 			
-			// Set up references. - eventually change to send message to weapon object
-			weapons[i].GetComponent<Deliverance>().player = gameObject;
-			weapons[i].GetComponent<Deliverance>().arms = animator;
-			weapons[i].GetComponent<Deliverance>().ammoUI = ammoUI;
-			
-			weapons[i].SetActive(false); // Hide the weapon.
+			weapons[i].gameObject.SetActive(false); // Hide the weapon.
         }
 		
 		//currentWeapon = startingGun;
@@ -50,14 +53,14 @@ public class WeaponManager : MonoBehaviour {
     //reload passthrough
     public void Reload()
 	{
-        weapons[currentWeapon].GetComponent<IProjectileWeapon>().Reload();
+        weapons[currentWeapon].EndReload();
 		realMag.SetActive(true);
 		Destroy(fakeMag);
     }
 	
 	public void RemoveMagazine()
 	{
-		realMag = weapons[currentWeapon].GetComponent<Deliverance>().magazine;
+		realMag = weapons[currentWeapon].magazine;
 		fakeMag = Instantiate(realMag, realMag.transform.position, realMag.transform.rotation);
 		fakeMag.transform.SetParent(weaponBones[0]);
 		
@@ -67,8 +70,8 @@ public class WeaponManager : MonoBehaviour {
 	//test multiple weapons
     void Update() {
         
-        animator.SetFloat("fireSpeed", 1.0f + ps.mFireRate);
-        animator.SetFloat("reloadSpeed", 1.0f + ps.mReload);
+        //animator.SetFloat("fireSpeed", 1.0f + playerStats.mFireRate);
+        //animator.SetFloat("reloadSpeed", 1.0f + playerStats.mReload);
 
 		/*
         if (Input.GetKeyDown(KeyCode.Alpha0) && !paused) SwitchWeapon(0);
@@ -91,16 +94,18 @@ public class WeaponManager : MonoBehaviour {
 	{
 		if (weaponOfChoice >= 0 && weaponOfChoice < weapons.Length)
 		{		
-			foreach (GameObject weapon in weapons)
+			foreach (ProjectileWeapon weapon in weapons)
 			{
-				weapon.SetActive(false);
+				weapon.gameObject.SetActive(false);
 			}
-			weapons[weaponOfChoice].SetActive(true);
+			weapons[weaponOfChoice].gameObject.SetActive(true);
 		}
+
+        UpdateAnimations();
 	}
 
-    public void UpgradeWeapon () {
-        //weapons[currentWeapon].GetComponent<Deliverance>().ModifyAll(true);
+    public void UpdateAnimations () {
+        weapons[currentWeapon].UpdateAnimations();
     }
 
 }

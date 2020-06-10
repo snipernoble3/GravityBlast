@@ -12,8 +12,6 @@ public class MenuControl : MonoBehaviour {
 
     bool isPaused;
 
-    [SerializeField] God g;
-
     private void Awake () {
         if (pauseMenu != null) pauseMenu.SetActive(isPaused);
     }
@@ -26,7 +24,7 @@ public class MenuControl : MonoBehaviour {
     }
 
     public void Collection () {
-        SceneManager.LoadScene("TinyPlanet_Overload");
+        
     }
 
     public void Settings () {
@@ -35,6 +33,10 @@ public class MenuControl : MonoBehaviour {
 
     public void FeedbackReport () {
         Application.OpenURL("https://forms.gle/z5MjDE4gTevbRuhi7");
+    }
+
+    public void BugReport () {
+        Application.OpenURL("https://forms.gle/au1x5r7nA284mdFA7");
     }
 
     public void Quit () {
@@ -49,7 +51,7 @@ public class MenuControl : MonoBehaviour {
         if (!canPause) { return; }
         isPaused = true;
         //open pause menu
-        g.PauseGame(isPaused);
+        GameManager.gm.PauseGame(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
         pauseMenu.SetActive(isPaused);
     }
@@ -59,7 +61,7 @@ public class MenuControl : MonoBehaviour {
         //close pause menu, reenable controls and gameplay
         pauseMenu.SetActive(isPaused);
         gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
-        g.PauseGame(isPaused);
+        GameManager.gm.PauseGame(isPaused);
     }
 
     //Settings

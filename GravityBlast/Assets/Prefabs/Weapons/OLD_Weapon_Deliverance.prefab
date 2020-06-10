@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1346298402585502597}
   - component: {fileID: 8067079414716291507}
   - component: {fileID: 4379905221104248138}
-  - component: {fileID: 3796270733696908865}
+  - component: {fileID: 3637064203168705413}
   m_Layer: 10
   m_Name: Weapon_Deliverance
   m_TagString: Untagged
@@ -114,7 +114,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3796270733696908865
+--- !u!114 &3637064203168705413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,28 +123,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2662852903334449558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488202ff80a78f5408fb5ebdc556bb35, type: 3}
+  m_Script: {fileID: 11500000, guid: ff7445486f3c79141bd64626b4c4b135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  playerStats: {fileID: 0}
   firingPosition: {fileID: 1109687503076755178}
   bullet: {fileID: 125204817742315580, guid: eb11a102ed1129c4ca035afbeb476eb9, type: 3}
   arms: {fileID: 0}
-  armsFireAnimation: fire
-  armsFireSpeed: fireSpeed
-  armsReloadAnimation: Rifle_Reload
-  armsReloadSpeed: reloadSpeed
   barrel: {fileID: 7331354291721951452}
   magazine: {fileID: 6255799531685977972}
   ammoUI: {fileID: 0}
   fireRate: 0.05
   maxAmmo: 50
-  reloadSpeed: 1
-  bulletScale: 1
-  bulletForce: 60
-  currAmmo: 0
-  maxDeviation: 0.001
   deviationDistance: 25
 --- !u!1 &2918934950767493458
 GameObject:

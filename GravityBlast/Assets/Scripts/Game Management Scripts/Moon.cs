@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Moon : MonoBehaviour {
-
-    [HideInInspector] public God god;
+    
     [SerializeField] GameObject surface;
     [SerializeField] GameObject modificationChestPrefab;
     GameObject modificationChest;
@@ -20,7 +19,7 @@ public class Moon : MonoBehaviour {
 
     public void GenerateChest () {
         modificationChest = Instantiate(modificationChestPrefab, surface.transform, true);
-        modificationChest.GetComponent<ModificationChest>().player = god.player;
+        modificationChest.GetComponent<ModificationChest>().player = GameManager.gm.player;
 
         Vector3 point = RandomSpawnPoint();
         Vector3 dir = (point - surface.transform.position).normalized * 9.8f;

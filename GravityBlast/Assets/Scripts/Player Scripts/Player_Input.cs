@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static God;
 
 public class Player_Input : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class Player_Input : MonoBehaviour
 	[SerializeField] private Animator firstPersonArms_Animator;
     [SerializeField] private Player_Stats playerStats;
     [SerializeField] private MenuControl menu;
+    private RestartLevel sceneManager;
 
     //private bool gameIsPaused = false;
 
@@ -31,6 +31,8 @@ public class Player_Input : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 		
 		if (playerInput == null) playerInput = this;
+
+        sceneManager = new RestartLevel();
     }
 
     // Update is called once per frame
@@ -41,12 +43,12 @@ public class Player_Input : MonoBehaviour
 		{
             if (menu != null)
 			{
-				if (paused) menu.Resume();
+				if (GameManager.paused) menu.Resume();
 				else menu.Pause();
 			}
         }
 
-        if (paused) return;
+        if (GameManager.paused) return;
 
         // Inputs
         if (Input.GetKeyDown(KeyCode.BackQuote)) ToggleDevMode();
@@ -101,7 +103,7 @@ public class Player_Input : MonoBehaviour
 
 			if (Input.GetButton("Fire1"))
 			{
-				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().FireInput();
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<ProjectileWeapon>().FireInput();
 			}
 			else
 			{
@@ -110,7 +112,7 @@ public class Player_Input : MonoBehaviour
 			
 			if (Input.GetButton("Reload"))
 			{
-				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<IProjectileWeapon>().ReloadInput();
+				weaponManager.weapons[weaponManager.currentWeapon].GetComponent<ProjectileWeapon>().ReloadInput();
 			}
 		}
 
@@ -119,6 +121,11 @@ public class Player_Input : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G)) playerStats.toggleGodMode();
             //if (Input.GetKeyDown(KeyCode.L)) { StartCoroutine(god.NextPlanet()); }
             if (Input.GetKeyDown(KeyCode.X)) playerStats.FillXP();
+
+            if (Input.GetButtonDown("Restart")) sceneManager.Restart(); //"Restart" is currently bound to J
+
+            if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus)) sceneManager.NextScene();
+            if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Underscore)) sceneManager.PreviousScene();
         }
 
     }
