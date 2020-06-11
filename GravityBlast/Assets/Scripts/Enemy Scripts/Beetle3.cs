@@ -8,7 +8,8 @@ public class Beetle3 : EnemyInfo {
 
     private Rigidbody rb;
 
-    private bool outOfPlay = false; 
+    private bool outOfPlay = false;
+    bool grounded;
 
     //target tracking
     private Transform target;
@@ -64,12 +65,15 @@ public class Beetle3 : EnemyInfo {
             timeSinceHop -= Time.deltaTime;
         }
 
+        if (currState == State.Stunned) return;
+
         // replace this with grounded check
         GameObject gravitySource = gravityScript.CurrentGravitySource.transform.parent.gameObject;
 
         RaycastHit hit;
         Physics.Raycast(transform.position, gravitySource.transform.position, out hit);
-        bool grounded = Vector3.Magnitude(hit.point - transform.position) < 2.5f;
+        float distanceFromGround = Vector3.Magnitude(hit.point - transform.position);
+        grounded = Vector3.Magnitude(hit.point - transform.position) < 2.5f;
 
         if (grounded) {
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -149,6 +153,14 @@ public class Beetle3 : EnemyInfo {
                 break;
         }
 
+        //if (!grounded) {
+            Vector3 down = transform.position - gravitySource.transform.position;
+            down = down.normalized;
+            down *= -0.005f * (4 * distanceFromGround);
+            newVelocity += down;
+        //}
+        
+        
         rb.velocity = newVelocity;
 
     }

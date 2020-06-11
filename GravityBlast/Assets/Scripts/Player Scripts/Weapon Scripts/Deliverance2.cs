@@ -72,7 +72,7 @@ public class Deliverance2 : ProjectileWeapon {
         Vector3 forwardVector = Camera.main.transform.rotation * rot * Vector3.forward;
 
         // Create and fire the bullet - Will eventually switch to object pooling
-        GameObject b = Instantiate(bullet, firingPosition.transform.position, firingPosition.transform.rotation);
+        GameObject b = Instantiate(bullet, firingPosition.transform.position, firingPosition.transform.rotation, null);
         b.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = player.GetComponent<Gravity_AttractedObject>().CurrentGravitySource;
         b.transform.rotation = Quaternion.FromToRotation(firingPosition.transform.rotation.eulerAngles, forwardVector);
         b.transform.Rotate(new Vector3(0, 5, 0), Space.Self); // Add +5 degrees vertical here - This helps offset the feel of immediate drop off from projectile vs raycast

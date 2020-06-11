@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour {
         
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
         PauseGame(false);
+        musicManger.enabled = true;
         nextPlanetReady = false;
         playerReady = false;
 

@@ -2480,7 +2480,7 @@ PrefabInstance:
     - target: {fileID: 880090098296731824, guid: cb507efe9288ba04f889f78044a530b3,
         type: 3}
       propertyPath: lockMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 880090098296731824, guid: cb507efe9288ba04f889f78044a530b3,
         type: 3}
@@ -5750,7 +5750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764371894}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa075aa313899f04380ca95dc1cedc82, type: 3}
   m_Name: 
@@ -5803,6 +5803,7 @@ MonoBehaviour:
   - {fileID: 6960946187041956469, guid: cbdb90477a235804baa6e1dae43822f0, type: 3}
   enemyPrefabs:
   - {fileID: 5617208283061312941, guid: 0f8ee93950ce71c4697773ac331d87ac, type: 3}
+  - {fileID: 5987044430576371578, guid: e5250acdbddc6624fbeef4956ba7de57, type: 3}
   xpPrefab: {fileID: 1857474205569613871, guid: d430494ca21bb60498d4136a7bd2f8f9,
     type: 3}
 --- !u!1 &1830228286
