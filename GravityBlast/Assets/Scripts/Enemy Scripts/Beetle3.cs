@@ -40,10 +40,13 @@ public class Beetle3 : EnemyInfo {
     RaycastHit temporaryTarget;
     float timeSinceTargeting = 0f;
     float timeSinceHop = 0f;
-
+	
+	private Animator beetleAnimator;
 
     void Start () {
         rb = GetComponent<Rigidbody>();
+		beetleAnimator = GetComponentInChildren<Animator>();
+		
         gravityScript = GetComponent<Gravity_AttractedObject>();
         target = Camera.main.transform; //GameManager.gm.player.transform;
 
@@ -69,12 +72,14 @@ public class Beetle3 : EnemyInfo {
 
         RaycastHit hit;
         Physics.Raycast(transform.position, gravitySource.transform.position, out hit);
-        bool grounded = Vector3.Magnitude(hit.point - transform.position) < 2.5f;
+        bool grounded = Vector3.Magnitude(hit.point - transform.position) < 5.0f;
 
         if (grounded) {
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+			if (beetleAnimator != null) beetleAnimator.SetBool("isFlying", false);
         } else {
             rb.constraints = RigidbodyConstraints.None;
+			if (beetleAnimator != null) beetleAnimator.SetBool("isFlying", true);
         }
         //
 

@@ -14,7 +14,19 @@ ModelImporter:
     second: Beetle_Armature|FlapWings
   - first:
       74: -5858307053957365531
-    second: Beetle_Armature|Walk
+    second: Walk
+  - first:
+      74: 3966349241136939610
+    second: Wings_Flap
+  - first:
+      74: 6683731122703413737
+    second: Wings_Open
+  - first:
+      74: -6151555036555990742
+    second: Wings_Close
+  - first:
+      74: -4506558747437489242
+    second: Fly
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -59,11 +71,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Beetle_Armature|FlapWings
-      takeName: Beetle_Armature|FlapWings
+      name: Wings_Flap
+      takeName: Beetle_Armature|Wings_Flap
       internalID: 0
-      firstFrame: 1.2
-      lastFrame: 13.9
+      firstFrame: 0
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -88,11 +100,98 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Beetle_Armature|Walk
+      name: Walk
       takeName: Beetle_Armature|Walk
       internalID: 0
       firstFrame: 13.4
       lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wings_Open
+      takeName: Beetle_Armature|Wings_OpenClose
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wings_Close
+      takeName: Beetle_Armature|Wings_OpenClose
+      internalID: 0
+      firstFrame: 10
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fly
+      takeName: Beetle_Armature|Fly
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
