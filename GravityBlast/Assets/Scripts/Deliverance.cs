@@ -15,7 +15,9 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     public Weapon_Barrel barrel;
 	public GameObject magazine;
     public TextMeshProUGUI ammoUI;
-
+	[SerializeField] private Renderer ammoMeter;
+	private Material ammoMeterMat;
+	[SerializeField] private Gradient ammoMeterGradient;
 
     // Base Info //
     [SerializeField] private float fireRate = 0.05f;
@@ -39,12 +41,12 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
     Player_Stats ps;
 
     // Start is called before the first frame update
-    void Start () {
-
+    void Start ()
+	{
+		ammoMeterMat = ammoMeter.material;
         currAmmo = maxAmmo;
 
         UpdateUI();
-
         ps = player.GetComponent<Player_Stats>();
 
     }
@@ -182,10 +184,25 @@ public class Deliverance : MonoBehaviour, IProjectileWeapon {
         return;
     }
 
-    public void UpdateUI () {
+    public void UpdateUI ()
+	{
         if (ammoUI != null) ammoUI.text = "<font=\"GravityBlast_Dingbats SDF\" material=\"GravityBlast_Dingbats SDF_Holographic\">2</font> " + currAmmo;
-        return;
+		
+		
+		if (ammoMeterMat != null)
+		{
+			float ammoPercent = 1.0f;
+			if (ps != null) ammoPercent = Mathf.InverseLerp(0, (int)(maxAmmo * (1 + (ps.mAmmo))), currAmmo);
+			else ammoPercent = Mathf.InverseLerp(0, maxAmmo, currAmmo); // THIS IF STATEMENT WON'T BE NEEDED AFTER FIXING THE REFERENCE ISSUE.
+			
+			Color col = new Color();
+			
+			col = ammoMeterGradient.Evaluate(ammoPercent);
+			col *= 2.5f; // Add some intensity for the HDR since the gradient isn't very bright.
+			col *= 1.0f + ((1.0f - ammoPercent) * 2.0f); // Glow more as the ammo count reduces.
+			
+			ammoMeterMat.SetColor("_Color", col);
+			ammoMeterMat.SetFloat("_MeterHeight", ammoPercent);
+		}			
     }
-
-
 }
