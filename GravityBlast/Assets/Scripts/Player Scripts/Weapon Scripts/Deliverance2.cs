@@ -19,9 +19,15 @@ public class Deliverance2 : ProjectileWeapon {
     float shotCount = 0; //how many bullets are being counted as part of the current spray / affecting bullet spread
     float spreadReductionTimer = 0f;
     bool reloading;
+	
+	// Ammo Meter
+	[SerializeField] private Renderer ammoMeter;
+	private Material ammoMeterMat;
+	[SerializeField] private Gradient ammoMeterGradient;
 
     void Start () {
-        currAmmo = maxAmmo;
+		ammoMeterMat = ammoMeter.material;
+		currAmmo = maxAmmo;
     }
 
     public void Update () {
@@ -128,6 +134,24 @@ public class Deliverance2 : ProjectileWeapon {
 
     public override void UpdateUI () {
         if (ammoUI != null) ammoUI.text = "<font=\"GravityBlast_Dingbats SDF\" material=\"GravityBlast_Dingbats SDF_Holographic\">2</font> " + currAmmo;
+		
+		// Update the ammo meter on the gun model.
+		if (ammoMeterMat != null)
+		{
+			float ammoPercent = 1.0f;
+			if (playerStats != null) ammoPercent = Mathf.InverseLerp(0, (int)(maxAmmo * (1 + (playerStats.mAmmo))), currAmmo);
+			else ammoPercent = Mathf.InverseLerp(0, maxAmmo, currAmmo); // THIS IF STATEMENT WON'T BE NEEDED AFTER FIXING THE REFERENCE ISSUE.
+			
+			Color col = new Color();
+			
+			col = ammoMeterGradient.Evaluate(ammoPercent);
+			col *= 2.5f; // Add some intensity for the HDR since the gradient isn't very bright.
+			col *= 1.0f + ((1.0f - ammoPercent) * 2.0f); // Glow more as the ammo count reduces.
+			
+			ammoMeterMat.SetColor("_Color", col);
+			ammoMeterMat.SetFloat("_MeterHeight", ammoPercent);
+		}	
+		
         return;
     }
 

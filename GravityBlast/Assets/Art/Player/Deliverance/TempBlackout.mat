@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AmmoMeter
+  m_Name: TempBlackout
   m_Shader: {fileID: -6465566751694194690, guid: c7c257e1912f949449f271a8892868e5,
     type: 3}
   m_ShaderKeywords: 
@@ -27,8 +27,10 @@ Material:
     m_Floats:
     - Vector1_930E631F: 9.04
     - Vector1_ACDDE93E: 0.36
-    - _Alpha: 0.694
+    - _Alpha: 1
+    - _MeterHeight: 1
     - _RimHighlight: 0.2
     m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.02927162, g: 0.6732473, b: 1.405038, a: 1}
     - _SecondaryColor: {r: 0.101399966, g: 0.5668858, b: 0.78, a: 1}

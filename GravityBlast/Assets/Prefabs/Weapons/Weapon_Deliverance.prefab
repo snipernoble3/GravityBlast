@@ -219,6 +219,14 @@ MonoBehaviour:
   barrel: {fileID: 7331354291721951452}
   magazine: {fileID: 6255799531685977972}
   ammoUI: {fileID: 0}
+  fireRate: 0.05
+  maxAmmo: 50
+  reloadSpeed: 1
+  bulletScale: 1
+  bulletForce: 60
+  currAmmo: 0
+  maxDeviation: 0.001
+  deviationDistance: 25
   ammoMeter: {fileID: 14811081897207125}
   ammoMeterGradient:
     serializedVersion: 2
@@ -249,14 +257,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  fireRate: 0.05
-  maxAmmo: 50
-  reloadSpeed: 1
-  bulletScale: 1
-  bulletForce: 60
-  currAmmo: 0
-  maxDeviation: 0.001
-  deviationDistance: 25
 --- !u!1 &2918934950767493458
 GameObject:
   m_ObjectHideFlags: 0
