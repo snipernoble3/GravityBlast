@@ -26,9 +26,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_930E631F: 9.04
-    - Vector1_ACDDE93E: 0.36
+    - Vector1_ACDDE93E: 0.32
     - _Alpha: 0.694
+    - _MeterHeight: 1
     - _RimHighlight: 0.2
     m_Colors:
+    - _Color: {r: 0.04436748, g: 1.020452, b: 2.118547, a: 1}
     - _MainColor: {r: 0.02927162, g: 0.6732473, b: 1.405038, a: 1}
     - _SecondaryColor: {r: 0.101399966, g: 0.5668858, b: 0.78, a: 1}

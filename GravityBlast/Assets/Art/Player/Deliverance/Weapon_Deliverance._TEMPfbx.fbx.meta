@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: BlackOut
+    second: {fileID: 2100000, guid: ee3f3994dbef4cf42ac5d7f518d805ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Deliverance_Barrel
     second: {fileID: 2100000, guid: 79c1f78ae9eab4642b64413610848878, type: 2}
   - first:
@@ -23,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Deliverance_Main
-    second: {fileID: 2100000, guid: 79c1f78ae9eab4642b64413610848878, type: 2}
+    second: {fileID: 2100000, guid: 99580ad5088cbd44aad3cd66c05e5297, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
