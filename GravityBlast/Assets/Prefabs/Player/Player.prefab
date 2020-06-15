@@ -321,7 +321,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 84.6
   orthographic: 0
@@ -586,7 +586,6 @@ MonoBehaviour:
   playerListner: {fileID: 2082272270337308055}
   thirdPersonPlayer: {fileID: 8562887681318107238}
   player: {fileID: 3820172613042789075}
-  god: {fileID: 0}
   musicManger: {fileID: 0}
 --- !u!114 &5527955086115415956
 MonoBehaviour:
