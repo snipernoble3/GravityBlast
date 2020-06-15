@@ -77,6 +77,6 @@ Material:
     - _RoughnessMultiplier_1: 10.74
     - _Tiling: 4.29
     m_Colors:
-    - Color_520B3268: {r: 0.45882353, g: 0.68235296, b: 1, a: 1}
+    - Color_520B3268: {r: 0.4627451, g: 0.64193, b: 1, a: 1}
     - Vector2_F04DA7A6: {r: 0, g: 0, b: 0, a: 0}
     - _OverheatColor: {r: 7.9066987, g: 0, b: 0, a: 1}
