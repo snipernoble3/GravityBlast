@@ -43,8 +43,15 @@ public class Player_Input : MonoBehaviour
 		{
             if (menu != null)
 			{
-				if (GameManager.paused) menu.Resume();
-				else menu.Pause();
+                if (GameManager.paused) {
+                    if (menu.settingsOpen) {
+                        menu.Settings();
+                    } else {
+                        menu.Resume();
+                    }
+                } else {
+                    menu.Pause();
+                }
 			}
         }
 

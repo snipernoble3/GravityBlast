@@ -9,8 +9,10 @@ public class MenuControl : MonoBehaviour {
 
     [SerializeField] bool canPause;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject settingsMenu;
 
     bool isPaused;
+    public bool settingsOpen { get; private set; } = false;
 
     private void Awake () {
         if (pauseMenu != null) pauseMenu.SetActive(isPaused);
@@ -28,7 +30,8 @@ public class MenuControl : MonoBehaviour {
     }
 
     public void Settings () {
-        
+        settingsOpen = !settingsOpen;
+        settingsMenu.SetActive(settingsOpen);
     }
 
     public void FeedbackReport () {
