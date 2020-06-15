@@ -73,7 +73,7 @@ Material:
     - Vector1_DA0527E2: 51.64
     - Vector1_F0AC33DA: 0.23
     - _OvearheatBlend: 0.5
-    - _OverheatBlend: 0.079534635
+    - _OverheatBlend: 0
     - _RoughnessMultiplier: 3.45
     - _RoughnessMultiplier_1: 10.74
     - _Tiling: 4.29
