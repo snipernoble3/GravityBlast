@@ -210,7 +210,7 @@ public class PlanetManager : MonoBehaviour {
                 looseEnv.transform.position = hit.point + (hit.normal * 3f);
                 looseEnv.transform.rotation = Quaternion.LookRotation(hit.normal);
                 looseEnv.transform.Rotate(new Vector3(90, 0, 0), Space.Self);
-                looseEnv.transform.localScale = Random.Range(0.5f, 1.5f) * Vector3.one;
+                looseEnv.transform.localScale = Random.Range(1f, 2.5f) * Vector3.one;
                 Gravity_AttractedObject attractedObject = looseEnv.GetComponent<Gravity_AttractedObject>();
                 if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
                 looseEnv.SetActive(true);
@@ -226,6 +226,7 @@ public class PlanetManager : MonoBehaviour {
     private IEnumerator PopulateEnemies () {
 
         CalculateEnemyCap();
+        //Debug.Log("Enemy Cap: " + enemyCap);
 
         //for each enemy
         for (int i = 0; i < PrefabManager.manager.enemyPrefabs.Length; i++) {
@@ -241,6 +242,7 @@ public class PlanetManager : MonoBehaviour {
                 
                 enemy.SetActive(true);
             }
+            //Debug.Log(PrefabManager.manager.enemyPrefabs[i].name + " Spawned: " + rNum);
             yield return null;
         }
 
@@ -267,9 +269,9 @@ public class PlanetManager : MonoBehaviour {
 
         int difficultyMod = GameManager.difficulty * 15;
 
-        int xpReq = planet.xpToAdvance / PrefabManager.manager.enemyPrefabs.Length;
+        int xpReqPerEnemy = planet.xpToAdvance / PrefabManager.manager.enemyPrefabs.Length;
 
-        enemyCap = xpReq + planet.stageNumber*categoryMod + difficultyMod;
+        enemyCap = xpReqPerEnemy + planet.stageNumber*categoryMod + difficultyMod;
         //stage 1 difficulty 1 cap = (xp/numEnemies) + 17
     }
 
@@ -322,5 +324,4 @@ public class PlanetManager : MonoBehaviour {
     public void SetInfo (PlanetInfo p) {
         planet = p;
     }
-    
 }

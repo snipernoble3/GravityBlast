@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour {
             currSolarSystem[i] = GeneratePlanetInfo(completedPlanets + i);
         }
 
+        currSolarSystem[numPlanets - 1].LastPlanet();
+
 		// Set Skybox Color
         Material newSkybox = new Material(RenderSettings.skybox);
 		float h, s, v;

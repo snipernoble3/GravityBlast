@@ -169,7 +169,7 @@ public class Beetle3 : EnemyInfo {
 
         //rb.velocity = newVelocity;
         rb.AddForce(newVelocity * rb.mass);
-
+        
     }
 
     public override IEnumerator Stun (float seconds) {

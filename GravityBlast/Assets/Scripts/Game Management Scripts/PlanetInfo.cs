@@ -30,4 +30,8 @@ public class PlanetInfo {
         moons = _moons;
     }
 
+    public void LastPlanet () { //can be used to set specific details for the last planet
+        moons++;
+    }
+
 }
