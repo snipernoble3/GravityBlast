@@ -16,12 +16,12 @@ public abstract class EnemyInfo : MonoBehaviour {
     [SerializeField] GameObject model;
     [SerializeField] ParticleSystem deathEffect;
 
-    public void TakeDamage (int amount = 1) {
+    private void TakeDamage (int amount = 1) {
         
         health -= amount;
 
         if (health <= 0) {
-            OnDeath();
+            StartCoroutine(OnDeath());
         }
         
     }
@@ -37,8 +37,6 @@ public abstract class EnemyInfo : MonoBehaviour {
         deathEffect.gameObject.SetActive(true);
         model.SetActive(false);
 
-        yield return new WaitForSeconds(deathEffect.main.duration);
-
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
             GameObject xp = PrefabManager.xpPool.SpawnObject();
@@ -46,6 +44,8 @@ public abstract class EnemyInfo : MonoBehaviour {
             xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gravityScript.CurrentGravitySource;
             xp.SetActive(true);
         }
+
+        yield return new WaitForSeconds(deathEffect.main.duration);
 
         //despawn self
         deathEffect.gameObject.SetActive(false);

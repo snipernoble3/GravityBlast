@@ -17,7 +17,7 @@ public class Beetle4 : EnemyInfo {
 
     //movement
     Vector3 newVelocity;
-    private float moveSpeed = 9f;
+    private float moveSpeed = 20f;
     private float turnSpeed = 3.5f;
     private float randomSpeedChange = 1f;
     [SerializeField] LayerMask groundCheck;
@@ -70,11 +70,12 @@ public class Beetle4 : EnemyInfo {
 
         if (currState == State.Stunned) return;
 
+
         // replace this with grounded check
         GameObject gravitySource = gravityScript.CurrentGravitySource.transform.parent.gameObject;
 
         RaycastHit hit;
-        Physics.Raycast(transform.position, gravitySource.transform.position, out hit, groundCheck);
+        Physics.Raycast(transform.position, transform.position - gravitySource.transform.position, out hit, groundCheck);
         //float distanceFromGround = Vector3.Magnitude(hit.point - transform.position);
         grounded = hit.distance < 2.5f;
 
@@ -85,7 +86,11 @@ public class Beetle4 : EnemyInfo {
             rb.constraints = RigidbodyConstraints.None;
 			if (beetleAnimator != null) beetleAnimator.SetBool("isFlying", true);
         }
-        //
+
+
+        targetLookDirection = Quaternion.LookRotation(playerStats.gameObject.transform.position - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed);
+
 
         switch (currState) {
             case State.Attacking:
@@ -94,11 +99,8 @@ public class Beetle4 : EnemyInfo {
                 }
 
                 if (charging) {
-                    transform.position += transform.forward * chargeSpeed * Time.deltaTime;
-                } else if (!cooldown) {
-                    targetLookDirection = Quaternion.LookRotation(hitLocation - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * Time.deltaTime);
-                }
+                    //transform.position += transform.forward * chargeSpeed * Time.deltaTime;
+                } 
 
                 break;
             case State.Chasing:
@@ -111,8 +113,8 @@ public class Beetle4 : EnemyInfo {
                 }
                 */
 
-                targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * randomSpeedChange * Time.deltaTime);
+                //targetLookDirection = Quaternion.LookRotation(target.position - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * randomSpeedChange * Time.deltaTime);
 
                 RaycastHit hitForward;
                 if (Physics.Raycast(transform.position, transform.forward, out hitForward, attackRange)) {
@@ -145,8 +147,8 @@ public class Beetle4 : EnemyInfo {
                     }
                     */
 
-                    targetLookDirection = Quaternion.LookRotation(temporaryTarget.point - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * 0.5f * randomSpeedChange * Time.deltaTime);
+                    //targetLookDirection = Quaternion.LookRotation(temporaryTarget.point - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * 0.5f * randomSpeedChange * Time.deltaTime);
                     newVelocity = transform.forward * moveSpeed * 0.5f * randomSpeedChange;
                     
                 }
@@ -174,9 +176,9 @@ public class Beetle4 : EnemyInfo {
         //Debug.Log("mass" + rb.mass);
         //Debug.Log("accel" + accel);
 
-        Debug.DrawLine(transform.position, transform.position + targetVelocity, Color.green);
-        Debug.DrawLine(transform.position, transform.position + rb.velocity, Color.red);
-        Debug.DrawLine(transform.position, transform.position + force, Color.blue);
+        //Debug.DrawLine(transform.position, transform.position + targetVelocity, Color.green);
+        //Debug.DrawLine(transform.position, transform.position + rb.velocity, Color.red);
+        //Debug.DrawLine(transform.position, transform.position + force, Color.blue);
 
         return force;
     }
