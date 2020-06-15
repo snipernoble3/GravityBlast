@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1169118446211944103}
   - component: {fileID: 1891394199279410814}
   - component: {fileID: 5617208283061312935}
-  - component: {fileID: 5617208283061312932}
-  - component: {fileID: 6434084491088501047}
   - component: {fileID: 4456385019787827652}
   - component: {fileID: 5724892505972647641}
   m_Layer: 16
@@ -52,7 +50,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5617208283061312941}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2.13
   m_Direction: 2
@@ -66,7 +64,7 @@ BoxCollider:
   m_GameObject: {fileID: 5617208283061312941}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5625, z: 1.5625}
   m_Center: {x: 0, y: 0, z: 0}
@@ -86,48 +84,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 2
---- !u!114 &5617208283061312932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5617208283061312941}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed5d81c1f3707c48bee612ebf4cbcdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 5
-  visionRange: 50
-  lookSpeed: 3
-  moveSpeed: 12
-  chargeSpeed: 20
-  damageOnHit: 1
-  channelTime: 0.25
-  chargeTime: 0.5
-  cooldownTime: 0.75
---- !u!114 &6434084491088501047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5617208283061312941}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d969877ee2e18664788ecb97eef7130e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alignment: 2
-  maxHealth: 2
-  healthText: {fileID: 0}
-  death: {fileID: 7478230885114946392, guid: 536e84b2d8c3bda40961a6799c90baaf, type: 3}
-  critDeath: {fileID: 7478230885114946392, guid: 59d4c2a196ad78e4eaa31159f6a45ea5,
-    type: 3}
-  xpDrop: 1
-  XP: {fileID: 1857474205569613871, guid: d430494ca21bb60498d4136a7bd2f8f9, type: 3}
-  godIcon: {fileID: 0}
 --- !u!114 &4456385019787827652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +121,9 @@ MonoBehaviour:
   xpValue: 1
   model: {fileID: 8006547755845207881}
   deathEffect: {fileID: 7364468905384723463}
+  groundCheck:
+    serializedVersion: 2
+    m_Bits: 131073
   attackRange: 5
   chargeSpeed: 20
   damageOnHit: 1

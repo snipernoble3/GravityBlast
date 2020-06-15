@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beetle3 : EnemyInfo {
+public class Beetle4 : EnemyInfo {
 
     private State currState;
 
     private Rigidbody rb;
-
-    private bool outOfPlay = false;
+    
     bool grounded;
 
     //target tracking
@@ -132,11 +131,7 @@ public class Beetle3 : EnemyInfo {
                 
                 if (targetInRange) {
                     currState = State.Chasing;
-
-                } else if (outOfPlay) {
-                    targetLookDirection = Quaternion.LookRotation(GameManager.currPlanet.gameObject.transform.position - transform.position); //, transform.position - gravityScript.CurrentGravitySource.transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * randomSpeedChange * Time.deltaTime);
-                    //rb.velocity = transform.forward * moveSpeed * moveSpeed * randomSpeedChange;
+                    
                 } else {
                     if (timeSinceTargeting <= 0) {
                         temporaryTarget = GameManager.currPlanet.RandomSpawnPoint();
@@ -246,7 +241,7 @@ public class Beetle3 : EnemyInfo {
     }
 
     public override void OutOfPlay () {
-        outOfPlay = true;
+        
     }
 
 }
