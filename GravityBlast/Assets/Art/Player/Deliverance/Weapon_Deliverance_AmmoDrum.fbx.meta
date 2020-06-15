@@ -3,7 +3,17 @@ guid: d684f26f5238c304da3c4469e8435dab
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliverance_Emit
+    second: {fileID: 2100000, guid: d86661c4e6a43694b9064ac52fc45d62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliverance_Main
+    second: {fileID: 2100000, guid: 79c1f78ae9eab4642b64413610848878, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

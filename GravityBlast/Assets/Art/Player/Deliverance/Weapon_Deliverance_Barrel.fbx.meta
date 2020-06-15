@@ -3,7 +3,22 @@ guid: 3c0aa8fcd1b67dd4496f6d1fb8e04ba1
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliverance_Barrel
+    second: {fileID: 2100000, guid: 79c1f78ae9eab4642b64413610848878, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliverance_Glass
+    second: {fileID: 2100000, guid: 131850df45d1aeb40b18e0a3fef2f9ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliverance_Main
+    second: {fileID: 2100000, guid: 79c1f78ae9eab4642b64413610848878, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

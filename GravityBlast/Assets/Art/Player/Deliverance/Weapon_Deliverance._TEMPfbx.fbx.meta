@@ -28,7 +28,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Deliverance_Main
-    second: {fileID: 2100000, guid: 99580ad5088cbd44aad3cd66c05e5297, type: 2}
+    second: {fileID: 2100000, guid: a286a9eca6fca684e8c7cbde2d4ba0fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grip
+    second: {fileID: 2100000, guid: a286a9eca6fca684e8c7cbde2d4ba0fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeatDistortion
+    second: {fileID: 2100000, guid: a286a9eca6fca684e8c7cbde2d4ba0fb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
