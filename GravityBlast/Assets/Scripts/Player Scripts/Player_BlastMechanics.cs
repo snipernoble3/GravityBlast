@@ -316,6 +316,9 @@ public class Player_BlastMechanics : MonoBehaviour
 			// If the object has a rigidbody component and it is not the player, add the blast force!
 			if (rb != null && rb != playerRB) rb.AddExplosionForce(blast_Power, blast_Epicenter, blast_Radius, blast_UpwardForce, ForceMode.Impulse);
 
+            EnemyInfo enemy = objectToBlast.GetComponent<EnemyInfo>();
+            if (enemy != null) enemy.StartCoroutine(enemy.Stun(1f));
+
             if (blastDealsDamage)
 			{
 				Health h = objectToBlast.GetComponent<Health>();

@@ -18,10 +18,9 @@ public class Beetle3 : EnemyInfo {
 
     //movement
     Vector3 newVelocity;
-    private float moveSpeed = 9f;
+    private float moveSpeed = 15f;
     private float turnSpeed = 3.5f;
     private float randomSpeedChange = 1f;
-    [SerializeField] LayerMask groundCheck;
 
     //attack
     public float attackRange = 5f;
@@ -75,7 +74,7 @@ public class Beetle3 : EnemyInfo {
         GameObject gravitySource = gravityScript.CurrentGravitySource.transform.parent.gameObject;
 
         RaycastHit hit;
-        Physics.Raycast(transform.position, gravitySource.transform.position, out hit, groundCheck);
+        Physics.Raycast(transform.position, -1 * transform.position - gravitySource.transform.position, out hit);
         //float distanceFromGround = Vector3.Magnitude(hit.point - transform.position);
         grounded = hit.distance < 2.5f;
 
@@ -136,7 +135,7 @@ public class Beetle3 : EnemyInfo {
                 } else if (outOfPlay) {
                     targetLookDirection = Quaternion.LookRotation(GameManager.currPlanet.gameObject.transform.position - transform.position); //, transform.position - gravityScript.CurrentGravitySource.transform.position);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * randomSpeedChange * Time.deltaTime);
-                    //rb.velocity = transform.forward * moveSpeed * moveSpeed * randomSpeedChange;
+                    rb.velocity = transform.forward * moveSpeed * moveSpeed * randomSpeedChange;
                 } else {
                     if (timeSinceTargeting <= 0) {
                         temporaryTarget = GameManager.currPlanet.RandomSpawnPoint();
@@ -152,47 +151,38 @@ public class Beetle3 : EnemyInfo {
 
                     targetLookDirection = Quaternion.LookRotation(temporaryTarget.point - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * 0.5f * randomSpeedChange * Time.deltaTime);
-                    newVelocity = transform.forward * moveSpeed * 0.5f * randomSpeedChange;
+                    newVelocity = transform.forward * moveSpeed * 0.75f * randomSpeedChange;
                     
                 }
 
                 break;
         }
 
-        rb.AddForce(ForceCalculation(newVelocity));
+        
+        if (!grounded) {
+            Vector3 down = -1 * (transform.position - gravitySource.transform.position);
+            down = down.normalized;
+            down *= Mathf.Clamp(hit.distance * hit.distance, 0, 30f);
+            newVelocity += down;
+        }
+        
+
+        //rb.velocity = newVelocity;
+        rb.AddForce(newVelocity * rb.mass);
 
     }
 
-    private Vector3 ForceCalculation (Vector3 targetVelocity) {
-        //apply force to set the velocity forward
+    public override IEnumerator Stun (float seconds) {
 
-        Vector3 force = Vector3.zero;
-        Vector3 accel = Vector3.zero;
-
-        //calculate current velocity vs target velocity
-        //convert velocity to acceleration
-        accel = (targetVelocity - rb.velocity);
-
-        //calculate force
-        //force = mass * acceleration
-        force = rb.mass * accel;
-        //Debug.Log("mass" + rb.mass);
-        //Debug.Log("accel" + accel);
-
-        Debug.DrawLine(transform.position, transform.position + targetVelocity, Color.green);
-        Debug.DrawLine(transform.position, transform.position + rb.velocity, Color.red);
-        Debug.DrawLine(transform.position, transform.position + force, Color.blue);
-
-        return force;
-    }
-
-    public IEnumerator Stun (float seconds) {
+        //Debug.Log(name + " is stunned");
 
         currState = State.Stunned;
         //show stun icon/effect?
         yield return new WaitForSeconds(seconds);
         //hide stun icon/effect
         currState = State.Idle;
+
+        //Debug.Log(name + " is unstunned");
 
     }
 
@@ -206,7 +196,13 @@ public class Beetle3 : EnemyInfo {
             }
 
         }
-        
+
+        if (collision.gameObject.tag == "Bullet") {
+            //Debug.Log(name + " has taken damage");
+            TakeDamage(1);
+            Destroy(collision.gameObject);
+        }
+
     }
 
     IEnumerator Attack () {

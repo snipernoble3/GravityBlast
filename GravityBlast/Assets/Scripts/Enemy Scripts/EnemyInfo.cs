@@ -12,31 +12,27 @@ public abstract class EnemyInfo : MonoBehaviour {
 
     [SerializeField] int health;
     [SerializeField] int xpValue;
-    
+
+    bool dying = false;
+
     [SerializeField] GameObject model;
     [SerializeField] ParticleSystem deathEffect;
 
-    private void TakeDamage (int amount = 1) {
+    public void TakeDamage (int amount = 1) {
         
         health -= amount;
 
-        if (health <= 0) {
+        if (health <= 0 && !dying) {
             StartCoroutine(OnDeath());
+            dying = true;
         }
         
-    }
-
-    private void OnCollisionEnter (Collision collision) {
-        if (collision.gameObject.tag == "Bullet") {
-            TakeDamage(1);
-            Destroy(collision.gameObject);
-        }
     }
 
     private IEnumerator OnDeath () {
         deathEffect.gameObject.SetActive(true);
         model.SetActive(false);
-
+        
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
             GameObject xp = PrefabManager.xpPool.SpawnObject();
@@ -50,9 +46,12 @@ public abstract class EnemyInfo : MonoBehaviour {
         //despawn self
         deathEffect.gameObject.SetActive(false);
         model.SetActive(true);
+        dying = false;
         objectPool.DespawnObject(gameObject);
 
     }
+
+    public abstract IEnumerator Stun (float seconds);
 
     public abstract void PlayerEnteredRange ();
 
