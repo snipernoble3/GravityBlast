@@ -772,7 +772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 939908289, guid: 978ccc9568ae967499c26e069b6eff52, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 21.000061
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 995484143, guid: 978ccc9568ae967499c26e069b6eff52, type: 3}
       propertyPath: m_RootOrder
@@ -5813,7 +5813,6 @@ MonoBehaviour:
   - {fileID: 6960946187041956469, guid: cbdb90477a235804baa6e1dae43822f0, type: 3}
   enemyPrefabs:
   - {fileID: 5617208283061312941, guid: 0f8ee93950ce71c4697773ac331d87ac, type: 3}
-  - {fileID: 5987044430576371578, guid: e5250acdbddc6624fbeef4956ba7de57, type: 3}
   xpPrefab: {fileID: 1857474205569613871, guid: d430494ca21bb60498d4136a7bd2f8f9,
     type: 3}
 --- !u!1 &1830228286

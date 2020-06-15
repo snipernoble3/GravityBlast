@@ -9,7 +9,8 @@ public class Beetle3 : EnemyInfo {
     private Rigidbody rb;
 
     private bool outOfPlay = false;
-    bool grounded;
+    bool isGrounded;
+	public LayerMask raycastMask;
 
     //target tracking
     private Transform target;
@@ -70,22 +71,30 @@ public class Beetle3 : EnemyInfo {
 
         if (currState == State.Stunned) return;
 
-        // replace this with grounded check
-        GameObject gravitySource = gravityScript.CurrentGravitySource.transform.parent.gameObject;
-
-        RaycastHit hit;
-        Physics.Raycast(transform.position, -1 * transform.position - gravitySource.transform.position, out hit);
-        //float distanceFromGround = Vector3.Magnitude(hit.point - transform.position);
-        grounded = hit.distance < 2.5f;
-
-        if (grounded) {
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		// GROUNDED CHECK:
+		Transform gravitySurface = gravityScript.CurrentGravitySource.GetSurface();
+		float groundLength = 0.5f; // Farther than this, the beetle won't be grounded.
+		
+		Vector3 groundDirection = gravitySurface.position - transform.position;
+        //Debug.DrawRay(transform.position, groundDirection, Color.green);
+		
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, groundDirection, out hit, groundLength, raycastMask, QueryTriggerInteraction.Ignore))
+		{
+			//Debug.Log("We're in the air!");			
+			isGrounded = true;
+			rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 			if (beetleAnimator != null) beetleAnimator.SetBool("isFlying", false);
-        } else {
-            rb.constraints = RigidbodyConstraints.None;
+		}
+        else
+		{
+			//Debug.Log("We're on the ground!");
+			isGrounded = false;
+			rb.constraints = RigidbodyConstraints.None;
 			if (beetleAnimator != null) beetleAnimator.SetBool("isFlying", true);
-        }
-        //
+		}
+		//
+
 
         switch (currState) {
             case State.Attacking:
@@ -159,8 +168,9 @@ public class Beetle3 : EnemyInfo {
         }
 
         
-        if (!grounded) {
-            Vector3 down = -1 * (transform.position - gravitySource.transform.position);
+        if (!isGrounded)
+		{
+            Vector3 down = -1 * (transform.position - gravitySurface.position);
             down = down.normalized;
             down *= Mathf.Clamp(hit.distance * hit.distance, 0, 30f);
             newVelocity += down;
