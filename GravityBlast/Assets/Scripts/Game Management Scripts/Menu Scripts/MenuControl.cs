@@ -22,7 +22,7 @@ public class MenuControl : MonoBehaviour {
 
     public void Play () {
         SceneManager.LoadScene("PlanetGeneration");
-        gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
+        //gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
     }
 
     public void Collection () {

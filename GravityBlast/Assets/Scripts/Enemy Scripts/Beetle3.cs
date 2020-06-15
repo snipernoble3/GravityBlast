@@ -160,7 +160,7 @@ public class Beetle3 : EnemyInfo {
 
                     targetLookDirection = Quaternion.LookRotation(temporaryTarget.point - transform.position, transform.position - gravityScript.CurrentGravitySource.transform.position);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetLookDirection, turnSpeed * 0.5f * randomSpeedChange * Time.deltaTime);
-                    newVelocity = transform.forward * moveSpeed * 0.75f * randomSpeedChange;
+                    newVelocity = transform.forward * moveSpeed * 0.85f * randomSpeedChange;
                     
                 }
 

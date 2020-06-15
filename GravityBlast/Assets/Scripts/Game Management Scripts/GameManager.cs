@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject statScreen;
     [SerializeField] TextMeshProUGUI completedStages;
     [SerializeField] TextMeshProUGUI stageTime;
-    [SerializeField] TextMeshProUGUI stageKills;
+    [SerializeField] TextMeshProUGUI stageKillsText;
+    public static int stageKills;
     [SerializeField] TextMeshProUGUI survivalTime;
-    [SerializeField] TextMeshProUGUI totalKills;
+    [SerializeField] TextMeshProUGUI totalKillsText;
+    public static int totalKills;
     //level tracker
     int completedPlanets = 0;
     int planetInSolarSystem = 0;
@@ -58,6 +60,9 @@ public class GameManager : MonoBehaviour {
 
 		musicManger = GetComponent<MusicManager>();
 		player.GetComponent<EndLevelTransition>().musicManger = musicManger;
+
+        stageKills = 0;
+        totalKills = 0;
 
         StartCoroutine(StartGeneration());
 
@@ -138,6 +143,7 @@ public class GameManager : MonoBehaviour {
         CalculateSurfaceDistances(PrefabManager.manager.planetPrefabs[planetPrefab], out lowestSurfacePoint, out highestSurfacePoint);
         int moonMax = (int)(size + 0.5f) + (stageNumber / 5) + (difficulty - 1);
         int moons = (moonMax > 0) ? Random.Range(0, moonMax) : 0;
+        if (stageNumber % 2 == 0) moons++;
         PlanetInfo planet = new PlanetInfo(planetPrefab, stageNumber, xpToAdvance, size, sizeCategory, lowestSurfacePoint, highestSurfacePoint, moons);
 
         //Debug.Log("Planet " + planetNumber + " Info Generated");
@@ -253,6 +259,7 @@ public class GameManager : MonoBehaviour {
 
         //turn off overlay
         statScreen.gameObject.SetActive(false);
+        stageKills = 0;
         menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Locked, false);
         timer.resetPlanetTime();
         //PauseGameElements(false);
@@ -283,9 +290,9 @@ public class GameManager : MonoBehaviour {
     private void UpdateStatScreen () {
         completedStages.text = "" + completedPlanets;
         stageTime.text = timer.getPlanetTime();
-        //stage kills
+        stageKillsText.text = "" + stageKills;
         survivalTime.text = timer.getTotalTime();
-        //total kills
+        totalKillsText.text = "" + totalKills;
     }
 
     /*

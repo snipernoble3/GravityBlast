@@ -239,7 +239,7 @@ public class PlanetManager : MonoBehaviour {
                 enemy.GetComponent<EnemyInfo>().playerStats = GameManager.gm.playerStats;
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
                 if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
-                
+                enemy.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 enemy.SetActive(true);
             }
             //Debug.Log(PrefabManager.manager.enemyPrefabs[i].name + " Spawned: " + rNum);

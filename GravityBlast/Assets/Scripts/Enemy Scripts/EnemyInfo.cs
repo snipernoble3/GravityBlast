@@ -36,7 +36,7 @@ public abstract class EnemyInfo : MonoBehaviour {
         //spawn xp
         for (int i = 0; i < xpValue; i++) {
             GameObject xp = PrefabManager.xpPool.SpawnObject();
-            xp.transform.position = transform.position;
+            xp.transform.position = transform.position + (transform.up * 1f);
             xp.GetComponent<Gravity_AttractedObject>().CurrentGravitySource = gravityScript.CurrentGravitySource;
             xp.SetActive(true);
         }
@@ -48,6 +48,9 @@ public abstract class EnemyInfo : MonoBehaviour {
         model.SetActive(true);
         dying = false;
         objectPool.DespawnObject(gameObject);
+
+        GameManager.stageKills++;
+        GameManager.totalKills++;
 
     }
 

@@ -5673,6 +5673,16 @@ PrefabInstance:
       propertyPath: loading
       value: 
       objectReference: {fileID: 1169147980}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: stageKillsText
+      value: 
+      objectReference: {fileID: 1027440815}
+    - target: {fileID: 2868248068613544763, guid: 42264cd61837a9f49a2d606e22c857c1,
+        type: 3}
+      propertyPath: totalKillsText
+      value: 
+      objectReference: {fileID: 1578199003}
     - target: {fileID: 3648307686984621647, guid: 42264cd61837a9f49a2d606e22c857c1,
         type: 3}
       propertyPath: m_Name
