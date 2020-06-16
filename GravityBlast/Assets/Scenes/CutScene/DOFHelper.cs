@@ -11,6 +11,9 @@ public class DOFHelper : MonoBehaviour
 	
 	public float focusDistance;
 	private float previousFocusDistance;
+	
+	public float focalLength;
+	private float previousfocalLength;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +25,16 @@ public class DOFHelper : MonoBehaviour
             {
 				dof.focusDistance.value = focusDistance;
 				previousFocusDistance = focusDistance;
+			}
+		}
+		
+		if (focalLength !=  previousfocalLength)
+		{
+			DepthOfField dof;
+            if (postProcessing.TryGet(out dof))
+            {
+				dof.focalLength.value = focalLength;
+				previousfocalLength = focalLength;
 			}
 		}
     }
