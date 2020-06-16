@@ -27,8 +27,8 @@ public class Player_Input : MonoBehaviour
     void Awake()
     {
         // Hide the mouse cursor
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 		
 		if (playerInput == null) playerInput = this;
 
