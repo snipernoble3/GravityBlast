@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
 
         PauseGame(true);
         pausedVelocity = Vector3.zero;
-        menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.None, true);
+        menu.gameObject.GetComponent<CursorLock>().SetCursor(CursorLockMode.Confined, true);
 
         
         initialLoadingScreen.SetActive(true); //turn on loading screen
