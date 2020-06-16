@@ -57,9 +57,8 @@ public class MenuGlobe : MonoBehaviour
 		
 		float extraPadding = 15f;
 		
-		
-		
-		transform.position = selection.transform.position + (((globeWidth + (textWidth / 2.0f) + extraPadding) * Vector3.left) / 2.0f);
+		//transform.position = selection.transform.position + (((globeWidth + (textWidth / 2.0f) + extraPadding) * Vector3.left) / 2.0f);
+		transform.position = selection.transform.GetChild(0).GetChild(0).position;
     }
 	
 	/*
