@@ -114,7 +114,7 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private float mouseSensitivity_Y = 1.0f;
 	[SerializeField] private bool matchXYSensitivity = true;
 	[SerializeField] private bool useRawMouseInput = true;
-	[SerializeField] private bool invertVerticalInput = false;
+	[SerializeField] public bool invertVerticalInput = false;
 	private float rotation_vertical = 0.0f;
 	private float rotation_horizontal = 0.0f;
 	private float verticalAngle = 0.0f;

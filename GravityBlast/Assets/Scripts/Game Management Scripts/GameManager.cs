@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
     //current planet
     public static PlanetManager currPlanet { get; private set; }
 
-	private MusicManager musicManger;
+	[HideInInspector] public MusicManager musicManger;
 
     float minPlanetScale = 0.45f;
     float maxPlanetScale = 0.75f;
