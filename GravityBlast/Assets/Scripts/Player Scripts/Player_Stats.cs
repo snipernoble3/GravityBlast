@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player_Stats : MonoBehaviour {
 
@@ -13,6 +15,8 @@ public class Player_Stats : MonoBehaviour {
     private int currHP;
     private bool noHealth;
     [SerializeField] private bool godMode;
+	[SerializeField] GameObject postProcessing;
+	private Volume hurtVFX;
 
     public TextMeshProUGUI healthText;
     private string baseText;
@@ -67,7 +71,10 @@ public class Player_Stats : MonoBehaviour {
     private WeaponManager weaponManager;
 
     private void Start () {
-        maxHP = baseHP;
+        
+		hurtVFX = postProcessing.GetComponents<Volume>()[1];
+		
+		maxHP = baseHP;
         currHP = maxHP;
 
         UpdateModification("all"); //just base set up all modifications
@@ -105,6 +112,7 @@ public class Player_Stats : MonoBehaviour {
                     NoHealth();
                     currHP = 0;
                 }
+				else PainVFX();
                 break;
             case 0:
                 //update max health
@@ -120,11 +128,34 @@ public class Player_Stats : MonoBehaviour {
     private void NoHealth () {
         noHealth = true;
         if (currHP <= 0) {
+			PainVFX();
             GameManager.gm.PlayerDeath();
         } else {
             noHealth = false;
         }
         
+    }
+	
+	private void PainVFX()
+	{
+		if (hurtVFX != null) StartCoroutine(PainVFXPingPong());
+	}
+	
+	IEnumerator PainVFXPingPong()
+    {
+		float pingPong = 2.0f;
+		if (noHealth) pingPong = 1.0f;
+		
+		float speed = 2.0f;
+		float progress = 0.0f;
+        while(progress < pingPong)
+        {
+			hurtVFX.weight = Mathf.PingPong(progress, 1.0f);
+			progress += Time.deltaTime * speed;
+            yield return null;
+        }
+		if (!noHealth) hurtVFX.weight = 0.0f;
+		else hurtVFX.weight = 1.0f;
     }
 
     public void UpdateModification (string mName, int i = 0) {

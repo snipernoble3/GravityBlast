@@ -2934,6 +2934,29 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!1 &735684623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3283460421036696357, guid: 9285bbbc28d03384db3cc0410d7e6675,
+    type: 3}
+  m_PrefabInstance: {fileID: 3283460420152035151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &735684624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735684623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 1000
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: d5e91387c563ec648bfea3572e748abb, type: 2}
 --- !u!1 &895182366
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,6 +7034,11 @@ PrefabInstance:
       propertyPath: xpText
       value: 
       objectReference: {fileID: 971006876}
+    - target: {fileID: 8585929578479001980, guid: f1f02688bb546cc46bc69d7d28d1c555,
+        type: 3}
+      propertyPath: postProcessing
+      value: 
+      objectReference: {fileID: 735684623}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f02688bb546cc46bc69d7d28d1c555, type: 3}
 --- !u!1001 &3283460420152035151
@@ -7074,6 +7102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283460421036696356, guid: 9285bbbc28d03384db3cc0410d7e6675,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3283460421036696357, guid: 9285bbbc28d03384db3cc0410d7e6675,
         type: 3}
