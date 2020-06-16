@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 3c03e777b4737854395dd0267d8ba816
-  - enabled: 1
-    path: Assets/Scenes/TinyPlanet_Overload.unity
-    guid: f1992232a163c2443a2d624004a3d96a
-  - enabled: 1
-    path: Assets/Scenes/PlanetGeneration.unity
-    guid: 018d7416c320ded439326f93044b53b7
+    path: Assets/Scenes/Test_DefaultScene.unity
+    guid: d85ef890b685549458f6a5cafb458aff
   m_configObjects: {}
