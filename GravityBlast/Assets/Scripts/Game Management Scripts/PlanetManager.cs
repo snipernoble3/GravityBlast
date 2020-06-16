@@ -236,11 +236,13 @@ public class PlanetManager : MonoBehaviour {
                 GameObject enemy = PrefabManager.enemyPools[i].SpawnObject();
                 RaycastHit hit = RandomSpawnPoint();
                 enemy.transform.position = hit.point + (hit.normal * 1f);
-                enemy.GetComponent<EnemyInfo>().playerStats = GameManager.gm.playerStats;
+                EnemyInfo info = enemy.GetComponent<EnemyInfo>();
+                info.playerStats = GameManager.gm.playerStats;
                 Gravity_AttractedObject attractedObject = enemy.GetComponent<Gravity_AttractedObject>();
                 if (attractedObject != null) attractedObject.CurrentGravitySource = Gravity_Source.DefaultGravitySource;
                 enemy.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 enemy.SetActive(true);
+                info.StartCoroutine(info.Stun(2f));
             }
             //Debug.Log(PrefabManager.manager.enemyPrefabs[i].name + " Spawned: " + rNum);
             yield return null;
